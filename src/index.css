@@ -1,0 +1,13 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background: rgb(29,28,25);
+  background: linear-gradient(205deg, rgba(29,28,25,1) 16%, rgba(81,126,136,1) 73%);
+}
+
+body{
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+

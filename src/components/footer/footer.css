@@ -1,0 +1,9 @@
+.footerText{
+    font-size: 1rem;
+}
+
+.componentFooter{
+    background-color: rgba(89, 86, 92, 0.274);
+    width: 100%;
+    margin-top: 2%;
+}
