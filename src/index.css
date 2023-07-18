@@ -1,7 +1,9 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   background: rgb(29,28,25);
-  background: linear-gradient(205deg, rgba(29,28,25,1) 16%, rgba(81,126,136,1) 73%);
+  background: linear-gradient(205deg, rgba(58,125,142,1) 0%, rgba(0,0,0,1) 100%);
+  min-height: 100%;
+
 }
 
 body{

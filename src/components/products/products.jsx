@@ -52,6 +52,13 @@ function products() {
                 <h1>{car.brand.name}</h1>
                 <p>USD${car.price}</p>
                 </div>
+                <div className="productsDescription">
+                <p>{car.km} KM</p>
+                <div className="divider"></div>
+                <p>{car.year}</p>
+                {car.onSale?<div className="divider"></div>:null}
+                {car.onSale?<p>{car.onSale}</p>:null}
+                </div>
               </article>
             ))}
           </div>

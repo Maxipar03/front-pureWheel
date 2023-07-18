@@ -31,3 +31,20 @@
     justify-content: space-between;
     padding: 0% 4%;
 }
+
+.productsDescription{
+    display: flex;
+    padding: 0% 4%;
+}
+.productsDescription p{
+    margin: 0 2%;
+
+}
+
+
+
+.divider{
+        border-left: 1px solid #000; /* Adjust thickness and color as needed */
+        height: 50%;
+      
+}
