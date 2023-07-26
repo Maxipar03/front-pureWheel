@@ -41,7 +41,6 @@ function products() {
       fetchData();
     }, []);
 
-      console.log(products)
       return (
         <div className="productsComponent">
           <div className="allProductsContainer">
