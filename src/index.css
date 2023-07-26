@@ -3,7 +3,8 @@
   background: rgb(29,28,25);
   background: linear-gradient(205deg, rgba(58,125,142,1) 0%, rgba(0,0,0,1) 100%);
   min-height: 100%;
-
+  position: relative;
+  
 }
 
 body{
@@ -11,5 +12,6 @@ body{
   border: 0;
   padding: 0;
   box-sizing: border-box;
+  padding-bottom: 3%;
 }
 

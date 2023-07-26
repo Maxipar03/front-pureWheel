@@ -1,4 +1,4 @@
-.brandsCarouselContainer {
+.brandsComponent {
         width: 100%;
         overflow-x: scroll;
         padding: 1.6% 0;
@@ -72,31 +72,29 @@
     left: 0;
 }
 
-
-
 /* Customize the scrollbar */
-.brandsCarouselContainer::-webkit-scrollbar {
+.brandsComponent::-webkit-scrollbar {
   width: 10px; /* Width of the scrollbar */
   height: 10px;
 }
 
-.brandsCarouselContainer::-webkit-scrollbar-track {
+.brandsComponent::-webkit-scrollbar-track {
   background: #f1f1f100; /* Background color of the scrollbar track */
 
 }
 
-.brandsCarouselContainer::-webkit-scrollbar-thumb {
+.brandsComponent::-webkit-scrollbar-thumb {
   background: #000000a9; /* Color of the scrollbar thumb */
   border-radius: 200px;
 }
 
-.brandsCarouselContainer::-webkit-scrollbar-thumb:hover {
+.brandsComponent::-webkit-scrollbar-thumb:hover {
   background: #555; /* Color of the scrollbar thumb on hover */
 
 }
 
 @media screen and (min-width: 724px) {
-    .brandsCarouselContainer {
+    .brandsComponent {
         width: 70%;
         overflow-x: scroll;
         padding: 1% 0;

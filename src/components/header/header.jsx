@@ -1,5 +1,9 @@
 import React from "react";
 import './header.css'
+import logo from "../../../public/PureWheelLogo2.png"
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 function header() {
 
@@ -7,7 +11,9 @@ return (
   <div className="componentHeader">
      <header className="header">
      <div className="divLogo">
-        <h1>PureWheel</h1> 
+     <Link to='/'>
+        <img src={logo} className="imageLogo"/>
+   </Link>
      </div>
      <div className="options">
      <ul className="selectors">
@@ -16,10 +22,15 @@ return (
         <li>Sell car</li>
      </ul>
      <ul className="selectorsSession">
+     <Link to='/user/loggin' style={{ textDecoration: 'none' }}>
         <li>LoggIn</li>
+      </Link>
+      <Link to='/user/register' style={{ textDecoration: 'none' }}>
         <li>Register</li>
+      </Link>
      </ul>
      </div>
+     <FontAwesomeIcon icon={faBars} className="burgerMenu"/>
     </header>
   </div>
   )

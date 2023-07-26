@@ -51,4 +51,60 @@
     list-style: none;
     font-size: 1.1rem;
     font-weight: bold;
+    color: white;
+
 }
+
+.imageLogo{
+    width: 200px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.burgerMenu{
+    display: none;
+}
+
+@media (min-width: 960px) and (max-width: 1279px) {
+    .header{
+        width: 75%;
+    }
+    .options {
+        width: 70%;
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .selectors {
+        display: flex;
+        width: 40%;
+        justify-content: space-between;
+    }
+    
+    .selectorsSession {
+        display: flex;
+        width: 30%;
+        justify-content: space-around;
+    }
+  }
+
+  @media (max-width: 959px) {
+
+    .header{
+        width: 90%;
+    }
+
+    .imageLogo{
+        max-width: 200px;
+        min-width: 180px;
+    }
+
+    .burgerMenu{
+        font-size: 2rem;
+        display: block;
+    }
+
+    .options{
+        display: none;
+    }
+  }

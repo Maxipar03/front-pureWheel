@@ -43,7 +43,7 @@ function products() {
 
       console.log(products)
       return (
-        <div className="productsContainer">
+        <div className="productsComponent">
           <div className="allProductsContainer">
             {products.map((car) => (
               <article key={car.id} className="products">

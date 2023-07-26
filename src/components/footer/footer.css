@@ -6,11 +6,10 @@
     background-color: rgba(89, 86, 92, 0.274);
     width: 100%;
     margin-top: 2%;
-        position: ;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #f0f0f0; /* Cambia esto al color que desees */
-        padding: 20px;
+    position:absolute ;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f0f0f0; /* Cambia esto al color que desees */
       
 }

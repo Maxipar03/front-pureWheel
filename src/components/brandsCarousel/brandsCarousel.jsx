@@ -21,7 +21,7 @@ function brandsCarousel() {
 
       console.log(brands)
       return (
-        <div className="brandsCarouselContainer">
+        <div className="brandsComponent">
           <div className="brandsContainer"> 
             {brands.map((brand) => (
               <article key={brand.id} className="brand">

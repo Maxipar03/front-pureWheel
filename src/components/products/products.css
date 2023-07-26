@@ -1,6 +1,6 @@
 .productsImage{
     width: 300px;
-    height:200px
+    height:200px;
 }
 
 .products {
@@ -12,7 +12,7 @@
     flex-direction: column;
 }
 
-.productsContainer{
+.productsComponent{
     width: 70%;
     box-shadow: inset -1px -1px 22px 13px rgba(0,0,0,0.41);
     background-color: silver;
@@ -41,10 +41,22 @@
 
 }
 
-
-
 .divider{
         border-left: 1px solid #000; /* Adjust thickness and color as needed */
         height: 50%;
       
+}
+
+
+@media (max-width: 959px){
+    .productsImage{
+        width: 20%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .products{
+        width: 100%;
+        flex-direction: row;
+    }
 }
