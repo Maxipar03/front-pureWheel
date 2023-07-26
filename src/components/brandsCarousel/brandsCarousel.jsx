@@ -19,7 +19,6 @@ function brandsCarousel() {
       fetchData();
     }, []);
 
-      console.log(brands)
       return (
         <div className="brandsComponent">
           <div className="brandsContainer"> 
