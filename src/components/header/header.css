@@ -1,50 +1,31 @@
-.componentHeader {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
 .header{
     display: flex;
-    width: 75%;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
     position: absolute;
-    z-index: 100;
+    z-index: 10;
     color: white;
 }
 
 .divLogo {
-    width: 20%;
+    width: 30%;
     justify-content: center;
     display: flex;
 }
-
-.options {
-    width: 70%;
-    display: flex;
-    justify-content: space-around;
+.logo{
+    text-decoration: none;
+    color: white;
 }
 
+.options{
+    display: none;
+}
 
-.selectors {
-    display: flex;
+.divBurgerMenu{
     width: 30%;
-    justify-content: space-around;
-    align-items: center;
-}
-
-
-.selectors li{
-    list-style: none;
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-.selectorsSession {
     display: flex;
-    width: 20%;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .selectorsSession li{
