@@ -1,4 +1,5 @@
 import React from "react";
+import { fetchApi } from "../../modules/apiFetch";
 import './logginBlock.css'
 import bmwImage from "../../../public/IMG_7137-tiny-2048x0-0.5x0.jpg"
 import logo from "../../../public/PureWheel(4).png"

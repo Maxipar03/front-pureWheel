@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './products.css'
+import { fetchApi } from "../../modules/apiFetch";
 
 function products() {
     function ImageCarousel({ imgArray, id }) {
@@ -28,17 +29,11 @@ function products() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch('http://localhost:3000/cars');
-          const jsonData = await response.json();
-          setProducts(jsonData.data);
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      };
-  
-      fetchData();
+      fetchApi('http://localhost:3000/cars',{
+        method: 'GET',
+      }, (resolve) => {
+        setProducts(resolve.data);
+      })
     }, []);
 
       return (

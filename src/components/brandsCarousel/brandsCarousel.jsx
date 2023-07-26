@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from "react";
 import './brandsCarousel.css'
+import { fetchApi } from "../../modules/apiFetch";
 
 function brandsCarousel() {
 
-    const [brands, setBrands] = useState([]);
+  const [brands, setBrands] = useState([]);
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch('http://localhost:3000/cars/brands');
-          const jsonData = await response.json();
-          setBrands(jsonData.data);
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      };
-  
-      fetchData();
-    }, []);
+  useEffect(() => {
+    fetchApi('http://localhost:3000/cars/brands', {
+      method: 'GET',
+    }, (resolve) => {
+      setBrands(resolve.data);
+    });
+  }, []);
 
       return (
         <div className="brandsComponent">
