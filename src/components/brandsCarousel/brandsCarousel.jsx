@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './brandsCarousel.css'
-import { fetchApi } from "../../modules/apiFetch";
+import { fetchApi } from "../../modules/mainModules";
 
 function brandsCarousel() {
 
@@ -9,8 +9,10 @@ function brandsCarousel() {
   useEffect(() => {
     fetchApi('http://localhost:3000/cars/brands', {
       method: 'GET',
-    }, (resolve) => {
-      setBrands(resolve.data);
+    }, (resolve, reject) => {
+      if(reject){console.log(reject);}else{
+        setBrands(resolve.data);
+      }
     });
   }, []);
 

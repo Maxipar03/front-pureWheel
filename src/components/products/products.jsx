@@ -1,38 +1,30 @@
 import React, { useState, useEffect } from "react";
 import './products.css'
-import { fetchApi } from "../../modules/apiFetch";
+import { fetchApi, objToArray } from "../../modules/mainModules";
 
 function products() {
-    function ImageCarousel({ imgArray, id }) {
-        const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    
-        useEffect(() => {
-            const interval = setInterval(() => {
-                setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imgArray.length);
-            }, 3000);
-    
-            return () => clearInterval(interval);
-        }, [imgArray]);
-    
-        return <img className="productsImage" src={`http://localhost:3000/images/cars/user_${id}/${imgArray[currentImageIndex]}`} alt="" />;
-    }
-    function objToArray (obj) {
-        const imagesToArray = []
-            for (let key in obj) {
-                if (obj.hasOwnProperty(key)) {
-                    imagesToArray.push(obj[key])
-                }
-        }
-        return imagesToArray
-    }
+  function ImageCarousel({ imgArray, id }) {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imgArray.length);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [imgArray]);
+
+    return <img className="productsImage" src={`http://localhost:3000/images/cars/user_${id}/${imgArray[currentImageIndex]}`} alt="" />;
+}
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
       fetchApi('http://localhost:3000/cars',{
         method: 'GET',
-      }, (resolve) => {
+      }, (resolve, reject) => {
+        if(reject){console.log(reject)}else{
         setProducts(resolve.data);
+        }
       })
     }, []);
 
