@@ -1,6 +1,7 @@
 .productsImage{
     width: 300px;
     height:200px;
+    transition: opacity 0.3s ease;
 }
 
 .products {
@@ -8,8 +9,10 @@
     flex-wrap: wrap;
     padding: 10px 15px;
     margin: 20px;
-    background-color: bisque;
+    background-color: rgb(96, 92, 117);
     flex-direction: column;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .productsComponent{
@@ -58,5 +61,27 @@
     .products{
         width: 100%;
         flex-direction: row;
+    }
+
+    .productsDescription{
+        display: none;
+    }
+
+    .productsInfo {
+        display: flex;
+        width: 72%;
+        align-items: center;
+        padding: 0% 4%;
+        justify-content: space-between;
+    }
+
+    .productsPrice{
+        border-left: 2px solid black;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        padding-left: 6px;
+        color: rgb(18, 182, 18);
+        font-weight: bolder;
     }
 }

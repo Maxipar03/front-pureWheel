@@ -5,7 +5,7 @@
     -webkit-box-shadow: -15px 0px 15px 0px rgba(0,0,0,0.69);
     -moz-box-shadow: -15px 0px 15px 0px rgba(0,0,0,0.69);
     box-shadow: -15px 0px 15px 0px rgba(0,0,0,0.69);
-    background-color: #A087C1;
+    background-color: #949396;
     padding: 0px 30px;
     z-index: 5;
     border-radius: 6px;
@@ -23,10 +23,19 @@ display: flex;
 }
 
 .registerForm input{
-height: 30px;
+height: 2vw;
 border-radius: 5px;
 border: 0px;
+font-size: 1.1rem;
 }
+
+.registerForm input:focus{ 
+        border-color: rgb(54, 50, 50); /* Cambia el color del borde al estar enfocado */
+        border-width: 15px;
+        border: 1px solid rgb(34, 32, 32); /* Cambia el grosor del borde al estar enfocado */
+        outline: none;
+}
+
 
 .registerForm label{
 font-size: 1.2rem;
@@ -40,7 +49,7 @@ font-weight: 600;
 
 .carImage{
 width: 540px;
-height: 540px;
+height: 700px;
 object-fit: cover;
 filter: blur(3px)
 }
@@ -54,7 +63,7 @@ align-items: center;
 border-radius: 10px;
 background-color: #faebd7b5;
 width: 540px;
-height: 540px;
+height: 700px;
 justify-content: center;
 }
 
@@ -123,11 +132,20 @@ transform: scale(0.95);
 
 .nameContainer{
     display: flex;
+    justify-content: space-between;
     width: 100%;
 }
 
 .textFullname{
     width: 95%;
+}
+
+.nameContainer .registerInputContent{
+    width: 49%;
+}
+
+.textFullname{
+    width: 98%;
 }
 
 
@@ -146,7 +164,6 @@ transform: scale(0.95);
 
     .carImage{
         height: 85px;
-        max-width: 37vw;
     }
 
     .registerForm{
@@ -166,13 +183,13 @@ transform: scale(0.95);
         display: flex;
         justify-content: space-around;
         flex-direction: row;
-        max-width: 37vw;
         box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.52);
         z-index: 10;
     }
 
     .registerInputContent input{
         width: auto;
+        height: 3.5vw;
     }
 
   }
@@ -185,6 +202,7 @@ transform: scale(0.95);
 
     .registerInputContent{
         width: auto;
+        
     }
 
     .registerForm{
@@ -202,6 +220,7 @@ transform: scale(0.95);
 
     .registerInputContent input{
         width: auto;
+        height: 6vw;
     }
 
   }

@@ -13,7 +13,7 @@ function products() {
             return () => clearInterval(interval);
         }, [imgArray]);
     
-        return <img className="productsImage" src={`http://localhost:3000/images/cars/user_${id}/${imgArray[currentImageIndex]}`} alt="" />;
+        return <img className="productsImage" src={`http://localhost:3000/images/cars/user_${id}/${imgArray[currentImageIndex]}`} alt=""  />;
     }
     function objToArray (obj) {
         const imagesToArray = []
@@ -50,7 +50,7 @@ function products() {
                 <ImageCarousel  imgArray={objToArray(JSON.parse(car.images))} id={car.user_id}/>
                 <div className="productsInfo">
                 <h1>{car.brand.name}</h1>
-                <p>USD${car.price}</p>
+                <p className="productsPrice">USD${car.price}</p>
                 </div>
                 <div className="productsDescription">
                 <p>{car.km} KM</p>

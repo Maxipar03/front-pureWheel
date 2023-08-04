@@ -19,33 +19,33 @@ function register() {
         <div className="registerFormContainer">
           <div className="nameContainer">
           <div className="registerInputContent">
-            <label>Name</label>
-            <input type="text" className="textFullname"></input>
+            <label>First Name</label>
+            <input type="text" className="textFullname" placeholder="First Name"></input>
           </div>
           <div className="registerInputContent">
-            <label>Surname</label>
-            <input type="text" className="textFullname"></input>
+            <label>Last Name</label>
+            <input type="text" className="textFullname" placeholder="Last Name"></input>
           </div>
           </div>
           <div className="registerInputContent">
-            <label>Phone number</label>
-            <input type="number"></input>
+            <label>Phone Number</label>
+            <input type="number" placeholder="Phone Number"></input>
           </div>
           <div className="registerInputContent">
             <label>Identification</label>
             <input type="number" placeholder="Identification"></input>
           </div>
           <div className="registerInputContent">
-            <label>birthdate</label>
+            <label>Birthdate</label>
             <input type="date"></input>
           </div>
           <div className="registerInputContent">
             <label>Password</label>
-            <input type="password"></input>
+            <input type="password" placeholder="Password"></input>
           </div>
           <div className="registerInputContent">
             <label>Confirm Password</label>
-            <input type="password"></input>
+            <input type="password" placeholder="Confirm Password"></input>
         </div>
         </div>
         <button className="button-87">register</button>

@@ -1,12 +1,12 @@
 .brandsComponent {
         width: 100%;
-        overflow-x: scroll;
+        overflow:hidden;
         padding: 1.6% 0;
         margin: 1%;
-        -webkit-box-shadow: inset -1px -1px 22px 13px rgba(0,0,0,0.41);
-        -moz-box-shadow: inset -1px -1px 22px 13px rgba(0,0,0,0.41);
-        box-shadow: inset -1px -1px 22px 13px rgba(0,0,0,0.41);
         background-color: silver;
+        scroll-behavior: smooth;
+        display: flex;
+        position: relative;
         
   }
   
@@ -23,7 +23,7 @@
   .brand {
     flex: 0 0 auto;
     width: 200px;
-    padding: 0% 1%;
+    padding: 0px 2.2vw;
     transition: transform 0.3s ease 0s;
     display: flex;
     flex-direction: column;
@@ -56,12 +56,37 @@
 
 }
 
-.arrow {
-  width: 30px;
-  height: 30px;
-  background-image: ('1283.png'); /* Reemplaza 'ruta_de_la_imagen_flecha.png' con la ruta de la imagen de la flecha */
+.arrowRight{
+  position: sticky;
+  right: 0px;
+  height: 50%;
+  line-height: 40px;
+  width: 25px;
+  z-index: 30;
+  transform: translateY(-50%);
+  top: 50%;
+  background-color: #00000047;
+  border-radius: 30px;
   cursor: pointer;
-  z-index: 2;
+}
+
+.arrowLeft{
+  position: sticky;
+  left: 0px;
+  height: 50%;
+  line-height: 40px;
+  width: 25px;
+  top: 50%;
+  z-index: 30;
+  transform: translateY(-50%);
+  background-color: #00000047;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.arrowContainer{
+  display: flex;
+  align-items: center;
 }
 
 .brand:hover .brandName{
@@ -96,14 +121,12 @@
 @media screen and (min-width: 724px) {
     .brandsComponent {
         width: 70%;
-        overflow-x: scroll;
         padding: 1% 0;
         margin: 1%;
-        -webkit-box-shadow: inset -1px -1px 22px 13px rgba(0,0,0,0.41);
-        -moz-box-shadow: inset -1px -1px 22px 13px rgba(0,0,0,0.41);
-        box-shadow: inset -1px -1px 22px 13px rgba(0,0,0,0.41);
+        scroll-behavior: smooth;
         background-color: silver;
         border-radius: 15px;
         height: 100%;
+        position: relative;
   }
   }

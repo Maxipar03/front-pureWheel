@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import './brandsCarousel.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 function brandsCarousel() {
 
     const [brands, setBrands] = useState([]);
+    
+    const filaRef = useRef(null);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -19,10 +23,25 @@ function brandsCarousel() {
       fetchData();
     }, []);
 
+    const handleFlechaDerechaClick = () => {
+      if (filaRef.current) {
+        filaRef.current.scrollLeft += filaRef.current.offsetWidth;
+      }
+    };
+  
+    const handleFlechaIzquierdaClick = () => {
+      if (filaRef.current) {
+        filaRef.current.scrollLeft -= filaRef.current.offsetWidth;
+      }
+    };
+
+    console.log(filaRef)
+
       console.log(brands)
       return (
-        <div className="brandsComponent">
-          <div className="brandsContainer"> 
+        <div className="brandsComponent" ref={filaRef}>  
+          <FontAwesomeIcon icon={faArrowLeft} className="arrowLeft" onClick={handleFlechaIzquierdaClick} />
+          <div className="brandsContainer" > 
             {brands.map((brand) => (
               <article key={brand.id} className="brand">
                 <img
@@ -32,9 +51,11 @@ function brandsCarousel() {
                 />
                 <h1 className="brandName">{brand.name}</h1>
               </article>
-            ))}
+            ))}    
+          </div> 
+      <FontAwesomeIcon icon={faArrowRight} className="arrowRight" onClick={handleFlechaDerechaClick} />
           </div>
-          </div>
+        
       );
     }
 

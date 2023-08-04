@@ -5,12 +5,21 @@
                 -webkit-box-shadow: -15px 0px 15px 0px rgba(0,0,0,0.69);
                 -moz-box-shadow: -15px 0px 15px 0px rgba(0,0,0,0.69);
                 box-shadow: -15px 0px 15px 0px rgba(0,0,0,0.69);
-                background-color: #A087C1;
+                background-color: #949396;
                 padding: 0px 30px;
                 z-index: 5;
+                width: 15vw;
                 border-radius: 6px;
                 justify-content: center; 
 }
+
+.logginForm input:focus{ 
+  border-color: rgb(54, 50, 50); /* Cambia el color del borde al estar enfocado */
+  border-width: 15px;
+  border: 1px solid rgb(34, 32, 32); /* Cambia el grosor del borde al estar enfocado */
+  outline: none;
+}
+
 
 .logginInputContent{
         display: flex;
@@ -28,10 +37,10 @@
 }
 
 .logginForm input{
-        width: 300px;
-        height: 30px;
+        height: 2vw;
         border-radius: 5px;
         border: 0px;
+        font-size: 1.1rem;
 }
 
 .logginForm label{
@@ -46,7 +55,7 @@
 
 .carImage{
         width: 540px;
-        height: 500px;
+        height: 700px;
         object-fit: cover;
         filter: blur(3px)
 }
@@ -60,7 +69,7 @@
         border-radius: 10px;
         background-color: #faebd7b5;
         width: 540px;
-        height: 540px;
+        height: 700px;
         justify-content: center;
 }
 

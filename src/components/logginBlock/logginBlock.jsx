@@ -15,12 +15,12 @@ return (
   <img className="carImage" src={bmwImage} alt="car"/>
    <form className="logginForm">
       <div className="logginInputContent">
-      <label>Name or phone number</label>
-      <input type="text"></input>
+      <label>Email</label>
+      <input type="text" placeholder="Email"></input>
       </div>
       <div className="logginInputContent">
       <label>Password</label>
-      <input type="password"></input>
+      <input type="password" placeholder="Password"></input>
       </div>
       <div className="rememberMe">
           <h4>Remember me</h4>
