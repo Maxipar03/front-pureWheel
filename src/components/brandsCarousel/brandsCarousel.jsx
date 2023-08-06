@@ -3,6 +3,7 @@ import './brandsCarousel.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { fetchApi } from "../../modules/mainModules";
+import appInfo from "../../modules/appInfo";
 
 function brandsCarousel() {
 
@@ -12,7 +13,7 @@ function brandsCarousel() {
 
 
   useEffect(() => {
-    fetchApi('http://localhost:3000/cars/brands', {
+    fetchApi(`${appInfo.root}/cars/brands`, {
       method: 'GET',
     }, (resolve, reject) => {
       if(reject){console.log(reject);}else{
@@ -33,9 +34,6 @@ function brandsCarousel() {
       }
     };
 
-    console.log(filaRef)
-
-      console.log(brands)
       return (
         <div className="brandsComponent" ref={filaRef}>  
           <FontAwesomeIcon icon={faArrowLeft} className="arrowLeft" onClick={handleFlechaIzquierdaClick} />
@@ -44,7 +42,7 @@ function brandsCarousel() {
               <article key={brand.id} className="brand">
                 <img
                   className="brandImage"
-                  src={`http://localhost:3000/images/brands/${brand.logo}`}
+                  src={`${appInfo.root}/images/brands/${brand.logo}`}
                   alt={brand.name}
                 />
                 <h1 className="brandName">{brand.name}</h1>

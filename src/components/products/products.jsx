@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { fetchApi } from "../../modules/mainModules";
+import appInfo from "../../modules/appInfo";
 import './products.css'
 
 function products() {
@@ -13,7 +15,7 @@ function products() {
             return () => clearInterval(interval);
         }, [imgArray]);
     
-        return <img className="productsImage" src={`http://localhost:3000/images/cars/user_${id}/${imgArray[currentImageIndex]}`} alt=""  />;
+        return <img className="productsImage" src={`${appInfo.root}/images/cars/user_${id}/${imgArray[currentImageIndex]}`} alt=""  />;
     }
     function objToArray (obj) {
         const imagesToArray = []
@@ -28,20 +30,20 @@ function products() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch('http://localhost:3000/cars');
-          const jsonData = await response.json();
-          setProducts(jsonData.data);
-        } catch (error) {
-          console.error('Error:', error);
+      fetchApi(`${appInfo.root}/cars`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
         }
-      };
-  
-      fetchData();
+      }, (resolve, reject) => {
+        if (reject) {
+          console.log(reject);
+        } else {
+          setProducts(resolve.data);
+        }
+      })
     }, []);
-
-      console.log(products)
+    
       return (
         <div className="productsComponent">
           <div className="allProductsContainer">
