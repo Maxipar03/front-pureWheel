@@ -2,6 +2,7 @@ import React, { useState, useEffect,useRef } from "react";
 import './brandsCarousel.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { fetchApi } from "../../modules/mainModules";
 
 function brandsCarousel() {
 
@@ -9,19 +10,16 @@ function brandsCarousel() {
     
     const filaRef = useRef(null);
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch('http://localhost:3000/cars/brands');
-          const jsonData = await response.json();
-          setBrands(jsonData.data);
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      };
-  
-      fetchData();
-    }, []);
+
+  useEffect(() => {
+    fetchApi('http://localhost:3000/cars/brands', {
+      method: 'GET',
+    }, (resolve, reject) => {
+      if(reject){console.log(reject);}else{
+        setBrands(resolve.data);
+      }
+    });
+  }, []);
 
     const handleFlechaDerechaClick = () => {
       if (filaRef.current) {

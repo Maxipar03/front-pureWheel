@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { fetchApi } from "./modules/mainModules";
 import { Routes, Route } from 'react-router-dom'
 import Home from './screen/home/Home'
 import Header from "./components/header/header";
@@ -7,6 +8,21 @@ import Loggin from './screen/login/loggin';
 import Register from './screen/register/register';
 
 function App() {
+
+  useEffect(() => {
+    const permanentToken = localStorage.getItem('token');
+    if (permanentToken) {
+      const headers = {
+        authorization: permanentToken
+      };
+      fetchApi('http://localhost:3001/api/users/token/byId', {
+        method: 'GET',
+        headers,
+      },(resolve)=>{
+        sessionStorage.setItem('userLogged', JSON.stringify(resolve.data))
+      });
+    }
+  }, []);
 
 return (
   <div className='App'>
