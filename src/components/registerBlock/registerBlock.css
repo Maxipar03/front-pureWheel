@@ -80,6 +80,16 @@ margin: 0px;
     flex-direction: column;
     padding: 2% 0%;
 }
+/* Validation css start*/
+.errorDiv{
+    width: 100%;
+}
+.errorMsg{
+    width: 100%;
+    margin: 1%;
+    color: red;
+}
+/* Validation css end */
 
 .registerFormContainer{
     display: flex;

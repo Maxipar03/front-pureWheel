@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { fetchApi } from "./modules/mainModules";
+import appInfo from "./modules/appInfo";
 import { Routes, Route } from 'react-router-dom'
 import Home from './screen/home/Home'
 import Header from "./components/header/header";
@@ -16,7 +17,7 @@ function App() {
       const headers = {
         authorization: permanentToken
       };
-      fetchApi('http://localhost:3001/api/users/token/byId', {
+      fetchApi(`${appInfo.root}/users/token/byId`, {
         method: 'GET',
         headers,
       },(resolve)=>{

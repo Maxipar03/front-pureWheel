@@ -3,6 +3,7 @@ import './brandsCarousel.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { fetchApi } from "../../modules/mainModules";
+import appInfo from "../../modules/appInfo";
 
 function brandsCarousel() {
 
@@ -12,7 +13,7 @@ function brandsCarousel() {
 
 
   useEffect(() => {
-    fetchApi('http://localhost:3000/cars/brands', {
+    fetchApi(`${appInfo.root}/cars/brands`, {
       method: 'GET',
     }, (resolve, reject) => {
       if(reject){console.log(reject);}else{
@@ -32,14 +33,9 @@ function brandsCarousel() {
         filaRef.current.scrollLeft -= filaRef.current.offsetWidth;
       }
     };
-
-    console.log(filaRef)
-
-      console.log(brands)
-      
-      const brandsOnClick = (id) => {
-        window.location.href = `products/brands/${id}` 
-      }
+    const brandsOnClick = (id) => {
+      window.location.href = `products/brands/${id}` 
+    }
 
       return (
         <div className="brandsComponent" ref={filaRef}>  
@@ -49,7 +45,7 @@ function brandsCarousel() {
               <article key={brand.id} className="brand" onClick={() => {brandsOnClick(brand.id)}}>
                 <img
                   className="brandImage"
-                  src={`http://localhost:3000/images/brands/${brand.logo}`}
+                  src={`${appInfo.root}/images/brands/${brand.logo}`}
                   alt={brand.name}
                 />
                 <h1 className="brandName">{brand.name}</h1>
