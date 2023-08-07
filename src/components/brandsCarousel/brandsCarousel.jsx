@@ -36,12 +36,17 @@ function brandsCarousel() {
     console.log(filaRef)
 
       console.log(brands)
+      
+      const brandsOnClick = (id) => {
+        window.location.href = `products/brands/${id}` 
+      }
+
       return (
         <div className="brandsComponent" ref={filaRef}>  
           <FontAwesomeIcon icon={faArrowLeft} className="arrowLeft" onClick={handleFlechaIzquierdaClick} />
           <div className="brandsContainer" > 
             {brands.map((brand) => (
-              <article key={brand.id} className="brand">
+              <article key={brand.id} className="brand" onClick={() => {brandsOnClick(brand.id)}}>
                 <img
                   className="brandImage"
                   src={`http://localhost:3000/images/brands/${brand.logo}`}

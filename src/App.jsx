@@ -6,6 +6,7 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Loggin from './screen/login/loggin';
 import Register from './screen/register/register';
+import BrandsProducts from "./screen/brandsProducts/brandsProducts";
 
 function App() {
 
@@ -33,6 +34,7 @@ return (
         {/****************** USERS ******************/}
         {<Route exact path='/user/loggin' element={<Loggin/>}/>}
         {<Route exact path='/user/register' element={<Register/>}/>}
+        {<Route exact path='/products/brands/:id' element={<BrandsProducts/>}/>}
       </Routes>
     <Footer/>
   </div>

@@ -7,6 +7,9 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 function header() {
 
+  const userLogged = sessionStorage.getItem('userLogged'); 
+  
+
 return (
   <div className="componentHeader">
      <header className="header">
@@ -21,6 +24,7 @@ return (
         <li>Buy Car</li>
         <li>Sell car</li>
      </ul>
+      { userLogged ? null : 
      <ul className="selectorsSession">
      <Link to='/user/loggin' style={{ textDecoration: 'none' }}>
         <li>LoggIn</li>
@@ -29,6 +33,7 @@ return (
         <li>Register</li>
       </Link>
      </ul>
+     }
      </div>
      <FontAwesomeIcon icon={faBars} className="burgerMenu"/>
     </header>
