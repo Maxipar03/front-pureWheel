@@ -15,7 +15,7 @@ function brandsProducts() {
       method: 'GET',
     }, (resolve, reject) => {
       if(reject){console.log(reject);}else{
-        console.log(resolve.info.carsIncluded)
+        console.log(resolve.data)
       }
     });
   }, []);

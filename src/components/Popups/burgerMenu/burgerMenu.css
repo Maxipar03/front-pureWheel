@@ -1,0 +1,60 @@
+.bm-App-choose{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+}
+
+.bm-main-choose {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.bm-choose-main-div {
+    position: absolute;
+    background: rgba(36, 48, 60, 0.8);
+    width: 100%;
+    height: 93vh;
+    margin-top: 7vh;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 30px rgb(100, 100, 100);
+    z-index: 5;
+}
+
+.bm-choose-options {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.bm-link{
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 1px solid white;
+    width: 90%;
+    margin-top: 4%;
+    padding-bottom: 2%;
+}
+.bm-link:hover{
+    font-weight: 600;
+}
+.fa-solid.fa-xmark{
+    color: white;
+    cursor: pointer;
+    margin: 2% 2% 0 0;
+    font-size: 24px;
+}

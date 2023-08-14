@@ -1,5 +1,4 @@
 import React from 'react';
-import './errorBlock.css'
 
 function errorBlock (props) {
     return props.errorStatus ? (

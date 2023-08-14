@@ -256,7 +256,6 @@ function register() {
       addValueToArray(loggAuth, 'passwordConfirm')
     }
     if (loggAuth.length == 0) {
-      console.log(data);
       fetchApi(`${appInfo.root}/users/register`, {
         method: 'POST',
         headers: {
