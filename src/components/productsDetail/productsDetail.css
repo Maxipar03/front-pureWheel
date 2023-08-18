@@ -1,0 +1,177 @@
+.brandDetailImage{
+    width: 30px;
+}
+
+.productDetailInfoName{
+    display: flex;
+    font-size: 1.5rem;
+    justify-content: center;
+    margin-top: 4%;
+}
+
+.productDetail{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #7f7f7f;
+    border-radius: 5px;
+}
+
+.productDetailContainer{
+        height: auto;
+        display: flex;
+        width: 25vw;
+        flex-direction: column;
+        align-content: space-between;
+        justify-content: space-between; 
+}
+
+.productDetailBrand{
+    font-weight: 600;
+}
+
+.productDetailModel{
+    margin-left: 5%;
+    white-space: nowrap;
+    font-weight: 300;
+}
+
+.productDetailLineContainer{
+    display: flex
+}
+
+.image-carousel{
+position: relative;
+}
+
+.prevButtonDetail,
+.nextButtonDetail {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4.5rem;
+  background: transparent;
+  background-color: rgba(255, 242, 242, 0.692);
+  border: none;
+  cursor: pointer;
+}
+
+.prevButtonDetail {
+  left: 10px;
+}
+
+.nextButtonDetail {
+  right: 10px;
+}
+
+.productsImageDetail{
+    width: 39vw;
+    object-fit: cover;
+    height: 100%;
+}
+
+.productDetail{
+    display: flex;
+}
+
+.productDetailInfo{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2% 5%;
+    background-color: #d3d3d338;
+    border-radius: 7px;
+}
+
+.productDetailInfo h2{
+    margin: 3%;
+    font-weight: 600;
+}
+
+.productDetailInfo h3{
+    margin: 2%;
+    font-weight: 400;
+}
+
+.productDetailDescriptionContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+
+.productDetailDescription{
+    width: 88%;
+}
+
+.productDetailDescription h2{
+margin: 1% 0px;
+}
+
+.productDetailPriceContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.productDetailPrice{
+    width: 88%;
+}
+
+.productDetailPrice h2{
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgb(8, 172, 8);
+    margin: 2% 0%;
+}
+
+.productDetailButtonWp{
+    width: 88%;
+}
+
+.productDetailButtonWpcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;   
+}
+
+.whatsappButton{
+    width: 100%;
+    height: 2vw;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: #25D366;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 5px;
+}
+
+#whatsappIcon{
+    padding-right: 4px;
+}
+
+.productDetailButtonFavcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;   
+}
+
+.productDetailButtonFav{
+    width: 88%;
+}
+
+.favButton{
+    width: 100%;
+    height: 2vw;
+    margin-top: 3%;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: #d81414;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 5px;
+    margin-bottom: 4%;
+}
+

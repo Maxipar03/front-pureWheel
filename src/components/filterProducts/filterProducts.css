@@ -1,0 +1,54 @@
+.filterComponent{
+    width: 30%;
+    display: flex;
+}
+
+.filterContainer{
+    background-color: red;
+    padding: 0.8vw;
+    border-radius: 8px;
+}
+
+.inputSearch{
+    width: 100%;
+    height: 1.4vw;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.inputYear{
+    width: 95%;
+    height: 1.4vw;
+    border: none;
+    border-radius: 4px;
+}
+
+.dateContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputKM{
+    width: 95%;
+    height: 1.4vw;
+    border: none;
+    border-radius: 4px;
+}
+
+.kmContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 101%;
+}
+
+.kmTo{
+    display: flex;
+    flex-direction: column;
+}
+
+.kmFrom {
+    display: flex;
+    flex-direction: column;
+}
+

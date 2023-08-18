@@ -1,0 +1,14 @@
+.image-crousel{
+    position: relative;
+}
+
+.heart{
+    position: absolute;
+    left: 5px;
+    font-size: 1.2rem;
+    top: 5px;
+    padding: 0.5vw;
+    background-color: burlywood;
+    border-radius: 30px;
+    display: none;
+}

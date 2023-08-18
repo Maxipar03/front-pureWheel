@@ -1,103 +1,169 @@
 .brandsComponent {
-        width: 100%;
-        overflow:hidden;
-        padding: 1.6% 0;
-        margin: 1%;
-        background-color: silver;
-        scroll-behavior: smooth;
-        display: flex;
-        position: relative;
-        
-  }
-  
-  .brandsContainer {
-    display: flex;
-    align-items: flex-end;
-    gap: 20px;
+  width: 70%;
+  overflow:hidden;
+  padding: 1.6% 0;
+  margin: 1%;
+  background-color: silver;
+  scroll-behavior: smooth;
+  display: flex;
+  position: relative;
+  border-radius: 15px;
+}
+
+.brandsContainer {
+display: flex;
+align-items: flex-end;
+gap: 20px;
+
+}
+
+.brandName{
+display: none;
+}
+
+.brand {
+flex: 0 0 auto;
+width: 200px;
+padding: 0px 2.2vw;
+transition: transform 0.3s ease-in-out;
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
+
+.brandsTitle{
+margin: 0px;
+margin: 0px 3%;
+position: sticky;
+top: 0;
+z-index: 3;
+font-size: 1.7rem;
+}
+
+.brandImage {
+width: 100%;
+height: 150px;
+object-fit: contain;
+transition: transform 0.3s ease-in-out;
+}
+
+.brand:hover{
+cursor: pointer;
+}
+
+.brand:hover .brandImage{
+transform: scale(1.3);
+transition: transform 0.3s ease-in-out;
+}
+
+.arrowRight{
+position: sticky;
+right: 0px;
+display: block;
+height: 50%;
+line-height: 40px;
+width: 25px;
+z-index: 30;
+transform: translateY(-50%);
+top: 50%;
+background-color: #00000047;
+border-radius: 30px;
+cursor: pointer;
+margin-left: 2%;
+}
+
+.arrowLeft{
+position: sticky;
+left: 0px;
+height: 50%;
+line-height: 40px;
+width: 25px;
+top: 50%;
+z-index: 30;
+transform: translateY(-50%);
+background-color: #00000047;
+border-radius: 30px;
+cursor: pointer;
+}
+
+.arrowContainer{
+display: flex;
+align-items: center;
+}
+
+.brand:hover .brandName{
+font-size: 10px;
+display: block;
+position: absolute;
+bottom: 0;
+left: 0;
+}
+
+/* Customize the scrollbar */
+.brandsComponent::-webkit-scrollbar {
+width: 10px; /* Width of the scrollbar */
+height: 10px;
+}
+
+.brandsComponent::-webkit-scrollbar-track {
+background: #f1f1f100; /* Background color of the scrollbar track */
+
+}
+
+.brandsComponent::-webkit-scrollbar-thumb {
+background: #000000a9; /* Color of the scrollbar thumb */
+border-radius: 200px;
+}
+
+.brandsComponent::-webkit-scrollbar-thumb:hover {
+background: #555; /* Color of the scrollbar thumb on hover */
+
+}
+
+
+
+@media screen and (max-width: 960px) {
+    .brandsComponent {
+      width: 100%;
+      overflow:scroll;
+      padding: 1.6% 0;
+      margin: 1%;
+      background-color: silver;
+      scroll-behavior: smooth;
+      display: flex;
+      position: relative;
   }
 
-  .brandName{
+  .arrowLeft{
     display: none;
+  }
+
+  .arrowRight{
+    display: none;
+  }
+
+  .brandImage{
+    height: 20vw;
+  }
+
+  .brandsContainer{
+    gap: 0px;
+    transition: scroll 2s ease-in-out;
   }
   
   .brand {
     flex: 0 0 auto;
-    width: 200px;
-    padding: 0px 2.2vw;
+    width: 170px;
+    padding: 0px 2vw;
+    height: 18vw;
     transition: transform 0.3s ease 0s;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    justify-content: center;
 }
 
-.brandsTitle{
-  margin: 0px;
-  margin: 0px 3%;
-  position: sticky;
-  top: 0;
-  z-index: 3;
-  font-size: 1.7rem;
-}
-
-.brandImage {
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
-   
-}
-
- .brand:hover{
-    cursor: pointer;
-}
-
-.brand:hover .brandImage{
-    transform: scale(0.8);
-
-}
-
-.arrowRight{
-  position: sticky;
-  right: 0px;
-  height: 50%;
-  line-height: 40px;
-  width: 25px;
-  z-index: 30;
-  transform: translateY(-50%);
-  top: 50%;
-  background-color: #00000047;
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-.arrowLeft{
-  position: sticky;
-  left: 0px;
-  height: 50%;
-  line-height: 40px;
-  width: 25px;
-  top: 50%;
-  z-index: 30;
-  transform: translateY(-50%);
-  background-color: #00000047;
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-.arrowContainer{
-  display: flex;
-  align-items: center;
-}
-
-.brand:hover .brandName{
-    font-size: 10px;
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-/* Customize the scrollbar */
 .brandsComponent::-webkit-scrollbar {
   width: 10px; /* Width of the scrollbar */
   height: 10px;
@@ -117,16 +183,10 @@
   background: #555; /* Color of the scrollbar thumb on hover */
 
 }
+}
 
-@media screen and (min-width: 724px) {
-    .brandsComponent {
-        width: 70%;
-        padding: 1% 0;
-        margin: 1%;
-        scroll-behavior: smooth;
-        background-color: silver;
-        border-radius: 15px;
-        height: 100%;
-        position: relative;
-  }
-  }
+@media (min-width: 960px) and (max-width: 1279px) {
+ .brandsComponent{
+  width: 85%;
+ }   
+}

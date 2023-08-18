@@ -1,19 +1,4 @@
-.productsImage{
-    width: 300px;
-    height:200px;
-    transition: opacity 0.3s ease;
-}
 
-.products {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 10px 15px;
-    margin: 20px;
-    background-color: rgb(96, 92, 117);
-    flex-direction: column;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
 .productsComponent{
     width: 70%;
@@ -26,62 +11,19 @@
         display: flex;
         flex-wrap: wrap; 
         justify-content: center;
+        gap: 1.5vw;
+        padding: 1.2%;
 }
 
-.productsInfo{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0% 4%;
-}
-
-.productsDescription{
-    display: flex;
-    padding: 0% 4%;
-}
-.productsDescription p{
-    margin: 0 2%;
-
-}
-
-.divider{
-        border-left: 1px solid #000; /* Adjust thickness and color as needed */
-        height: 50%;
-      
-}
-
-
-@media (max-width: 959px){
-    .productsImage{
-        width: 20%;
-        height: 100%;
-        object-fit: cover;
+@media (min-width: 960px) and (max-width: 1279px) {
+    .productsComponent{
+        width: 85%;
     }
+}
 
-    .products{
-        width: 100%;
-        flex-direction: row;
-    }
 
-    .productsDescription{
-        display: none;
-    }
-
-    .productsInfo {
-        display: flex;
-        width: 72%;
-        align-items: center;
-        padding: 0% 4%;
-        justify-content: space-between;
-    }
-
-    .productsPrice{
-        border-left: 2px solid black;
-        height: 35px;
-        display: flex;
-        align-items: center;
-        padding-left: 6px;
-        color: rgb(18, 182, 18);
-        font-weight: bolder;
+@media (max-width: 960px) {
+    .productsComponent{
+        width: 100%
     }
 }

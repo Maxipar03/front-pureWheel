@@ -1,0 +1,10 @@
+.brandProductsContainer{
+    display: flex;
+    width: 75%;
+    justify-content: center;
+}
+
+.cardProductsbrandsContainer{
+    display: flex;
+    width: 70%;
+}
