@@ -3,18 +3,19 @@
   overflow:hidden;
   padding: 1.6% 0;
   margin: 1%;
-  background-color: silver;
+  background-color: rgb(255, 255, 255);
   scroll-behavior: smooth;
   display: flex;
   position: relative;
   border-radius: 15px;
+  box-shadow: inset 20px 0px 20px 0px rgba(0, 0, 0, 0.5), inset -20px 0px 18px 0px rgba(0, 0, 0, 0.5);
 }
+
 
 .brandsContainer {
 display: flex;
 align-items: flex-end;
 gap: 20px;
-
 }
 
 .brandName{
@@ -133,6 +134,7 @@ background: #555; /* Color of the scrollbar thumb on hover */
       scroll-behavior: smooth;
       display: flex;
       position: relative;
+      border-radius: 0px;
   }
 
   .arrowLeft{

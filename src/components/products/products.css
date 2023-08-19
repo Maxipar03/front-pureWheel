@@ -2,8 +2,6 @@
 
 .productsComponent{
     width: 70%;
-    box-shadow: inset -1px -1px 22px 13px rgba(0,0,0,0.41);
-    background-color: silver;
     border-radius: 15px;    
 }
 
@@ -12,7 +10,6 @@
         flex-wrap: wrap; 
         justify-content: center;
         gap: 1.5vw;
-        padding: 1.2%;
 }
 
 @media (min-width: 960px) and (max-width: 1279px) {

@@ -25,9 +25,10 @@ function products() {
     
     return(
       <div className="productsComponent">
+        <h1>On Sale</h1>
       <div className="allProductsContainer">
           {products.map((car) => (
-            <CardProducts productArticleClass={"productsArticleHome"} productDescriptionClass={"productDescriptionContainerHome"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} carsYear={car.year}/>
+            <CardProducts productArticleClass={"productsArticleHome"} productDescriptionClass={"productDescriptionContainerHome"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} brandImage={car.brand.logo} carsYear={car.year}/>
             ))}
             </div>
       </div>
