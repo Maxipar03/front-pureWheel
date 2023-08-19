@@ -32,7 +32,7 @@ function filterProducts() {
                         </div>
                         <div className="kmTo">
                             <label>To</label>
-                            <input type="number" placeholder="20000" className="inputKM"></input>
+                            <input type="number" placeholder="20000np" className="inputKM"></input>
                         </div>
                     </div>
                 </div>
