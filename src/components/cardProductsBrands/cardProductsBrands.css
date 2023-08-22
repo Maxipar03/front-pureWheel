@@ -2,47 +2,17 @@ h3{
     margin: 0px;
 }
 
-.productsImage {
-    min-width: 10vw;
-    max-width: 7vw;
-    max-height: 10vw;
-    min-height: 8vw;
+.productsImageBrand{
+    min-width: 306px;
+    max-width: 300px;
+    max-height: 200px;
 }
 
 
-.productInfoContainer{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    padding: 2.5%;
-}
-
-.productInfoTop{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.productInfoBrandImg{
-    max-width: 30px;
-    object-fit: cover;
-}
-
-.productInfoPriceContainer{
-    width: 100%;
-    display: flex;
-}
-
-.productInfoNameBrand{
-    width: 100%;
+.productInfoContainerBrands{
     display: flex;
     justify-content: space-between;
-}
-
-.productInfoNameBrand h3{
- font-weight: 700;
+    margin: 2% 3%;
 }
 
 .productDescriptionContainer{
@@ -54,8 +24,8 @@ h3{
     font-weight: 500;
 }
 
-.productInfoYearContainer h3{
-font-weight: 400;
+.productInfoContainerBrands h3{
+    font-weight: 700;
 }
 
 .productsArticle {
@@ -65,6 +35,7 @@ font-weight: 400;
     position: relative; /* Agregar posición relativa */
     overflow: hidden; /* Ocultar el borde dibujado fuera del contenedor */
     cursor: pointer;
+    height: max-content;
 }
 
 .productsArticle::before { /* Pseudo-elemento para crear el borde dibujado */
@@ -88,18 +59,6 @@ font-weight: 400;
 }
 
 .productsArticle:hover .heart{
-    display: block;
-}
-
-.productsArticleHome:hover .prevButton{
-    display: block;
-}
-
-.productsArticleHome:hover .heart{
-    display: block;
-}
-
-.productsArticleHome:hover .nextButton{
     display: block;
 }
 
@@ -133,9 +92,9 @@ position: relative;
 }
 
 
-#productPrice{
-    padding: 2%;
-    font-size: medium;
+#productPriceBrand{
+    padding: 1%;
+    background-color: rgba(209, 209, 92, 0.815);
 }
 
 #productYear{
@@ -143,61 +102,28 @@ position: relative;
 }
 
 
-.productsArticleHome {
-    background-color: #fffefe;
-    border-radius: 6px;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    width: 32%;
-    display: flex;
-    align-items: center;
-}
-
-.productsArticleHome:hover{
-    -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-}
-
-.productDescriptionContainerHome{
-    display: none;
-}
-
-
-
 @media (min-width: 960px) and (max-width: 1279px) {
-    .productsImage {
-        min-width: 17vw;
-        max-width: 7vw;
-        max-height: 10vw;
-        min-height: 11vw;
-    }
-    
-    .productsArticleHome{
-        width: 49.7%;
+    .productsImageBrand {
+        min-width: 40vw;
+        max-width: 39vw;
+        max-height: 27vw;
     }
     
 }
 
 @media (max-width: 960px){
-    .productsImage {
+    .productsImageBrand {
         max-width: 4vw;
         min-width: 44vw;
         min-height: 31vw;
         height: 100%;
     }  
 
-    .productInfoContainer h3 {
+    .productInfoContainerBrands h3 {
         font-size: 1.3rem;
     }
 
-    .productsArticleHome {
-        width: 100%;
-        display: flex;
-    }
-
-    .productInfoContainer{
+    .productInfoContainerBrands{
         width: 100%;
         align-items: center;
         display: flex;

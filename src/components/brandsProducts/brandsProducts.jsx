@@ -3,7 +3,7 @@ import './brandsProducts.css'
 import { useParams } from 'react-router-dom';
 import { fetchApi } from "../../modules/mainModules";
 import appInfo from "../../modules/appInfo";
-import CardProducts from "../cardProducts/cardProducts"
+import CardProductsBrands from "../cardProductsBrands/cardProductsBrands"
 import FilterProdcuts from "../filterProducts/filterProducts"
 
 function brandsProducts() {
@@ -30,7 +30,7 @@ function brandsProducts() {
       <FilterProdcuts></FilterProdcuts>
       {brandProducts.map((cars) => (
         <div key={cars.id} className="cardProductsbrandsContainer">
-          <CardProducts productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={cars.images} CarsID={cars.id} carsUserID={cars.user_id} carsModelName={cars.model.name} carsPrice={cars.price} carsKM={cars.km} carsYear={cars.year} />
+          <CardProductsBrands productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={cars.images} CarsID={cars.id} carsUserID={cars.user_id} carsModelName={cars.model.name} carsPrice={cars.price} carsKM={cars.km} carsYear={cars.year} />
           </div>
       ))}
     </div>
