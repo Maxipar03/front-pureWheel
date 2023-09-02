@@ -1,0 +1,133 @@
+h3{
+    margin: 0px;
+}
+
+.productsImageBrand{
+    min-width: 306px;
+    max-width: 300px;
+    max-height: 200px;
+}
+
+
+.productInfoContainerBrands{
+    display: flex;
+    justify-content: space-between;
+    margin: 2% 3%;
+}
+
+.productDescriptionContainer{
+    display: flex;
+    margin: 2% 3%;
+}
+
+.productDescriptionContainer h3{
+    font-weight: 500;
+}
+
+.productInfoContainerBrands h3{
+    font-weight: 700;
+}
+
+.productsArticle {
+    background-color: beige;
+    padding: 13px;
+    border-radius: 3px;
+    position: relative; /* Agregar posición relativa */
+    overflow: hidden; /* Ocultar el borde dibujado fuera del contenedor */
+    cursor: pointer;
+    height: max-content;
+}
+
+.productsArticle::before { /* Pseudo-elemento para crear el borde dibujado */
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -2px;
+    right: -2px;
+    bottom: -3px;
+    border: 5px solid transparent; /* Inicialmente borde transparente */
+    transition: border 0.8s cubic-bezier(0.22, 0.61, 0.36, 1); /* Transición para suavizar el efecto */
+    pointer-events: none; /* Evitar que el borde afecte la interacción */
+}
+
+.productsArticle:hover::before {
+    border: 6px solid rgba(0, 0, 0, 0.815); /* Cambiar el borde al color deseado */
+}
+
+.productsArticle:hover .prevButton{
+    display: block;
+}
+
+.productsArticle:hover .heart{
+    display: block;
+}
+
+.productsArticle:hover .nextButton{
+    display: block;
+}
+
+.image-carousel{
+position: relative;
+}
+
+.prevButton,
+.nextButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  background: transparent;
+  background-color: rgba(255, 242, 242, 0.692);
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+.prevButton {
+  left: 10px;
+}
+
+.nextButton {
+  right: 10px;
+}
+
+
+#productPriceBrand{
+    padding: 1%;
+    background-color: rgba(209, 209, 92, 0.815);
+}
+
+#productYear{
+    padding-left: 10px;
+}
+
+
+@media (min-width: 960px) and (max-width: 1279px) {
+    .productsImageBrand {
+        min-width: 40vw;
+        max-width: 39vw;
+        max-height: 27vw;
+    }
+    
+}
+
+@media (max-width: 960px){
+    .productsImageBrand {
+        max-width: 4vw;
+        min-width: 44vw;
+        min-height: 31vw;
+        height: 100%;
+    }  
+
+    .productInfoContainerBrands h3 {
+        font-size: 1.3rem;
+    }
+
+    .productInfoContainerBrands{
+        width: 100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+}

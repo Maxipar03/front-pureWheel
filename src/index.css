@@ -1,7 +1,6 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background: rgb(29,28,25);
-  background: linear-gradient(205deg, #3a7d8e 0%, rgba(0,0,0,1) 100%);
+  background: rgb(224, 218, 218);
   min-height: 100%;
   position: relative;
   
