@@ -4,14 +4,38 @@
     justify-content: center;
 }
 
+.titleHeader{
+    font-family: 'Syncopate', sans-serif;
+    color: white;
+    font-size: 1.7rem;
+}
+
 .header{
     display: flex;
     width: 75%;
     align-items: center;
     justify-content: space-between;
     position: absolute;
+    transition: background-color 0.3s,margin 0.3s ease;
     z-index: 100;
     color: white;
+    margin-top: 0px;
+    position: fixed;
+}
+
+.headerScrolling{
+    display: flex;
+    margin-top: 1%;
+    width: 75%;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    transition: background-color 0.3s,margin 0.3s ease;
+    z-index: 100;
+    color: white;
+    position: fixed;
+    border-radius: 10px;
+    background-color: #3b3939d0;
 }
 
 .divLogo {
@@ -39,6 +63,7 @@
     list-style: none;
     font-size: 1.1rem;
     font-weight: bold;
+    color: white;
 }
 
 .selectorsSession {
@@ -56,9 +81,12 @@
 }
 
 .imageLogo{
-    width: 200px;
-    height: 100px;
+    width: auto;
+    height: 3vw;
+    padding: 5% 0%;
     object-fit: contain;
+    display: flex;
+    display: none;
 }
 
 .burgerMenu{
@@ -135,6 +163,10 @@ margin: 0px 10px;
         justify-content: space-between;
     }
     
+    .imageLogo{
+        height: 4.2vw;
+    }
+    
     .selectorsSession {
         display: flex;
         width: 30%;
@@ -145,20 +177,30 @@ margin: 0px 10px;
   @media (max-width: 959px) {
 
     .header{
-        width: 90%;
+        margin-top: 2%;
+        width: 95%;
+    }
+
+    .headerScrolling{
+        width: 95%;
     }
 
     .imageLogo{
-        max-width: 65px;
-        min-width: 30vw;
+        height: 8vw;
+        display: block;
     }
 
     .burgerMenu{
         font-size: 2rem;
         display: block;
+        width: 20%;
     }
 
     .options{
+        display: none;
+    }
+
+    .titleHeader{
         display: none;
     }
   }

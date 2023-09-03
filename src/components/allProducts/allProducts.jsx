@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
-import './brandsProducts.css'
+import './allProducts.css'
+import { useParams } from 'react-router-dom';
 import { fetchApi } from "../../modules/mainModules";
 import appInfo from "../../modules/appInfo";
-import { useParams } from 'react-router-dom';
 import CardProductsBrands from "../cardProductsBrands/cardProductsBrands"
 import FilterProdcuts from "../filterProducts/filterProducts"
 
-function brandsProducts() {
-  const [products, setProducts] = useState([])
-  const { id } = useParams();
+function allProducts() {
+  const [brandProducts, setBrandProducts] = useState([])
 
   useEffect(() => {
-    fetchApi(`${appInfo.root}/cars/brands/${id}`, {
+    fetchApi(`${appInfo.root}/cars`, {
       method: 'GET',
     }, (resolve, reject) => {
       if (reject) {
         console.log(reject);
       } else {
         console.log(resolve)
-        setProducts(resolve.info.carsIncluded)
-        console.log(products)
+        setBrandProducts(resolve.data)
+        console.log(brandProducts)
       }
     });
   }, []);
@@ -29,7 +28,7 @@ function brandsProducts() {
     <div className="brandProductsContainer">
       <FilterProdcuts></FilterProdcuts>
       <div className="cardProductsDiv">
-      {products.map((cars) => (
+      {brandProducts.map((cars) => (
         <div key={cars.id} className="cardProductsbrandsContainer">
           <CardProductsBrands productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={cars.images} CarsID={cars.id} carsUserID={cars.user_id} carsModelName={cars.model.name} carsPrice={cars.price} carsKM={cars.km} carsYear={cars.year} />
           </div>
@@ -39,4 +38,4 @@ function brandsProducts() {
   )
 }
 
-export default brandsProducts
+export default allProducts

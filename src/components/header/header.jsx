@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import './header.css'
-import logo from "../../../public/PureWheelLogo2.png"
+import logo from "../../../public/LogoPureWheelPNG3.png"
 import { Link, json } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +10,24 @@ import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 
 function header() {
+
+  const [scrolling, setScrolling] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setScrolling(true);
+    } else {
+      setScrolling(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
 
   const userLogged = JSON.parse(sessionStorage.getItem('userLogged'));
 
@@ -26,16 +44,19 @@ function header() {
 
   return (
     <div className="componentHeader">
-      <header className="header">
+      <header className={scrolling ? 'headerScrolling' : 'header'}>
         <div className="divLogo">
-          <Link to='/'>
-            <img src={logo} className="imageLogo" />
+          <Link to='/' style={{ textDecoration: 'none' }}>
+            <h1 className='titleHeader'>pure<b>wheel</b></h1>
+            <img src={logo} className='imageLogo'/>
           </Link>
         </div>
         <div className="options">
           <ul className="selectors">
             <li>About Us</li>
+            <Link to='/products/all' style={{ textDecoration: 'none' }}>
             <li>Buy Car</li>
+            </Link>
             <li>Sell car</li>
           </ul>
           {userLogged ? (

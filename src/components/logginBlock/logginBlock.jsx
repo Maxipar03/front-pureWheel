@@ -3,8 +3,8 @@ import { fetchApi, addValueToArray } from "../../modules/mainModules";
 import './logginBlock.css'
 import appInfo from '../../modules/appInfo';
 import ErrorBlock from "../errors/errorBlock/errorBlock";
-import bmwImage from "../../../public/IMG_7137-tiny-2048x0-0.5x0.jpg"
-import logo from "../../../public/PureWheel(4).png"
+import bmwImage from "../../../public/BannerPureWheelPrueba.png"
+import logo from "../../../public/LogoPureWheelPNG3.png"
 
 function loggin() {
   //***** States *****
@@ -33,10 +33,10 @@ function loggin() {
     setRemember(event.target.checked)
   }
 
-//***** Validations *****
-const emailValidation = (e) => {
-  const emailInfo = e.target.value
-  const isEmail = /[a-zA-Z!@#$%^&*(),.?":{}|<>]/.test(emailInfo)
+  //***** Validations *****
+  const emailValidation = (e) => {
+    const emailInfo = e.target.value
+    const isEmail = /[a-zA-Z!@#$%^&*(),.?":{}|<>]/.test(emailInfo)
     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInfo)
     if (emailInfo === "") {
       setEmailErrorStatus(true)
@@ -54,19 +54,19 @@ const emailValidation = (e) => {
         setEmailErrorStatus(false)
       }
     }
-}
-const passwordValidation = (e) => {
-  const passwordData = e.target.value
-  const uppercaseRegex = /[A-Z]/
-  const numberRegex = /\d/
-  const specialCharRegex = /[!@#$%^&*]/
-  if (passwordData.length < 8 || !uppercaseRegex.test(passwordData) || !numberRegex.test(passwordData) || !specialCharRegex.test(passwordData)) {
-    setPasswordErrorStatus(true)
-    setPasswordMsg('Invalid password')
-  } else {
-    setPasswordErrorStatus(false)
   }
-}
+  const passwordValidation = (e) => {
+    const passwordData = e.target.value
+    const uppercaseRegex = /[A-Z]/
+    const numberRegex = /\d/
+    const specialCharRegex = /[!@#$%^&*]/
+    if (passwordData.length < 8 || !uppercaseRegex.test(passwordData) || !numberRegex.test(passwordData) || !specialCharRegex.test(passwordData)) {
+      setPasswordErrorStatus(true)
+      setPasswordMsg('Invalid password')
+    } else {
+      setPasswordErrorStatus(false)
+    }
+  }
 
   //***** Submit *****
   const handleSubmit = (event) => {
@@ -132,43 +132,53 @@ const passwordValidation = (e) => {
 
   return (
     <div className="logginComponent">
-      <div className="logginBannerContainer">
-        <img className="logginLogo" src={logo} />
-        <h1>PureWheel</h1>
-        <h2>Loggin</h2>
+      <div className='bannerLogin'>
+        <img className='backgroundImageBanner' src={bmwImage} />
+        <div className='bannerLoginContent'>
+          <img className='bannerImage' src={logo} />
+          <h1 className='bannerText'>Buy your car in <b className='boldTitle'>simples steps</b></h1>
+        </div>
       </div>
-      <img className="carImage" src={bmwImage} alt="car" />
       <form onSubmit={handleSubmit} className="logginForm">
-        <div className="logginInputContent">
-          <label>Phone number or email</label>
-          <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={emailMsg} errorStatus={emailErrorStatus}></ErrorBlock>
-          <input onBlur={emailValidation} value={email}
-            placeholder="Email/Phone"
-            ref={refEmail}
-            onChange={handleEmailChange} type="text"></input>
+        <div className='titleContainer'>
+        <h1 className='titleForm'>SIGN IN</h1>
         </div>
-        <div className="logginInputContent">
-          <label>Password</label>
-          <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={passwordMsg} errorStatus={passwordErrorStatus}></ErrorBlock>
-          <input onBlur={passwordValidation} ref={refPassword}
-            value={password}
-            type="password"
-            placeholder="Password"
-            onChange={handlePasswordChange}></input>
-        </div>
-        <div className="rememberMe">
-          <h4>Remember me</h4>
-          <div className="checkbox-wrapper-64">
-            <label className="switch">
-              <input
-                checked={remember}
-                onChange={handleRememberChange}
-                type="checkbox" />
-              <span className="slider"></span>
-            </label>
+        <div className='logginAll'>
+          <div className="logginInputContent">
+            <label>Phone number or email</label>
+            <input onBlur={emailValidation} value={email}
+              placeholder="Email/Phone"
+              ref={refEmail}
+              onChange={handleEmailChange} type="text" 
+              className={emailErrorStatus ? 'inputError' : 'inputSession'}></input>
+              <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={emailMsg} errorStatus={emailErrorStatus}></ErrorBlock>
           </div>
+          <div className="logginInputContent">
+            <label>Password</label>
+            <input 
+              onBlur={passwordValidation} 
+              ref={refPassword}
+              value={password}
+              type="password"
+              placeholder="Password"
+              onChange={handlePasswordChange} 
+              className={passwordErrorStatus ? 'inputError' : 'inputSession'}></input>
+              <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={passwordMsg} errorStatus={passwordErrorStatus}></ErrorBlock>
+          </div>
+          <div className="rememberMe">
+            <h4>Remember me</h4>
+            <div className="checkbox-wrapper-64">
+              <label className="switch">
+                <input
+                  checked={remember}
+                  onChange={handleRememberChange}
+                  type="checkbox" />
+                <span className="slider"></span>
+              </label>
+            </div>
+          </div>
+          <button className="button-87">Loggin</button>
         </div>
-        <button className="button-87">Loggin</button>
       </form>
     </div>
   )

@@ -3,6 +3,8 @@ import { fetchApi } from "../../modules/mainModules";
 import appInfo from "../../modules/appInfo";
 import './products.css'
 import CardProducts from "../cardProducts/cardProducts";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTag } from '@fortawesome/free-solid-svg-icons';
 
 function products() {
 
@@ -25,7 +27,7 @@ function products() {
     
     return(
       <div className="productsComponent">
-        <h1>On Sale</h1>
+        <h1 className="productsSaleTitle">ON SALE<FontAwesomeIcon icon={faTag} className="iconSale" /></h1>
       <div className="allProductsContainer">
           {products.map((car) => (
             <CardProducts productArticleClass={"productsArticleHome"} productDescriptionClass={"productDescriptionContainerHome"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} brandImage={car.brand.logo} carsYear={car.year}/>

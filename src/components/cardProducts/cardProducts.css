@@ -58,30 +58,7 @@ h3{
 font-weight: 400;
 }
 
-.productsArticle {
-    background-color: beige;
-    padding: 13px;
-    border-radius: 3px;
-    position: relative; /* Agregar posición relativa */
-    overflow: hidden; /* Ocultar el borde dibujado fuera del contenedor */
-    cursor: pointer;
-}
 
-.productsArticle::before { /* Pseudo-elemento para crear el borde dibujado */
-    content: "";
-    position: absolute;
-    top: -3px;
-    left: -2px;
-    right: -2px;
-    bottom: -3px;
-    border: 5px solid transparent; /* Inicialmente borde transparente */
-    transition: border 0.8s cubic-bezier(0.22, 0.61, 0.36, 1); /* Transición para suavizar el efecto */
-    pointer-events: none; /* Evitar que el borde afecte la interacción */
-}
-
-.productsArticle:hover::before {
-    border: 6px solid rgba(0, 0, 0, 0.815); /* Cambiar el borde al color deseado */
-}
 
 .productsArticle:hover .prevButton{
     display: block;
@@ -93,6 +70,10 @@ font-weight: 400;
 
 .productsArticleHome:hover .prevButton{
     display: block;
+}
+
+.productsArticleHome:hover #productPriceOld{
+    opacity: 1;
 }
 
 .productsArticleHome:hover .heart{
@@ -133,10 +114,25 @@ position: relative;
 }
 
 
-#productPrice{
+#productPriceOld{
     padding: 2%;
     font-size: medium;
+    font-weight: 150;
+    opacity: 0;
+    transition: opacity 0.3s ease
 }
+
+#productPriceNew{
+    padding: 2%;
+    font-size: medium;
+    font-weight: 700;
+}
+
+.line-throw{
+    text-decoration: line-through;
+    color: #999;
+}
+
 
 #productYear{
     padding-left: 10px;
@@ -152,6 +148,7 @@ position: relative;
     width: 32%;
     display: flex;
     align-items: center;
+    transition: box-shadow 0.3s ease-in;
 }
 
 .productsArticleHome:hover{
@@ -193,7 +190,7 @@ position: relative;
     }
 
     .productsArticleHome {
-        width: 100%;
+        width: 95%;
         display: flex;
     }
 

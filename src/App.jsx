@@ -9,6 +9,7 @@ import Loggin from './screen/login/loggin';
 import Register from './screen/register/register';
 import ProductsDetail from "./screen/productsDetail/productsDetail";
 import BrandsProducts from "./screen/brandsProducts/brandsProducts";
+import BuyCar from "./screen/buyCar/buyCar";
 
 function App() {
 
@@ -36,8 +37,10 @@ return (
         {/****************** USERS ******************/}
         {<Route exact path='/user/loggin' element={<Loggin/>}/>}
         {<Route exact path='/user/register' element={<Register/>}/>}
+        {/****************** PRODUCTS ******************/}
         {<Route exact path='/products/brands/:id' element={<BrandsProducts/>}/>}
         {<Route exact path='/products/detail/:id' element={<ProductsDetail/>}/>}
+        {<Route exact path='/products/all' element={<BuyCar/>}/>}
       </Routes>
     <Footer/>
   </div>

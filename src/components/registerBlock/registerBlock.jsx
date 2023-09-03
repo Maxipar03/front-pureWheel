@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { fetchApi, addValueToArray, isAgeAllow } from "../../modules/mainModules";
 import './registerBlock.css'
-import bmwImage from "../../../public/IMG_7137-tiny-2048x0-0.5x0.jpg"
-import logo from "../../../public/PureWheel(4).png"
+import bmwImage from "../../../public/BannerPureWheelPrueba.png"
+import logo from "../../../public/LogoPureWheelPNG3.png"
 import ErrorBlock from "../errors/errorBlock/errorBlock";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -116,7 +116,7 @@ function register() {
     const nameInfo = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1)
     if (nameInfo.length < 3) {
       setNameErrorStatus(true)
-      setNameMsg('You must complete with your name')
+      setNameMsg('Complete with your name')
     } else {
       setNameErrorStatus(false)
     }
@@ -125,7 +125,7 @@ function register() {
     const surnameInfo = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1)
     if (surnameInfo.length < 3) {
       setSurnameErrorStatus(true)
-      setSurnameMsg('You must complete with your surname')
+      setSurnameMsg('Complete with your surname')
     } else {
       setSurnameErrorStatus(false)
     }
@@ -286,69 +286,73 @@ function register() {
 
   return (
     <div className="registerComponent">
-      <div className="registerBannerContainer">
-        <img className="registerLogo" src={logo} />
-        <h1>PureWheel</h1>
-        <h2>Register</h2>
+      <div className='bannerRegister'>
+        <img className='backgroundImageBanner' src={bmwImage} />
+        <div className='bannerLoginContent'>
+          <img className='bannerImage' src={logo} />
+          <h1 className='bannerText'>Buy your car in <b className='boldTitle'>simples steps</b></h1>
+        </div>
       </div>
-      <img className="carImage" src={bmwImage} alt="car" />
       <form onSubmit={handleSubmit} className="registerForm">
+      <div className='titleContainer'>
+        <h1 className='titleForm'>REGISTER</h1>
+        </div>
         <div className="registerFormContainer">
           <div className="nameContainer">
             <div className="registerInputContent">
               <label>First Name</label>
-              <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={nameMsg} errorStatus={nameErrorStatus}></ErrorBlock>
               <input onBlur={nameValidation} onChange={handleNameChange}
                 ref={refName}
-                value={name} type="text" className="textFullname" placeholder="First Name"></input>
+                value={name}  type="text" placeholder="First Name" className={nameErrorStatus ? 'inputError' : 'inputSession'} ></input>
+              <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={nameMsg} errorStatus={nameErrorStatus}></ErrorBlock>
             </div>
             <div className="registerInputContent">
               <label>Last Name</label>
-              <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={surnameMsg} errorStatus={surnameErrorStatus}></ErrorBlock>
               <input onBlur={surnameValidation} onChange={handleSurnameChange}
                 ref={refSurname}
-                value={surname} type="text" className="textFullname" placeholder="Last Name"></input>
+                value={surname} type="text" className={surnameErrorStatus ? 'inputError' : 'inputSession'} placeholder="Last Name"></input>
+              <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={surnameMsg} errorStatus={surnameErrorStatus}></ErrorBlock>
             </div>
           </div>
           <div className="registerInputContent">
             <label>Email</label>
-            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={emailMsg} errorStatus={emailErrorStatus}></ErrorBlock>
             <input onBlur={emailValidation} onChange={handleEmailChange}
-              ref={refEmail}
-              value={email} type="email" className="textFullname"></input>
+              ref={refEmail} placeholder="Email"
+              value={email} type="email" className={emailErrorStatus ? 'inputError' : 'inputSession'} ></input>
+            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={emailMsg} errorStatus={emailErrorStatus}></ErrorBlock>
           </div>
           <div className="registerInputContent">
             <label>Phone Number</label>
-            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={phoneMsg} errorStatus={phoneErrorStatus}></ErrorBlock>
             <input onBlur={phoneValidation} onChange={handlePhoneChange}
               ref={refPhone}
-              value={phone} type="number" placeholder="Phone Number"></input>
+              value={phone} type="number" placeholder="Phone Number" className={phoneErrorStatus ? 'inputError' : 'inputSession'}></input>
+            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={phoneMsg} errorStatus={phoneErrorStatus}></ErrorBlock>
           </div>
           <div className="registerInputContent">
             <label>Identification</label>
-            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={identificationMsg} errorStatus={identificationErrorStatus}></ErrorBlock>
             <input onChange={handleIdentificationChange} onBlur={identificationValidation}
               ref={refIdentification}
-              value={identification} type="number" placeholder="Identification"></input>
+              value={identification} type="number" placeholder="Identification" className={identificationErrorStatus ? 'inputError' : 'inputSession'}></input>
+            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={identificationMsg} errorStatus={identificationErrorStatus}></ErrorBlock>
           </div>
           <div className="registerInputContent">
             <label>Birthdate</label>
-            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={birthdateMsg} errorStatus={birthdateErrorStatus}></ErrorBlock>
             <input onChange={handleBirthdateChange} onBlur={birthdateValidation}
               ref={refBirthdate}
-              value={birthdate} type="date"></input>
+              value={birthdate} type="date" className={birthdateErrorStatus ? 'inputError' : 'inputSession'}></input>
+            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={birthdateMsg} errorStatus={birthdateErrorStatus}></ErrorBlock>
           </div>
           <div className="registerInputContent">
             <label>Password</label>
-            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={passwordMsg} errorStatus={passwordErrorStatus}></ErrorBlock>
             <input onChange={handlePasswordChange} onBlur={passwordValidation}
               ref={refPassword}
-              value={password} type="password" placeholder="Password"></input>
+              value={password} type="password" placeholder="Password" className={passwordErrorStatus ? 'inputError' : 'inputSession'}></input>
+            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={passwordMsg} errorStatus={passwordErrorStatus}></ErrorBlock>
           </div>
           <div className="registerInputContent">
             <label>Confirm Password</label>
+            <input onChange={handlePasswordConfirmChange} onBlur={passwordConfirmValidation} className={passwordConfirmErrorStatus ? 'inputError' : 'inputSession'} value={passwordConfirm} type="password" placeholder="Confirm Password"></input>
             <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={passwordConfirmMsg} errorStatus={passwordConfirmErrorStatus}></ErrorBlock>
-            <input onChange={handlePasswordConfirmChange} onBlur={passwordConfirmValidation} value={passwordConfirm} type="password" placeholder="Confirm Password"></input>
           </div>
         </div>
         <button className="button-87">register</button>

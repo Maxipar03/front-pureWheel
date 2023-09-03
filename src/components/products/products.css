@@ -13,6 +13,24 @@
     gap: 0.5vw;
 }
 
+.productsSaleTitle{
+    margin: 0;
+    padding: 0.2% 1%;
+    margin: 1.2% 0%;
+    border-bottom: 1px solid black;
+    font-weight: 400;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.iconSale{
+    padding-left: 10px;
+    color: green;
+    display: flex;
+    align-items: center;
+}
+
 @media (min-width: 960px) and (max-width: 1279px) {
     .productsComponent{
         width: 85%;

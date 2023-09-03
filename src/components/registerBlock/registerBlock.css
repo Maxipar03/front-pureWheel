@@ -2,32 +2,63 @@
     display: flex;
     flex-direction: column;
     padding-left: 30px;
-    -webkit-box-shadow: -15px 0px 15px 0px rgba(0,0,0,0.69);
-    -moz-box-shadow: -15px 0px 15px 0px rgba(0,0,0,0.69);
-    box-shadow: -15px 0px 15px 0px rgba(0,0,0,0.69);
     background-color: #949396;
-    padding: 0px 30px;
+    padding: 0px 4%;
     z-index: 5;
-    border-radius: 6px;
-    justify-content: center; 
     width: 20vw;
+    justify-content: center;
+    border-radius: 0px 6px 6px 0px;
+}
+
+.bannerRegister {
+  width: 30vw;
+  height: 40vw;
+  position: relative;
+}
+
+.backgroundImageBanner{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  border-radius: 6px 0px 0px 6px;
+}
+
+.bannerLoginContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
 }
 
 .registerComponent {
-border-radius: 6px;
-position: absolute;
-top: 50%; 
-left: 50%; 
-transform: translate(-50%, -50%); 
-display: flex;
+    border-radius: 6px;
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    display: flex;
+    -webkit-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
+}
+
+.inputSession{
+    height: 2vw;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 1.1rem;
 }
 
 .registerForm input{
-height: 2vw;
+height: 1.8vw;
 border-radius: 5px;
 border: 0px;
 font-size: 1.1rem;
 }
+
 
 .registerForm input:focus{ 
         border-color: rgb(54, 50, 50); /* Cambia el color del borde al estar enfocado */
@@ -36,10 +67,25 @@ font-size: 1.1rem;
         outline: none;
 }
 
+.inputError{
+    height: 2vw;
+    border-radius: 5px;
+    border: 1px solid red;
+    font-size: 1.1rem;
+}
+  
+.inputError input:focus{
+    height: 2vw;
+    border-radius: 5px;
+    border: 1px solid red;
+    font-size: 1.1rem;
+ }
+
 
 .registerForm label{
-font-size: 1.2rem;
-font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.3% 0%;
 }
 
 .registerLogo{
@@ -47,39 +93,12 @@ font-weight: 600;
        
 }
 
-.carImage{
-width: 540px;
-height: 700px;
-object-fit: cover;
-filter: blur(3px)
-}
-
-.registerBannerContainer {
-display: flex;
-position: absolute;
-z-index: 4;
-flex-direction: column;
-align-items: center;
-border-radius: 10px;
-background-color: #faebd7b5;
-width: 540px;
-height: 700px;
-justify-content: center;
-}
-
-.registerBannerContainer h2{
-margin: 0px;
-}
-
-.registerBannerContainer h1{
-margin: 0px;
-}
-
 .registerInputContent{
     display: flex;
     flex-direction: column;
-    padding: 2% 0%;
+    padding: 1.4% 0%;
 }
+
 /* Validation css start*/
 .errorDiv{
     width: 100%;
@@ -108,7 +127,6 @@ margin: 0px;
 .button-87 {
 padding: 15px 30px;
 text-align: center;
-margin: 2%;
 text-transform: uppercase;
 transition: 0.5s;
 background-size: 200% auto;
@@ -136,101 +154,89 @@ text-decoration: none;
 transform: scale(0.95);
 }
 
-.textFullname{
-    width: 50%;
-}
-
 .nameContainer{
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-.textFullname{
-    width: 95%;
-}
-
 .nameContainer .registerInputContent{
     width: 49%;
 }
 
-.textFullname{
-    width: 98%;
-}
-
-
 @media (min-width: 960px) and (max-width: 1279px) {
-    .registerComponent{
-        display: flex;
-        margin-top: 1%;
-        flex-direction: column;
-    }
+    .registerForm {
+      display: flex;
+      flex-direction: column;
+      padding-left: 30px;
+      background-color: #949396;
+      padding: 0px 4%;
+      z-index: 5;
+      width: 25vw;
+      justify-content: center;
+      border-radius: 0px 6px 6px 0px;
+  }
 
-    .registerFormContainer{
-        display: flex;
-        flex-direction: column;
-        padding: 2% 3%;
-        }
+  .bannerRegister {
+    width: 35vw;
+    height: 53vw;
+    background: rgb(62,61,61);
+    background: linear-gradient(205deg, rgba(62,61,61,1) 16%, rgba(154,179,174,1) 84%);
+    position: relative;
+  }
 
-    .carImage{
-        height: 85px;
-    }
+  .inputError:hover {
+    height: 2vw;
+    border-radius: 5px;
+    border: 1px solid red;
+    font-size: 1.1rem;
+  }
 
-    .registerForm{
-        width: auto;
-    }
+  .inputError {
+    height: 2vw;
+    border-radius: 5px;
+    border: 1px solid red;
+    font-size: 1.1rem;
+  }
 
-    .registerLogo{
-        width: 100px;
-    }
-
-    .registerBannerContainer h1{
-        display: none;
-    }
-
-    .registerBannerContainer{
-        height: 85px;
-        display: flex;
-        justify-content: space-around;
-        flex-direction: row;
-        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.52);
-        z-index: 10;
-    }
-
-    .registerInputContent input{
-        width: auto;
-        height: 3.5vw;
-    }
-
+  .inputSession {
+    height: 2vw;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 1.1rem;
+  }
+  
+  .bannerImage{
+    width: 15vw;
+  }
   }
 
 
   @media (max-width: 959px){
-    .registerBannerContainer{
-        display: none;
-    }
-
-    .registerInputContent{
-        width: auto;
+    @media (max-width: 959px) {
+        .bannerRegister{
+          display: none;
+        }
         
-    }
+        .registerForm{
+          width: 100%;
+        }
 
-    .registerForm{
-        width: auto;
-    }
+        .registerComponent{
+          width: 100%;
+          height: 100%;
+        }
 
-    .carImage{
-        display: none;
-    }
+        .inputSession{
+          height:7vw;
+        }
+        
+        .inputError:hover{
+          height: 7vw;
+        }
 
-    .registerFormContainer{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .registerInputContent input{
-        width: auto;
-        height: 6vw;
-    }
-
+        .inputError{
+          height: 7vw;
+        }
+      }
   }

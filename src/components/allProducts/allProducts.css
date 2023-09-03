@@ -1,12 +1,12 @@
 .brandProductsContainer{
     display: flex;
-    width: 75%;
+    width: 70%;
     justify-content: center;
 }
 
 .cardProductsbrandsContainer{
     display: flex;
-    width: 70%;
+    width: auto;
 }
 
 .cardProductsDiv{
@@ -18,16 +18,21 @@
     flex-direction: row;
 }
 
-@media (max-width: 959px) {
-    .cardProductsBrandContainer{
-        width: 100%;
+@media (min-width: 960px) and (max-width: 1279px) {
+    .brandProductsContainer{
+        width: 85%;
     }
+}
+
+@media (max-width: 959px) {
 
     .brandProductsContainer{
-        width: 100%;
+        width: 95%;
     }
 
     .cardProductsDiv{
-        width: 100%;
+        width: 100%; 
+        justify-content: center;
     }
+
 }

@@ -1,16 +1,27 @@
 .logginForm{
-                display: flex;
-                flex-direction: column;
-                padding-left: 30px;
-                -webkit-box-shadow: -15px 0px 15px 0px rgba(0,0,0,0.69);
-                -moz-box-shadow: -15px 0px 15px 0px rgba(0,0,0,0.69);
-                box-shadow: -15px 0px 15px 0px rgba(0,0,0,0.69);
-                background-color: #949396;
-                padding: 0px 30px;
-                z-index: 5;
-                width: 15vw;
-                border-radius: 6px;
-                justify-content: center; 
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    background-color: #949396;
+    padding: 0px 4%;
+    z-index: 5;
+    width: 20vw;
+    justify-content: center;
+    border-radius: 0px 6px 6px 0px;
+}
+
+.inputError{
+  height: 2vw;
+  border-radius: 5px;
+  border: 1px solid red;
+  font-size: 1.1rem;
+}
+
+.inputError:hover{
+  height: 2vw;
+  border-radius: 5px;
+  border: 1px solid red;
+  font-size: 1.1rem;
 }
 
 .logginForm input:focus{ 
@@ -34,9 +45,12 @@
         left: 50%; 
         transform: translate(-50%, -50%); 
         display: flex;
+        -webkit-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
 }
 
-.logginForm input{
+.inputSession{
         height: 2vw;
         border-radius: 5px;
         border: 0px;
@@ -45,44 +59,59 @@
 
 .logginForm label{
         font-size: 1.2rem;
-        font-weight: 600;
+        font-weight: 500;
         padding: 1% 0%;
 }
 
-.logginLogo{
-                object-fit: contain;             
+.bannerLogin {
+  width: 25vw;
+  height: 30vw;
+  position: relative;
 }
 
-.carImage{
-        width: 540px;
-        height: 700px;
-        object-fit: cover;
-        filter: blur(3px)
+
+.backgroundImageBanner{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  border-radius: 6px 0px 0px 6px;
 }
 
-.logginBannerContainer {
-        display: flex;
-        position: absolute;
-        z-index: 4;
-        flex-direction: column;
-        align-items: center;
-        border-radius: 10px;
-        background-color: #faebd7b5;
-        width: 540px;
-        height: 700px;
-        justify-content: center;
+.bannerLoginContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
 }
 
-.logginBannerContainer h2{
-margin: 0px;
+.titleForm{
+  display: flex;
+  justify-content: center;
+  font-weight: 200;
+  margin-top: 0px;
+  font-weight: 600;
 }
 
-.logginBannerContainer h1{
-        margin: 0px;
+.bannerText{
+  font-weight: 200;
+  color: wheat;
+  font-size: x-large;
+}
+
+.bannerImage{
+  width: 12vw;
+}
+
+.boldTitle{
+  font-weight: 400;
 }
 
 .rememberMe h4{
 margin: 0px;
+font-weight: 600;
 }
 
 .rememberMe {
@@ -93,10 +122,9 @@ margin: 0px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }
+}
 
 .button-87 {
-  margin: 0% 0px;
   padding: 15px 30px;
   text-align: center;
   text-transform: uppercase;
@@ -107,6 +135,7 @@ margin: 0px;
   display: block;
   border: 0px;
   font-weight: 700;
+  width: 100%;
   box-shadow: 0px 0px 14px -7px #f09819;
   background-image: linear-gradient(45deg, #0e0d0d 0%, #199af0  51%, #5f5b5a  100%);
   cursor: pointer;
@@ -191,4 +220,78 @@ margin: 0px;
       .checkbox-wrapper-64 input:checked + .slider:before {
         transform: translateX(1.4em);
         background-color: #fff;
+      }
+
+      @media (min-width: 960px) and (max-width: 1279px) {
+        .logginForm {
+          display: flex;
+          flex-direction: column;
+          padding-left: 30px;
+          background-color: #949396;
+          padding: 0px 4%;
+          z-index: 5;
+          width: 25vw;
+          justify-content: center;
+          border-radius: 0px 6px 6px 0px;
+      }
+
+      .bannerLogin {
+        width: 35vw;
+        height: 45vw;
+        background: rgb(62,61,61);
+        background: linear-gradient(205deg, rgba(62,61,61,1) 16%, rgba(154,179,174,1) 84%);
+        position: relative;
+      }
+
+      .inputError:hover {
+        height: 3vw;
+        border-radius: 5px;
+        border: 1px solid red;
+        font-size: 1.1rem;
+      }
+
+      .inputError {
+        height: 3vw;
+        border-radius: 5px;
+        border: 1px solid red;
+        font-size: 1.1rem;
+      }
+
+      .inputSession {
+        height: 3vw;
+        border-radius: 5px;
+        border: 0px;
+        font-size: 1.1rem;
+      }
+      
+      .bannerImage{
+        width: 15vw;
+      }
+      }
+
+      @media (max-width: 959px) {
+        .bannerLogin{
+          display: none;
+        }
+        
+        .logginForm{
+          width: 100%;
+        }
+
+        .logginComponent{
+          width: 100%;
+          height: 100%;
+        }
+
+        .inputSession{
+          height:7vw;
+        }
+        
+        .inputError:hover{
+          height: 7vw;
+        }
+
+        .inputError{
+          height: 7vw;
+        }
       }

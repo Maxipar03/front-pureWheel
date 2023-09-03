@@ -6,7 +6,7 @@ import appInfo from "../../modules/appInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import ImgCarrusel from "../imgCarrousel/imgCarrousel";
+import ImgCarruselDetail from "../imgCarrouselDetail/imgCarrouselDetail";
 
 
 function productsDetail() {
@@ -63,7 +63,7 @@ function productsDetail() {
   return (
     <div className="productDetail">
       {product.images && (
-        <ImgCarrusel
+        <ImgCarruselDetail
           imgArray={objToArray(JSON.parse(product.images))}
           id={product.user_id}
           productImgClassName={"productsImageDetail"}
