@@ -6,12 +6,14 @@ import appInfo from "../../modules/appInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import ImgCarruselDetail from "../imgCarrouselDetail/imgCarrouselDetail";
+import ImgCarruselDetail from "../imgCarrouselDetail/imgCarrouselDetail"
+import ProductDetailRelated from "../proudctDetailRelated/productDetailRelated";
 
 
 function productsDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
+  const [productRelated, setProductRelated] = useState([])
 
   useEffect(() => {
     fetchApi(
@@ -33,21 +35,17 @@ function productsDetail() {
   console.log(product);
 
   useEffect(() => {
-    fetchApi(
-      `${appInfo.root}/cars/brands/${id}`,
-      {
-        method: "GET",
-      },
-      (resolve, reject) => {
-        if (reject) {
-          console.log(reject);
-        } else {
-          console.log(resolve);
-          setBrandProducts(resolve.info.carsIncluded);
-          console.log(brandProducts);
-        }
+    fetchApi(`${appInfo.root}/cars`, {
+      method: 'GET',
+    }, (resolve, reject) => {
+      if (reject) {
+        console.log(reject);
+      } else {
+        console.log(resolve)
+        setProductRelated(resolve.data)
+        console.log(brandProducts)
       }
-    );
+    });
   }, []);
 
   function objToArray(obj) {
@@ -61,6 +59,7 @@ function productsDetail() {
   }
 
   return (
+    <div className="allProductDetailContainer">
     <div className="productDetail">
       {product.images && (
         <ImgCarruselDetail
@@ -123,6 +122,17 @@ function productsDetail() {
         </div>
       </div>
     </div>
+    <div className="productRelatedTitleContainer">
+    <h1 className="productRelatedTitle">Product Related</h1>
+    </div>
+    <div className="productRelatedContainer"> 
+      {productRelated.map((car) => (
+        <div key={car.id}>
+            <ProductDetailRelated productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} carsYear={car.year}/>
+        </div>
+      ))}
+    </div>
+    </div> 
   );
 }
 

@@ -114,6 +114,7 @@ font-size: 1.1rem;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    padding-bottom: 3%;
 }
 
 .registerPart1{

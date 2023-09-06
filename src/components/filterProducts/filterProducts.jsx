@@ -51,20 +51,25 @@ function filterProducts() {
                 </div>
                 <div className="filterColor">
                     <h1 className="filterName">Color</h1>
-                    <select className="selectColor">
-                        <option></option>
-                    </select>
+                    <div>
+                        <span className="circle white"></span>
+                        <span className="circle black"></span>
+                        <span className="circle red"></span>
+                        <span className="circle orange"></span>
+                        <span className="circle gray"></span>
+                        <span className="circle blue"></span>
+                    </div>
                 </div>
                 <div className="onSaleFilter">
-                 <h4>On sale</h4>
-                <div className="checkbox-wrapper-64">
-                 <label className="switch">
-                <input
-                 type="checkbox" />
-                 <span className="slider"></span>
-                </label>
-          </div>
-        </div>
+                    <h4>On sale</h4>
+                    <div className="checkbox-wrapper-64">
+                        <label className="switch">
+                            <input
+                                type="checkbox" />
+                            <span className="slider"></span>
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
     )

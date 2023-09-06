@@ -3,6 +3,42 @@
     display: flex;
 }
 
+.circle {
+    display: inline-block;
+    width: 30px;
+    /* Ancho del círculo */
+    height: 30px;
+    /* Altura del círculo */
+    border-radius: 50%;
+    /* Hacerlo circular */
+    margin-right: 10px;
+    /* Espacio entre círculos */
+}
+
+.white {
+    background-color: white;
+}
+
+.black {
+    background-color: black;
+}
+
+.red {
+    background-color: red;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.gray {
+    background-color: gray;
+}
+
+.blue {
+    background-color: blue;
+}
+
 .filterContainer {
     background-color: #877a7a7d;
     padding: 0.8vw;
@@ -170,11 +206,11 @@
 @media (min-width: 960px) and (max-width: 1279px) {
     .filterComponent {
         width: 32%;
-    }   
+    }
 }
 
-@media (max-width: 960px){
-    .filterComponent{
+@media (max-width: 960px) {
+    .filterComponent {
         width: 0%;
         display: none;
     }

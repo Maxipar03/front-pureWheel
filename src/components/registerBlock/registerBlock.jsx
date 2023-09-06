@@ -328,13 +328,13 @@ function register() {
               value={phone} type="number" placeholder="Phone Number" className={phoneErrorStatus ? 'inputError' : 'inputSession'}></input>
             <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={phoneMsg} errorStatus={phoneErrorStatus}></ErrorBlock>
           </div>
-          <div className="registerInputContent">
+          {/* <div className="registerInputContent">
             <label>Identification</label>
             <input onChange={handleIdentificationChange} onBlur={identificationValidation}
               ref={refIdentification}
               value={identification} type="number" placeholder="Identification" className={identificationErrorStatus ? 'inputError' : 'inputSession'}></input>
             <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={identificationMsg} errorStatus={identificationErrorStatus}></ErrorBlock>
-          </div>
+          </div> */}
           <div className="registerInputContent">
             <label>Birthdate</label>
             <input onChange={handleBirthdateChange} onBlur={birthdateValidation}
