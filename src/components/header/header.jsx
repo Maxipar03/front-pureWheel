@@ -4,12 +4,14 @@ import logo from "../../../public/LogoPureWheelPNG3.png"
 import { Link, json } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import BurgerMenu from '../Popups/burgerMenu/burgerMenu'
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faUserPen } from '@fortawesome/free-solid-svg-icons';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 
 function header() {
+  const [burgerMenu, setBurgerMenu] = useState(false)
 
   const [scrolling, setScrolling] = useState(false);
 
@@ -31,6 +33,11 @@ function header() {
 
   const userLogged = JSON.parse(sessionStorage.getItem('userLogged'));
 
+  const burgerMenuFunction = () => {
+    if(!burgerMenu)setBurgerMenu(true)
+    if(burgerMenu)setBurgerMenu(false)
+}
+ 
   const [open, setOpen] = useState(false)
 
   const handleLogout = () => {
@@ -92,8 +99,9 @@ function header() {
           }
 
         </div>
-        <FontAwesomeIcon icon={faBars} className="burgerMenu" />
-      </header>
+        <FontAwesomeIcon onClick={burgerMenuFunction} icon={faBars} className="burgerMenu"/>
+    </header>
+    <BurgerMenu trigger={burgerMenu} setTrigger={setBurgerMenu}></BurgerMenu>
     </div>
   )
 }
