@@ -1,17 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./filterProducts.css"
+import { fetchApi } from "../../modules/mainModules";
+import appInfo from "../../modules/appInfo";
+// import { loadConfigFromFile } from "vite";
 
 
-function filterProducts() {
+function filterProducts(props) {
+    const [allBrands, setAllBrands] = useState([])
+    const [brandFilter, setBrandFilter] = useState('')
+    const [modelFilter, setModelFilter] = useState('')
+    const [yearFromFilter, setYearFromFilter] = useState('')
+    const [yearToFilter, setYearToFilter] = useState('')
+    const [kilometersFromFilter, setKilometersFromFilter] = useState('')
+    const [kilometersToFilter, setKilometersToFilter] = useState('')
+    const [priceFromFilter, setPriceFromFilter] = useState('')
+    const [priceToFilter, setPriceToFilter] = useState('')
+    const [colorFilter, setColorFilter] = useState('')
+    const [onSaleFilter, setOnSaleFilter] = useState('')
+
+
+    useEffect(() => {
+        fetchApi(`${appInfo.root}/cars/brands`, {
+            method: 'GET',
+        }, (resolve, reject) => {
+            if (reject) {
+                console.error(reject);
+            } else {
+                setAllBrands(resolve.data)
+                console.log(resolve);
+            }
+        });
+    }, [])
+
+    // useEffect(()=>{
+    //     if(props.page){
+    //         fetchApi(`${appInfo.root}/cars/models`, {
+    //             method: 'GET',
+    //         }, (resolve, reject) => {
+    //             if (reject) {
+    //                 console.error(reject);
+    //             } else {
+    //                 // setAllBrands(resolve.data)
+    //                 console.log(resolve);
+    //             }
+    //         });
+
+    //     }else{
+    //         console.log('Brands Products');
+    //     }
+    // },[props.page])
+
+    console.log(allBrands);
 
     return (
         <div className="filterComponent">
             <div className="filterContainer">
-                <h1 className="filterTitle">Filter</h1>
-                <h1 className="filterName">Search Model</h1>
-                <input className="inputSearch" placeholder="911 Turbo" type="text"></input>
+                <h2 className="filterTitle">Filter</h2>
+                {/* YEAR */}
                 <div className="filterDate">
-                    <h1 className="filterName">Year</h1>
+                    <h4 className="filterName">Year</h4>
                     <div className="dateContainer">
                         <div className="dateFrom">
                             <label>From</label>
@@ -24,7 +71,7 @@ function filterProducts() {
                     </div>
                 </div>
                 <div className="filterKM">
-                    <h1 className="filterName">Kilometres</h1>
+                    <h4 className="filterName">Kilometres</h4>
                     <div className="kmContainer">
                         <div className="kmFrom">
                             <label>From</label>
@@ -37,7 +84,7 @@ function filterProducts() {
                     </div>
                 </div>
                 <div className="filterKM">
-                    <h1 className="filterName">Price</h1>
+                    <h4 className="filterName">Price</h4>
                     <div className="priceContainer">
                         <div className="priceFrom">
                             <label>From</label>
@@ -50,7 +97,7 @@ function filterProducts() {
                     </div>
                 </div>
                 <div className="filterColor">
-                    <h1 className="filterName">Color</h1>
+                    <h4 className="filterName">Color</h4>
                     <div>
                         <span className="circle white"></span>
                         <span className="circle black"></span>
@@ -58,6 +105,56 @@ function filterProducts() {
                         <span className="circle orange"></span>
                         <span className="circle gray"></span>
                         <span className="circle blue"></span>
+                    </div>
+                </div>
+                 {/* BRANDS */}
+                 {props.page ? <div>
+                    <h4 className="filterName">Brand</h4><p></p>
+                    <div className="modelsInputDiv">
+                        <div className="scrollable-content">
+                            {allBrands.map((brand) => (
+                                <div key={brand.id} className="modelDivCheckbox">
+                                    <input type="checkbox" name="" id="" />
+                                    <p>{brand.name}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                </div> : null}
+                {/* MODELS */}
+                <h4 className="filterName">Model</h4>
+                <div className="modelsInputDiv">
+                    <div className="scrollable-content">
+                        <div className="modelDivCheckbox">
+                            <input type="checkbox" name="" id="" />
+                            <p>Model name</p>
+                        </div>
+
+                        <div className="modelDivCheckbox">
+                            <input type="checkbox" name="" id="" />
+                            <p>Model name</p>
+                        </div>
+                        <div className="modelDivCheckbox">
+                            <input type="checkbox" name="" id="" />
+                            <p>Model name</p>
+                        </div>
+                        <div className="modelDivCheckbox">
+                            <input type="checkbox" name="" id="" />
+                            <p>Model name</p>
+                        </div>
+                        <div className="modelDivCheckbox">
+                            <input type="checkbox" name="" id="" />
+                            <p>Model name</p>
+                        </div>
+                        <div className="modelDivCheckbox">
+                            <input type="checkbox" name="" id="" />
+                            <p>Model name</p>
+                        </div>
+                        <div className="modelDivCheckbox">
+                            <input type="checkbox" name="" id="" />
+                            <p>Model name</p>
+                        </div>
                     </div>
                 </div>
                 <div className="onSaleFilter">

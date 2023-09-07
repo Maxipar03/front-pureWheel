@@ -1,43 +1,8 @@
 .filterComponent {
-    width: 25%;
+    width: 30%;
     display: flex;
 }
 
-.circle {
-    display: inline-block;
-    width: 30px;
-    /* Ancho del círculo */
-    height: 30px;
-    /* Altura del círculo */
-    border-radius: 50%;
-    /* Hacerlo circular */
-    margin-right: 10px;
-    /* Espacio entre círculos */
-}
-
-.white {
-    background-color: white;
-}
-
-.black {
-    background-color: black;
-}
-
-.red {
-    background-color: red;
-}
-
-.orange {
-    background-color: orange;
-}
-
-.gray {
-    background-color: gray;
-}
-
-.blue {
-    background-color: blue;
-}
 
 .filterContainer {
     background-color: #877a7a7d;
@@ -49,11 +14,60 @@
 .inputSearch {
     width: 98%;
     height: 1.4vw;
-    border: none;
     border-radius: 4px;
     font-size: 1rem;
     border: 1px #9b979754 solid;
 }
+
+/* Brand */
+.modelsInputDiv-hidden {
+    display: none;
+}
+
+.modelsInputDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.scrollable-content {
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.scrollable-content::-webkit-scrollbar {
+    width: 10px;
+    /* Adjust the width of the scrollbar */
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Color of the scrollbar thumb */
+}
+
+/* Show scrollbar on hover */
+.scrollable-content:hover::-webkit-scrollbar-thumb {
+    background: #555;
+    /* Color of the scrollbar thumb on hover */
+}
+
+
+.modelDivCheckbox {
+    margin: 0;
+    display: flex;
+    width: 45%;
+    justify-content: flex-start;
+}
+
+.modelDivCheckbox p {
+    margin-left: 2%;
+}
+
 
 .inputYear {
     width: 95%;
@@ -109,9 +123,45 @@
     border: 1px #9b979754 solid;
 }
 
+.circle {
+    display: inline-block;
+    width: 30px;
+    /* Ancho del círculo */
+    height: 30px;
+    /* Altura del círculo */
+    border-radius: 50%;
+    /* Hacerlo circular */
+    margin-right: 10px;
+    /* Espacio entre círculos */
+}
+
+.white {
+    background-color: white;
+}
+
+.black {
+    background-color: black;
+}
+
+.red {
+    background-color: red;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.gray {
+    background-color: gray;
+}
+
+.blue {
+    background-color: blue;
+}
+
+
 .filterName {
     margin: 2% 0%;
-    font-size: 1.5rem;
     font-weight: 600;
 }
 
