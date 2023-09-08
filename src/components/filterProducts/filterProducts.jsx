@@ -32,27 +32,30 @@ function filterProducts(props) {
         });
     }, [])
 
-    // useEffect(()=>{
-    //     if(props.page){
-    //         fetchApi(`${appInfo.root}/cars/models`, {
-    //             method: 'GET',
-    //         }, (resolve, reject) => {
-    //             if (reject) {
-    //                 console.error(reject);
-    //             } else {
-    //                 // setAllBrands(resolve.data)
-    //                 console.log(resolve);
-    //             }
-    //         });
-
-    //     }else{
-    //         console.log('Brands Products');
-    //     }
-    // },[props.page])
+    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+    useEffect(() => {
+        if (props.page) {
+            allBrands.forEach(brand => {
+                fetchApi(`${appInfo.root}/cars/brands/${brand.id}`, {
+                    method: 'GET',
+                }, (resolve, reject) => {
+                    if (reject) {
+                        console.error(reject);
+                    } else {
+                        console.log(resolve);
+                    }
+                });
+            })
+        } else {
+            console.log('Brands Products');
+        }
+    }, [allBrands])
+    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     console.log(allBrands);
 
     return (
+
         <div className="filterComponent">
             <div className="filterContainer">
                 <h2 className="filterTitle">Filter</h2>
@@ -107,8 +110,8 @@ function filterProducts(props) {
                         <span className="circle blue"></span>
                     </div>
                 </div>
-                 {/* BRANDS */}
-                 {props.page ? <div>
+                {/* BRANDS */}
+                {props.page ? <div>
                     <h4 className="filterName">Brand</h4><p></p>
                     <div className="modelsInputDiv">
                         <div className="scrollable-content">
