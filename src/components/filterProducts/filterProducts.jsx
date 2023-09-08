@@ -6,56 +6,19 @@ import appInfo from "../../modules/appInfo";
 
 
 function filterProducts(props) {
-    const [allBrands, setAllBrands] = useState([])
-    const [brandFilter, setBrandFilter] = useState('')
-    const [modelFilter, setModelFilter] = useState('')
-    const [yearFromFilter, setYearFromFilter] = useState('')
-    const [yearToFilter, setYearToFilter] = useState('')
-    const [kilometersFromFilter, setKilometersFromFilter] = useState('')
-    const [kilometersToFilter, setKilometersToFilter] = useState('')
-    const [priceFromFilter, setPriceFromFilter] = useState('')
-    const [priceToFilter, setPriceToFilter] = useState('')
-    const [colorFilter, setColorFilter] = useState('')
-    const [onSaleFilter, setOnSaleFilter] = useState('')
+//     const [brandFilter, setBrandFilter] = useState('')
+//     const [modelFilter, setModelFilter] = useState('')
+//     const [yearFromFilter, setYearFromFilter] = useState('')
+//     const [yearToFilter, setYearToFilter] = useState('')
+//     const [kilometersFromFilter, setKilometersFromFilter] = useState('')
+//     const [kilometersToFilter, setKilometersToFilter] = useState('')
+//     const [priceFromFilter, setPriceFromFilter] = useState('')
+//     const [priceToFilter, setPriceToFilter] = useState('')
+//     const [colorFilter, setColorFilter] = useState('')
+//     const [onSaleFilter, setOnSaleFilter] = useState('')
 
-
-    useEffect(() => {
-        fetchApi(`${appInfo.root}/cars/brands`, {
-            method: 'GET',
-        }, (resolve, reject) => {
-            if (reject) {
-                console.error(reject);
-            } else {
-                setAllBrands(resolve.data)
-                console.log(resolve);
-            }
-        });
-    }, [])
-
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-    useEffect(() => {
-        if (props.page) {
-            allBrands.forEach(brand => {
-                fetchApi(`${appInfo.root}/cars/brands/${brand.id}`, {
-                    method: 'GET',
-                }, (resolve, reject) => {
-                    if (reject) {
-                        console.error(reject);
-                    } else {
-                        console.log(resolve);
-                    }
-                });
-            })
-        } else {
-            console.log('Brands Products');
-        }
-    }, [allBrands])
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    console.log(allBrands);
 
     return (
-
         <div className="filterComponent">
             <div className="filterContainer">
                 <h2 className="filterTitle">Filter</h2>
@@ -111,7 +74,7 @@ function filterProducts(props) {
                     </div>
                 </div>
                 {/* BRANDS */}
-                {props.page ? <div>
+                {/* {props.page === 'allProducts' ? <div>
                     <h4 className="filterName">Brand</h4><p></p>
                     <div className="modelsInputDiv">
                         <div className="scrollable-content">
@@ -124,41 +87,21 @@ function filterProducts(props) {
                         </div>
                     </div>
 
-                </div> : null}
+                </div> : null} */}
                 {/* MODELS */}
                 <h4 className="filterName">Model</h4>
                 <div className="modelsInputDiv">
-                    <div className="scrollable-content">
-                        <div className="modelDivCheckbox">
-                            <input type="checkbox" name="" id="" />
-                            <p>Model name</p>
-                        </div>
-
-                        <div className="modelDivCheckbox">
-                            <input type="checkbox" name="" id="" />
-                            <p>Model name</p>
-                        </div>
-                        <div className="modelDivCheckbox">
-                            <input type="checkbox" name="" id="" />
-                            <p>Model name</p>
-                        </div>
-                        <div className="modelDivCheckbox">
-                            <input type="checkbox" name="" id="" />
-                            <p>Model name</p>
-                        </div>
-                        <div className="modelDivCheckbox">
-                            <input type="checkbox" name="" id="" />
-                            <p>Model name</p>
-                        </div>
-                        <div className="modelDivCheckbox">
-                            <input type="checkbox" name="" id="" />
-                            <p>Model name</p>
-                        </div>
-                        <div className="modelDivCheckbox">
-                            <input type="checkbox" name="" id="" />
-                            <p>Model name</p>
-                        </div>
-                    </div>
+                    {/* {allModels.length > 0 ?
+                        <div className="scrollable-content">
+                            {allModels.map((model) => (
+                                <p>{model.data.id}</p>
+                                // <div key={model.data.id} className="modelDivCheckbox">
+                                //     <input type="checkbox" name="" id="" />
+                                //     <p>{model.data.name}</p>
+                                // </div>
+                            ))}
+                        </div> : 
+                        null} */}
                 </div>
                 <div className="onSaleFilter">
                     <h4>On sale</h4>

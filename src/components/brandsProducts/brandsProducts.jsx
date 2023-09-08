@@ -26,7 +26,7 @@ function brandsProducts() {
 
   return (
     <div className="brandProductsContainer">
-      <FilterProdcuts filterBrandName={brand.name}></FilterProdcuts>
+      <FilterProdcuts brandId={brand.id}></FilterProdcuts>
       <div className="cardProductsDiv">
       {products.map((cars) => (
         <div key={cars.id} className="cardProductsbrandsContainer">
