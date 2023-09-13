@@ -62,7 +62,7 @@ function allProducts() {
 
   return (
     <div className="brandProductsContainer">
-      <FilterProdcuts brands={allBrands} models={allBrandsModels} ></FilterProdcuts>
+      <FilterProdcuts brands={allBrands} models={allBrandsModels} products={brandProducts} setProducts={setAllBrands} ></FilterProdcuts>
       <div className="cardProductsDiv">
         {brandProducts.map((cars) => (
           <div key={cars.id} className="cardProductsbrandsContainer">

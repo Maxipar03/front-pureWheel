@@ -6,17 +6,27 @@ import appInfo from "../../modules/appInfo";
 
 
 function filterProducts(props) {
-//     const [brandFilter, setBrandFilter] = useState('')
-//     const [modelFilter, setModelFilter] = useState('')
-//     const [yearFromFilter, setYearFromFilter] = useState('')
-//     const [yearToFilter, setYearToFilter] = useState('')
-//     const [kilometersFromFilter, setKilometersFromFilter] = useState('')
-//     const [kilometersToFilter, setKilometersToFilter] = useState('')
-//     const [priceFromFilter, setPriceFromFilter] = useState('')
-//     const [priceToFilter, setPriceToFilter] = useState('')
-//     const [colorFilter, setColorFilter] = useState('')
-//     const [onSaleFilter, setOnSaleFilter] = useState('')
+        const [models, setModels] = useState([])
+        const [modelsRender, setModelsRender] = useState(false)
+    //     const [brandFilter, setBrandFilter] = useState('')
+    //     const [modelFilter, setModelFilter] = useState('')
+    //     const [yearFromFilter, setYearFromFilter] = useState('')
+    //     const [yearToFilter, setYearToFilter] = useState('')
+    //     const [kilometersFromFilter, setKilometersFromFilter] = useState('')
+    //     const [kilometersToFilter, setKilometersToFilter] = useState('')
+    //     const [priceFromFilter, setPriceFromFilter] = useState('')
+    //     const [priceToFilter, setPriceToFilter] = useState('')
+    //     const [colorFilter, setColorFilter] = useState('')
+    //     const [onSaleFilter, setOnSaleFilter] = useState('')
 
+    
+    useEffect(()=> {
+        console.log('Working');
+        setModels(props.models)
+        setModelsRender(true)
+    }, [props.models])
+    
+    console.log(models);
 
     return (
         <div className="filterComponent">
@@ -74,11 +84,11 @@ function filterProducts(props) {
                     </div>
                 </div>
                 {/* BRANDS */}
-                {/* {props.page === 'allProducts' ? <div>
+                {props.brands ? <div>
                     <h4 className="filterName">Brand</h4><p></p>
                     <div className="modelsInputDiv">
                         <div className="scrollable-content">
-                            {allBrands.map((brand) => (
+                            {props.brands.map((brand) => (
                                 <div key={brand.id} className="modelDivCheckbox">
                                     <input type="checkbox" name="" id="" />
                                     <p>{brand.name}</p>
@@ -87,21 +97,18 @@ function filterProducts(props) {
                         </div>
                     </div>
 
-                </div> : null} */}
+                </div> : null}
                 {/* MODELS */}
                 <h4 className="filterName">Model</h4>
                 <div className="modelsInputDiv">
-                    {/* {allModels.length > 0 ?
-                        <div className="scrollable-content">
-                            {allModels.map((model) => (
-                                <p>{model.data.id}</p>
-                                // <div key={model.data.id} className="modelDivCheckbox">
-                                //     <input type="checkbox" name="" id="" />
-                                //     <p>{model.data.name}</p>
-                                // </div>
+                    {modelsRender ? <div className="scrollable-content">
+                        <p>iiiiii</p>
+                            {models.map((modelBrand) => (
+                                <div key={modelBrand.brandId} className="brandModels">
+                                    <p>{modelBrand.brandName}</p>
+                                </div>
                             ))}
-                        </div> : 
-                        null} */}
+                        </div> : null}
                 </div>
                 <div className="onSaleFilter">
                     <h4>On sale</h4>
