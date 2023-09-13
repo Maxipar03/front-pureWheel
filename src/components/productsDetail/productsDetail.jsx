@@ -58,6 +58,8 @@ function productsDetail() {
     return imagesToArray;
   }
 
+  const productRelatedBrand = productRelated.filter((car) => car.brand.name === product.brand.name);
+
   return (
     <div className="allProductDetailContainer">
     <div className="productDetail">
@@ -126,7 +128,7 @@ function productsDetail() {
     <h1 className="productRelatedTitle">Product Related</h1>
     </div>
     <div className="productRelatedContainer"> 
-      {productRelated.map((car) => (
+      {productRelatedBrand.map((car) => (
         <div key={car.id}>
             <ProductDetailRelated productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} carsYear={car.year}/>
         </div>

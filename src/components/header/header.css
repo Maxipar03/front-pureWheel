@@ -149,8 +149,17 @@ margin: 0px 10px;
 
 @media (min-width: 960px) and (max-width: 1279px) {
     .header{
-        width: 75%;
+        width: 85%;
     }
+
+    .headerScrolling{ 
+        width: 85%;
+    }
+
+    .titleHeader{
+        font-size: 1.31rem;
+    }
+
     .options {
         width: 70%;
         display: flex;
