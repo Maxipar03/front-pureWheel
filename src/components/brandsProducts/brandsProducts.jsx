@@ -8,6 +8,7 @@ import FilterProdcuts from "../filterProducts/filterProducts"
 
 function brandsProducts() {
   const [products, setProducts] = useState([])
+  const [brand, setBrand] = useState('')
   const { id } = useParams();
 
   useEffect(() => {
@@ -15,19 +16,17 @@ function brandsProducts() {
       method: 'GET',
     }, (resolve, reject) => {
       if (reject) {
-        console.log(reject);
+        console.error(reject);
       } else {
-        console.log(resolve)
+        setBrand(resolve.data)
         setProducts(resolve.info.carsIncluded)
-        console.log(products)
       }
     });
   }, []);
 
-
   return (
     <div className="brandProductsContainer">
-      <FilterProdcuts></FilterProdcuts>
+      <FilterProdcuts brandId={brand.id}></FilterProdcuts>
       <div className="cardProductsDiv">
       {products.map((cars) => (
         <div key={cars.id} className="cardProductsbrandsContainer">
