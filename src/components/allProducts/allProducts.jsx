@@ -39,15 +39,15 @@ function allProducts() {
               method: 'GET',
             }, (resolve, reject) => {
               if(reject) console.error(reject)
-                return resolve.data
+                return resolve
               }
             )
 
             const response = {
-              brandId: brandDetailsResponse.id,
-              brandName: brandDetailsResponse.name,
-              brandLog: brandDetailsResponse.logo,
-              models: brandDetailsResponse.models,
+              brandId: brandDetailsResponse.data.id,
+              brandName: brandDetailsResponse.data.name,
+              brandLog: brandDetailsResponse.data.logo,
+              models: brandDetailsResponse.info.models,
             };
 
             brandsArr.push(response);
@@ -62,6 +62,8 @@ function allProducts() {
 
     fetchData();
   }, []);
+
+console.log(allBrandsModels);
 
   return(
   brandProducts && allBrands && allBrandsModels ? (

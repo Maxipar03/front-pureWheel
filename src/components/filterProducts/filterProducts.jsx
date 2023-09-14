@@ -6,8 +6,8 @@ import appInfo from "../../modules/appInfo";
 
 
 function filterProducts(props) {
-        const [models, setModels] = useState([])
-        const [modelsRender, setModelsRender] = useState(false)
+    const [models, setModels] = useState([])
+    const [modelsRender, setModelsRender] = useState(false)
     //     const [brandFilter, setBrandFilter] = useState('')
     //     const [modelFilter, setModelFilter] = useState('')
     //     const [yearFromFilter, setYearFromFilter] = useState('')
@@ -19,14 +19,16 @@ function filterProducts(props) {
     //     const [colorFilter, setColorFilter] = useState('')
     //     const [onSaleFilter, setOnSaleFilter] = useState('')
 
-    
-    useEffect(()=> {
+
+    useEffect(() => {
         setModels(props.models)
     }, [props.models])
-    
-    useEffect(()=>{
-        if(models.length >0) setModelsRender(true)
-    },[models])
+
+    useEffect(() => {
+        if (models.length > 0) setModelsRender(true)
+    }, [models])
+
+console.log(models);
 
     return (
         <div className="filterComponent">
@@ -101,15 +103,26 @@ function filterProducts(props) {
                 {/* MODELS */}
                 <h4 className="filterName">Model</h4>
                 <div className="modelsInputDiv">
-             {modelsRender ? 
-                    <div className="scrollable-content">
+                    {modelsRender ?
+                        <div className="scrollable-content">
                             {models.map((modelBrand) => (
                                 <div key={modelBrand.brandId} className="brandModels">
-                                    <p>{modelBrand.brandName}</p>
+                                    <div className="filterModlesBrandName">
+                                        <p>{modelBrand.brandName}</p>
+                                        <input type="checkbox" name="" id="" />
+                                    </div>
+                                    <div className="filterModelsNames">
+                                        {modelBrand.models ? modelBrand.models.map((modelsNames) => (
+                                            <div key={modelsNames.id} className="filterModelsNameDiv">
+                                                <input type="checkbox" name="" id="" />
+                                                <p>{modelsNames.name}</p>
+                                            </div>
+                                        )) : null}
+                                    </div>
                                 </div>
                             ))}
                         </div> : null}
-                </div> 
+                </div>
                 <div className="onSaleFilter">
                     <h4>On sale</h4>
                     <div className="checkbox-wrapper-64">
