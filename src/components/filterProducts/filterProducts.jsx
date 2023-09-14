@@ -21,12 +21,12 @@ function filterProducts(props) {
 
     
     useEffect(()=> {
-        console.log('Working');
         setModels(props.models)
-        setModelsRender(true)
     }, [props.models])
     
-    console.log(models);
+    useEffect(()=>{
+        if(models.length >0) setModelsRender(true)
+    },[models])
 
     return (
         <div className="filterComponent">
@@ -101,15 +101,15 @@ function filterProducts(props) {
                 {/* MODELS */}
                 <h4 className="filterName">Model</h4>
                 <div className="modelsInputDiv">
-                    {modelsRender ? <div className="scrollable-content">
-                        <p>iiiiii</p>
+             {modelsRender ? 
+                    <div className="scrollable-content">
                             {models.map((modelBrand) => (
                                 <div key={modelBrand.brandId} className="brandModels">
                                     <p>{modelBrand.brandName}</p>
                                 </div>
                             ))}
                         </div> : null}
-                </div>
+                </div> 
                 <div className="onSaleFilter">
                     <h4>On sale</h4>
                     <div className="checkbox-wrapper-64">

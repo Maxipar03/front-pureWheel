@@ -19,8 +19,8 @@ function App() {
       const headers = {
         authorization: permanentToken
       };
-      fetchApi(`${appInfo.root}/users/token/byId`, {
-        method: 'GET',
+      (`${appInfo.root}/users/token/byId`, {
+        method:'GET',
         headers,
       },(resolve)=>{
         sessionStorage.setItem('userLogged', JSON.stringify(resolve.data))

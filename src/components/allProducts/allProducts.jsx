@@ -7,60 +7,64 @@ import FilterProdcuts from "../filterProducts/filterProducts"
 import { faWheatAwnCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 function allProducts() {
-  const [brandProducts, setBrandProducts] = useState([])
-  const [allBrands, setAllBrands] = useState([])
-  const [allBrandsModels, setAllBrandsModels] = useState([])
+  const [brandProducts, setBrandProducts] = useState([]);
+  const [allBrands, setAllBrands] = useState([]);
+  const [allBrandsModels, setAllBrandsModels] = useState([]);
 
   useEffect(() => {
-    fetchApi(`${appInfo.root}/cars`, {
-      method: 'GET',
-    }, (resolve, reject) => {
-      if (reject) {
-        console.error(reject);
-      } else {
-        setBrandProducts(resolve.data)
-      }
-    });
-
-    fetchApi(`${appInfo.root}/cars/brands`, {
-      method: 'GET',
-    }, (resolve, reject) => {
-      if (reject) {
-        console.error(reject);
-      } else {
-        setAllBrands(resolve.data)
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    if (allBrands.length > 0) {
-      const brandsArr = []
-      allBrands.forEach((brand) => {
-        fetchApi(`${appInfo.root}/cars/brands/${brand.id}`, {
+    const fetchData = async () => {
+      try {
+        const productsResponse = await fetchApi(`${appInfo.root}/cars`, {
           method: 'GET',
         }, (resolve, reject) => {
-          if (reject) {
-            console.error(reject);
-          } else {
-            const response = {
-              brandId: resolve.data.id,
-              brandName: resolve.data.name,
-              brandLog: resolve.data.logo,
-              models: resolve.info.models
+          if(reject) console.error(reject)
+            return resolve.data
+          }
+        )
+        setBrandProducts(productsResponse);
 
-            }
+        const brandsResponse = await fetchApi(`${appInfo.root}/cars/brands`, {
+          method: 'GET',
+        }, (resolve, reject) => {
+          if(reject) console.error(reject)
+            return resolve.data
+          }
+        )
+        setAllBrands(brandsResponse);
+
+        if (brandsResponse.length > 0) {
+          const brandsArr = [];
+          for (const brand of brandsResponse) {
+            const brandDetailsResponse = await fetchApi(`${appInfo.root}/cars/brands/${brand.id}`, {
+              method: 'GET',
+            }, (resolve, reject) => {
+              if(reject) console.error(reject)
+                return resolve.data
+              }
+            )
+
+            const response = {
+              brandId: brandDetailsResponse.id,
+              brandName: brandDetailsResponse.name,
+              brandLog: brandDetailsResponse.logo,
+              models: brandDetailsResponse.models,
+            };
 
             brandsArr.push(response);
           }
-        });
-      })
-      setAllBrandsModels(brandsArr)
-    }
-  }, [allBrands])
 
+          setAllBrandsModels(brandsArr);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  return (
+    fetchData();
+  }, []);
+
+  return(
+  brandProducts && allBrands && allBrandsModels ? (
     <div className="brandProductsContainer">
       <FilterProdcuts brands={allBrands} models={allBrandsModels} products={brandProducts} setProducts={setAllBrands} ></FilterProdcuts>
       <div className="cardProductsDiv">
@@ -71,7 +75,7 @@ function allProducts() {
         ))}
       </div>
     </div>
-  )
+  ) : null ) 
 }
 
 export default allProducts
