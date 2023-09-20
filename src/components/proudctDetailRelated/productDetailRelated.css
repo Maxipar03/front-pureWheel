@@ -3,11 +3,13 @@ h3{
 }
 
 .productsImageRelated{
-    min-width: 14.5vw;
     max-width: 29vw;
-    max-height: 3vw;
+    max-height: 11.1vw;
     min-height: 8vw;
+    user-select: none;
+    min-width: 15vw;
 }
+
 
 
 .productInfoContainerRelated{
@@ -117,6 +119,7 @@ position: relative;
 
     .productsArticle{
         padding: 10px;
+        margin-top: 3%;
     }
 
     .productInfoContainerRelated{

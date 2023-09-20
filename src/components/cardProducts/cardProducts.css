@@ -8,6 +8,7 @@ h3{
     object-fit: cover;
     max-height: 10vw;
     min-height: 10vw;
+    user-select: none;
 }
 
 

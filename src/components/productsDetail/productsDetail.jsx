@@ -34,6 +34,11 @@ function productsDetail() {
 
   console.log(product);
 
+  function calculateDiscountedPrice(price, discountPercentage) {
+    const discountedPrice = price - (price * (discountPercentage / 100));
+    return discountedPrice.toFixed(0); 
+  }
+
   useEffect(() => {
     fetchApi(`${appInfo.root}/cars`, {
       method: 'GET',
@@ -108,9 +113,15 @@ function productsDetail() {
           </div>
         </div>
         <div className="productDetailPriceContainer">
-          <div className="productDetailPrice">
-            <h2>${product.price}</h2>
-          </div>
+          {product.onSale ? 
+           <div className="productDetailPrice">
+           <h2>${calculateDiscountedPrice(product.price, product.onSale)}</h2>
+           <h2 id="productPriceOldDetail"><span className="line-throw-detail">{product.price}</span></h2>
+         </div>  :
+           <div className="productDetailPrice">
+           <h2>${product.price}</h2>
+         </div>
+        }
         </div>
         <div className="productDetailButtonWpcontainer">
           <div className="productDetailButtonWp">

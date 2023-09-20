@@ -47,7 +47,7 @@
   height: 150px;
   object-fit: contain;
   transition: transform 0.3s ease-in-out;
-
+  user-select: none;
 }
 
 .brandImage {

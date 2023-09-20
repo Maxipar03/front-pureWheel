@@ -28,7 +28,6 @@ function imgCarrouselDetail({ imgArray, id , productImgClassName, nextButtonClas
     
         return (
           <div className="image-carouselDetail">          
-          <div className="imageCarouselDetail">   
             <FontAwesomeIcon
               id="arrow"
               className={prevButtonClassName}
@@ -65,8 +64,7 @@ function imgCarrouselDetail({ imgArray, id , productImgClassName, nextButtonClas
             />
           ))}
           </div>
-          </div>  
-          </div>  
+          </div>   
         );
       }
 
