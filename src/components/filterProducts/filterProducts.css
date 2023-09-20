@@ -38,6 +38,7 @@
     width: 100%;
     max-height: 200px;
     overflow-y: auto;
+    border-bottom: 1px solid gray;
 }
 
 .scrollable-content::-webkit-scrollbar {
@@ -68,6 +69,22 @@
     margin-left: 2%;
 }
 
+.brandModels{
+    display: flex;
+    flex-direction: column;
+}
+
+.filterModlesBrandName{
+    display: flex;
+    border-bottom: 1px dashed gray;
+}
+.filterModelsNames{
+    display: flex;
+    flex-direction: column;
+}
+.filterModelsNameDiv{
+    display: flex;
+}
 
 .inputYear {
     width: 95%;
