@@ -54,7 +54,7 @@ function brandsCarousel() {
           <FontAwesomeIcon icon={faAngleRight} className="arrowRight" onClick={handleFlechaDerechaClick} />
    
           </div>
-        
+
       );
     }
 

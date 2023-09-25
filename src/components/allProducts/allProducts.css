@@ -22,6 +22,10 @@
     .brandProductsContainer{
         width: 85%;
     }
+
+    .cardProductsDiv{
+        width: 61%;
+    }
 }
 
 @media (max-width: 959px) {

@@ -35,8 +35,8 @@ function burguerMenu(props) {
               <Link className='bm-link' onClick={closePopup} to="">Favorites</Link>
             </div> :
             <div className="bm-choose-options">
-              <Link className='bm-link' onClick={closePopup} to="/loggin">Loggin</Link>
-              <Link className='bm-link' onClick={closePopup} to="/register">Register</Link>
+              <Link className='bm-link' onClick={closePopup} to="/user/loggin">Loggin</Link>
+              <Link className='bm-link' onClick={closePopup} to="/user/register">Register</Link>
             </div>
           }
           

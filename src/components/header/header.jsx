@@ -10,10 +10,13 @@ import { faUserPen } from '@fortawesome/free-solid-svg-icons';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 
-function header() {
+function header({ nameClass }) {
   const [burgerMenu, setBurgerMenu] = useState(false)
 
   const [scrolling, setScrolling] = useState(false);
+
+  const [selectedOption, setSelectedOption] = useState(null);
+
 
   const handleScroll = () => {
     if (window.scrollY > 0) {
@@ -34,10 +37,10 @@ function header() {
   const userLogged = JSON.parse(sessionStorage.getItem('userLogged'));
 
   const burgerMenuFunction = () => {
-    if(!burgerMenu)setBurgerMenu(true)
-    if(burgerMenu)setBurgerMenu(false)
-}
- 
+    if (!burgerMenu) setBurgerMenu(true)
+    if (burgerMenu) setBurgerMenu(false)
+  }
+
   const [open, setOpen] = useState(false)
 
   const handleLogout = () => {
@@ -45,42 +48,78 @@ function header() {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('userLogged');
 
-   window.location.href = '/';
+    window.location.href = '/';
+  };
+
+  const handleMouseEnter = (option) => {
+    setSelectedOption(option);
+  };
+
+  const handleMouseLeave = () => {
+    setSelectedOption(null);
   };
 
 
   return (
     <div className="componentHeader">
-      <header className={scrolling ? 'headerScrolling' : 'header'}>
+      <header className={scrolling ? 'headerScrolling' : nameClass}>
         <div className="divLogo">
           <Link to='/' style={{ textDecoration: 'none' }}>
             <h1 className='titleHeader'>pure<b>wheel</b></h1>
-            <img src={logo} className='imageLogo'/>
+            <img src={logo} className='imageLogo' />
           </Link>
         </div>
         <div className="options">
           <ul className="selectors">
+          <div
+              className={`header-option ${selectedOption === "aboutUs" ? 'hovered' : ''}`}
+              onMouseEnter={() => handleMouseEnter("aboutUs")}
+              onMouseLeave={handleMouseLeave}
+            >
             <li>About Us</li>
+            <div
+                className={`underline ${selectedOption === "aboutUs" ? 'visible' : ''}`}
+              ></div>
+            </div>
             <Link to='/products/all' style={{ textDecoration: 'none' }}>
-            <li>Buy Car</li>
+            <div
+              className={`header-option ${selectedOption === "buyCar" ? 'hovered' : ''}`}
+              onMouseEnter={() => handleMouseEnter("buyCar")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <li>Buy Car</li>
+              <div
+                className={`underline ${selectedOption === "buyCar" ? 'visible' : ''}`}
+              ></div>
+              </div>
+              
             </Link>
-            <li>Sell car</li>
+            <div
+              className={`header-option ${selectedOption === "sellCar" ? 'hovered' : ''}`}
+              onMouseEnter={() => handleMouseEnter("sellCar")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <li>Sell car</li>
+              <div
+                className={`underline ${selectedOption === "sellCar" ? 'visible' : ''}`}
+              ></div>
+            </div>
           </ul>
           {userLogged ? (
             <div className="dropdownContainer">
               <div className="userLoggedNameContainer" onClick={() => setOpen(!open)}>
-             <FontAwesomeIcon icon={faUser} /> 
-             <h3 className="userLoggedName">{userLogged.name}</h3>
-             </div>
+                <FontAwesomeIcon icon={faUser} />
+                <h3 className="userLoggedName">{userLogged.name}</h3>
+              </div>
               {open && (
                 <div className="dropdownMenu">
                   <div className="dropdownOptionContainer">
-                  <FontAwesomeIcon icon={faUserPen} />  
-                  <h3 className="dropdownOption">Profile</h3>
-                  </div>   
+                    <FontAwesomeIcon icon={faUserPen} />
+                    <h3 className="dropdownOption">Profile</h3>
+                  </div>
                   <div className="dropdownOptionContainer" onClick={handleLogout}>
-                  <FontAwesomeIcon icon={faRightFromBracket} />
-                  <h3 className="dropdownOption">logout</h3>
+                    <FontAwesomeIcon icon={faRightFromBracket} />
+                    <h3 className="dropdownOption">logout</h3>
                   </div>
                 </div>
               )}
@@ -89,19 +128,43 @@ function header() {
             (
               <ul className="selectorsSession">
                 <Link to='/user/loggin' style={{ textDecoration: 'none' }}>
-                  <li>LoggIn</li>
+                  <div
+                    className={`header-option ${selectedOption === "loggin" ? 'hovered' : ''}`}
+                    onMouseEnter={() => handleMouseEnter("loggin")}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <li>LoggIn</li>
+                    <div
+                      className={`underline ${selectedOption === "loggin" ? 'visible' : ''}`}
+                    ></div>
+                  </div>
                 </Link>
                 <Link to='/user/register' style={{ textDecoration: 'none' }}>
-                  <li>Register</li>
+                  <div
+                    className={`header-option ${selectedOption === "register" ? 'hovered' : ''}`}
+                    onMouseEnter={() => handleMouseEnter("register")}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <li>Register</li>
+                    <div
+                      className={`underline ${selectedOption === "register" ? 'visible' : ''}`}
+                    ></div>
+                  </div>
                 </Link>
               </ul>
             )
           }
 
         </div>
-        <FontAwesomeIcon onClick={burgerMenuFunction} icon={faBars} className="burgerMenu"/>
-    </header>
-    <BurgerMenu trigger={burgerMenu} setTrigger={setBurgerMenu}></BurgerMenu>
+        <div className={`menu ${burgerMenu ? 'open' : ''}`}>
+          <div className="hamburger" onClick={burgerMenuFunction}>
+            <div className="bar"></div>
+            <div className="bar"></div>
+            <div className="bar"></div>
+          </div>
+        </div>
+      </header>
+      <BurgerMenu trigger={burgerMenu} setTrigger={setBurgerMenu}></BurgerMenu>
     </div>
   )
 }

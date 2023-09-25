@@ -20,6 +20,8 @@
     margin: 5px;
     cursor: pointer;
     opacity: 0.7;
+    max-height: 5vw;
+    user-select: none;
   }
   
 .thumbnail.selected {
@@ -35,4 +37,5 @@
     width: 100%;
     background-color: #0000005c;
     justify-content: center;
+    border-radius: 0px 0px 8px 8px;
 }

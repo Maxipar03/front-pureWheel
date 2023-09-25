@@ -3,10 +3,12 @@ h3{
 }
 
 .productsImage {
-    min-width: 10vw;
+    min-width: 11vw;
     max-width: 7vw;
+    object-fit: cover;
     max-height: 10vw;
-    min-height: 8vw;
+    min-height: 10vw;
+    user-select: none;
 }
 
 

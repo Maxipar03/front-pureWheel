@@ -12,3 +12,7 @@
     border-radius: 30px;
     display: none;
 }
+
+#arrow{
+    user-select: none;
+}

@@ -34,6 +34,11 @@ function productsDetail() {
 
   console.log(product);
 
+  function calculateDiscountedPrice(price, discountPercentage) {
+    const discountedPrice = price - (price * (discountPercentage / 100));
+    return discountedPrice.toFixed(0); 
+  }
+
   useEffect(() => {
     fetchApi(`${appInfo.root}/cars`, {
       method: 'GET',
@@ -57,6 +62,8 @@ function productsDetail() {
     }
     return imagesToArray;
   }
+
+  const productRelatedBrand = productRelated.filter((car) => car.brand.name === product.brand.name);
 
   return (
     <div className="allProductDetailContainer">
@@ -106,9 +113,15 @@ function productsDetail() {
           </div>
         </div>
         <div className="productDetailPriceContainer">
-          <div className="productDetailPrice">
-            <h2>${product.price}</h2>
-          </div>
+          {product.onSale ? 
+           <div className="productDetailPrice">
+           <h2>${calculateDiscountedPrice(product.price, product.onSale)}</h2>
+           <h2 id="productPriceOldDetail"><span className="line-throw-detail">{product.price}</span></h2>
+         </div>  :
+           <div className="productDetailPrice">
+           <h2>${product.price}</h2>
+         </div>
+        }
         </div>
         <div className="productDetailButtonWpcontainer">
           <div className="productDetailButtonWp">
@@ -126,7 +139,7 @@ function productsDetail() {
     <h1 className="productRelatedTitle">Product Related</h1>
     </div>
     <div className="productRelatedContainer"> 
-      {productRelated.map((car) => (
+      {productRelatedBrand.map((car) => (
         <div key={car.id}>
             <ProductDetailRelated productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} carsYear={car.year}/>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { fetchApi } from "./modules/mainModules";
 import appInfo from "./modules/appInfo";
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route , useLocation } from 'react-router-dom'
 import Home from './screen/home/Home'
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
@@ -12,6 +12,24 @@ import BrandsProducts from "./screen/brandsProducts/brandsProducts";
 import BuyCar from "./screen/buyCar/buyCar";
 
 function App() {
+  const location = useLocation();
+
+  const getTitleFromLocation = () => {
+    switch (location.pathname) {
+      case '/':
+        return 'header';
+      case '/user/loggin':
+        return 'headerColor';
+      case '/user/register':
+        return 'headerColor';
+      case '/products/detail/:id':
+        return 'headerColor';
+      default:
+        return 'headerColor';
+    }
+  };
+
+  const nameClass = getTitleFromLocation();
 
   useEffect(() => {
     const permanentToken = localStorage.getItem('token');
@@ -30,7 +48,7 @@ function App() {
 
 return (
   <div className='App'>
-    <Header/>
+    <Header nameClass={nameClass}/>
       <Routes>
         {/****************** HOME ******************/}
         <Route exact path="/" element={<Home />} />
