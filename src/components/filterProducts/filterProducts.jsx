@@ -1,13 +1,46 @@
 import React, { useEffect, useState } from "react";
 import "./filterProducts.css"
-import { fetchApi } from "../../modules/mainModules";
+import { fetchApi } from "../../modules/mainModules"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';;
 import appInfo from "../../modules/appInfo";
+import banner from "../../../public/ImageTestbannerfilter.jpg"
 // import { loadConfigFromFile } from "vite";
 
 
 function filterProducts(props) {
     const [models, setModels] = useState([])
+
     const [modelsRender, setModelsRender] = useState(false)
+
+    const [expandedBrands, setExpandedBrands] = useState({});
+
+    const [selectedBrands, setSelectedBrands] = useState([]);
+
+    const toggleBrand = (brandId) => {
+        setExpandedBrands((prevExpandedBrands) => ({
+            ...prevExpandedBrands,
+            [brandId]: !prevExpandedBrands[brandId],
+        }));
+    };
+  
+    const toggleBrand2 = (brandId) => {
+        // Copiamos el array de marcas seleccionadas para evitar la mutación del estado
+        const updatedSelectedBrands = [...selectedBrands];
+        
+        // Si la marca ya está en la lista de seleccionadas, la eliminamos; de lo contrario, la agregamos
+        if (updatedSelectedBrands.includes(brandId)) {
+            updatedSelectedBrands.splice(updatedSelectedBrands.indexOf(brandId), 1);
+        } else {
+            updatedSelectedBrands.push(brandId);
+        }
+
+        // Actualizamos el estado con las marcas seleccionadas actualizadas
+        setSelectedBrands(updatedSelectedBrands);
+    };
+
+
+
     //     const [brandFilter, setBrandFilter] = useState('')
     //     const [modelFilter, setModelFilter] = useState('')
     //     const [yearFromFilter, setYearFromFilter] = useState('')
@@ -28,7 +61,7 @@ function filterProducts(props) {
         if (models.length > 0) setModelsRender(true)
     }, [models])
 
-console.log(models);
+    console.log(models);
 
     return (
         <div className="filterComponent">
@@ -85,16 +118,45 @@ console.log(models);
                         <span className="circle blue"></span>
                     </div>
                 </div>
+                <div className="filterTrasmision">
+                <select className="inputPrice">
+                <option disabled selected className="puto">Select Option</option>
+                <option>Manual</option>
+                <option>Automatic</option>
+                </select>
+                </div>
+                {/*BODYCAR*/}
+                {props.bodyCar ? <div>
+                    <h4 className="filterName">BodyCar</h4>
+                    <div className="modelsInputDiv">
+                        <div className="scrollable-content">
+                            {props.bodyCar.map((bodyCar) => (
+                              <div
+                              key={bodyCar.id}
+                              className={`modelDivCheckbox`}
+                          >
+                              <input type="checkbox" className="checkBoxBrand" id="" />
+                              <p>{bodyCar.name}</p>
+                          </div>
+                            ))}
+                        </div>
+                    </div>
+                </div> : null}
                 {/* BRANDS */}
                 {props.brands ? <div>
-                    <h4 className="filterName">Brand</h4><p></p>
+                    <h4 className="filterName">Brand</h4>
                     <div className="modelsInputDiv">
                         <div className="scrollable-content">
                             {props.brands.map((brand) => (
-                                <div key={brand.id} className="modelDivCheckbox">
-                                    <input type="checkbox" name="" id="" />
-                                    <p>{brand.name}</p>
-                                </div>
+                              <div
+                              key={brand.id}
+                              className={`modelDivCheckbox ${selectedBrands.includes(brand.id) ? 'selected-brand' : ''}`}
+                              onClick={() => toggleBrand2(brand.id)}
+                          >
+                              <input type="checkbox" className="checkBoxBrand" id="" />
+                              <p>{brand.name}</p>
+                              <img className="logoBrandFilter" src={`${appInfo.root}/images/brands/${brand.logo}`}/>
+                          </div>
                             ))}
                         </div>
                     </div>
@@ -106,20 +168,29 @@ console.log(models);
                     {modelsRender ?
                         <div className="scrollable-content">
                             {models.map((modelBrand) => (
-                                <div key={modelBrand.brandId} className="brandModels">
-                                    <div className="filterModlesBrandName">
-                                        <p>{modelBrand.brandName}</p>
-                                        <input type="checkbox" name="" id="" />
-                                    </div>
-                                    <div className="filterModelsNames">
-                                        {modelBrand.models ? modelBrand.models.map((modelsNames) => (
-                                            <div key={modelsNames.id} className="filterModelsNameDiv">
-                                                <input type="checkbox" name="" id="" />
-                                                <p>{modelsNames.name}</p>
-                                            </div>
-                                        )) : null}
-                                    </div>
-                                </div>
+                            <div className="brandModels">
+                            <div
+                                className={`filterModlesBrandName${expandedBrands[modelBrand.brandId] ? 'expanded' : ''}`}
+                                onClick={() => {toggleBrand(modelBrand.brandId);}
+                                }
+                            >
+                                <p>{modelBrand.brandName}</p>
+                                <FontAwesomeIcon
+                    icon={expandedBrands[modelBrand.brandId] ?faAngleUp : faAngleDown}
+                    className={`arrow-icon${expandedBrands[modelBrand.brandId] ? 'expanded' : ''}`}
+                />
+                            </div>
+                            <div className={`filterModelsNames${expandedBrands[modelBrand.brandId] ? 'expanded' : 'hideOptions'}`}>
+                                {modelBrand.models
+                                    ? modelBrand.models.map((modelsNames) => (
+                                          <div key={modelsNames.id} className="filterModelsNameDiv">
+                                              <input type="checkbox" name="" id="" />
+                                              <p className="modelNameFilter">{modelsNames.name}</p>
+                                          </div>
+                                      ))
+                                    : null}
+                            </div>
+                            </div>
                             ))}
                         </div> : null}
                 </div>

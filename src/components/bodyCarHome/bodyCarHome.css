@@ -1,0 +1,20 @@
+.bodyCarContainer{
+    width: 24%;
+    cursor: pointer;
+}
+
+.bodyCarimages{
+    width: 15vw;
+    min-height: 5vw;
+    object-fit: contain;
+}
+
+.bodyCarContainer h1{
+    margin: 0;
+    text-align: center;
+    font-weight: 300;
+}
+
+.bodyCarimages:hover{
+    filter: drop-shadow(7px 7px 7px rgba(0, 0, 0, 0.8))
+}

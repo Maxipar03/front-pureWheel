@@ -10,6 +10,7 @@ function allProducts() {
   const [brandProducts, setBrandProducts] = useState([]);
   const [allBrands, setAllBrands] = useState([]);
   const [allBrandsModels, setAllBrandsModels] = useState([]);
+  const [allBodyCars, setAllBodyCars] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +32,15 @@ function allProducts() {
           }
         )
         setAllBrands(brandsResponse);
+
+        const bodyCarsResponse = await fetchApi(`${appInfo.root}/cars/chassis`, {
+          method: 'GET',
+        }, (resolve, reject) => {
+          if(reject) console.error(reject)
+            return resolve.data
+          }
+        )
+        setAllBodyCars(bodyCarsResponse);
 
         if (brandsResponse.length > 0) {
           const brandsArr = [];
@@ -68,7 +78,7 @@ console.log(allBrandsModels);
   return(
   brandProducts && allBrands && allBrandsModels ? (
     <div className="brandProductsContainer">
-      <FilterProdcuts brands={allBrands} models={allBrandsModels} products={brandProducts} setProducts={setAllBrands} ></FilterProdcuts>
+      <FilterProdcuts brands={allBrands} models={allBrandsModels} products={brandProducts} bodyCar={allBodyCars} ></FilterProdcuts>
       <div className="cardProductsDiv">
         {brandProducts.map((cars) => (
           <div key={cars.id} className="cardProductsbrandsContainer">
