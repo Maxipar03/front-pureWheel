@@ -3,7 +3,6 @@
     display: flex;
 }
 
-
 .filterContainer {
     background-color: #877a7a7d;
     padding: 0.8vw;
@@ -11,6 +10,29 @@
     height: fit-content;
     position: fixed;
     width: 20vw;
+}
+
+.filterNameSelect{
+    margin: 4% 0%;
+    width: 100%;
+    display: flex;
+    justify-content: center
+
+}
+
+.exitOptions{
+    height: fit-content;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.filterOptions{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    border-bottom: 1px solid;
 }
 
 .puto{
@@ -31,21 +53,36 @@
     display: none;
 }
 
-.modelsInputDiv {
+.modelsInputDiv{
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    max-height: 200px;
-    overflow: hidden;
+    animation: slideInFromLeft 0.3s ease-in-out; 
 }
 
+.modelsInputDivactive{
+    transform: translateX(0%);
+    animation: slideInFromLeft 0.3s ease-in-out; 
+}
+
+@keyframes slideInFromLeft {
+    from {
+      transform: translateX(70%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
 .scrollable-content {
-    width: 100%;
-    max-height: 170px;
-    overflow-y: auto;
-    border-bottom: 1px solid gray;
+        width: 100%;
+        width: calc(100% - -15px);
+        border-bottom: 1px solid gray;
+        overflow-y: scroll;
+        /* overflow: scroll; */
+        max-height: 39.5vw;
 }
 
 .scrollable-content::-webkit-scrollbar {
@@ -185,6 +222,14 @@ label{
     border: 1px #9b979754 solid;
 }
 
+.inputTransmision{
+    width: 100%;
+    height: 1.4vw;
+    border: none;
+    border-radius: 4px;
+    border: 1px #9b979754 solid;
+}
+
 .priceContainer {
     display: flex;
     justify-content: space-between;
@@ -219,8 +264,8 @@ label{
 }
 
 .selected-brand {
-    border: 2px solid #007bff; /* Color del borde cuando está seleccionado */
-    transition: border-color 0.3s ease; /* Transición suave del color del borde */
+    border: 2px solid #007bff;
+    transition: border-color 0.3s ease; 
     border-radius: 10px;
     margin: 2% 0%;
     box-sizing: border-box;
@@ -258,6 +303,17 @@ label{
 .filterName {
     margin: 2% 0%;
     font-weight: 600;
+}
+
+.filterNameOption{
+    margin: 2% 0%;
+    padding: 2.5% 0%;
+    border-radius: 3px;
+}
+
+.filterNameOption:hover{
+background-color: #55555523;
+cursor: pointer;
 }
 
 .filterTitle {
@@ -347,6 +403,42 @@ label{
     transform: translateX(1.4em);
     background-color: #fff;
 }
+
+.arrow {
+    display: inline-block;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    text-indent: -9999px;
+    border-top: 2px solid #000000;
+    border-left: 2px solid #000000;
+    transition: all 250ms ease-in-out;
+    text-decoration: none;
+    color: transparent;
+    cursor: pointer;
+  }
+  
+  .arrow:hover {
+    border-color: gray;
+    border-width: 5px;
+  }
+  
+  .arrow:before {
+    display: block;
+    height: 200%;
+    width: 200%;
+    margin-left: -50%;
+    margin-top: -50%;
+    content: "";
+    transform: rotate(45deg);
+  }
+  
+  .arrow.prev {
+    transform: rotate(-45deg);
+    left: 20px;
+  }
+  
 
 @media (min-width: 960px) and (max-width: 1279px) {
     .filterComponent {
