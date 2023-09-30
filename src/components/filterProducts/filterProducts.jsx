@@ -21,7 +21,8 @@ function filterProducts(props) {
 
     const [modelsActive, setModelsActive] = useState(false);
 
-    const[bodyCarActive,setBodyCarActive] = useState(false)
+    const[bodyCarActive,setBodyCarActive] = useState(false);
+    
 
     const toggleBrands = () => {
         setBrandsActive(!brandsActive);
@@ -256,8 +257,8 @@ function filterProducts(props) {
                                 {modelBrand.models
                                     ? modelBrand.models.map((modelsNames) => (
                                           <div key={modelsNames.id} className="filterModelsNameDiv">
-                                              <input type="checkbox" name="" id="" />
-                                              <p className="modelNameFilter">{modelsNames.name}</p>
+                                              <input type="checkbox" name="modelNameInput" id="" />
+                                              <p htmlFor="modelNameInput" className="modelNameFilter">{modelsNames.name}</p>
                                           </div>
                                       ))
                                     : null}

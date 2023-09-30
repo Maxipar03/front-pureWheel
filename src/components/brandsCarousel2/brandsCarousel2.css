@@ -33,6 +33,14 @@
   transform: scale(1.05)
 }
 
+.slick-prev:before {
+  color: rgb(71, 71, 71)!important;
+  font-size: 1.8rem!important;
+}
+.slick-next:before {
+  color: rgb(71, 71, 71)!important;  
+  font-size: 1.8rem!important;
+}
 
 .arrow {
   display: block;

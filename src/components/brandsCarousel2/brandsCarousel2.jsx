@@ -12,12 +12,24 @@ function brandsCarousel2() {
 
     const [brands, setBrands] = useState([]);
 
+    function SamplePrevArrow(props) {
+      const { className, style, onClick } = props;
+      return (
+        <div
+          className={className}
+          style={{ ...style, display: "block",  color: "blue"}}
+          onClick={onClick}
+        />
+      );
+    }
+
     function SampleNextArrow(props) {
       const { className, style, onClick } = props;
       return (
         <div
-        className={className}
-        onClick={onClick}
+          className={className}
+          style={{ ...style, display: "block", fontSize:"1px"}}
+          onClick={onClick}
         />
       );
     }
@@ -45,6 +57,7 @@ function brandsCarousel2() {
       autoplay: true,
       swipeToSlide: true,
       nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />,
       afterChange: function(index) {
         console.log(
           `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
