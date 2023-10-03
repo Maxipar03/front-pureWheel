@@ -1,12 +1,11 @@
-.bodyCarContainer{
-    width: 24%;
-    cursor: pointer;
+.bodyCarComponent{
+    width: 75%;
 }
-
 .bodyCarimages{
-    width: 15vw;
-    min-height: 5vw;
+    width: 80%;
+    height: 100px;
     object-fit: contain;
+    cursor: pointer;
 }
 
 .bodyCarContainer h1{
@@ -17,4 +16,19 @@
 
 .bodyCarimages:hover{
     filter: drop-shadow(7px 7px 7px rgba(0, 0, 0, 0.8))
+}
+
+.bodyCarCarouselContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.bodyCarContainer{
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slick-slider{
+    padding-left: 8px;
 }
