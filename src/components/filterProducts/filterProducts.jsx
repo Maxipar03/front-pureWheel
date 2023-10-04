@@ -72,16 +72,83 @@ function filterProducts(props) {
 
 
 
-    //     const [brandFilter, setBrandFilter] = useState('')
-    //     const [modelFilter, setModelFilter] = useState('')
-    //     const [yearFromFilter, setYearFromFilter] = useState('')
-    //     const [yearToFilter, setYearToFilter] = useState('')
-    //     const [kilometersFromFilter, setKilometersFromFilter] = useState('')
-    //     const [kilometersToFilter, setKilometersToFilter] = useState('')
-    //     const [priceFromFilter, setPriceFromFilter] = useState('')
-    //     const [priceToFilter, setPriceToFilter] = useState('')
-    //     const [colorFilter, setColorFilter] = useState('')
-    //     const [onSaleFilter, setOnSaleFilter] = useState('')
+        const [brandFilter, setBrandFilter] = useState('')
+        const [modelFilter, setModelFilter] = useState('')
+        const [yearFromFilter, setYearFromFilter] = useState('')
+        const [yearToFilter, setYearToFilter] = useState('')
+        const [kilometersFromFilter, setKilometersFromFilter] = useState('')
+        const [kilometersToFilter, setKilometersToFilter] = useState('')
+        const [priceFromFilter, setPriceFromFilter] = useState('')
+        const [priceToFilter, setPriceToFilter] = useState('')
+        const [colorFilter, setColorFilter] = useState('')
+        const [bodyCarFilter, setbodyCarFilter] = useState('')
+        const [transsmisionFilter, seTranssmisionFilter] = useState('')
+        const [onSaleFilter, setOnSaleFilter] = useState('')
+
+
+        const brandFilterChangeFunction = (e)=>{
+            console.log("brandFilterChangeFunction");            
+            console.log(e);
+            setBrandFilter(e)
+        }
+        const modelFilterChangeFunction = (e)=>{
+            console.log("modelFilterChangeFunction");            
+            console.log(e);
+            setModelFilter(e)
+        }
+        const yearFromFilterChangeFunction = (e)=>{
+            console.log("yearFromFilterChangeFunction:");            
+            console.log(e.target.value);
+            setYearFromFilter(e.target.value)
+        }
+        const yearToFilterChangeFunction = (e)=>{
+            console.log("yearToFilterChangeFunction:");            
+            console.log(e.target.value);
+            setYearToFilter(e.target.value)
+        }
+        const kilometersFromFilterChangeFunction = (e)=>{
+            console.log("kilometersFromFilterChangeFunction:");            
+            console.log(e.target.value);
+            setKilometersFromFilter(e.target.value)
+        }
+        const kilometersToFilterChangeFunction = (e)=>{
+            console.log("kilometersToFilterChangeFunction:");            
+            console.log(e.target.value);
+            setKilometersToFilter(e.target.value)
+        }
+        const priceFromFilterChangeFunction = (e)=>{
+            console.log("priceFromFilterChangeFunction:");            
+            console.log(e.target.value);
+            setPriceFromFilter(e.target.value)
+        }
+        const priceToFilterChangeFunction = (e)=>{
+            console.log("priceToFilterChangeFunction:");            
+            console.log(e.target.value);
+            setPriceToFilter(e.target.value)
+        }
+        const colorFilterChangeFunction = (e)=>{
+            console.log("colorFilterChangeFunction");            
+            console.log(e);
+            setColorFilter(e)
+        }
+        const bodyCarFilterChangeFunction = (e)=>{
+            console.log("bodyCarFilterChangeFunction:");            
+            console.log(e.target.value);
+            setbodyCarFilter(e.target.value)
+        }
+        const transsmisionFilterChangeFunction = (e)=>{
+            console.log("transsmisionFilterChangeFunction:");            
+            console.log(e.target.value);
+            seTranssmisionFilter(e.target.value)
+        }
+        const onSaleFilterChangeFunction = (e)=>{
+            console.log("onSaleFilterChangeFunction:");            
+            console.log(e.target.value);
+            setOnSaleFilter(e.target.value)
+        }
+
+
+
 
 
     useEffect(() => {
@@ -104,6 +171,7 @@ function filterProducts(props) {
 
 
 
+
     return (
         <div className={`filterComponent ${!(brandsActive || modelsActive || bodyCarActive) ? 'active' : ''}`}>
             <div className={`filterContainer ${!(brandsActive || modelsActive || bodyCarActive) ? 'active' : ''}`}>
@@ -117,11 +185,11 @@ function filterProducts(props) {
                         <div className="dateContainer">
                             <div className="dateFrom">
                                 <label>From</label>
-                                <input placeholder="2007" className="inputYear" type="number"></input>
+                                <input placeholder="2007" className="inputYear" type="number" onChange={yearFromFilterChangeFunction}></input>
                             </div>
                             <div className="dateTo">
                                 <label>To</label>
-                                <input className="inputYear" placeholder="2024" type="number"></input>
+                                <input className="inputYear" placeholder="2024" type="number" onChange={yearToFilterChangeFunction}></input>
                             </div>
                         </div>
                     </div>
@@ -133,11 +201,11 @@ function filterProducts(props) {
                         <div className="kmContainer">
                             <div className="kmFrom">
                                 <label>From</label>
-                                <input placeholder="1000" className="inputKM" type="number"></input>
+                                <input placeholder="1000" className="inputKM" type="number" onChange={kilometersFromFilterChangeFunction}></input>
                             </div>
                             <div className="kmTo">
                                 <label>To</label>
-                                <input type="number" placeholder="20000" className="inputKM"></input>
+                                <input type="number" placeholder="20000" className="inputKM" onChange={kilometersToFilterChangeFunction}></input>
                             </div>
                         </div>
                     </div>
@@ -149,11 +217,11 @@ function filterProducts(props) {
                         <div className="priceContainer">
                             <div className="priceFrom">
                                 <label>From</label>
-                                <input placeholder="1000" className="inputPrice" type="number"></input>
+                                <input placeholder="1000" className="inputPrice" type="number" onChange={priceFromFilterChangeFunction}></input>
                             </div>
                             <div className="priceTo">
                                 <label>To</label>
-                                <input type="number" placeholder="20000" className="inputPrice"></input>
+                                <input type="number" placeholder="20000" className="inputPrice" onChange={priceToFilterChangeFunction}></input>
                             </div>
                         </div>
                     </div>
@@ -163,12 +231,12 @@ function filterProducts(props) {
                     <div className="filterColor">
                         <h4 className="filterName">Color</h4>
                         <div>
-                            <span className="circle white"></span>
-                            <span className="circle black"></span>
-                            <span className="circle red"></span>
-                            <span className="circle orange"></span>
-                            <span className="circle gray"></span>
-                            <span className="circle blue"></span>
+                            <span onClick={()=>{colorFilterChangeFunction("white")}} className="circle white"></span>
+                            <span onClick={()=>{colorFilterChangeFunction("black")}} className="circle black"></span>
+                            <span onClick={()=>{colorFilterChangeFunction("red")}} className="circle red"></span>
+                            <span onClick={()=>{colorFilterChangeFunction("orange")}} className="circle orange"></span>
+                            <span onClick={()=>{colorFilterChangeFunction("gray")}} className="circle gray"></span>
+                            <span onClick={()=>{colorFilterChangeFunction("blue")}} className="circle blue"></span>
                         </div>
                     </div>
                 )}
@@ -176,10 +244,10 @@ function filterProducts(props) {
                 {!(brandsActive || modelsActive || bodyCarActive) && (
                     <div className="filterTrasmision">
                         <h4 className="filterName">Transmision</h4>
-                        <select className="inputTransmision">
-                            <option disabled selected className="puto">Select Option</option>
-                            <option>Manual</option>
-                            <option>Automatic</option>
+                        <select onChange={transsmisionFilterChangeFunction} className="inputTransmision">
+                            <option value={null} disabled selected className="puto">Select Option</option>
+                            <option value={"manual"}>Manual</option>
+                            <option value={"automatic"}>Automatic</option>
                         </select>
                     </div>
                 )}
@@ -203,7 +271,7 @@ function filterProducts(props) {
                                         key={bodyCar.id}
                                         className={`modelDivCheckbox`}
                                     >
-                                        <input type="checkbox" className="checkBoxBrand" id="" />
+                                        <input type="checkbox" className="checkBoxBrand" id=""/>
                                         <p>{bodyCar.name}</p>
                                     </div>
                                 ))}
@@ -227,9 +295,12 @@ function filterProducts(props) {
                                     <div
                                         key={brand.id}
                                         className={`modelDivCheckbox ${selectedBrands.includes(brand.id) ? 'selected-brand' : ''}`}
-                                        onClick={() => toggleBrand2(brand.id)}
+                                        onClick={
+                                            () => {toggleBrand2(brand.id)
+                                            brandFilterChangeFunction(brand.name)}
+                                        }
                                     >
-                                        <input type="checkbox" className="checkBoxBrand" id="" />
+                                        <input type="checkbox" className="checkBoxBrand" id=""/>
                                         <p>{brand.name}</p>
                                         <img className="logoBrandFilter" src={`${appInfo.root}/images/brands/${brand.logo}`} />
                                     </div>
@@ -267,7 +338,7 @@ function filterProducts(props) {
                                         <div className={`filterModelsNames${expandedBrands[modelBrand.brandId] ? 'expanded' : 'hideOptions'}`}>
                                             {modelBrand.models
                                                 ? modelBrand.models.map((modelsNames) => (
-                                                    <div key={modelsNames.id} className="filterModelsNameDiv">
+                                                    <div key={modelsNames.id} className="filterModelsNameDiv" onClick={(() => {modelFilterChangeFunction(modelsNames.name)})}>
                                                         <input type="checkbox" name="modelNameInput" id="" />
                                                         <p htmlFor="modelNameInput" className="modelNameFilter">{modelsNames.name}</p>
                                                     </div>
@@ -285,6 +356,7 @@ function filterProducts(props) {
                                         <div
                                             className={`filterModlesBrandName${expandedBrands[modelBrand.id] ? 'expanded' : ''}`}
                                             onClick={() => { toggleBrand(modelBrand.id); }
+
                                             }
                                         >
                                             <p>{modelBrand.name}</p>
@@ -315,7 +387,7 @@ function filterProducts(props) {
                         <div className="checkbox-wrapper-64">
                             <label className="switch">
                                 <input
-                                    type="checkbox" />
+                                    type="checkbox" onChange={onSaleFilterChangeFunction} />
                                 <span className="slider"></span>
                             </label>
                         </div>
