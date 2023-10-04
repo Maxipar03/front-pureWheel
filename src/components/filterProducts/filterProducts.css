@@ -263,6 +263,12 @@ label{
     cursor: pointer;
 }
 
+.circle.selected {
+    color: white; /* Cambia el color de texto cuando está seleccionado */
+    border: 2px solid #ff5733; /* Cambia el borde cuando está seleccionado */
+  }
+
+
 .selected-brand {
     border: 2px solid #007bff;
     transition: border-color 0.3s ease; 
