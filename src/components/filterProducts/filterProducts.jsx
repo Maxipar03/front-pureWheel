@@ -7,54 +7,56 @@ import appInfo from "../../modules/appInfo";
 import banner from "../../../public/ImageTestbannerfilter.jpg"
 // import { loadConfigFromFile } from "vite";
 
-
 function filterProducts(props) {
+    // USE STATES
+    // Render us
     const [models, setModels] = useState([])
-
     const [modelsRender, setModelsRender] = useState(false)
-
     const [brandsModels, setBrandsModels] = useState([])
     const [brandsModelsRender, setBrandsModelsRender] = useState(false)
-
     const [expandedBrands, setExpandedBrands] = useState({});
-
     const [selectedBrands, setSelectedBrands] = useState([]);
-
     const [brandsActive, setBrandsActive] = useState(false);
-
     const [modelsActive, setModelsActive] = useState(false);
-
     const [bodyCarActive, setBodyCarActive] = useState(false);
+    // filter Functions us
+    const [brandFilter, setBrandFilter] = useState('')
+    const [modelFilter, setModelFilter] = useState('')
+    const [yearFromFilter, setYearFromFilter] = useState('')
+    const [yearToFilter, setYearToFilter] = useState('')
+    const [kilometersFromFilter, setKilometersFromFilter] = useState('')
+    const [kilometersToFilter, setKilometersToFilter] = useState('')
+    const [priceFromFilter, setPriceFromFilter] = useState('')
+    const [priceToFilter, setPriceToFilter] = useState('')
+    const [colorFilter, setColorFilter] = useState([])
+    const [bodyCarFilter, setbodyCarFilter] = useState('')
+    const [transsmisionFilter, seTranssmisionFilter] = useState('')
+    const [onSaleFilter, setOnSaleFilter] = useState(false)
 
-
+    // Expands functions
     const toggleBrands = () => {
         setBrandsActive(!brandsActive);
         setModelsActive(false);
         setBodyCarActive(false)
     };
-
     const toggleBodyCars = () => {
         setBrandsActive(false);
         setModelsActive(false);
         setBodyCarActive(!bodyCarActive)
     }
-
     const toggleModels = () => {
         setModelsActive(!modelsActive);
         setBrandsActive(false);
         setBodyCarActive(false)
     };
-
     const resetFilters = () => {
         setBrandsActive(false);
         setModelsActive(false)
         setBodyCarActive(false)
     }
-
     const toggleBrand = (brandId) => {
-        setExpandedBrands((prevExpandedBrands) => ({...prevExpandedBrands,[brandId]: !prevExpandedBrands[brandId],}));
+        setExpandedBrands((prevExpandedBrands) => ({ ...prevExpandedBrands, [brandId]: !prevExpandedBrands[brandId], }));
     };
-
     const toggleBrand2 = (brandId) => {
         // Copiamos el array de marcas seleccionadas para evitar la mutación del estado
         const updatedSelectedBrands = [...selectedBrands];
@@ -70,104 +72,90 @@ function filterProducts(props) {
         setSelectedBrands(updatedSelectedBrands);
     };
 
+    // Changes Handlers 
+    const brandFilterChangeFunction = (e) => {// ✅
+        if (brandFilter.includes(e)) {
+            const updatedFilter = brandFilter.filter((brand) => brand !== e);
+            setBrandFilter(updatedFilter);
+        } else {
+            setBrandFilter([...brandFilter, e])
+        }
+    }
+    const modelFilterChangeFunction = (e) => {// ✅
+        if (modelFilter.includes(e)) {
+            const updatedFilter = modelFilter.filter((model) => model !== e);
+            setModelFilter(updatedFilter);
+        } else {
+            setModelFilter([...modelFilter, e])
+        }
+    }
+    const yearFromFilterChangeFunction = (e) => {// ✅
+        setYearFromFilter(e.target.value)
+    }
+    const yearToFilterChangeFunction = (e) => {// ✅
+        setYearToFilter(e.target.value)
+    }
+    const kilometersFromFilterChangeFunction = (e) => {// ✅
+        setKilometersFromFilter(e.target.value)
+    }
+    const kilometersToFilterChangeFunction = (e) => {// ✅
+        setKilometersToFilter(e.target.value)
+    }
+    const priceFromFilterChangeFunction = (e) => {// ✅
+        setPriceFromFilter(e.target.value)
+    }
+    const priceToFilterChangeFunction = (e) => {// ✅
+        setPriceToFilter(e.target.value)
+    }
+    const colorFilterChangeFunction = (e) => { // ✅
+        if (colorFilter.includes(e)) {
+            const updatedFilter = colorFilter.filter((color) => color !== e);
+            setColorFilter(updatedFilter);
+        } else {
+            setColorFilter([...colorFilter, e])
+        }
+    }
+    const bodyCarFilterChangeFunction = (e) => { // ⏰
+        setbodyCarFilter(e.target.value)
+    }
+    const transsmisionFilterChangeFunction = (e) => {// ✅
+        seTranssmisionFilter(e.target.value)
+    }
+    const onSaleFilterChangeFunction = (e) => {// ✅
+        setOnSaleFilter(!onSaleFilter)
+    }
 
-
-        const [brandFilter, setBrandFilter] = useState('')
-        const [modelFilter, setModelFilter] = useState('')
-        const [yearFromFilter, setYearFromFilter] = useState('')
-        const [yearToFilter, setYearToFilter] = useState('')
-        const [kilometersFromFilter, setKilometersFromFilter] = useState('')
-        const [kilometersToFilter, setKilometersToFilter] = useState('')
-        const [priceFromFilter, setPriceFromFilter] = useState('')
-        const [priceToFilter, setPriceToFilter] = useState('')
-        const [colorFilter, setColorFilter] = useState('')
-        const [bodyCarFilter, setbodyCarFilter] = useState('')
-        const [transsmisionFilter, seTranssmisionFilter] = useState('')
-        const [onSaleFilter, setOnSaleFilter] = useState('')
-
-
-        const brandFilterChangeFunction = (e)=>{
-            console.log("brandFilterChangeFunction");            
-            console.log(e);
-            setBrandFilter(e)
-        }
-        const modelFilterChangeFunction = (e)=>{
-            console.log("modelFilterChangeFunction");            
-            console.log(e);
-            setModelFilter(e)
-        }
-        const yearFromFilterChangeFunction = (e)=>{
-            console.log("yearFromFilterChangeFunction:");            
-            console.log(e.target.value);
-            setYearFromFilter(e.target.value)
-        }
-        const yearToFilterChangeFunction = (e)=>{
-            console.log("yearToFilterChangeFunction:");            
-            console.log(e.target.value);
-            setYearToFilter(e.target.value)
-        }
-        const kilometersFromFilterChangeFunction = (e)=>{
-            console.log("kilometersFromFilterChangeFunction:");            
-            console.log(e.target.value);
-            setKilometersFromFilter(e.target.value)
-        }
-        const kilometersToFilterChangeFunction = (e)=>{
-            console.log("kilometersToFilterChangeFunction:");            
-            console.log(e.target.value);
-            setKilometersToFilter(e.target.value)
-        }
-        const priceFromFilterChangeFunction = (e)=>{
-            console.log("priceFromFilterChangeFunction:");            
-            console.log(e.target.value);
-            setPriceFromFilter(e.target.value)
-        }
-        const priceToFilterChangeFunction = (e)=>{
-            console.log("priceToFilterChangeFunction:");            
-            console.log(e.target.value);
-            setPriceToFilter(e.target.value)
-        }
-        const colorFilterChangeFunction = (e)=>{
-            console.log("colorFilterChangeFunction");            
-            console.log(e);
-            setColorFilter(e)
-        }
-        const bodyCarFilterChangeFunction = (e)=>{
-            console.log("bodyCarFilterChangeFunction:");            
-            console.log(e.target.value);
-            setbodyCarFilter(e.target.value)
-        }
-        const transsmisionFilterChangeFunction = (e)=>{
-            console.log("transsmisionFilterChangeFunction:");            
-            console.log(e.target.value);
-            seTranssmisionFilter(e.target.value)
-        }
-        const onSaleFilterChangeFunction = (e)=>{
-            console.log("onSaleFilterChangeFunction:");            
-            console.log(e.target.value);
-            setOnSaleFilter(e.target.value)
-        }
-
-
-
-
-
+    // USE EFECTSv
+    // Models
     useEffect(() => {
         console.log(props.models);
         props.models ? setModels(props.models) : null
     }, [props.models])
-
     useEffect(() => {
         if (models.length > 0) setModelsRender(true)
     }, [models])
-
+    // Brand Models
     useEffect(() => {
         props.brandsModels ? setBrandsModels(props.brandsModels) : null
     }, [props.brandsModels])
-
     useEffect(() => {
         if (brandsModels.length > 0) setBrandsModelsRender(true)
     }, [brandsModels])
-
+    // Filter products
+    useEffect(() => {
+        brandFilter ? console.log(brandFilter) : null
+        modelFilter ? console.log(modelFilter) : null
+        yearFromFilter ? console.log(yearFromFilter) : null
+        yearToFilter ? console.log(yearToFilter) : null
+        kilometersFromFilter ? console.log(kilometersFromFilter) : null
+        kilometersToFilter ? console.log(kilometersToFilter) : null
+        priceFromFilter ? console.log(priceFromFilter) : null
+        priceToFilter ? console.log(priceToFilter) : null
+        colorFilter.length > 0 ? console.log(colorFilter) : null
+        bodyCarFilter ? console.log(bodyCarFilter) : null
+        transsmisionFilter ? console.log(transsmisionFilter) : null
+        // console.log(onSaleFilter) 
+    }, [brandFilter, modelFilter, yearFromFilter, yearToFilter, kilometersFromFilter, kilometersToFilter, priceFromFilter, priceToFilter, colorFilter, bodyCarFilter, transsmisionFilter, onSaleFilter])
 
 
 
@@ -231,12 +219,12 @@ function filterProducts(props) {
                     <div className="filterColor">
                         <h4 className="filterName">Color</h4>
                         <div>
-                            <span onClick={()=>{colorFilterChangeFunction("white")}} className="circle white"></span>
-                            <span onClick={()=>{colorFilterChangeFunction("black")}} className="circle black"></span>
-                            <span onClick={()=>{colorFilterChangeFunction("red")}} className="circle red"></span>
-                            <span onClick={()=>{colorFilterChangeFunction("orange")}} className="circle orange"></span>
-                            <span onClick={()=>{colorFilterChangeFunction("gray")}} className="circle gray"></span>
-                            <span onClick={()=>{colorFilterChangeFunction("blue")}} className="circle blue"></span>
+                            <span onClick={() => { colorFilterChangeFunction("white") }} className="circle white"></span>
+                            <span onClick={() => { colorFilterChangeFunction("black") }} className="circle black"></span>
+                            <span onClick={() => { colorFilterChangeFunction("red") }} className="circle red"></span>
+                            <span onClick={() => { colorFilterChangeFunction("orange") }} className="circle orange"></span>
+                            <span onClick={() => { colorFilterChangeFunction("gray") }} className="circle gray"></span>
+                            <span onClick={() => { colorFilterChangeFunction("blue") }} className="circle blue"></span>
                         </div>
                     </div>
                 )}
@@ -271,7 +259,7 @@ function filterProducts(props) {
                                         key={bodyCar.id}
                                         className={`modelDivCheckbox`}
                                     >
-                                        <input type="checkbox" className="checkBoxBrand" id=""/>
+                                        <input type="checkbox" className="checkBoxBrand" id="" />
                                         <p>{bodyCar.name}</p>
                                     </div>
                                 ))}
@@ -296,11 +284,13 @@ function filterProducts(props) {
                                         key={brand.id}
                                         className={`modelDivCheckbox ${selectedBrands.includes(brand.id) ? 'selected-brand' : ''}`}
                                         onClick={
-                                            () => {toggleBrand2(brand.id)
-                                            brandFilterChangeFunction(brand.name)}
+                                            () => {
+                                                toggleBrand2(brand.id)
+                                                brandFilterChangeFunction(brand.name)
+                                            }
                                         }
                                     >
-                                        <input type="checkbox" className="checkBoxBrand" id=""/>
+                                        <input type="checkbox" className="checkBoxBrand" id="" />
                                         <p>{brand.name}</p>
                                         <img className="logoBrandFilter" src={`${appInfo.root}/images/brands/${brand.logo}`} />
                                     </div>
@@ -323,7 +313,7 @@ function filterProducts(props) {
                         {modelsRender ?
                             <div className="scrollable-content">
                                 {models.map((modelBrand) => (
-                                    <div className="brandModels">
+                                    <div key={modelBrand.brandId} className="brandModels">
                                         <div
                                             className={`filterModlesBrandName${expandedBrands[modelBrand.brandId] ? 'expanded' : ''}`}
                                             onClick={() => { toggleBrand(modelBrand.brandId); }
@@ -338,7 +328,7 @@ function filterProducts(props) {
                                         <div className={`filterModelsNames${expandedBrands[modelBrand.brandId] ? 'expanded' : 'hideOptions'}`}>
                                             {modelBrand.models
                                                 ? modelBrand.models.map((modelsNames) => (
-                                                    <div key={modelsNames.id} className="filterModelsNameDiv" onClick={(() => {modelFilterChangeFunction(modelsNames.name)})}>
+                                                    <div key={modelsNames.id} className="filterModelsNameDiv" onClick={(() => { modelFilterChangeFunction(modelsNames.name) })}>
                                                         <input type="checkbox" name="modelNameInput" id="" />
                                                         <p htmlFor="modelNameInput" className="modelNameFilter">{modelsNames.name}</p>
                                                     </div>
@@ -352,7 +342,7 @@ function filterProducts(props) {
                         {brandsModelsRender ?
                             <div className="scrollable-content">
                                 {brandsModels.map((modelBrand) => (
-                                    <div className="brandModels">
+                                    <div key={modelBrand.id} className="brandModels">
                                         <div
                                             className={`filterModlesBrandName${expandedBrands[modelBrand.id] ? 'expanded' : ''}`}
                                             onClick={() => { toggleBrand(modelBrand.id); }
