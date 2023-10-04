@@ -1,0 +1,123 @@
+.brandsComponent2 {
+  width: 75%;
+  overflow: hidden;
+  padding: 1.6% 0;
+  margin: 1%;
+  background-color: rgba(255, 255, 255, 0);
+  scroll-behavior: smooth;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  border-radius: 15px;
+}
+
+.slickCarouselContainer{
+  width: 90%;
+}
+
+.brandImage {
+  width: 100%;
+  height: 130px;
+  object-fit: contain;
+  transition: transform 0.2s ease-in-out;
+  user-select: none;
+  cursor: pointer;
+}
+
+.brandImage:hover {
+  animation: scale-up-center 0.2s;
+}
+
+
+.brandImage:hover {
+  transform: scale(1.05)
+}
+
+.slick-prev:before {
+  color: rgb(71, 71, 71)!important;
+  font-size: 1.8rem!important;
+}
+.slick-next:before {
+  color: rgb(71, 71, 71)!important;  
+  font-size: 1.8rem!important;
+}
+
+.arrow {
+  display: block;
+  background: red;
+}
+
+
+
+@media screen and (max-width: 960px) {
+  .brandsComponent {
+    width: 100%;
+    overflow: scroll;
+    padding: 1.6% 0;
+    margin: 1%;
+    background-color: silver;
+    scroll-behavior: smooth;
+    display: flex;
+    position: relative;
+    border-radius: 0px;
+  }
+
+  .arrowLeft {
+    display: none;
+  }
+
+  .arrowRight {
+    display: none;
+  }
+
+  .brandImage {
+    height: 20vw;
+  }
+
+  .brandsContainer {
+    gap: 0px;
+    transition: scroll 2s ease-in-out;
+  }
+
+  .brand {
+    flex: 0 0 auto;
+    width: 170px;
+    padding: 0px 2vw;
+    height: 18vw;
+    transition: transform 0.3s ease 0s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brandsComponent::-webkit-scrollbar {
+    width: 10px;
+    /* Width of the scrollbar */
+    height: 10px;
+  }
+
+  .brandsComponent::-webkit-scrollbar-track {
+    background: #f1f1f100;
+    /* Background color of the scrollbar track */
+
+  }
+
+  .brandsComponent::-webkit-scrollbar-thumb {
+    background: #000000a9;
+    /* Color of the scrollbar thumb */
+    border-radius: 200px;
+  }
+
+  .brandsComponent::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    /* Color of the scrollbar thumb on hover */
+
+  }
+}
+
+@media (min-width: 960px) and (max-width: 1279px) {
+  .brandsComponent {
+    width: 85%;
+  }
+}

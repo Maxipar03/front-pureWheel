@@ -1,6 +1,6 @@
 .brandProductsContainer{
     display: flex;
-    width: 70%;
+    width: 75%;
     justify-content: center;
 }
 
@@ -13,6 +13,7 @@
     display: flex;
     width: 70%;
     flex-wrap: wrap;
+    justify-content: flex-start;
     padding-left: 0.5vw;
     gap: 0.5vw;
     flex-direction: row;
@@ -24,7 +25,7 @@
     }
 
     .cardProductsDiv{
-        width: 61%;
+        width: 62%;
     }
 }
 
