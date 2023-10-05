@@ -73,12 +73,12 @@ function allProducts() {
     fetchData();
   }, []);
 
-console.log(allBrandsModels);
+console.log(brandProducts);
 
   return(
   brandProducts && allBrands && allBrandsModels ? (
     <div className="brandProductsContainer">
-      <FilterProdcuts brands={allBrands} models={allBrandsModels} products={brandProducts} bodyCar={allBodyCars} ></FilterProdcuts>
+      <FilterProdcuts brands={allBrands} models={allBrandsModels} products={brandProducts} setBrandProducts={setBrandProducts} bodyCar={allBodyCars} ></FilterProdcuts>
       <div className="cardProductsDiv">
         {brandProducts.map((cars) => (
           <div key={cars.id} className="cardProductsbrandsContainer">

@@ -263,7 +263,7 @@ label{
     cursor: pointer;
 }
 
-.circle.selected {
+.circle.active {
     color: white; /* Cambia el color de texto cuando está seleccionado */
     border: 2px solid #ff5733; /* Cambia el borde cuando está seleccionado */
   }
