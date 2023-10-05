@@ -40,12 +40,12 @@ export function isAgeAllow(dateStr) {
     return inputDate <= minAgeDate;
 }
 
-export function filterArrayFunction (props, arrFilter, cb) {
+export function filterArrayFunction (arrToFilter, arrFilter, cb) {
     const productsSelected = []
     const finalBrandFilter = []
     arrFilter.forEach(condition => {
         const valuesInProducts = []
-        props.products.forEach(products => {
+        arrToFilter.forEach(products => {
             condition === cb(products) ? valuesInProducts.push(products) : null
         })
         productsSelected.push(valuesInProducts)

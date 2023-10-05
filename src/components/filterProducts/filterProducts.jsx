@@ -188,7 +188,6 @@ function filterProducts(props) {
     // USE EFECTS
     // Models
     useEffect(() => {
-        console.log(props.models);
         props.models ? setModels(props.models) : null
     }, [props.models])
     useEffect(() => {
@@ -211,13 +210,14 @@ function filterProducts(props) {
     }, [colorFilter])
     // Filter products
     useEffect(() => {
+        let allProducts = props.products
         if (brandFilter.length > 0) {
-            const filterResponse = filterArrayFunction(props, brandFilter, ((prod)=>prod.brand.name))
-            console.log(filterResponse);
+            const filterResponse = filterArrayFunction(allProducts, brandFilter, ((prod)=>prod.brand.name))
+            allProducts = filterResponse
         } else { }
         if (modelFilter.length > 0) {
-            const filterResponse = filterArrayFunction(props, modelFilter, ((prod)=>prod.model.name))
-            console.log(filterResponse);
+            const filterResponse = filterArrayFunction(allProducts, modelFilter, ((prod)=>prod.model.name))
+            allProducts = filterResponse
         } else { }
         if (yearFromFilter) {
 
@@ -249,6 +249,8 @@ function filterProducts(props) {
         if (onSaleFilter) {
 
         } else { }
+
+        props.setBrandProducts(allProducts)
     }, [brandFilter, modelFilter, yearFromFilter, yearToFilter, kilometersFromFilter, kilometersToFilter, priceFromFilter, priceToFilter, colorFilter, bodyCarFilter, transsmisionFilter, onSaleFilter])
 
 
