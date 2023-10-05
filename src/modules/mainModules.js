@@ -53,3 +53,22 @@ export function filterArrayFunction (arrToFilter, arrFilter, cb) {
     productsSelected.forEach(arr => {arr.forEach(pro => {finalBrandFilter.push(pro)})})
     return finalBrandFilter
 }
+
+
+export function filterFromFunction (arrToFilter, arrFilter, cb) {
+    const productsSelected = []
+        arrToFilter.forEach(products => {
+            arrFilter <= cb(products) ? productsSelected.push(products) : null
+        })
+        console.log(productsSelected);
+    return productsSelected
+}
+
+export function filterToFunction (arrToFilter, arrFilter, cb) {
+    const productsSelected = []
+        arrToFilter.forEach(products => {
+            arrFilter >= cb(products) ? productsSelected.push(products) : null
+        })
+        console.log(productsSelected);
+    return productsSelected
+}
