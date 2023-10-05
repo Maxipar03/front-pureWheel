@@ -120,7 +120,7 @@ function filterProducts(props) {
     };
 
     // Changes Handlers 
-    const brandFilterChangeFunction = (e) => {// ✅
+    const brandFilterChangeFunction = (e) => {
         if (brandFilter.includes(e)) {
             const updatedFilter = brandFilter.filter((brand) => brand !== e);
             setBrandFilter(updatedFilter);
@@ -128,7 +128,7 @@ function filterProducts(props) {
             setBrandFilter([...brandFilter, e])
         }
     }
-    const modelFilterChangeFunction = (e) => {// ✅
+    const modelFilterChangeFunction = (e) => {
         if (modelFilter.includes(e)) {
             const updatedFilter = modelFilter.filter((model) => model !== e);
             setModelFilter(updatedFilter);
@@ -136,25 +136,25 @@ function filterProducts(props) {
             setModelFilter([...modelFilter, e])
         }
     }
-    const yearFromFilterChangeFunction = (e) => {// ✅
+    const yearFromFilterChangeFunction = (e) => {
         setYearFromFilter(e.target.value)
     }
-    const yearToFilterChangeFunction = (e) => {// ✅
+    const yearToFilterChangeFunction = (e) => {
         setYearToFilter(e.target.value)
     }
-    const kilometersFromFilterChangeFunction = (e) => {// ✅
+    const kilometersFromFilterChangeFunction = (e) => {
         setKilometersFromFilter(e.target.value)
     }
-    const kilometersToFilterChangeFunction = (e) => {// ✅
+    const kilometersToFilterChangeFunction = (e) => {
         setKilometersToFilter(e.target.value)
     }
-    const priceFromFilterChangeFunction = (e) => {// ✅
+    const priceFromFilterChangeFunction = (e) => {
         setPriceFromFilter(e.target.value)
     }
-    const priceToFilterChangeFunction = (e) => {// ✅
+    const priceToFilterChangeFunction = (e) => {
         setPriceToFilter(e.target.value)
     }
-    const colorFilterChangeFunction = (e) => { // ✅
+    const colorFilterChangeFunction = (e) => { 
         if (colorFilter.includes(e)) {
             const updatedFilter = colorFilter.filter((color) => color !== e);
             setColorFilter(updatedFilter);
@@ -162,7 +162,7 @@ function filterProducts(props) {
             setColorFilter([...colorFilter, e])
         }
     }
-    const bodyCarFilterChangeFunction = (e) => { // ⏰
+    const bodyCarFilterChangeFunction = (e) => { 
         if (bodyCarFilter.includes(e)) {
             const updatedFilter = bodyCarFilter.filter((brand) => brand !== e);
             setbodyCarFilter(updatedFilter);
@@ -170,10 +170,10 @@ function filterProducts(props) {
             setbodyCarFilter([...bodyCarFilter, e])
         }
     }
-    const transsmisionFilterChangeFunction = (e) => {// ✅
+    const transsmisionFilterChangeFunction = (e) => {
         seTranssmisionFilter(e.target.value)
     }
-    const onSaleFilterChangeFunction = (e) => {// ✅
+    const onSaleFilterChangeFunction = (e) => {
         setOnSaleFilter(!onSaleFilter)
     }
 
@@ -210,9 +210,7 @@ function filterProducts(props) {
         colorFilter.includes("blue") ? blueRef.current.className = "circle blue active" : blueRef.current.className = "circle blue"
     }, [colorFilter])
     // Filter products
-
     useEffect(() => {
-
         if (brandFilter.length > 0) {
             const filterResponse = filterArrayFunction(props, brandFilter, ((prod)=>prod.brand.name))
             console.log(filterResponse);
