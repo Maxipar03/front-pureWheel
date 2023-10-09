@@ -300,7 +300,7 @@ function filterProducts(props) {
 
 
 
-    return (
+    return (  
         <div className={`filterComponent ${!(brandsActive || modelsActive || bodyCarActive) ? 'active' : ''}`}>
             <div className={`filterContainer ${!(brandsActive || modelsActive || bodyCarActive) ? 'active' : ''}`}>
                 {!(brandsActive || modelsActive || bodyCarActive) && (
