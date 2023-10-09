@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react"
 import "./filterProducts.css"
-import { filterArrayFunction, filterFromFunction, filterToFunction } from "../../modules/mainModules"
+import { filterArrayFunction, filterFromFunction, filterToFunction, findCommonProducts } from "../../modules/mainModules"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleDown, faAngleUp, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import appInfo from "../../modules/appInfo"
@@ -288,32 +288,13 @@ function filterProducts(props) {
         } else {
             delete allProductsFilter.onSale
         }
-
-// -----------------------—-----------------------—----------------------TO FINISH----------------—-----------------------—-----------------------—
-        console.log('allProductsFilter:');
-        console.log(allProductsFilter);
         const filterLength = Object.keys(allProductsFilter)
-        console.log(filterLength)
         if (filterLength.length > 0) {
-            function findCommonValues(obj) {
-                const keys = Object.keys(obj)
-                let result = obj[keys[0]]
-                for (let i = 1; i < keys.length; i++) {
-                    const currentKey = keys[i]
-                    const currentArray = obj[currentKey]
-                    result = result.filter(value => currentArray.includes(value))
-                }
-                return result
-            }
-            const commonValues = findCommonValues(allProductsFilter)
-            console.log('commonValues:');
-            console.log(commonValues);
+            let commonValues = findCommonProducts(allProductsFilter)
             props.setBrandProducts(commonValues)
         } else {
-            return
+            props.setBrandProducts(props.products)
         }
-// -----------------------—-----------------------—-----------------------—-----------------------—-----------------------—-----------------------—
-
     }, [brandFilter, modelFilter, yearFromFilter, yearToFilter, kilometersFromFilter, kilometersToFilter, priceFromFilter, priceToFilter, colorFilter, bodyCarFilter, transsmisionFilter, onSaleFilter])
 
 
