@@ -25,6 +25,7 @@ function filterProducts(props) {
     const [brandsActive, setBrandsActive] = useState(false)
     const [modelsActive, setModelsActive] = useState(false)
     const [bodyCarActive, setBodyCarActive] = useState(false)
+    
     // filter Functions us
     const [brandFilter, setBrandFilter] = useState([])
     const [modelFilter, setModelFilter] = useState([])
@@ -310,7 +311,7 @@ function filterProducts(props) {
             console.log(commonValues);
             props.setBrandProducts(commonValues)
         } else {
-            return
+            return <h1>hola</h1>
         }
 // -----------------------—-----------------------—-----------------------—-----------------------—-----------------------—-----------------------—
 
@@ -372,8 +373,19 @@ function filterProducts(props) {
                             </div>
                         </div>
                     </div>
+                )}          
+                {/* TRANSMISION */}
+                {!(brandsActive || modelsActive || bodyCarActive) && (
+                    <div className="filterTrasmision">
+                        <h4 className="filterName">Transmision</h4>
+                        <select onChange={transsmisionFilterChangeFunction} className="inputTransmision">
+                            <option value={"Both"}>Both</option>
+                            <option value={"Manual"}>Manual</option>
+                            <option value={"Automatic"}>Automatic</option>
+                        </select>
+                    </div>
                 )}
-                {/* COLOR */}
+                 {/* COLOR */}
                 {!(brandsActive || modelsActive || bodyCarActive) && (
                     <div className="filterColor">
                         <h4 className="filterName">Color</h4>
@@ -385,17 +397,6 @@ function filterProducts(props) {
                             <span onClick={() => { colorFilterChangeFunction("Gray") }} ref={grayRef} className={"circle gray"}></span>
                             <span onClick={() => { colorFilterChangeFunction("Blue") }} ref={blueRef} className={"circle blue"}></span>
                         </div>
-                    </div>
-                )}
-                {/* TRANSMISION */}
-                {!(brandsActive || modelsActive || bodyCarActive) && (
-                    <div className="filterTrasmision">
-                        <h4 className="filterName">Transmision</h4>
-                        <select onChange={transsmisionFilterChangeFunction} className="inputTransmision">
-                            <option value={"Both"}>Both</option>
-                            <option value={"Manual"}>Manual</option>
-                            <option value={"Automatic"}>Automatic</option>
-                        </select>
                     </div>
                 )}
                 {/*BODYCAR*/}
