@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { fetchApi, addValueToArray, isAgeAllow } from "../../modules/mainModules";
+import appInfo from '../../modules/appInfo';
 import './registerBlock.css'
 import bmwImage from "../../../public/BannerPureWheelPrueba.png"
 import logo from "../../../public/LogoPureWheelPNG3.png"
@@ -29,8 +30,6 @@ function register() {
   const [phoneMsg, setPhoneMsg] = useState('')
   const [birthdateErrorStatus, setBirthdateErrorStatus] = useState(false)
   const [birthdateMsg, setBirthdateMsg] = useState('')
-  const [identificationErrorStatus, setIdentificationErrorStatus] = useState(false)
-  const [identificationMsg, setIdentificationMsg] = useState('')
   const [passwordErrorStatus, setPasswordErrorStatus] = useState(false)
   const [passwordMsg, setPasswordMsg] = useState('')
   const [passwordConfirmErrorStatus, setPasswordConfirmErrorStatus] = useState(false)
@@ -42,7 +41,6 @@ function register() {
   const refEmail = useRef()
   const refPhone = useRef()
   const refBirthdate = useRef()
-  const refIdentification = useRef()
   const refPassword = useRef()
   const refPasswordConfirm = useRef()
 
@@ -201,7 +199,7 @@ function register() {
       surname,
       email,
       password,
-      phone,
+      phoneNumber: phone,
       birthdate,
       identification,
       remember
@@ -236,12 +234,13 @@ function register() {
       //ERRORDISPLAY ('Invalid birthdate')
       addValueToArray(loggAuth, 'birthdate')
     }
-    //identification validation
-    const isntIden = /[a-zA-Z!@#$%^&*(),.?":{}|<>]/.test(identification)
-    if (identification.length < 8 || isntIden) {
-      //ERRORDISPLAY ('Invalid identification')
-      addValueToArray(loggAuth, 'identification')
-    }
+    // //identification validation
+    // const isntIden = /[a-zA-Z!@#$%^&*(),.?":{}|<>]/.test(identification)
+    // if (identification.length < 8 || isntIden) {
+    //   //ERRORDISPLAY ('Invalid identification')
+    //   addValueToArray(loggAuth, 'identification')
+    // }
+
     //Password validation
     const uppercaseRegex = /[A-Z]/
     const numberRegex = /\d/
@@ -255,7 +254,7 @@ function register() {
       //ERRORDISPLAY ('passwords doesn't match')
       addValueToArray(loggAuth, 'passwordConfirm')
     }
-    if (loggAuth.length == 0) {
+    if (loggAuth.length === 0) {
       fetchApi(`${appInfo.root}/users/register`, {
         method: 'POST',
         headers: {
@@ -264,7 +263,8 @@ function register() {
         body: JSON.stringify(data)
       }, (resolve, reject) => {
         if (reject) {
-          //ERRORDISPLAY(CONTROLEACH)
+          console.error(reject);
+          console.log(data);
         } else {
           if (resolve.info.token) {
             sessionStorage.setItem('token', JSON.stringify(resolve.info.token))
@@ -293,8 +293,8 @@ function register() {
         </div>
       </div>
       <form onSubmit={handleSubmit} className="registerForm">
-      <div className='titleContainer'>
-        <h1 className='titleForm'>REGISTER</h1>
+        <div className='titleContainer'>
+          <h1 className='titleForm'>REGISTER</h1>
         </div>
         <div className="registerFormContainer">
           <div className="nameContainer">
@@ -302,7 +302,7 @@ function register() {
               <label>First Name</label>
               <input onBlur={nameValidation} onChange={handleNameChange}
                 ref={refName}
-                value={name}  type="text" placeholder="First Name" className={nameErrorStatus ? 'inputError' : 'inputSession'} ></input>
+                value={name} type="text" placeholder="First Name" className={nameErrorStatus ? 'inputError' : 'inputSession'} ></input>
               <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={nameMsg} errorStatus={nameErrorStatus}></ErrorBlock>
             </div>
             <div className="registerInputContent">
