@@ -5,8 +5,8 @@ import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { fetchApi } from "../../modules/mainModules";
 import appInfo from "../../modules/appInfo";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function brandsCarousel2() {
 
@@ -50,21 +50,18 @@ function brandsCarousel2() {
 
     ////////////////////
     const settings = {
-      className: "center",
-      infinite: true,
-      centerPadding: "60px",
-      slidesToShow: 5,
-      autoplay: true,
-      swipeToSlide: true,
-      nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
-      afterChange: function(index) {
-        console.log(
-          `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-        );
-      }
+      dots: false,
+      infinite: true, 
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      autoplay: true, // Activa la reproducción automática
+      autoplaySpeed: 1000,
+      pauseOnHover: false, // Evita que se detenga al pasar el ratón por encima
+      cssEase: 'linear', // Establece la transición lineal entre las imágenes
+      waitForAnimate: false, // Evita la pausa al final de la transición
     };
-
+  
       return (
         <div className="brandsComponent2">
           <div className="slickCarouselContainer">

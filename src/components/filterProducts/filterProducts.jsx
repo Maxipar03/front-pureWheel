@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react"
 import "./filterProducts.css"
-import { filterArrayFunction, filterFromFunction, filterToFunction } from "../../modules/mainModules"
+import { filterArrayFunction, filterFromFunction, filterToFunction, findCommonProducts } from "../../modules/mainModules"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleDown, faAngleUp, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import appInfo from "../../modules/appInfo"
@@ -202,12 +202,12 @@ function filterProducts(props) {
         if (brandsModels.length > 0) setBrandsModelsRender(true)
     }, [brandsModels])
     useEffect(() => {
-        colorFilter.includes("white") ? whiteRef.current.className = "circle white active" : whiteRef.current.className = "circle white"
-        colorFilter.includes("black") ? blackRef.current.className = "circle black active" : blackRef.current.className = "circle black"
-        colorFilter.includes("red") ? redRef.current.className = "circle red active" : redRef.current.className = "circle red"
-        colorFilter.includes("orange") ? orangeRef.current.className = "circle orange active" : orangeRef.current.className = "circle orange"
-        colorFilter.includes("gray") ? grayRef.current.className = "circle gray active" : grayRef.current.className = "circle gray"
-        colorFilter.includes("blue") ? blueRef.current.className = "circle blue active" : blueRef.current.className = "circle blue"
+        colorFilter.includes("White") ? whiteRef.current.className = "circle white active" : whiteRef.current.className = "circle white"
+        colorFilter.includes("Black") ? blackRef.current.className = "circle black active" : blackRef.current.className = "circle black"
+        colorFilter.includes("Red") ? redRef.current.className = "circle red active" : redRef.current.className = "circle red"
+        colorFilter.includes("Orange") ? orangeRef.current.className = "circle orange active" : orangeRef.current.className = "circle orange"
+        colorFilter.includes("Gray") ? grayRef.current.className = "circle gray active" : grayRef.current.className = "circle gray"
+        colorFilter.includes("Blue") ? blueRef.current.className = "circle blue active" : blueRef.current.className = "circle blue"
     }, [colorFilter])
     // Filter products
     useEffect(() => {
@@ -289,38 +289,19 @@ function filterProducts(props) {
         } else {
             delete allProductsFilter.onSale
         }
-
-// -----------------------—-----------------------—----------------------TO FINISH----------------—-----------------------—-----------------------—
-        console.log('allProductsFilter:');
-        console.log(allProductsFilter);
         const filterLength = Object.keys(allProductsFilter)
-        console.log(filterLength)
         if (filterLength.length > 0) {
-            function findCommonValues(obj) {
-                const keys = Object.keys(obj)
-                let result = obj[keys[0]]
-                for (let i = 1; i < keys.length; i++) {
-                    const currentKey = keys[i]
-                    const currentArray = obj[currentKey]
-                    result = result.filter(value => currentArray.includes(value))
-                }
-                return result
-            }
-            const commonValues = findCommonValues(allProductsFilter)
-            console.log('commonValues:');
-            console.log(commonValues);
+            let commonValues = findCommonProducts(allProductsFilter)
             props.setBrandProducts(commonValues)
         } else {
-            return <h1>hola</h1>
+            props.setBrandProducts(props.products)
         }
-// -----------------------—-----------------------—-----------------------—-----------------------—-----------------------—-----------------------—
-
     }, [brandFilter, modelFilter, yearFromFilter, yearToFilter, kilometersFromFilter, kilometersToFilter, priceFromFilter, priceToFilter, colorFilter, bodyCarFilter, transsmisionFilter, onSaleFilter])
 
 
 
 
-    return (
+    return (  
         <div className={`filterComponent ${!(brandsActive || modelsActive || bodyCarActive) ? 'active' : ''}`}>
             <div className={`filterContainer ${!(brandsActive || modelsActive || bodyCarActive) ? 'active' : ''}`}>
                 {!(brandsActive || modelsActive || bodyCarActive) && (

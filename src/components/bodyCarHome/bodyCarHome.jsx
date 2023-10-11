@@ -36,11 +36,8 @@ function bodyCarHome() {
 
     const settings = {
       slidesToShow: 4,
-      Infinite:false,
-      slidesToScroll: 4,
-      dots: true,
-      autoplay: true,
-      centerPadding: "10px",
+      slidesToScroll: 1,
+      centerPadding: "60px",
       swipeToSlide: true,
       nextArrow: <SampleNextArrow />,
       prevArrow: <SamplePrevArrow />,

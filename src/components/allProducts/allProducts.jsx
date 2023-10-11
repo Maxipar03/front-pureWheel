@@ -8,6 +8,7 @@ import { faWheatAwnCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 function allProducts() {
   const [brandProducts, setBrandProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [allBrands, setAllBrands] = useState([]);
   const [allBrandsModels, setAllBrandsModels] = useState([]);
   const [allBodyCars, setAllBodyCars] = useState([])
@@ -23,6 +24,7 @@ function allProducts() {
           }
         )
         setBrandProducts(productsResponse);
+        setProducts(productsResponse);
 
         const brandsResponse = await fetchApi(`${appInfo.root}/cars/brands`, {
           method: 'GET',
@@ -76,7 +78,7 @@ function allProducts() {
   return(
   brandProducts && allBrands && allBrandsModels ? (
     <div className="brandProductsContainer">
-      <FilterProdcuts brands={allBrands} models={allBrandsModels} products={brandProducts} setBrandProducts={setBrandProducts} bodyCar={allBodyCars} ></FilterProdcuts>
+      <FilterProdcuts brands={allBrands} models={allBrandsModels} products={products} setBrandProducts={setBrandProducts} bodyCar={allBodyCars} ></FilterProdcuts>
       <div className="cardProductsDiv">
         {brandProducts.length > 0 ? brandProducts.map((cars) => (
           <div key={cars.id} className="cardProductsbrandsContainer">

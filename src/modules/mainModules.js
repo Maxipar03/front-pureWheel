@@ -16,19 +16,19 @@ export async function fetchApi(endpoint, config, cb) {
 
 export function addValueToArray(array, value) {
     if (!array.includes(value)) {
-      array.push(value)
+        array.push(value)
     } else {
-      return array
+        return array
     }
     return array
-  }
+}
 
-export function objToArray (obj) {
+export function objToArray(obj) {
     const imagesToArray = []
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                imagesToArray.push(obj[key])
-            }
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            imagesToArray.push(obj[key])
+        }
     }
     return imagesToArray
 }
@@ -40,7 +40,7 @@ export function isAgeAllow(dateStr) {
     return inputDate <= minAgeDate;
 }
 
-export function filterArrayFunction (arrToFilter, arrFilter, cb) {
+export function filterArrayFunction(arrToFilter, arrFilter, cb) {
     const productsSelected = []
     const finalBrandFilter = []
     arrFilter.forEach(condition => {
@@ -50,25 +50,38 @@ export function filterArrayFunction (arrToFilter, arrFilter, cb) {
         })
         productsSelected.push(valuesInProducts)
     })
-    productsSelected.forEach(arr => {arr.forEach(pro => {finalBrandFilter.push(pro)})})
+    productsSelected.forEach(arr => { arr.forEach(pro => { finalBrandFilter.push(pro) }) })
     return finalBrandFilter
 }
 
 
-export function filterFromFunction (arrToFilter, arrFilter, cb) {
+export function filterFromFunction(arrToFilter, arrFilter, cb) {
     const productsSelected = []
-        arrToFilter.forEach(products => {
-            arrFilter <= cb(products) ? productsSelected.push(products) : null
-        })
-        console.log(productsSelected);
+    arrToFilter.forEach(products => {
+        arrFilter <= cb(products) ? productsSelected.push(products) : null
+    })
+    console.log(productsSelected);
     return productsSelected
 }
 
-export function filterToFunction (arrToFilter, arrFilter, cb) {
+export function filterToFunction(arrToFilter, arrFilter, cb) {
     const productsSelected = []
-        arrToFilter.forEach(products => {
-            arrFilter >= cb(products) ? productsSelected.push(products) : null
-        })
-        console.log(productsSelected);
+    arrToFilter.forEach(products => {
+        arrFilter >= cb(products) ? productsSelected.push(products) : null
+    })
+    console.log(productsSelected);
     return productsSelected
 }
+
+export function findCommonProducts(obj) {
+    const keys = Object.keys(obj);
+    let commonProducts = obj[keys[0]];
+    for (let i = 1; i < keys.length; i++) {
+        const key = keys[i];
+        const currentProducts = obj[key];
+        commonProducts = commonProducts.filter((product) => {
+            return currentProducts.some((currentProduct) => currentProduct.id === product.id);
+        });
+    }
+    return commonProducts;
+}  
