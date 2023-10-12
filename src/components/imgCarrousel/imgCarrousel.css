@@ -16,3 +16,93 @@
 #arrow{
     user-select: none;
 }
+
+.icd-button {
+    background: transparent;
+    border: 0;
+    outline: 0;
+  }
+  
+  
+  svg {
+    padding: 5px;
+  }
+  
+  .id-arrow {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 50%;
+    margin-top: -45px;
+    width: 40px;
+    background-color: #f5f5dc00;
+    border: 0px;
+    height: 90px;
+  }
+  
+  
+  .id-right {
+    left: 61%;
+  }
+  
+  .id-left:hover polyline,
+  .id-left:focus polyline {
+    stroke-width: 6;
+  }
+  
+  .id-left:active polyline {
+    stroke-width: 9;
+    transition: all 100ms ease-in-out;
+  }
+  
+  .id-right:hover polyline,
+  .id-right:focus polyline {
+    stroke-width: 6;
+  }
+  
+  .id-right:active polyline {
+    stroke-width: 9;
+    transition: all 100ms ease-in-out;
+  }
+  
+  polyline {
+    transition: all 250ms ease-in-out;
+  }
+  
+  .bottom-shadow-left-id {
+    height: 100%;
+    width: 50%;
+    display: none;
+    position: absolute;
+    z-index: 1; 
+    left: 0px;
+    transition: box-shadow 0.3s; 
+    -webkit-box-shadow: inset 107px -2px 71px -95px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 107px -2px 71px -95px rgba(0,0,0,0.75);
+box-shadow: inset 107px -2px 71px -95px rgba(0,0,0,0.75);
+  }
+
+  .image-carousel:hover .bottom-shadow-left-id {
+    display: block;
+    
+  }
+  
+  
+  .bottom-shadow-right-id {
+    height: 100%;
+    width: 50%;
+    display: none;
+    z-index: 1; 
+    position: absolute;
+    right: 0px;
+    transition: box-shadow 0.3; 
+
+    -webkit-box-shadow: inset -107px 0px 71px -95px rgba(0,0,0,0.75);
+-moz-box-shadow: inset -107px 0px 71px -95px rgba(0,0,0,0.75);
+box-shadow: inset -107px 0px 71px -95px rgba(0,0,0,0.75)
+  }
+  .image-carousel:hover .bottom-shadow-right-id {
+    display: block;
+    
+  }
+  

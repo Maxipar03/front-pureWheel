@@ -69,3 +69,97 @@
     transform: translate(-50%, -50%);
     user-select: none;
 }
+
+/* ------------------------------------- */
+.icd-button {
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+
+svg {
+  padding: 5px;
+}
+
+.icd-arrow {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  top: 50%;
+  margin-top: -45px;
+  width: 70px;
+  background-color: #f5f5dc00;
+  border: 0px;
+  height: 90px;
+}
+
+.icd-left {
+  left: 5%;
+}
+
+.icd-right {
+  left: 50%;
+}
+
+.icd-left:hover polyline,
+.icd-left:focus polyline {
+  stroke-width: 3;
+}
+
+.icd-left:active polyline {
+  stroke-width: 9;
+  transition: all 100ms ease-in-out;
+}
+
+.icd-right:hover polyline,
+.icd-right:focus polyline {
+  stroke-width: 3;
+}
+
+.icd-right:active polyline {
+  stroke-width: 6;
+  transition: all 100ms ease-in-out;
+}
+
+polyline {
+  transition: all 250ms ease-in-out;
+}
+
+.bottom-shadow-left {
+  height: 100%;
+  width: 20%;
+  display: none;
+  position: absolute;
+  z-index: 1; 
+  transition: box-shadow 0.3s; 
+}
+.bottom-shadow-left:hover {
+  -webkit-box-shadow: inset 200px 0px 132px -173px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 200px 0px 132px -173px rgba(0,0,0,0.75);
+  box-shadow: inset 200px 0px 132px -173px rgba(0,0,0,0.75);
+}
+.image-carouselDetail:hover .bottom-shadow-left {
+  display: block;
+  
+}
+
+
+.bottom-shadow-right {
+  height: 100%;
+  width: 20%;
+  display: none;
+  position: absolute;
+  z-index: 1; 
+  transition: box-shadow 0.3s; 
+  right: 0;
+}
+.bottom-shadow-right:hover {
+  -webkit-box-shadow: inset -200px 0px 132px -173px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset -200px 0px 132px -173px rgba(0,0,0,0.75);
+  box-shadow: inset -200px 0px 132px -173px rgba(0,0,0,0.75);
+}
+.image-carouselDetail:hover .bottom-shadow-right {
+  display: block;
+  
+}

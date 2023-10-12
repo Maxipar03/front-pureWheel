@@ -62,17 +62,10 @@ font-weight: 400;
 
 
 
-.productsArticle:hover .prevButton{
-    display: block;
-}
-
 .productsArticle:hover .heart{
     display: block;
 }
 
-.productsArticleHome:hover .prevButton{
-    display: block;
-}
 
 .productsArticleHome:hover #productPriceOld{
     opacity: 1;
@@ -82,16 +75,11 @@ font-weight: 400;
     display: block;
 }
 
-.productsArticleHome:hover .nextButton{
-    display: block;
-}
 
-.productsArticle:hover .nextButton{
-    display: block;
-}
 
 .image-carousel{
 position: relative;
+display: flex;
 }
 
 .prevButton,

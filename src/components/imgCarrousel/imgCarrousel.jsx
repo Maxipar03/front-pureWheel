@@ -22,30 +22,34 @@ function imgCarrusel({ imgArray, id , productImgClassName, nextButtonClassName, 
     
         return (
           <div className="image-carousel">
-            <FontAwesomeIcon
-              id="arrow"
-              className={prevButtonClassName}
-              icon={faAngleLeft}
-              onClick={(e) => {
+              <div className="bottom-shadow-left-id">
+      <button onClick={(e) => {
                 e.stopPropagation();
                 prevImage();
-              }}
-            />
+              }} className="id-arrow id-left">
+  <svg width="20px" height="80px" viewBox="0 0 50 80" xmlSpace="preserve">
+    <polyline fill="none" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" points="
+  45.63,75.8 0.375,38.087 45.63,0.375 "/>
+  </svg>  
+</button>
+  </div>
             <img
               className={productImgClassName}
               src={`${appInfo.root}/images/cars/user_${id}/${imgArray[currentImageIndex]}`}
               alt=""
             />
             <FontAwesomeIcon className="heart" icon={faHeart}/>
-            <FontAwesomeIcon
-              id="arrow"
-              className={nextButtonClassName}
-              icon={faAngleRight}
-              onClick={(e) => {
+            <div className="bottom-shadow-right-id">
+            <button onClick={(e) => {
                 e.stopPropagation();
                 nextImage();
-              }}
-            />
+              }} class="id-arrow id-right">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="80px" viewBox="0 0 50 80" xml:space="preserve">
+    <polyline fill="none" stroke="#F5F5F5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="
+  0.375,0.375 45.63,38.087 0.375,75.8 "/>
+  </svg>
+</button>
+</div>
           </div>
         );
       }
