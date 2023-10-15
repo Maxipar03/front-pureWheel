@@ -6,7 +6,7 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
-function imgCarrusel({ imgArray, id , productImgClassName, nextButtonClassName, prevButtonClassName}) {
+function imgCarrusel({ imgArray, id , productImgClassName, nextButtonClassName, prevButtonClassName, carsSale}) {
 
         const [currentImageIndex, setCurrentImageIndex] = useState(0);
     
@@ -39,13 +39,14 @@ function imgCarrusel({ imgArray, id , productImgClassName, nextButtonClassName, 
               alt=""
             />
             <FontAwesomeIcon className="heart" icon={faHeart}/>
+            {carsSale ? <h3 className="saleImage">-{carsSale}%</h3>: null}
             <div className="bottom-shadow-right-id">
             <button onClick={(e) => {
                 e.stopPropagation();
                 nextImage();
-              }} class="id-arrow id-right">
-  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="80px" viewBox="0 0 50 80" xml:space="preserve">
-    <polyline fill="none" stroke="#F5F5F5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="
+              }} className="id-arrow id-right">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="20px" height="80px" viewBox="0 0 50 80" xmlSpace="preserve">
+    <polyline fill="none" stroke="#F5F5F5" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" points="
   0.375,0.375 45.63,38.087 0.375,75.8 "/>
   </svg>
 </button>

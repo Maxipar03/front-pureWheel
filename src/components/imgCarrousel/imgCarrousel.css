@@ -11,6 +11,19 @@
     background-color: burlywood;
     border-radius: 30px;
     display: none;
+    z-index: 3;
+}
+
+.saleImage{
+  position: absolute;
+  right: 5px;
+  font-size: 1rem;
+  top: 5px;
+  padding: 1% 2%;
+  background-color: rgb(99, 228, 99);
+  border-radius: 3px;
+  font-weight: 600;
+  z-index: 3;
 }
 
 #arrow{
@@ -42,7 +55,7 @@
   
   
   .id-right {
-    left: 61%;
+    left: 75%;
   }
   
   .id-left:hover polyline,

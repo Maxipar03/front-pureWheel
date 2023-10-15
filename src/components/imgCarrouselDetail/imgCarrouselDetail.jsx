@@ -62,9 +62,9 @@ function imgCarrouselDetail({ imgArray, id, productImgClassName, nextButtonClass
       <button onClick={(e) => {
                 e.stopPropagation();
                 prevImage();
-              }} class="icd-arrow icd-left">
-  <svg width="60px" height="80px" viewBox="0 0 50 80" xml:space="preserve">
-    <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="
+              }} className="icd-arrow icd-left">
+  <svg width="60px" height="80px" viewBox="0 0 50 80" xmlSpace="preserve">
+    <polyline fill="none" stroke="#FFFFFF" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" points="
   45.63,75.8 0.375,38.087 45.63,0.375 "/>
   </svg>  
 </button>
@@ -81,9 +81,9 @@ function imgCarrouselDetail({ imgArray, id, productImgClassName, nextButtonClass
         <button onClick={(e) => {
                 e.stopPropagation();
                 nextImage();
-              }} class="icd-arrow icd-right">
-  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60px" height="80px" viewBox="0 0 50 80" xml:space="preserve">
-    <polyline fill="none" stroke="#F5F5F5" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="
+              }} className="icd-arrow icd-right">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="60px" height="80px" viewBox="0 0 50 80" xmlSpace="preserve">
+    <polyline fill="none" stroke="#F5F5F5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" points="
   0.375,0.375 45.63,38.087 0.375,75.8 "/>
   </svg>
 </button>

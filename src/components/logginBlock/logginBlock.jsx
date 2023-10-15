@@ -3,8 +3,8 @@ import { fetchApi, addValueToArray } from "../../modules/mainModules";
 import './logginBlock.css'
 import appInfo from '../../modules/appInfo';
 import ErrorBlock from "../errors/errorBlock/errorBlock";
-import bmwImage from "../../../public/BannerPureWheelPrueba.png"
-import logo from "../../../public/LogoPureWheelPNG3.png"
+import bmwImage from "../../public/BannerPureWheelPrueba.png"
+import logo from "../../public/LogoPureWheelPNG3.png"
 
 function loggin() {
   //***** States *****

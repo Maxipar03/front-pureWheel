@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './header.css'
-import logo from "../../../public/LogoPureWheelPNG3.png"
+import logo from "../../public/LogoPureWheelPNG3.png"
 import { Link, json } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -94,6 +94,7 @@ function header({ nameClass }) {
               </div>
               
             </Link>
+            <Link to='/products/sellCar' style={{ textDecoration: 'none' }}>
             <div
               className={`header-option ${selectedOption === "sellCar" ? 'hovered' : ''}`}
               onMouseEnter={() => handleMouseEnter("sellCar")}
@@ -104,6 +105,7 @@ function header({ nameClass }) {
                 className={`underline ${selectedOption === "sellCar" ? 'visible' : ''}`}
               ></div>
             </div>
+            </Link>
           </ul>
           {userLogged ? (
             <div className="dropdownContainer">

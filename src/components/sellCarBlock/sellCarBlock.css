@@ -1,0 +1,204 @@
+/************ Image upload ************/
+
+.sellCarImageContainerTitle {
+  text-align: center;
+  min-width: 70vw;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  flex-direction: column;
+}
+
+.sellCarImageContainer{
+ display: flex;
+ align-items: center;
+}
+
+  
+  .sellCarImageTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    display: flex;
+  }
+  
+  .sellCarImageError {
+    display: none;
+    color: red;
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+
+  .sellCarImagePreview {
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .imageC{
+    display: flex;
+  }
+  
+  .sellCarImagePreview img {
+    min-width: 150px;
+    max-width: 170px;
+    max-height: 169px;
+    display: block;
+    margin: 0 auto;
+    object-fit: scale-down;
+  }
+  
+  .sellCarImagePreview a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+  
+  .sellCarImagePreview a:hover {
+    background-color: #ff0000;
+    color: #fff;
+  }
+
+  .sellCarUploadTitle{
+    font-size: 1rem;
+    padding: 10px 0px;
+    margin: 0px;
+  }
+  
+  .sellCarImageSection label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border: 2px dashed #007bff;
+    cursor: pointer;
+    display: none;
+  }
+  
+  .sellCarImageSection label i {
+    font-size: 36px;
+    color: #007bff;
+  }
+
+.file-upload-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px; /* Ancho del cuadrado */
+    height: 170px; /* Altura del cuadrado */
+    border: 2px solid #6c7c8d; /* Borde punteado y color azul */
+    cursor: pointer;
+    font-size: 36px;
+    color: #007bff;
+    flex-direction: column;
+    background-color: #6d6d6d00;
+    transition: ease-in background-color 0.3s;
+    border-radius: 5px;
+  }
+
+  .file-upload-label:hover{
+    background-color: #c2c2c2;
+  }
+  
+  .file-upload-input {
+    display: none;
+  }
+
+  .sellCarXmark{
+    color: black;
+  }
+
+/**************************************************/
+
+#sellCarInputContainer{
+  display: flex;
+  flex-direction: column;
+  width: 97%;
+  margin-top: 3%;
+}
+
+#sellCarInput{
+ width: auto;
+ height: 30px;
+ font-size: 1.05rem;
+ border: 0px; 
+ border-radius: 3px;
+}
+
+#sellCarInput::-webkit-inner-spin-button,
+#sellCarInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#sellCarSelect{
+  width: auto;
+  height: 33px;
+  border: 0px;
+  border-radius: 3px;
+  font-size: 1.05rem;
+}
+
+.SellCarHideOption{
+  display: none;
+}
+
+.rowOne{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rowTwo{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flexRow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+}
+
+.sellCarPriceIcon{
+  margin: 0px;
+  position: absolute;
+  right: 9px;
+  top: 48%;
+}
+
+.sellCarDiscountIcon{
+  margin: 0px;
+  position: absolute;
+  right: 6px;
+  top: 48%;
+}
+
+.sellCarPriceInputContainer{
+  position: relative;
+}
+
+.sellCarDiscountInputContainer{
+  position: relative;
+}

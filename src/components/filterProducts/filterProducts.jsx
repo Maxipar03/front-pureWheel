@@ -4,7 +4,7 @@ import { filterArrayFunction, filterFromFunction, filterToFunction, findCommonPr
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleDown, faAngleUp, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import appInfo from "../../modules/appInfo"
-import banner from "../../../public/ImageTestbannerfilter.jpg"
+import banner from "../../public/ImageTestbannerfilter.jpg"
 // import { loadConfigFromFile } from "vite"
 
 function filterProducts(props) {

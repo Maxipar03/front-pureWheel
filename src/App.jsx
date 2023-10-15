@@ -10,6 +10,7 @@ import Register from './screen/register/register';
 import ProductsDetail from "./screen/productsDetail/productsDetail";
 import BrandsProducts from "./screen/brandsProducts/brandsProducts";
 import BuyCar from "./screen/buyCar/buyCar";
+import SellCar from "./screen/SellCar/sellCar"
 
 function App() {
   const location = useLocation();
@@ -59,6 +60,8 @@ return (
         {<Route exact path='/products/brands/:id' element={<BrandsProducts/>}/>}
         {<Route exact path='/products/detail/:id' element={<ProductsDetail/>}/>}
         {<Route exact path='/products/all' element={<BuyCar/>}/>}
+        {/****************** SELL CAR ******************/}
+        {<Route exact path='/products/sellCar' element={<SellCar/>}/>}
       </Routes>
     <Footer/>
   </div>

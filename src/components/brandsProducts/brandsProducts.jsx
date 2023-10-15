@@ -29,13 +29,19 @@ function brandsProducts() {
     });
   }, []);
 
+    
+  function calculateDiscountedPrice(price, discountPercentage) {
+    const discountedPrice = price - (price * (discountPercentage / 100));
+    return discountedPrice.toFixed(0); 
+  }
+
   return (
     <div className="brandProductsContainer">
       <FilterProdcuts brandsModels={models} products={products} setBrandProducts={setAllProducts} brandId={brand.id}></FilterProdcuts>
       <div className="cardProductsDiv">
       {allProducts.map((cars) => (
         <div key={cars.id} className="cardProductsbrandsContainer">
-          <CardProductsBrands productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={cars.images} CarsID={cars.id} carsUserID={cars.user_id} carsModelName={cars.model.name} carsPrice={cars.price} carsKM={cars.km} carsYear={cars.year} />
+          <CardProductsBrands productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={cars.images} CarsID={cars.id} carsUserID={cars.user_id} carsModelName={cars.model.name} carsPrice={cars.price} carsKM={cars.km} carsYear={cars.year} carsOnSale={ cars.onSale ? (calculateDiscountedPrice(cars.price, cars.onSale)) : null} carsOnSaleNumber={cars.onSale ? (cars.onSale) : null}/>
           </div>
       ))}
       </div>

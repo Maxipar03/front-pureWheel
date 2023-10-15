@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import { fetchApi, addValueToArray, isAgeAllow } from "../../modules/mainModules";
 import appInfo from '../../modules/appInfo';
 import './registerBlock.css'
-import bmwImage from "../../../public/BannerPureWheelPrueba.png"
-import logo from "../../../public/LogoPureWheelPNG3.png"
+import bmwImage from "../../public/BannerPureWheelPrueba.png"
+import logo from "../../public/LogoPureWheelPNG3.png"
 import ErrorBlock from "../errors/errorBlock/errorBlock";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
