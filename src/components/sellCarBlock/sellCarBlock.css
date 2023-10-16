@@ -202,3 +202,136 @@
 .sellCarDiscountInputContainer{
   position: relative;
 }
+
+.sellCarButtonBox{
+  padding: 10px;
+  display: flex;
+  margin-bottom: 30px;
+  justify-content: space-between;
+  background-color: #818181;
+  border-radius: 5px;
+  align-items: center;
+  transition: linear 0.2s background-color;
+  transition: linear 0.3s position;
+}
+
+.sellCarPublishButton{
+  margin-right: 1%;
+  width: 200px;
+  height: 45px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #6c7c8dc9;
+}
+
+.sellCarPublishButton:hover{
+  background-color: #6c7c8d;
+}
+
+.sellCarProductDetail {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-right: 1%;
+}
+
+.sellCarBrandNameDetail{
+  margin: 0px;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.sellCarModelNameDetail{
+    margin: 0px;
+    font-weight: 400;
+    font-size: 1.4rem;
+    margin-left: 5%;
+    white-space: nowrap;
+}
+
+.sellCarNamesContainer{
+  display: flex;
+}
+
+.sellCarPriceDetail{
+  font-weight: 600;
+}
+
+.sellCarButtonBoxsticky{
+  padding: 10px;
+  display: flex;
+  margin-bottom: 30px;
+  justify-content: space-between;
+  background-color: #818181;
+  border-radius: 5px;
+  align-items: center;
+  transition: linear 0.2s background-color;
+  transition: linear 0.3s position;
+}
+
+@media (max-width: 1300px) {
+  .sellCarButtonBoxsticky{
+    padding: 10px;
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    background-color: #818181;
+    border-radius: 5px;
+    align-items: center;
+    transition: linear 0.2s background-color;
+    transition: linear 0.3s position;
+  }
+
+  @media (max-width: 960px) {
+    .flexRow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 3%;
+      flex-direction: column;
+  }
+
+  .rowOne{
+    width: 100%;
+  }
+
+  .rowTwo{
+    width: 100%;
+  }
+
+  .sellCarButtonBoxsticky{
+    width: 75%;
+    z-index: 3;
+    position: fixed;
+    padding: 10px;
+    display: flex;
+    bottom: 4%;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    background-color: #818181a1;
+    transition: linear 0.2s background-color;
+    transition: linear 0.3s position;
+    border-radius: 5px;
+    align-items: center;
+  }
+
+  .sellCarPublishButton{
+    width: 20vw;
+  }
+
+  .sellCarBrandNameDetail{
+    font-size: 1.1rem;
+  }
+
+  .sellCarModelNameDetail{
+    font-size: 1.1rem;
+  }
+
+  .sellCarPriceDetail{
+    font-size: 1.1rem;
+  }
+  
+  }
+}

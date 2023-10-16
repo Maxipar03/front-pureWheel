@@ -9,11 +9,14 @@ import appInfo from "../../modules/appInfo"
 
 function sellCarBlock() {
 
+    const [isSticky, setIsSticky] = useState(false);
+
     const [selectedImages, setSelectedImages] = useState([]);
     const [selectedBrand, setSelectedBrand] = useState('');
     const [selectedModel, setSelectedModel] = useState('');
     const [selectedBodyCar, setSelectedBodyCar] = useState('');
     const [selectedTransmission, setSelectedTransmission] = useState('');
+    const [selectedPrice, setSelectedPrice] = useState('')
 
     const [allBrands, setAllBrands] = useState([]);
     const [allModels, setAllModels] = useState([]);
@@ -49,6 +52,13 @@ function sellCarBlock() {
         const updatedImages = [...selectedImages];
         updatedImages.splice(index, 1);
         setSelectedImages(updatedImages);
+    };
+
+    const handleBrandChange = (e) => {
+        const selectedBrandId = e.target.value;
+        setSelectedBrand(selectedBrandId);
+        setSelectedModel('');
+        setSelectedModel(allModels.filter((model) => model.brand_id === selectedBrandId));
     };
 
     useEffect(() => {
@@ -91,16 +101,39 @@ function sellCarBlock() {
     }, []);
 
 
+    const handleScroll = () => {
+        const windowHeight = window.innerHeight + 95;
+        const scrollY = window.scrollY;
+        const pageHeight = document.documentElement.scrollHeight;
+    
+        if (scrollY + windowHeight >= pageHeight) {
+          // Si el desplazamiento está en la parte inferior de la página, activamos el modo pegajoso.
+          setIsSticky(true);
+        } else {
+          // De lo contrario, desactivamos el modo pegajoso.
+          setIsSticky(false);
+        }
+      };
+
+      useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+    
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, []);
+
+
     return (
         <div>
             <div className="sellCarImageContainerTitle">
                 <h3 className="sellCarImageTitle">Upload your images car</h3>
                 <div className="sellCarImageContainer">
-                    <label for="sellCarInputImage" class="file-upload-label">
+                    <label htmlFor="sellCarInputImage" className="file-upload-label">
                         <i className="fa-solid fa-plus"><FontAwesomeIcon icon={faImages} /></i>
                         <p className="sellCarUploadTitle">Upload Images</p>
                     </label>
-                    <input type="file" id="sellCarInputImage" name="productFile" multiple onChange={handleImageChange} class="file-upload-input" />
+                    <input type="file" id="sellCarInputImage" name="productFile" multiple onChange={handleImageChange} className="file-upload-input" />
                     <h5 ref={refErrorImg} className='sellCarImageError'>File extension not allowed</h5>
                     <div ref={refInputImg} className="sellCarImageSection">
                         {selectedImages.map((image, index) => (
@@ -119,9 +152,9 @@ function sellCarBlock() {
                         <label id="sellCarLabel">Description*</label>
                         <input id="sellCarInput" placeholder="Porsche cayane 3.8gt" type="text"></input>
                     </div>
-                    <div id="sellCarInputContainer" className="sellCarPriceInputContainer">
+                    <div id="sellCarInputContainer" className="sellCarPriceInputContainer" >
                         <label id="sellCarLabel">Price*</label>
-                        <input id="sellCarInput" placeholder="20000" type="number" inputmode="numeric"></input>
+                        <input id="sellCarInput" placeholder="20000" type="number" inputMode="numeric" onChange={(e) => setSelectedPrice(e.target.value)}></input>
                         <p className="sellCarPriceIcon">$</p>
                     </div>
                     <div id="sellCarInputContainer" className="sellCarDiscountInputContainer">
@@ -149,7 +182,7 @@ function sellCarBlock() {
                 <div className="rowTwo">
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Brand*</label>
-                        <select id="sellCarSelect" value={selectedBrand} onChange={(e) => setSelectedBrand(e.target.value)}>
+                        <select id="sellCarSelect" value={selectedBrand} onChange={handleBrandChange}>
                             <option value="" className="SellCarHideOption">Select a brand</option>
                             {allBrands.map((brand) => (
                                 <option key={brand.brandId} value={brand.id}>
@@ -205,6 +238,25 @@ function sellCarBlock() {
                         <input id="sellCarInput" placeholder="Premium" type="text"></input>
                     </div>
                 </div>
+            </div>
+            <div className={`${isSticky ? 'sellCarButtonBox' : 'sellCarButtonBoxsticky'}`}>
+            <div className="sellCarProductDetail">
+                <div className="sellCarNamesContainer">
+                                {selectedBrand && 
+                                allBrands
+                                .filter((brand) => brand.id == selectedBrand)
+                                .map((brand) => (
+                                        <h2 className="sellCarBrandNameDetail">{brand.name}</h2>
+                                    ))}
+                                <h3 className="sellCarModelNameDetail">{selectedModel}</h3>
+                </div>
+                <div>
+                                <h3 className="sellCarPriceDetail">{selectedPrice}$</h3>
+                </div>                   
+            </div>  
+            <div className="sellCarButtonContainer">
+            <button className="sellCarPublishButton">Sell Car</button>
+            </div>
             </div>
         </div>
 

@@ -3,6 +3,12 @@ MAXI
 -Add productDetail Info
 -Add productSale price in products/all
 
+
+-state in which the car is sold
+-new or old
+-car documents
+-identification
+
 NICO
 - Logic 
 --------
