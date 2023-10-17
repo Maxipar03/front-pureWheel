@@ -5,6 +5,7 @@ import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { fetchApi } from "../../modules/mainModules";
 import appInfo from "../../modules/appInfo"
+import AddColor from '../Popups/addColorPopup/addColor.jsx'
 
 
 function sellCarBlock() {
@@ -12,6 +13,7 @@ function sellCarBlock() {
     const [isSticky, setIsSticky] = useState(false);
 
     const [selectedImages, setSelectedImages] = useState([]);
+    const [selectedColor, setSelectedColor] = useState('#000000');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [selectedModel, setSelectedModel] = useState('');
     const [selectedBodyCar, setSelectedBodyCar] = useState('');
@@ -22,9 +24,21 @@ function sellCarBlock() {
     const [allModels, setAllModels] = useState([]);
     const [allBodyCars, setAllBodyCars] = useState([])
 
+    const [menuIsOpen, setMenuIsOpen] = useState(false)
+
     const refErrorImg = useRef()
     const refInputImg = useRef()
     const refImageIcon = useRef()
+
+    const [addColor, setAddColor] = useState(false);
+    const [addPopupType, setAddPopupType] = useState("")
+    const addColorFunction = (type) => {
+        if (!addColor) setAddColor(true)
+        if (addColor) setAddColor(false)
+        type === "color" ? setAddPopupType("color") : null
+        type === "model" ? setAddPopupType("model") : null
+        type === "version" ? setAddPopupType("version") : null
+    }
 
     const handleImageChange = (event) => {
         const files = Array.from(event.target.files);
@@ -60,6 +74,19 @@ function sellCarBlock() {
         setSelectedModel('');
         setSelectedModel(allModels.filter((model) => model.brand_id === selectedBrandId));
     };
+
+    useEffect(() => {
+        if (menuIsOpen) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'auto';
+        }
+        return () => {
+          document.body.style.overflow = 'auto';
+        };
+      }, [menuIsOpen]);
+
+      
 
     useEffect(() => {
         const fetchData = async () => {
@@ -105,23 +132,23 @@ function sellCarBlock() {
         const windowHeight = window.innerHeight + 95;
         const scrollY = window.scrollY;
         const pageHeight = document.documentElement.scrollHeight;
-    
-        if (scrollY + windowHeight >= pageHeight) {
-          // Si el desplazamiento está en la parte inferior de la página, activamos el modo pegajoso.
-          setIsSticky(true);
-        } else {
-          // De lo contrario, desactivamos el modo pegajoso.
-          setIsSticky(false);
-        }
-      };
 
-      useEffect(() => {
+        if (scrollY + windowHeight >= pageHeight) {
+            // Si el desplazamiento está en la parte inferior de la página, activamos el modo pegajoso.
+            setIsSticky(true);
+        } else {
+            // De lo contrario, desactivamos el modo pegajoso.
+            setIsSticky(false);
+        }
+    };
+
+    useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-    
+
         return () => {
-          window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('scroll', handleScroll);
         };
-      }, []);
+    }, []);
 
 
     return (
@@ -172,11 +199,14 @@ function sellCarBlock() {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Color*</label>
-                        <input type="text" id="sellCarSelect" placeholder="Orange"></input>
+                        <select id="sellCarSelect" value={selectedColor}>
+                            <option value="" className="SellCarHideOption">Select a color</option>
+                        </select>
                     </div>
-                   <div id="sellCarInputContainer">
+                    <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Damage</label>
-                        <input type="text" placeholder="Crash in front" id="sellCarInput"></input>
+                        <input type="text" id="sellCarSelect" placeholder="Front Crash"></input>
+
                     </div>
                 </div>
                 <div className="rowTwo">
@@ -197,14 +227,14 @@ function sellCarBlock() {
                             <option value="" className="SellCarHideOption">Select a model</option>
                             {selectedBrand &&
                                 allModels
-                                .filter((model) => model.brand_id == selectedBrand)
-                                .map((model) => (
+                                    .filter((model) => model.brand_id == selectedBrand)
+                                    .map((model) => (
                                         <option key={model.id} value={model.name}>
                                             {model.name}
                                         </option>
                                     ))}
                         </select>
-                    </div>  
+                    </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Transmission*</label>
                         <select id="sellCarSelect" value={selectedTransmission} onChange={(e) => setSelectedTransmission(e.target.value)}>
@@ -217,7 +247,7 @@ function sellCarBlock() {
                         <label id="sellCarLabel">Version</label>
                         <input type="text" placeholder="GTI" id="sellCarInput"></input>
                     </div>
-                   
+
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Body Car*</label>
                         <select id="sellCarSelect" value={selectedBodyCar} onChange={(e) => setSelectedBodyCar(e.target.value)}>
@@ -239,25 +269,51 @@ function sellCarBlock() {
                     </div>
                 </div>
             </div>
+            <div className="sellCarAdminSection">
+                <div  className="sellCarAdminTitleContainer">
+                    <h1 className="sellCarAdminTitle">Dealership Add Options</h1>
+                </div>
+                <div className="sellCarAdminButtons">
+            <button
+                            value={selectedColor}
+                            id="sellCarAdminInput"
+                            onClick={() => {
+                                addColorFunction("color");
+                                setMenuIsOpen(true);
+                              }}
+                        >Color</button>
+                         <button
+                            value={selectedColor}
+                            id="sellCarAdminInput"
+                            onClick={() => addColorFunction("model")} 
+                        >Model</button>
+                         <button
+                            value={selectedColor}
+                            id="sellCarAdminInput"
+                            onClick={() => addColorFunction("version")} 
+                        >Version</button>
+            </div>
+            </div>
             <div className={`${isSticky ? 'sellCarButtonBox' : 'sellCarButtonBoxsticky'}`}>
-            <div className="sellCarProductDetail">
-                <div className="sellCarNamesContainer">
-                                {selectedBrand && 
-                                allBrands
+                <div className="sellCarProductDetail">
+                    <div className="sellCarNamesContainer">
+                        {selectedBrand &&
+                            allBrands
                                 .filter((brand) => brand.id == selectedBrand)
                                 .map((brand) => (
-                                        <h2 className="sellCarBrandNameDetail">{brand.name}</h2>
-                                    ))}
-                                <h3 className="sellCarModelNameDetail">{selectedModel}</h3>
+                                    <h2 className="sellCarBrandNameDetail">{brand.name}</h2>
+                                ))}
+                        <h3 className="sellCarModelNameDetail">{selectedModel}</h3>
+                    </div>
+                    <div>
+                        <h3 className="sellCarPriceDetail">{selectedPrice}$</h3>
+                    </div>
                 </div>
-                <div>
-                                <h3 className="sellCarPriceDetail">{selectedPrice}$</h3>
-                </div>                   
-            </div>  
-            <div className="sellCarButtonContainer">
-            <button className="sellCarPublishButton">Sell Car</button>
+                <div className="sellCarButtonContainer">
+                    <button className="sellCarPublishButton">Sell Car</button>
+                </div>
             </div>
-            </div>
+            <AddColor trigger={addColor} type={addPopupType} setTrigger={setAddColor}></AddColor>
         </div>
 
     )
