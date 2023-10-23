@@ -1,0 +1,49 @@
+.acp-App-choose {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+}
+
+.acp-main-choose {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    position: absolute;
+    background: rgba(36, 48, 60, 0.8);
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.acp-choose-main-div {
+    width: 30%;
+    height: 60%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(36, 48, 60, 2.8);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.acp-choose-input-div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.acp-choose-info-div{}
