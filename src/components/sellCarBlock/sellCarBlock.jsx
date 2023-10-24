@@ -5,7 +5,7 @@ import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { fetchApi } from "../../modules/mainModules";
 import appInfo from "../../modules/appInfo"
-import AddColor from '../Popups/addColorPopup/addColor.jsx'
+import AddPopup from '../Popups/addPopup/addPopup.jsx'
 
 
 function sellCarBlock() {
@@ -30,11 +30,11 @@ function sellCarBlock() {
     const refInputImg = useRef()
     const refImageIcon = useRef()
 
-    const [addColor, setAddColor] = useState(false);
+    const [addPopup, setAddPopup] = useState(false);
     const [addPopupType, setAddPopupType] = useState("")
-    const addColorFunction = (type) => {
-        if (!addColor) setAddColor(true)
-        if (addColor) setAddColor(false)
+    const addPopupFunction = (type) => {
+        if (!addPopup) setAddPopup(true)
+        if (addPopup) setAddPopup(false)
         type === "color" ? setAddPopupType("color") : null
         type === "model" ? setAddPopupType("model") : null
         type === "version" ? setAddPopupType("version") : null
@@ -74,19 +74,6 @@ function sellCarBlock() {
         setSelectedModel('');
         setSelectedModel(allModels.filter((model) => model.brand_id === selectedBrandId));
     };
-
-    useEffect(() => {
-        if (menuIsOpen) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = 'auto';
-        }
-        return () => {
-          document.body.style.overflow = 'auto';
-        };
-      }, [menuIsOpen]);
-
-      
 
     useEffect(() => {
         const fetchData = async () => {
@@ -270,29 +257,28 @@ function sellCarBlock() {
                 </div>
             </div>
             <div className="sellCarAdminSection">
-                <div  className="sellCarAdminTitleContainer">
+                <div className="sellCarAdminTitleContainer">
                     <h1 className="sellCarAdminTitle">Dealership Add Options</h1>
                 </div>
                 <div className="sellCarAdminButtons">
-            <button
-                            value={selectedColor}
-                            id="sellCarAdminInput"
-                            onClick={() => {
-                                addColorFunction("color");
-                                setMenuIsOpen(true);
-                              }}
-                        >Color</button>
-                         <button
-                            value={selectedColor}
-                            id="sellCarAdminInput"
-                            onClick={() => addColorFunction("model")} 
-                        >Model</button>
-                         <button
-                            value={selectedColor}
-                            id="sellCarAdminInput"
-                            onClick={() => addColorFunction("version")} 
-                        >Version</button>
-            </div>
+                    <button
+                        value={selectedColor}
+                        id="sellCarAdminInput"
+                        onClick={() => {
+                            addPopupFunction("color");
+                        }}
+                    >Color</button>
+                    <button
+                        value={selectedColor}
+                        id="sellCarAdminInput"
+                        onClick={() => addPopupFunction("model")}
+                    >Model</button>
+                    <button
+                        value={selectedColor}
+                        id="sellCarAdminInput"
+                        onClick={() => addPopupFunction("version")}
+                    >Version</button>
+                </div>
             </div>
             <div className={`${isSticky ? 'sellCarButtonBox' : 'sellCarButtonBoxsticky'}`}>
                 <div className="sellCarProductDetail">
@@ -313,7 +299,7 @@ function sellCarBlock() {
                     <button className="sellCarPublishButton">Sell Car</button>
                 </div>
             </div>
-            <AddColor trigger={addColor} type={addPopupType} setTrigger={setAddColor}></AddColor>
+            <AddPopup trigger={addPopup} type={addPopupType} setTrigger={setAddPopup}></AddPopup>
         </div>
 
     )

@@ -1,0 +1,190 @@
+.acp-App-choose {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+}
+
+.acp-main-choose {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    background: rgba(36, 48, 60, 0.8);
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.acp-choose-main-div {
+    width: 100%;
+    height: 80%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(36, 48, 60, 2.8);
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.acp-main-div-top{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.acp-close-popup-div{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.acp-close-popup-div p{
+    padding: 0 2%;
+    color: white;
+    cursor: pointer;
+}
+.acp-close-popup-div p:hover{
+    font-weight: 600;
+    color: red;
+    box-shadow: (7px 7px 7px rgba(0, 0, 0, 0.8));
+}
+
+/* COLOR */
+.acp-choose-color-input-div{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+.acp-main-color-input-div{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.acp-name-input-color{
+    width: 80%;
+    height: 100%;
+}
+.acp-code-input-color{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; 
+    transition: transform 0.2s; 
+    cursor: pointer;
+  }
+.acp-button-color{
+    width: 20%;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.acp-button-color:hover{
+    box-shadow: (7px 7px 7px rgba(0, 0, 0, 0.8));
+    background-color: blue;
+    color: white;
+    font-weight: 600;
+}
+
+/* MODEL */
+.acp-choose-model-input-div{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+.acp-main-model-input-div{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.acp-name-input-model{
+    width: 50%;
+    height: 100%;
+}
+.acp-brand-input-model{
+    width: 40%;
+    height: 100%;
+    transition: transform 0.2s; 
+    cursor: pointer;
+  }
+.acp-button-model{
+    width: 20%;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.acp-button-model:hover{
+    box-shadow: (7px 7px 7px rgba(0, 0, 0, 0.8));
+    background-color: blue;
+    color: white;
+    font-weight: 600;
+}
+
+/* VERSION  */
+.acp-choose-version-input-div{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+.acp-main-version-input-div{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.acp-name-input-version{
+    width: 30%;
+    height: 100%;
+}
+.acp-brand-input-version{
+    width: 30%;
+    height: 100%;
+    transition: transform 0.2s; 
+    cursor: pointer;
+  }
+.acp-button-version{
+    width: 20%;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.acp-button-version:hover{
+    box-shadow: (7px 7px 7px rgba(0, 0, 0, 0.8));
+    background-color: blue;
+    color: white;
+    font-weight: 600;
+}
+
+@media (min-width: 724px) {
+    .acp-choose-main-div {
+        width: 80%;
+        height: 70%;
+    }
+}
+@media (min-width: 1200px) {
+    .acp-choose-main-div {
+        width: 30%;
+        height: 60%;
+    }
+}
