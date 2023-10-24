@@ -1,7 +1,10 @@
 MAXI
--Sell car HTML
 -Add productDetail Info
--Add productSale price in products/all
+-Add popout sellCar
+-review banner home
+-review login and register
+-review filter
+-fix arrow image product home
 
 
 -state in which the car is sold

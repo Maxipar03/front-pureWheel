@@ -52,11 +52,10 @@ function brandsCarousel2() {
     const settings = {
       dots: false,
       infinite: true, 
-      speed: 500,
+      speed: 700,
       slidesToShow: 4,
       slidesToScroll: 1,
       autoplay: true, // Activa la reproducción automática
-      autoplaySpeed: 1000,
       pauseOnHover: false, // Evita que se detenga al pasar el ratón por encima
       cssEase: 'linear', // Establece la transición lineal entre las imágenes
       waitForAnimate: false, // Evita la pausa al final de la transición

@@ -11,6 +11,8 @@ import ProductsDetail from "./screen/productsDetail/productsDetail";
 import BrandsProducts from "./screen/brandsProducts/brandsProducts";
 import BuyCar from "./screen/buyCar/buyCar";
 import SellCar from "./screen/SellCar/sellCar"
+import Profile from "./screen/profile/profile"
+
 
 function App() {
   const location = useLocation();
@@ -62,6 +64,7 @@ return (
         {<Route exact path='/products/all' element={<BuyCar/>}/>}
         {/****************** SELL CAR ******************/}
         {<Route exact path='/products/sellCar' element={<SellCar/>}/>}
+        {<Route exact path="/profile" element={<Profile/>}/>}
       </Routes>
     <Footer/>
   </div>

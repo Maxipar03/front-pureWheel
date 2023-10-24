@@ -35,6 +35,7 @@ function header({ nameClass }) {
 
 
   const userLogged = JSON.parse(sessionStorage.getItem('userLogged'));
+  
 
   const burgerMenuFunction = () => {
     if (!burgerMenu) setBurgerMenu(true)
@@ -115,10 +116,12 @@ function header({ nameClass }) {
               </div>
               {open && (
                 <div className="dropdownMenu">
+                  <Link to='/profile' style={{ textDecoration: 'none' }}>
                   <div className="dropdownOptionContainer">
                     <FontAwesomeIcon icon={faUserPen} />
                     <h3 className="dropdownOption">Profile</h3>
                   </div>
+                  </Link>
                   <div className="dropdownOptionContainer" onClick={handleLogout}>
                     <FontAwesomeIcon icon={faRightFromBracket} />
                     <h3 className="dropdownOption">logout</h3>
