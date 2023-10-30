@@ -99,7 +99,7 @@ function productsDetail() {
         <div className="productDetailLineContainer">
           <div className="productDetailInfo">
             <h2>Color</h2>
-            <h3>{product.color}</h3>
+            <h3>{product.color && product.color.name}</h3>
           </div>
           <div className="productDetailInfo">
             <h2>Kilometres</h2>
@@ -134,10 +134,19 @@ function productsDetail() {
           </div>
         </div>
       </div>
+    </div> 
+    <div className="productDetailMoreInfoContainer">
+      <h1>{product.bodyCar && product.bodyCar.name}</h1>
+      <h1>{product.transmission}</h1>
+      <h1>{product.gas}</h1>
+      <h1>{product.engine}</h1>
+      {product.version === null ? <h1>{product.version}</h1> : <h1>No have version</h1>}
+      <h1>{product.doors}</h1>
     </div>
     <div className="productRelatedTitleContainer">
     <h1 className="productRelatedTitle">Product Related</h1>
     </div>
+   
     <div className="productRelatedContainer"> 
       {productRelatedBrand.map((car) => (
         <div key={car.id}>
