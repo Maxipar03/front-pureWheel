@@ -6,6 +6,8 @@ import appInfo from "../../modules/appInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import ImgCarruselDetail from "../imgCarrouselDetail/imgCarrouselDetail"
 import ProductDetailRelated from "../proudctDetailRelated/productDetailRelated";
 
@@ -14,6 +16,7 @@ function productsDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [productRelated, setProductRelated] = useState([])
+  const [moreInfo ,setMoreInfo] = useState(false)
 
   useEffect(() => {
     fetchApi(
@@ -136,17 +139,52 @@ function productsDetail() {
       </div>
     </div> 
     <div className="productDetailMoreInfoContainer">
+    <div className="productDetailMoreInfoRow">
+      <div className="productDetailMoreInfoBox">
+      <div className="productDetailMoreInfoDiv">
       <h1>{product.bodyCar && product.bodyCar.name}</h1>
+      </div>
+      <div className="productDetailMoreInfoDiv">
       <h1>{product.transmission}</h1>
+      </div>
+      <div className="productDetailMoreInfoDiv">
       <h1>{product.gas}</h1>
+      </div>
+      </div>
+      {!moreInfo ?
+      <div className="productDetailMoreInfoOpen">
+      <h1 className="productDetailMoreInfoOpentxt" onClick={() => {setMoreInfo(true)}} >See More</h1>
+      <FontAwesomeIcon icon={faAngleDown} className="arrowMoreInfo"/>
+      </div> : null
+      }
+    </div>
+    {moreInfo ?
+    <div className="productDetailMoreInfoRow">
+    <div className="productDetailMoreInfoBox">
+    <div className="productDetailMoreInfoDiv"> 
       <h1>{product.engine}</h1>
+    </div>
+    <div className="productDetailMoreInfoDiv"> 
       {product.version === null ? <h1>{product.version}</h1> : <h1>No have version</h1>}
+    </div>
+    <div className="productDetailMoreInfoDiv">
       <h1>{product.doors}</h1>
+    </div>
+    </div>
+    {moreInfo ?
+      <div className="productDetailMoreInfoOpen">
+      <h1 className="productDetailMoreInfoOpentxt" onClick={() => {setMoreInfo(false)}} >See Less</h1>
+      <FontAwesomeIcon icon={faAngleUp} className="arrowMoreInfo"/>
+      </div> : null
+      }
+    </div> : null
+    }
+
     </div>
     <div className="productRelatedTitleContainer">
     <h1 className="productRelatedTitle">Product Related</h1>
     </div>
-   
+
     <div className="productRelatedContainer"> 
       {productRelatedBrand.map((car) => (
         <div key={car.id}>

@@ -22,6 +22,13 @@
     z-index: 5;
 }
 
+.acp-main-div-top-edit {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .acp-choose-main-div {
     width: 40%;
     height: 60%;
@@ -41,11 +48,59 @@
     display: flex;
     justify-content: flex-end;
 }
+ /* EDIT */
+.acp-close-popup-div-edit{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.acp-choose-edit-input-div{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.editOptionsContainer {
+    width: 80%;
+    height: 70%;
+    overflow-y: auto;
+    padding: 10px; 
+    border-radius: 5px; 
+}
+
+.arrowExitEdit{
+    padding: 0% 2%;
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+}
+.arrowExitEdit:hover{
+    color: #888;
+}
+
+/**/
 .acp-close-popup-div p{
     padding: 0 2%;
     color: white;
     cursor: pointer;
 }
+
+.acp-close-popup-div-edit p{
+    padding: 0 2%;
+    color: white;
+    cursor: pointer;
+}
+
+.acp-close-popup-div-edit p:hover{
+    font-weight: 600;
+    color: red;
+    box-shadow: (7px 7px 7px rgba(0, 0, 0, 0.8));
+}
+
 .acp-close-popup-div p:hover{
     font-weight: 600;
     color: red;
@@ -123,6 +178,65 @@
     font-weight: 500;
 }
 
+.colorEditContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 0px;
+    border-bottom: 1px solid;
+}
+
+.colorEditName{
+    font-weight: 500;
+}
+
+
+.circle {
+    display: inline-block;
+    width: 30px;
+    /* Ancho del círculo */
+    height: 30px;
+    /* Altura del círculo */
+    border-radius: 50%;
+    /* Hacerlo circular */
+    margin-right: 10px;
+    /* Espacio entre círculos */
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.colorDetailContainer{
+    display: flex;
+}
+
+
+
+  .colorEditOptionsContainer::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  .colorEditOptionsContainer::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px; 
+  }
+  
+  .colorEditOptionsContainer::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+  .trashColor {
+    cursor: pointer;
+    transition: transform 0.2s; /* Aplica una transición suave a la propiedad transform */
+    transition: color 0.2s;
+  }
+  
+  .trashColor:hover {
+    transform: scale(1.1); /* Agrandará el elemento al 110% del tamaño original en hover */
+    color: red; /* Cambiará el color a rojo en hover */
+  }
+  
+
+
 /* MODEL */
 .acp-choose-model-input-div{
     width: 100%;
@@ -183,7 +297,44 @@
     background-color: rgb(203, 198, 198);
     font-weight: 500;
 }
-
+.editBrandModels{
+    display: flex;
+    flex-direction: column;
+}
+.editModelsBrandName {
+    display: flex;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+}
+.editModelsBrandNameexpanded{
+    display: flex;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+}
+.arrow-icon{
+    padding-right: 3px;
+    transition: transform 0.3s ease;
+}
+.arrow-iconexpanded{
+    padding-right: 3px;
+}
+.editModelsNameshideOptions {
+    display: none;
+}
+.editModelsNames{
+    display: flex;
+    flex-direction: column;
+}
+.editModelsNameDiv {
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+}
 /* VERSION  */
 .acp-choose-version-input-div{
     width: 100%;

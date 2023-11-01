@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './header.css'
 import logo from "../../public/LogoPureWheelPNG3.png"
+import usuario from "../../public/usuario.png"
 import { Link, json } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -111,7 +112,7 @@ function header({ nameClass }) {
           {userLogged ? (
             <div className="dropdownContainer">
               <div className="userLoggedNameContainer" onClick={() => setOpen(!open)}>
-                <FontAwesomeIcon icon={faUser} />
+                <img src={usuario} className='imageUserHeader' />
                 <h3 className="userLoggedName">{userLogged.name}</h3>
               </div>
               {open && (
