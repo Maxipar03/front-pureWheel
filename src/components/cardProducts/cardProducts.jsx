@@ -22,6 +22,8 @@ function cardProducts({ carsImage, brandImage, CarsID, carsUserID, carsModelName
     }
     return imagesToArray;
   }
+
+  
   return (
     <div className={productArticleClass} key={CarsID} onClick={() => { productOnClick(CarsID) }}>
       <ImgCarrusel
@@ -30,6 +32,7 @@ function cardProducts({ carsImage, brandImage, CarsID, carsUserID, carsModelName
         productImgClassName={"productsImage"}
         nextButtonClassName={"nextButton"}
         prevButtonClassName={"prevButton"}
+        carID = {CarsID}
       />
       <div className="productInfoContainer">
         <div className="productInfoTop">

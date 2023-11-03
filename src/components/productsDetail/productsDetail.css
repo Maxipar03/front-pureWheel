@@ -162,6 +162,11 @@ margin: 1% 0px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.2s;
+}
+
+.whatsappButton:hover{
+    background-color: #219f50;
 }
 
 #whatsappIcon{
@@ -244,7 +249,7 @@ margin: 1% 0px;
     margin-top: 0.5%;
     font-size: 1.2rem;
     font-weight: 600;
-    background-color: #d81414;
+    background-color: #e32020;
     cursor: pointer;
     border: 0px;
     border-radius: 5px;
@@ -252,6 +257,11 @@ margin: 1% 0px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.2s;
+}
+
+.favButton:hover{
+    background-color: #af1f1f;
 }
 
 .productRelatedContainer{

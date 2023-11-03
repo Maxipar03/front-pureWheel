@@ -4,8 +4,8 @@ import { fetchApi } from "../../modules/mainModules";
 import { useParams } from "react-router-dom";
 import appInfo from "../../modules/appInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMessage } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import ImgCarruselDetail from "../imgCarrouselDetail/imgCarrouselDetail"
@@ -128,12 +128,12 @@ function productsDetail() {
         </div>
         <div className="productDetailButtonWpcontainer">
           <div className="productDetailButtonWp">
-          <button className="whatsappButton"><FontAwesomeIcon id="whatsappIcon"icon={faMessage} /> Send Message</button>
+          <button className="whatsappButton"><FontAwesomeIcon icon={faWhatsapp}/>Send Message</button>
           </div>
         </div>
         <div className="productDetailButtonFavcontainer">
           <div className="productDetailButtonFav">
-          <button className="favButton"><FontAwesomeIcon icon={faHeart} /> Add to favorites</button>
+          <button className="favButton"><FontAwesomeIcon icon={regularHeart} /> Add to favorites</button>
           </div>
         </div>
       </div>
@@ -142,13 +142,13 @@ function productsDetail() {
     <div className="productDetailMoreInfoRow">
       <div className="productDetailMoreInfoBox">
       <div className="productDetailMoreInfoDiv">
-      <h1>{product.bodyCar && product.bodyCar.name}</h1>
+      {product.bodyCar === null ? <h1>-</h1> : <h1>{product.bodyCar && product.bodyCar.name }</h1>}
       </div>
       <div className="productDetailMoreInfoDiv">
-      <h1>{product.transmission}</h1>
+      {product.transmission === null ? <h1>-</h1>: <h1>{product.transmission}</h1>}
       </div>
       <div className="productDetailMoreInfoDiv">
-      <h1>{product.gas}</h1>
+      {product.gas=== null ? <h1>-</h1> : <h1>{product.gas }</h1>}
       </div>
       </div>
       {!moreInfo ?
@@ -162,13 +162,13 @@ function productsDetail() {
     <div className="productDetailMoreInfoRow">
     <div className="productDetailMoreInfoBox">
     <div className="productDetailMoreInfoDiv"> 
-      <h1>{product.engine}</h1>
+      {product.engine === null ? <h1>-</h1> : <h1>{product.engine}</h1>}
     </div>
     <div className="productDetailMoreInfoDiv"> 
       {product.version === null ? <h1>{product.version}</h1> : <h1>No have version</h1>}
     </div>
     <div className="productDetailMoreInfoDiv">
-      <h1>{product.doors}</h1>
+      {product.doors === null ? <h1>-</h1> : <h1>{product.doors}</h1>}
     </div>
     </div>
     {moreInfo ?

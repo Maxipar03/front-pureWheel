@@ -4,14 +4,20 @@
 }
 
 .heart{
-    position: absolute;
-    left: 5px;
-    font-size: 1.2rem;
-    top: 5px;
-    padding: 0.5vw;
-    background-color: burlywood;
-    border-radius: 30px;
-    display: none;
+  position: absolute;
+  left: 5px;
+  font-size: 1.2rem;
+  top: 5px;
+  padding: 0.5vw;
+  background-color: rgb(254, 254, 253);
+  border-radius: 30px;
+  display: none;
+  transition: background-color 0.3s;
+  z-index: 3;
+}
+
+.heart:hover{
+  background-color: rgb(185, 185, 185); ;
 }
 
 .thumbnail {

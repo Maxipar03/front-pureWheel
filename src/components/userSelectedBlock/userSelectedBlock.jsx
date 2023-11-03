@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './userSelectedBlock.css';
-
+import { fetchApi } from "../../modules/mainModules";
+import appInfo from "../../modules/appInfo";
 
 function userSelectedBlock({ selectedOption }) {
 
@@ -46,13 +47,26 @@ function userSelectedBlock({ selectedOption }) {
 
   useEffect(() => {
     const userLogged = JSON.parse(sessionStorage.getItem('userLogged'));
-    console.log(userLogged.phoneNumber);
-    console.log(phoneNumber);
     if (name != userLogged.name || email != userLogged.email || surname != userLogged.surname || JSON.stringify(phoneNumber) != userLogged.phoneNumber) setEditActive(true);
     if (name === userLogged.name && email === userLogged.email && surname === userLogged.surname && JSON.stringify(phoneNumber) === userLogged.phoneNumber)  setEditActive(false)
   }, [name, email, surname, phoneNumber]);
 
-
+const FavssFunction = () => {
+  const userLogged = JSON.parse(sessionStorage.getItem('userLogged'));
+ fetchApi(
+      `${appInfo.root}/cars/favss/${userLogged.id}`,
+      {
+        method: "GET",
+      },
+      (resolve, reject) => {
+        if (reject) {
+          console.log(reject);
+        } else {
+          console.log(resolve);
+        }
+      }
+    );
+}
 
 
 
@@ -105,8 +119,12 @@ function userSelectedBlock({ selectedOption }) {
     );
   } else if (selectedOption === "Garage") {
     contentToRender = (
-      <div>
-        <h1 className="userInfoTitle">Garage</h1>
+      <div className="userInfoContainer">
+      <div className="userInfoTitleDiv">
+        <h1 className="userInfoTitle" >Favorites</h1>
+        <FavssFunction/>
+      </div>
+
       </div>
     );
   } else if (selectedOption === "Statistics") {

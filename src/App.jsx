@@ -47,6 +47,9 @@ function App() {
         sessionStorage.setItem('userLogged', JSON.stringify(resolve.data))
       });
     }
+
+    
+
   }, []);
 
 return (
