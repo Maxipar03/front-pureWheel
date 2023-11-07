@@ -37,7 +37,7 @@ function products() {
         <h1 className="productsSaleTitle">ON SALE<FontAwesomeIcon icon={faTag} className="iconSale" /></h1>
       <div className="allProductsContainer">
           {onSaleProducts.map((car) => (
-            <CardProducts key={car.id} productArticleClass={"productsArticleHome"} productDescriptionClass={"productDescriptionContainerHome"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} brandImage={car.brand.logo} carsYear={car.year} carsSale={calculateDiscountedPrice(car.price, car.onSale)}/>
+            <CardProducts carInfo={car} key={car.id} productArticleClass={"productsArticleHome"} productDescriptionClass={"productDescriptionContainerHome"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} brandImage={car.brand.logo} carsYear={car.year} carsSale={calculateDiscountedPrice(car.price, car.onSale)}/>
             ))}
             </div>
       </div>

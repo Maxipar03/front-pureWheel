@@ -5,7 +5,7 @@ import ImgCarrusel from "../imgCarrousel/imgCarrousel";
 import { useNavigate } from 'react-router-dom';
 
 
-function cardProducts({ carsImage, brandImage, CarsID, carsUserID, carsModelName, carsPrice, carsKM, carsYear, productDescriptionClass, productArticleClass, carsSale }) {
+function cardProducts({ carInfo ,carsImage, brandImage, CarsID, carsUserID, carsModelName, carsPrice, carsKM, carsYear, productDescriptionClass, productArticleClass, carsSale }) {
 
   const navigateTo = useNavigate();
 
@@ -33,6 +33,7 @@ function cardProducts({ carsImage, brandImage, CarsID, carsUserID, carsModelName
         nextButtonClassName={"nextButton"}
         prevButtonClassName={"prevButton"}
         carID = {CarsID}
+        carInfo = {carInfo}
       />
       <div className="productInfoContainer">
         <div className="productInfoTop">

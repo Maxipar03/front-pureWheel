@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
 
-function imgCarrusel({ imgArray, id, productImgClassName, nextButtonClassName, prevButtonClassName, carsSale, carID }) {
+function imgCarrusel({ imgArray, id, productImgClassName, nextButtonClassName, prevButtonClassName, carsSale, carID, carInfo }) {
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFav, setIsFav] = useState(false)
@@ -22,33 +22,57 @@ function imgCarrusel({ imgArray, id, productImgClassName, nextButtonClassName, p
     );
   };
 
-  useEffect(() => {
-    const userLogged = JSON.parse(sessionStorage.getItem('userLogged'));
-    console.log(userLogged);
-    const favsFetch = async ()=> {
-      const allFavs = await fetchApi(
-        `${appInfo.root}/cars/favss/${userLogged.id}`,
-        {
-          method: "GET",
-        },
-        (resolve, reject) => {
-          if (reject) {
-            console.log(reject);
-          } else {
-            return resolve.data;
-          }
-        }
-      );
 
-      setAllFavs(allFavs)
-    }
-    favsFetch()
-  }, [carID])
-  console.log(allFavs);
 
-   const handleClickFav = (id) => {
+  const handleClickFav = () => {
+    const existingData = JSON.parse(localStorage.getItem("favorites"));
+    if (existingData === null) {
+      localStorage.setItem("favorites", JSON.stringify([carInfo]));
+      console.log("Nuevo dato agregado a favoritos:", carInfo);
+      console.log(JSON.parse(localStorage.getItem("favorites")));
+    } else {
+
+      console.log("not null");
+      console.log(existingData);
+      let isIn = false
+      for (const car of existingData) {
+        if(car.id === carID){
+          isIn = true
+        } 
+      }
+
+      if(isIn){
+        const newArr = existingData.map(car => {
+          car.id != carID ? car : null
+        })
+        console.log("newArr");
+        console.log(newArr);
+      } else {
+        const editedArr = existingData.push(carInfo)
+        console.log("editedArr");
+        console.log(editedArr);
+      }
+
+      console.log(isIn);
     
-   }
+    }
+
+
+      // if (isCarInfoInArray) {
+
+      //   // const updatedDataArray = dataArray.filter(item => JSON.stringify(item) !== carInfoString);
+      //   // localStorage.setItem("favorites", JSON.stringify(updatedDataArray));
+      //   console.log("Dato debe ser eliminado de favoritos:", carInfo);
+      // } else {
+      //   localStorage.setItem("favorites", JSON.stringify([existingData].push(carInfo)));
+      //   console.log("Nuevo dato agregado a favoritos:", carInfo);
+      // }
+
+
+    }
+
+  
+
 
   return (
     <div className="image-carousel">
@@ -68,7 +92,10 @@ function imgCarrusel({ imgArray, id, productImgClassName, nextButtonClassName, p
         src={`${appInfo.root}/images/cars/user_${id}/${imgArray[currentImageIndex]}`}
         alt=""
       />
-      <FontAwesomeIcon icon={regularHeart} className="heart" />
+      <FontAwesomeIcon icon={regularHeart} className="heart" onClick={(event) => {
+        event.stopPropagation(); // 
+        handleClickFav(carID);
+      }} />
       {carsSale ? <h3 className="saleImage">-{carsSale}%</h3> : null}
       <div className="bottom-shadow-right-id">
         <button onClick={(e) => {
