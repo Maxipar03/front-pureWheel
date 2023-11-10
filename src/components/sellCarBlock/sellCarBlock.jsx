@@ -20,12 +20,13 @@ function sellCarBlock() {
     const [selectedTransmission, setSelectedTransmission] = useState('');
     const [selectedPrice, setSelectedPrice] = useState('')
     const [selectedDescription, setSelectedDescription] = useState('')
-    const [selectedDiscount, setSelected] = useState('')
+    const [selectedDiscount, setSelectedDiscount] = useState('')
     const [selectedKilometers, setSelectedKilometers] = useState('')
     const [selectedYear, setSelectedYear] = useState('')
     const [selectedVersion, setSelectedVersion] = useState('')
     const [selectedDamage, setSelectedDamage] = useState('')
     const [selectedGasoline, setSelectedGasoline] = useState('')
+    const [selectedEngine, setSelectedEngine] = useState('')
 
 
     const [allBrands, setAllBrands] = useState([]);
@@ -38,8 +39,8 @@ function sellCarBlock() {
     const refInputImg = useRef()
     const refImageIcon = useRef()
 
-    const [addPopup, setAddPopup] = useState(false);
     const [addPopupType, setAddPopupType] = useState("")
+    const [addPopup, setAddPopup] = useState(false);
     const addPopupFunction = (type) => {
         if (!addPopup) setAddPopup(true)
         if (addPopup) setAddPopup(false)
@@ -48,7 +49,8 @@ function sellCarBlock() {
         type === "version" ? setAddPopupType("version") : null
     }
 
-    // HANDLERS FUNCTIONS
+    // FUNCTIONS
+    // HANDLERS 
     const handleImageChange = (event) => {
         const files = Array.from(event.target.files);
 
@@ -69,25 +71,85 @@ function sellCarBlock() {
         refImageIcon.current.className = 'ch-add-img-icon fa-solid fa-circle-plus'
         setSelectedImages([...selectedImages, ...validatedImages]);
     };
-    const handleColorChange = (e)=>{}
+    const handleColorChange = (e)=>{
+        const newColor = e.target.value
+        setSelectedColor(newColor)
+    }
     const handleBrandChange =  (e) => {
         const selectedBrandId = e.target.value;
         setSelectedBrand(selectedBrandId);
         setSelectedModel('');
         setSelectedModel(allModels.filter((model) => model.brand_id === selectedBrandId));
     };
-    const handleModelChange = (e)=>{}
-    const handleBodyCarChange = (e)=>{}
-    const handleTransmissionChange = (e)=>{}
-    const handlePriceChange = (e)=>{}
-    const handleDescriptionChange = (e)=>{}
-    const handleDiscountChange = (e)=>{}
-    const handleKilometersChange = (e)=>{}
-    const handleYearChange = (e)=>{}
-    const handleVersionChange = (e)=>{}
-    const handleDamageChange = (e)=>{}
-    const handleGasolineChange = (e)=>{}
-
+    const handleModelChange = (e)=>{
+        const newModel = e.target.value
+        setSelectedModel(newModel)
+    }
+    const handleBodyCarChange = (e)=>{
+        const newBody = e.target.value
+        setSelectedBodyCar(newBody)
+    }
+    const handleTransmissionChange = (e)=>{
+        const newTransmission = e.target.value
+        setSelectedTransmission(newTransmission)
+    }
+    const handlePriceChange = (e)=>{
+        const newPrice = e.target.value
+        setSelectedPrice(newPrice)
+    }
+    const handleDescriptionChange = (e)=>{
+        const newDescription = e.target.value
+        setSelectedDescription(newDescription)
+    }
+    const handleDiscountChange = (e)=>{
+        const newDiscount = e.target.value
+        setSelectedDiscount(newDiscount)
+    }
+    const handleKilometersChange = (e)=>{
+        const newKilometers = e.target.value
+        setSelectedKilometers(newKilometers)
+    }
+    const handleYearChange = (e)=>{
+        const newYear = e.target.value
+        setSelectedYear(newYear)
+    }
+    const handleVersionChange = (e)=>{
+        const newVersion = e.target.value
+        setSelectedVersion(newVersion)
+    }
+    const handleDamageChange = (e)=>{
+        const newDamage = e.target.value
+        setSelectedDamage(newDamage)
+    }
+    const handleGasolineChange = (e)=>{
+        const newGasoline = e.target.value
+        setSelectedGasoline(newGasoline)
+    }
+    const handleEngineChange = (e)=>{
+        const newEngine = e.target.value
+        setSelectedEngine(newEngine)
+    }
+// OnClickSubmit
+const sellCarButtonClick = () => {
+    console.log(`Car information:`);
+    console.log({
+        Images: selectedImages,
+        Color: selectedColor,
+        Brand: selectedBrand,
+        Model: selectedModel,
+        Body: selectedBodyCar,
+        Transmission: selectedTransmission,
+        Price: selectedPrice,
+        Description: selectedDescription,
+        Discount: selectedDiscount,
+        Kilometers: selectedKilometers,
+        Year: selectedYear,
+        Version: selectedVersion,
+        Damage: selectedDamage,
+        Gasoline: selectedGasoline,
+        Engine: selectedEngine
+    });
+}
 
 
     
@@ -188,35 +250,35 @@ function sellCarBlock() {
                 <div className="rowOne">
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Description*</label>
-                        <input id="sellCarInput" placeholder="Porsche cayane 3.8gt" type="text"></input> {/*INPUT*/}
+                        <input id="sellCarInput" placeholder="Porsche cayane 3.8gt" type="text" onChange={(e) => handleDescriptionChange(e)}></input> {/*INPUT*/}
                     </div>
                     <div id="sellCarInputContainer" className="sellCarPriceInputContainer" >
                         <label id="sellCarLabel">Price*</label>
-                        <input id="sellCarInput" placeholder="20000" type="number" inputMode="numeric" onChange={(e) => setSelectedPrice(e.target.value)}></input> {/*INPUT*/}
+                        <input id="sellCarInput" placeholder="20000" type="number" inputMode="numeric" onChange={(e) => handlePriceChange(e)}></input> {/*INPUT*/}
                         <p className="sellCarPriceIcon">$</p>
                     </div>
                     <div id="sellCarInputContainer" className="sellCarDiscountInputContainer">
                         <label id="sellCarLabel">Discount</label>
-                        <input id="sellCarInput" placeholder="20" type="number"></input> {/*INPUT*/}
+                        <input id="sellCarInput" placeholder="20" type="number" onChange={(e) => handleDiscountChange(e)}></input> {/*INPUT*/}
                         <p className="sellCarDiscountIcon">%</p>
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Kilometers*</label>
-                        <input id="sellCarInput" placeholder="1000" type="number"></input> {/*INPUT*/}
+                        <input id="sellCarInput" placeholder="1000" type="number" onChange={(e) => handleKilometersChange(e)}></input> {/*INPUT*/}
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Year*</label>
-                        <input id="sellCarInput" placeholder="2021" type="number"></input> {/*INPUT*/}
+                        <input id="sellCarInput" placeholder="2021" type="number" onChange={(e) => handleYearChange(e)}></input> {/*INPUT*/}
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Color*</label>
-                        <select id="sellCarSelect" value={selectedColor}>
+                        <select id="sellCarSelect" value={selectedColor} onChange={(e) => handleColorChange(e)}>
                             <option value="" className="SellCarHideOption">Select a color</option>
                         </select>
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Damage</label>
-                        <input type="text" id="sellCarSelect" placeholder="Front Crash"></input> {/*INPUT*/}
+                        <input type="text" id="sellCarSelect" placeholder="Front Crash" onChange={(e) => handleDamageChange(e)}></input> {/*INPUT*/}
 
                     </div>
                 </div>
@@ -234,7 +296,7 @@ function sellCarBlock() {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Model*</label>
-                        <select id="sellCarSelect" value={selectedModel} onChange={(e) => setSelectedModel(e.target.value)} disabled={!selectedBrand}>
+                        <select id="sellCarSelect" value={selectedModel} onChange={(e) => handleModelChange(e)} disabled={!selectedBrand}>
                             <option value="" className="SellCarHideOption">Select a model</option>
                             {selectedBrand &&
                                 allModels
@@ -248,7 +310,7 @@ function sellCarBlock() {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Transmission*</label>
-                        <select id="sellCarSelect" value={selectedTransmission} onChange={(e) => setSelectedTransmission(e.target.value)}>
+                        <select id="sellCarSelect" value={selectedTransmission} onChange={(e) => handleTransmissionChange(e)}>
                             <option value="" className="SellCarHideOption">Select a transmission</option>
                             <option>Manual</option>
                             <option>Automatic</option>
@@ -256,12 +318,12 @@ function sellCarBlock() {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Version</label>
-                        <input type="text" placeholder="GTI" id="sellCarInput"></input> {/*INPUT*/}
+                        <input type="text" placeholder="GTI" id="sellCarInput" onChange={(e) => handleVersionChange(e)}></input> {/*INPUT*/}
                     </div>
 
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Body Car*</label>
-                        <select id="sellCarSelect" value={selectedBodyCar} onChange={(e) => setSelectedBodyCar(e.target.value)}>
+                        <select id="sellCarSelect" value={selectedBodyCar} onChange={(e) => handleBodyCarChange(e)}>
                             <option value="" className="SellCarHideOption">Select a Body Car</option>
                             {allBodyCars.map((bodyCar) => (
                                 <option key={bodyCar.id} value={bodyCar.name}>
@@ -272,11 +334,11 @@ function sellCarBlock() {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Engine*</label>
-                        <input id="sellCarInput" placeholder="V10" type="text"></input> {/*INPUT*/}
+                        <input id="sellCarInput" placeholder="V10" type="text" onChange={(e) => handleEngineChange(e)}></input> {/*INPUT*/}
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Gasoline*</label>
-                        <input id="sellCarInput" placeholder="Premium" type="text"></input> {/*INPUT*/}
+                        <input id="sellCarInput" placeholder="Premium" type="text" onChange={(e) => handleGasolineChange(e)}></input> {/*INPUT*/}
                     </div>
                 </div>
             </div>
@@ -320,7 +382,7 @@ function sellCarBlock() {
                     </div>
                 </div>
                 <div className="sellCarButtonContainer">
-                    <button className="sellCarPublishButton">Sell Car</button>
+                    <button onClick={sellCarButtonClick} className="sellCarPublishButton">Sell Car</button>
                 </div>
             </div>
             <AddPopup trigger={addPopup} type={addPopupType} setTrigger={setAddPopup}></AddPopup>
