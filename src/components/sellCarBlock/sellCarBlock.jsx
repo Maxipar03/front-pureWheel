@@ -19,6 +19,14 @@ function sellCarBlock() {
     const [selectedBodyCar, setSelectedBodyCar] = useState('');
     const [selectedTransmission, setSelectedTransmission] = useState('');
     const [selectedPrice, setSelectedPrice] = useState('')
+    const [selectedDescription, setSelectedDescription] = useState('')
+    const [selectedDiscount, setSelected] = useState('')
+    const [selectedKilometers, setSelectedKilometers] = useState('')
+    const [selectedYear, setSelectedYear] = useState('')
+    const [selectedVersion, setSelectedVersion] = useState('')
+    const [selectedDamage, setSelectedDamage] = useState('')
+    const [selectedGasoline, setSelectedGasoline] = useState('')
+
 
     const [allBrands, setAllBrands] = useState([]);
     const [allModels, setAllModels] = useState([]);
@@ -40,6 +48,7 @@ function sellCarBlock() {
         type === "version" ? setAddPopupType("version") : null
     }
 
+    // HANDLERS FUNCTIONS
     const handleImageChange = (event) => {
         const files = Array.from(event.target.files);
 
@@ -60,19 +69,34 @@ function sellCarBlock() {
         refImageIcon.current.className = 'ch-add-img-icon fa-solid fa-circle-plus'
         setSelectedImages([...selectedImages, ...validatedImages]);
     };
+    const handleColorChange = (e)=>{}
+    const handleBrandChange =  (e) => {
+        const selectedBrandId = e.target.value;
+        setSelectedBrand(selectedBrandId);
+        setSelectedModel('');
+        setSelectedModel(allModels.filter((model) => model.brand_id === selectedBrandId));
+    };
+    const handleModelChange = (e)=>{}
+    const handleBodyCarChange = (e)=>{}
+    const handleTransmissionChange = (e)=>{}
+    const handlePriceChange = (e)=>{}
+    const handleDescriptionChange = (e)=>{}
+    const handleDiscountChange = (e)=>{}
+    const handleKilometersChange = (e)=>{}
+    const handleYearChange = (e)=>{}
+    const handleVersionChange = (e)=>{}
+    const handleDamageChange = (e)=>{}
+    const handleGasolineChange = (e)=>{}
+
+
+
+    
 
     const removeImg = (index, event) => {
         event.preventDefault()
         const updatedImages = [...selectedImages];
         updatedImages.splice(index, 1);
         setSelectedImages(updatedImages);
-    };
-
-    const handleBrandChange = (e) => {
-        const selectedBrandId = e.target.value;
-        setSelectedBrand(selectedBrandId);
-        setSelectedModel('');
-        setSelectedModel(allModels.filter((model) => model.brand_id === selectedBrandId));
     };
 
     useEffect(() => {
@@ -164,25 +188,25 @@ function sellCarBlock() {
                 <div className="rowOne">
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Description*</label>
-                        <input id="sellCarInput" placeholder="Porsche cayane 3.8gt" type="text"></input>
+                        <input id="sellCarInput" placeholder="Porsche cayane 3.8gt" type="text"></input> {/*INPUT*/}
                     </div>
                     <div id="sellCarInputContainer" className="sellCarPriceInputContainer" >
                         <label id="sellCarLabel">Price*</label>
-                        <input id="sellCarInput" placeholder="20000" type="number" inputMode="numeric" onChange={(e) => setSelectedPrice(e.target.value)}></input>
+                        <input id="sellCarInput" placeholder="20000" type="number" inputMode="numeric" onChange={(e) => setSelectedPrice(e.target.value)}></input> {/*INPUT*/}
                         <p className="sellCarPriceIcon">$</p>
                     </div>
                     <div id="sellCarInputContainer" className="sellCarDiscountInputContainer">
                         <label id="sellCarLabel">Discount</label>
-                        <input id="sellCarInput" placeholder="20" type="number"></input>
+                        <input id="sellCarInput" placeholder="20" type="number"></input> {/*INPUT*/}
                         <p className="sellCarDiscountIcon">%</p>
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Kilometers*</label>
-                        <input id="sellCarInput" placeholder="1000" type="number"></input>
+                        <input id="sellCarInput" placeholder="1000" type="number"></input> {/*INPUT*/}
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Year*</label>
-                        <input id="sellCarInput" placeholder="2021" type="number"></input>
+                        <input id="sellCarInput" placeholder="2021" type="number"></input> {/*INPUT*/}
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Color*</label>
@@ -192,7 +216,7 @@ function sellCarBlock() {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Damage</label>
-                        <input type="text" id="sellCarSelect" placeholder="Front Crash"></input>
+                        <input type="text" id="sellCarSelect" placeholder="Front Crash"></input> {/*INPUT*/}
 
                     </div>
                 </div>
@@ -232,7 +256,7 @@ function sellCarBlock() {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Version</label>
-                        <input type="text" placeholder="GTI" id="sellCarInput"></input>
+                        <input type="text" placeholder="GTI" id="sellCarInput"></input> {/*INPUT*/}
                     </div>
 
                     <div id="sellCarInputContainer">
@@ -248,11 +272,11 @@ function sellCarBlock() {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Engine*</label>
-                        <input id="sellCarInput" placeholder="V10" type="text"></input>
+                        <input id="sellCarInput" placeholder="V10" type="text"></input> {/*INPUT*/}
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Gasoline*</label>
-                        <input id="sellCarInput" placeholder="Premium" type="text"></input>
+                        <input id="sellCarInput" placeholder="Premium" type="text"></input> {/*INPUT*/}
                     </div>
                 </div>
             </div>

@@ -114,8 +114,6 @@ function addPopup(props) {
         fetchData();
     }, []);
 
-    console.log(allModels)
-
 
     const colorListButton = ()=>setPopupType("colorList")
     const modelListButton = ()=>setPopupType("modelList")
