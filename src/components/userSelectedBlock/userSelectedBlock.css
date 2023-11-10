@@ -28,6 +28,25 @@
     padding: 3px 15px;
 }
 
+.productsArticleHomeFavs {
+    background-color: #fffefe;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    transition: box-shadow 0.3s ease-in;
+}
+
+.productFavContainer{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5%;
+}
+
+
 .userInfoInputsContainer{
     margin-top: 45px;
     display: flex;

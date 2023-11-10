@@ -23,55 +23,39 @@ function imgCarrusel({ imgArray, id, productImgClassName, nextButtonClassName, p
   };
 
 
-
-  const handleClickFav = () => {
-    const existingData = JSON.parse(localStorage.getItem("favorites"));
-    if (existingData === null) {
+  const handleClickFav = (carID) => {
+    let existingData = JSON.parse(localStorage.getItem("favorites"));
+    if (existingData === null || existingData === null) { // ini
       localStorage.setItem("favorites", JSON.stringify([carInfo]));
-      console.log("Nuevo dato agregado a favoritos:", carInfo);
-      console.log(JSON.parse(localStorage.getItem("favorites")));
+      setIsFav(true)
     } else {
+      const isIn = existingData.filter(element => element.id == carID)
 
-      console.log("not null");
-      console.log(existingData);
-      let isIn = false
-      for (const car of existingData) {
-        if(car.id === carID){
-          isIn = true
-        } 
-      }
-
-      if(isIn){
-        const newArr = existingData.map(car => {
-          car.id != carID ? car : null
-        })
-        console.log("newArr");
-        console.log(newArr);
+      if (isIn.length > 0) {
+        const newArr = existingData.map(element => element.id != carID ? element : null)
+        localStorage.setItem("favorites", JSON.stringify(newArr.filter(element => element != null)));
+      setIsFav(false)
       } else {
-        const editedArr = existingData.push(carInfo)
-        console.log("editedArr");
-        console.log(editedArr);
+        existingData.push(carInfo)
+        localStorage.setItem("favorites", JSON.stringify(existingData));
+      setIsFav(true)
       }
-
-      console.log(isIn);
-    
     }
+  }
+
+  useEffect(() => {
+    let existingData = JSON.parse(localStorage.getItem("favorites"));
+    if(existingData != null){
+    const isIn = existingData.filter(element => element.id == carID)
+    if (isIn.length > 0) {
+      setIsFav(true)
+    }else{
+      setIsFav(false)
+    }}
+
+  },[])
 
 
-      // if (isCarInfoInArray) {
-
-      //   // const updatedDataArray = dataArray.filter(item => JSON.stringify(item) !== carInfoString);
-      //   // localStorage.setItem("favorites", JSON.stringify(updatedDataArray));
-      //   console.log("Dato debe ser eliminado de favoritos:", carInfo);
-      // } else {
-      //   localStorage.setItem("favorites", JSON.stringify([existingData].push(carInfo)));
-      //   console.log("Nuevo dato agregado a favoritos:", carInfo);
-      // }
-
-
-    }
-
-  
 
 
   return (
@@ -92,10 +76,13 @@ function imgCarrusel({ imgArray, id, productImgClassName, nextButtonClassName, p
         src={`${appInfo.root}/images/cars/user_${id}/${imgArray[currentImageIndex]}`}
         alt=""
       />
-      <FontAwesomeIcon icon={regularHeart} className="heart" onClick={(event) => {
+     { !isFav ? <FontAwesomeIcon icon={regularHeart} className="heart" onClick={(event) => {
         event.stopPropagation(); // 
         handleClickFav(carID);
-      }} />
+      }} /> : <FontAwesomeIcon icon={solidHeart} className="heart" onClick={(event) => {
+        event.stopPropagation(); // 
+        handleClickFav(carID);
+      }} /> } 
       {carsSale ? <h3 className="saleImage">-{carsSale}%</h3> : null}
       <div className="bottom-shadow-right-id">
         <button onClick={(e) => {
