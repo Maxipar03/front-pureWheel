@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './userSelectedBlock.css';
+import CardProducts from "../cardProducts/cardProducts";
 import { fetchApi } from "../../modules/mainModules";
 import appInfo from "../../modules/appInfo";
 
@@ -12,6 +13,15 @@ function userSelectedBlock({ selectedOption }) {
   const [surname, setSurname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState([]);
   const [birthdate, setBirthdate] = useState("");
+
+  const existingData = JSON.parse(localStorage.getItem("favorites"));
+
+  
+  function calculateDiscountedPrice(price, discountPercentage) {
+    const discountedPrice = price - (price * (discountPercentage / 100));
+    return discountedPrice.toFixed(0); 
+  }
+
 
   // Functions
   const editActiveFunction = () => {
@@ -51,22 +61,6 @@ function userSelectedBlock({ selectedOption }) {
     if (name === userLogged.name && email === userLogged.email && surname === userLogged.surname && JSON.stringify(phoneNumber) === userLogged.phoneNumber)  setEditActive(false)
   }, [name, email, surname, phoneNumber]);
 
-const FavssFunction = () => {
-  const userLogged = JSON.parse(sessionStorage.getItem('userLogged'));
- fetchApi(
-      `${appInfo.root}/cars/favss/${userLogged.id}`,
-      {
-        method: "GET",
-      },
-      (resolve, reject) => {
-        if (reject) {
-          console.log(reject);
-        } else {
-          console.log(resolve);
-        }
-      }
-    );
-}
 
 
 
@@ -121,10 +115,13 @@ const FavssFunction = () => {
     contentToRender = (
       <div className="userInfoContainer">
       <div className="userInfoTitleDiv">
-        <h1 className="userInfoTitle" >Favorites</h1>
-        <FavssFunction/>
+        <h1 className="userInfoTitle" >Favorites</h1>  
       </div>
-
+      <div className="productFavContainer">
+        {existingData.map((car) => (
+            <CardProducts carInfo={car} key={car.id} productArticleClass={"productsArticleHomeFavs"} productDescriptionClass={"productDescriptionContainerHome"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} brandImage={car.brand.logo} carsYear={car.year} carsSale={calculateDiscountedPrice(car.price, car.onSale)}/>
+            ))}
+      </div>
       </div>
     );
   } else if (selectedOption === "Statistics") {
