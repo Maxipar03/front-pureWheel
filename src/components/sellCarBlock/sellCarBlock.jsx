@@ -32,6 +32,7 @@ function sellCarBlock() {
     const [allBrands, setAllBrands] = useState([]);
     const [allModels, setAllModels] = useState([]);
     const [allBodyCars, setAllBodyCars] = useState([])
+    const [allColors, setAllColors] = useState([])
 
     const [menuIsOpen, setMenuIsOpen] = useState(false)
 
@@ -150,8 +151,6 @@ const sellCarButtonClick = () => {
         Engine: selectedEngine
     });
 }
-
-
     
 
     const removeImg = (index, event) => {
@@ -191,6 +190,15 @@ const sellCarButtonClick = () => {
                 }
                 )
                 setAllModels(modelsResponse);
+
+                const colorsResponse = await fetchApi(`${appInfo.root}/cars/colors`, {
+                    method: 'GET',
+                }, (resolve, reject) => {
+                    if (reject) console.error(reject)
+                    return resolve.data
+                }
+                )
+                setAllColors(colorsResponse);
 
             } catch (error) {
                 console.error(error);
@@ -274,6 +282,9 @@ const sellCarButtonClick = () => {
                         <label id="sellCarLabel">Color*</label>
                         <select id="sellCarSelect" value={selectedColor} onChange={(e) => handleColorChange(e)}>
                             <option value="" className="SellCarHideOption">Select a color</option>
+                            {allColors.map(color => (
+                                <option key={color.id} value={color.code}>{color.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div id="sellCarInputContainer">
