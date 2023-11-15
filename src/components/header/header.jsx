@@ -65,24 +65,8 @@ function header({ nameClass }) {
   return (
     <div className="componentHeader">
       <header className={scrolling ? 'headerScrolling' : nameClass}>
-        <div className="divLogo">
-          <Link to='/' style={{ textDecoration: 'none' }}>
-            <h1 className='titleHeader'>pure<b>wheel</b></h1>
-            <img src={logo} className='imageLogo' />
-          </Link>
-        </div>
-        <div className="options">
+        <div className={scrolling ? 'optionScrolling' :'options'}>
           <ul className="selectors">
-          <div
-              className={`header-option ${selectedOption === "aboutUs" ? 'hovered' : ''}`}
-              onMouseEnter={() => handleMouseEnter("aboutUs")}
-              onMouseLeave={handleMouseLeave}
-            >
-            <li>About Us</li>
-            <div
-                className={`underline ${selectedOption === "aboutUs" ? 'visible' : ''}`}
-              ></div>
-            </div>
             <Link to='/products/all' style={{ textDecoration: 'none' }}>
             <div
               className={`header-option ${selectedOption === "buyCar" ? 'hovered' : ''}`}
@@ -109,6 +93,12 @@ function header({ nameClass }) {
             </div>
             </Link>
           </ul>
+          <div className="divLogo">
+          <Link to='/' style={{ textDecoration: 'none' }}>
+            <h1 className='titleHeader'>pure<b>wheel</b></h1>
+            <img src={logo} className='imageLogo' />
+          </Link>
+        </div>
           {userLogged ? (
             <div className="dropdownContainer">
               <div className="userLoggedNameContainer" onClick={() => setOpen(!open)}>

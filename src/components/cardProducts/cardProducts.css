@@ -35,6 +35,7 @@ h3{
 .productInfoPriceContainer{
     width: 100%;
     display: flex;
+    justify-content: flex-end;
 }
 
 .productInfoNameBrand{

@@ -46,8 +46,8 @@ function cardProducts({ carInfo ,carsImage, brandImage, CarsID, carsUserID, cars
           </div>
         </div>
         <div className="productInfoPriceContainer">
-        <h3 className="productInfo" id="productPriceNew">{carsSale}$</h3>
         <h3 className="productInfo" id="productPriceOld"><span className="line-throw">{carsPrice}$</span></h3>
+        <h3 className="productInfo" id="productPriceNew">{carsSale}$</h3>
         </div>
       </div>
       <div className={productDescriptionClass}>

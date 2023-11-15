@@ -59,9 +59,21 @@ function brandsCarousel2() {
       pauseOnHover: false, // Evita que se detenga al pasar el ratón por encima
       cssEase: 'linear', // Establece la transición lineal entre las imágenes
       waitForAnimate: false, // Evita la pausa al final de la transición
+      mobileFirst:true,
+      responsive: [{
+   
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 4,
+          dots: true,
+          arrows: false 
+        }
+   
+      }]
     };
   
       return (
+        <div className="brandsBackgroundTest">
         <div className="brandsComponent2">
           <div className="slickCarouselContainer">
           <Slider {...settings}> 
@@ -78,6 +90,7 @@ function brandsCarousel2() {
             </Slider>  
           </div>
           </div>
+        </div>
       );
     }
 
