@@ -5,9 +5,10 @@
     background-color: #949396;
     padding: 0px 4%;
     z-index: 5;
-    width: 20vw;
+    width: 38.2%;
     justify-content: center;
-    border-radius: 0px 6px 6px 0px;
+    border-radius: 6px 0px 0px 6px;
+    box-shadow: -39px 0px 34px 0px rgba(0,0,0,0.1);
 }
 
 .inputError{
@@ -15,6 +16,7 @@
   border-radius: 5px;
   border: 1px solid red;
   font-size: 1.1rem;
+  width: 100%;
 }
 
 .inputError:hover{
@@ -35,19 +37,27 @@
 .logginInputContent{
         display: flex;
         flex-direction: column;
-        padding: 2% 0%;
+        padding: 3% 0%;
+        position: relative;
 }
 
 .logginComponent {
-        border-radius: 6px;
-        position: absolute;
-        top: 50%; 
-        left: 50%; 
-        transform: translate(-50%, -50%); 
-        display: flex;
-        -webkit-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
+  border-radius: 6px;
+  position: absolute;
+  /* top: 50%; */
+  top: 0;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  /*background-image: url("https://i.pinimg.com/originals/ec/45/ea/ec45eaef22ce931b6aa110d035fa724e.jpg");*/
+  background-image: url("https://w.wallha.com/ws/10/zs1GA36p.jpg");
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  display: flex;
+  -webkit-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
 }
 
 .inputSession{
@@ -55,6 +65,7 @@ box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
         border-radius: 5px;
         border: 0px;
         font-size: 1.1rem;
+        width: 100%;
 }
 
 .logginForm label{
@@ -64,9 +75,8 @@ box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
 }
 
 .bannerLogin {
-  width: 25vw;
-  height: 30vw;
-  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -83,6 +93,7 @@ box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
   flex-direction: column;
   height: 100%;
   align-items: center;
+  background-color: #000000a1;
   justify-content: space-around;
   position: relative;
 }
@@ -255,6 +266,7 @@ font-weight: 600;
         border-radius: 5px;
         border: 1px solid red;
         font-size: 1.1rem;
+        
       }
 
       .inputSession {
