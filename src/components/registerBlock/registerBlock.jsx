@@ -83,14 +83,6 @@ function register() {
       setBirthdateErrorStatus(false)
     }
   }
-  const handleIdentificationChange = (e) => {
-    const identificationData = e.target.value
-    setIdentification(identificationData)
-    const isntIden = /[a-zA-Z!@#$%^&*(),.?":{}|<>]/.test(identificationData)
-    if (identificationData.length > 8 || !isntIden) {
-      setIdentificationErrorStatus(false)
-    }
-  }
   const handlePasswordChange = (e) => {
     const passwordData = e.target.value
     setPassword(passwordData)
@@ -156,16 +148,6 @@ function register() {
       setBirthdateMsg('Invalid birthdate')
     } else {
       setBirthdateErrorStatus(false)
-    }
-  }
-  const identificationValidation = (e) => {
-    const identificationData = e.target.value
-    const isntIden = /[a-zA-Z!@#$%^&*(),.?":{}|<>]/.test(identificationData)
-    if (identificationData.length < 8 || isntIden) {
-      setIdentificationErrorStatus(true)
-      setIdentificationMsg('Invalid identification')
-    } else {
-      setIdentificationErrorStatus(false)
     }
   }
   const passwordValidation = (e) => {
@@ -234,13 +216,6 @@ function register() {
       //ERRORDISPLAY ('Invalid birthdate')
       addValueToArray(loggAuth, 'birthdate')
     }
-    // //identification validation
-    // const isntIden = /[a-zA-Z!@#$%^&*(),.?":{}|<>]/.test(identification)
-    // if (identification.length < 8 || isntIden) {
-    //   //ERRORDISPLAY ('Invalid identification')
-    //   addValueToArray(loggAuth, 'identification')
-    // }
-
     //Password validation
     const uppercaseRegex = /[A-Z]/
     const numberRegex = /\d/
@@ -280,6 +255,38 @@ function register() {
       })
     } else {
       console.log(loggAuth);
+      for (const val of loggAuth) {
+        if (val === 'name') {
+          setNameErrorStatus(true)
+          setNameMsg('Complete with your name')
+        }
+        if (val === 'surname') {
+          setSurnameMsg('Complete with your surname')
+          setSurnameErrorStatus(true)
+
+        }
+        if (val === 'email') {
+          setEmailErrorStatus(true)
+          setEmailMsg('You must complete with valid mail')
+
+        }
+        if (val === 'phone') {
+          setPhoneErrorStatus(true)
+          setPhoneMsg('Invalid phone')
+        }
+        if (val === 'birthdate') {
+          setBirthdateErrorStatus(true)
+          setBirthdateMsg('Invalid birthdate')
+        }
+        if (val === 'password') {
+          setPasswordErrorStatus(true)
+          setPasswordMsg('Invalid password')
+        }
+        if (val === 'passwordConfirm') {
+          setPasswordConfirmMsg('Invalid Confirmation')
+          setPasswordConfirmErrorStatus(true)
+        }
+      }
     }
   }
 
@@ -302,14 +309,14 @@ function register() {
               <input onBlur={nameValidation} onChange={handleNameChange}
                 ref={refName}
                 value={name} type="text" placeholder="First Name" className={nameErrorStatus ? 'inputError' : 'inputSession'} ></input>
-              <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={nameMsg} errorStatus={nameErrorStatus}></ErrorBlock>
+              <ErrorBlock divClassName='errorBlock-register' msgClassName='errorBlock-msg-register' iconClassName='iconError-register' msg={nameMsg} errorStatus={nameErrorStatus}></ErrorBlock>
             </div>
             <div className="registerInputContent">
               <label>Last Name</label>
               <input onBlur={surnameValidation} onChange={handleSurnameChange}
                 ref={refSurname}
                 value={surname} type="text" className={surnameErrorStatus ? 'inputError' : 'inputSession'} placeholder="Last Name"></input>
-              <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={surnameMsg} errorStatus={surnameErrorStatus}></ErrorBlock>
+              <ErrorBlock divClassName='errorBlock-register' msgClassName='errorBlock-msg-register' iconClassName='iconError-register' msg={surnameMsg} errorStatus={surnameErrorStatus}></ErrorBlock>
             </div>
           </div>
           <div className="registerInputContent">
@@ -317,40 +324,33 @@ function register() {
             <input onBlur={emailValidation} onChange={handleEmailChange}
               ref={refEmail} placeholder="Email"
               value={email} type="email" className={emailErrorStatus ? 'inputError' : 'inputSession'} ></input>
-            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={emailMsg} errorStatus={emailErrorStatus}></ErrorBlock>
+            <ErrorBlock divClassName='errorBlock-register' msgClassName='errorBlock-msg-register' iconClassName='iconError-register' msg={emailMsg} errorStatus={emailErrorStatus}></ErrorBlock>
           </div>
           <div className="registerInputContent">
             <label>Phone Number</label>
             <input onBlur={phoneValidation} onChange={handlePhoneChange}
               ref={refPhone}
               value={phone} type="number" placeholder="Phone Number" className={phoneErrorStatus ? 'inputError' : 'inputSession'}></input>
-            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={phoneMsg} errorStatus={phoneErrorStatus}></ErrorBlock>
+            <ErrorBlock divClassName='errorBlock-register' msgClassName='errorBlock-msg-register' iconClassName='iconError-register' msg={phoneMsg} errorStatus={phoneErrorStatus}></ErrorBlock>
           </div>
-          {/* <div className="registerInputContent">
-            <label>Identification</label>
-            <input onChange={handleIdentificationChange} onBlur={identificationValidation}
-              ref={refIdentification}
-              value={identification} type="number" placeholder="Identification" className={identificationErrorStatus ? 'inputError' : 'inputSession'}></input>
-            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={identificationMsg} errorStatus={identificationErrorStatus}></ErrorBlock>
-          </div> */}
           <div className="registerInputContent">
             <label>Birthdate</label>
             <input onChange={handleBirthdateChange} onBlur={birthdateValidation}
               ref={refBirthdate}
               value={birthdate} type="date" className={birthdateErrorStatus ? 'inputError' : 'inputSession'}></input>
-            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={birthdateMsg} errorStatus={birthdateErrorStatus}></ErrorBlock>
+            <ErrorBlock divClassName='errorBlock-register' msgClassName='errorBlock-msg-register' iconClassName='iconError-register' msg={birthdateMsg} errorStatus={birthdateErrorStatus}></ErrorBlock>
           </div>
           <div className="registerInputContent">
             <label>Password</label>
             <input onChange={handlePasswordChange} onBlur={passwordValidation}
               ref={refPassword}
               value={password} type="password" placeholder="Password" className={passwordErrorStatus ? 'inputError' : 'inputSession'}></input>
-            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={passwordMsg} errorStatus={passwordErrorStatus}></ErrorBlock>
+            <ErrorBlock divClassName='errorBlock-register' msgClassName='errorBlock-msg-register' iconClassName='iconError-register' msg={passwordMsg} errorStatus={passwordErrorStatus}></ErrorBlock>
           </div>
           <div className="registerInputContent">
             <label>Confirm Password</label>
             <input onChange={handlePasswordConfirmChange} onBlur={passwordConfirmValidation} className={passwordConfirmErrorStatus ? 'inputError' : 'inputSession'} value={passwordConfirm} type="password" placeholder="Confirm Password"></input>
-            <ErrorBlock divClassName={'errorDiv'} msgClassName={'errorMsg'} msg={passwordConfirmMsg} errorStatus={passwordConfirmErrorStatus}></ErrorBlock>
+            <ErrorBlock divClassName='errorBlock-register' msgClassName='errorBlock-msg-register' iconClassName='iconError-register' msg={passwordConfirmMsg} errorStatus={passwordConfirmErrorStatus}></ErrorBlock>
           </div>
         </div>
         <button className="button-87">register</button>

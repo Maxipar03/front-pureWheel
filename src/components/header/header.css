@@ -149,6 +149,7 @@
 .dropdownContainer {
     position: relative;
     display: inline-block;
+    width: 20%;
 }
 
 .userLoggedNameContainer {
@@ -158,9 +159,9 @@
     position: absolute;
     padding: 5px 2vw;
     cursor: pointer;
-    left: -5vw;
+    left: 15%;
     border-radius: 3px;
-    top: 15%;
+    top: 20%;
     background-color: #d7d7d7d4;
     align-items: center;
 }
@@ -220,19 +221,23 @@
         width: 85%;
     }
 
+    .dropdownContainer {
+        width: 20%;
+    }
+    
+
     .titleHeader {
         font-size: 1.31rem;
     }
 
     .options {
-        width: 70%;
         display: flex;
         justify-content: space-around;
     }
 
     .selectors {
         display: flex;
-        width: 40%;
+        width: 20%;
         justify-content: space-between;
     }
 
@@ -244,6 +249,20 @@
         display: flex;
         width: 30%;
         justify-content: space-around;
+    }
+
+    .userLoggedNameContainer {
+        display: flex;
+        font-size: 1.1rem;
+        font-weight: bold;
+        position: absolute;
+        padding: 5px 2vw;
+        cursor: pointer;
+        left: 2vw;
+        border-radius: 3px;
+        top: 15%;
+        background-color: #d7d7d7d4;
+        align-items: center;
     }
 }
 
@@ -365,7 +384,27 @@
     }
 
     .options {
+        width: auto;
+    }
+
+    .selectorsSession{
         display: none;
+    }
+
+    .selectors{
+        display: none;
+    }
+
+    .dropdownContainer{
+        display: none;
+    }
+
+    .optionScrolling{
+        width: auto;
+    }
+
+    .divLogo{
+        display: block;
     }
 
     .titleHeader {

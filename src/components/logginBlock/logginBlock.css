@@ -4,7 +4,7 @@
     padding-left: 30px;
     background-color: #949396;
     padding: 0px 4%;
-    z-index: 5;
+    z-index: 3;
     width: 38.2%;
     justify-content: center;
     border-radius: 6px 0px 0px 6px;
@@ -232,53 +232,33 @@ font-weight: 600;
         transform: translateX(1.4em);
         background-color: #fff;
       }
-
+/******** ERRORS  ***************************/
+.errorBlock-div{
+  width: 100%;
+  margin: 2% 0%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 12px;
+  background-color:rgb(180 47 47 / 12%);
+}
+.iconError{
+  margin-left: 2%;
+  background-color: red;
+  color: white;
+  padding: 0.5% 1%;
+  border-radius: 100%;
+  font-weight: 600;
+}
+.errorBlock-msg{
+  margin-left: 2% ;
+}
+/********************************************/
       @media (min-width: 960px) and (max-width: 1279px) {
         .logginForm {
-          display: flex;
-          flex-direction: column;
-          padding-left: 30px;
-          background-color: #949396;
-          padding: 0px 4%;
-          z-index: 5;
-          width: 25vw;
-          justify-content: center;
-          border-radius: 0px 6px 6px 0px;
-      }
-
-      .bannerLogin {
-        width: 35vw;
-        height: 45vw;
-        background: rgb(62,61,61);
-        background: linear-gradient(205deg, rgba(62,61,61,1) 16%, rgba(154,179,174,1) 84%);
-        position: relative;
-      }
-
-      .inputError:hover {
-        height: 3vw;
-        border-radius: 5px;
-        border: 1px solid red;
-        font-size: 1.1rem;
-      }
-
-      .inputError {
-        height: 3vw;
-        border-radius: 5px;
-        border: 1px solid red;
-        font-size: 1.1rem;
-        
-      }
-
-      .inputSession {
-        height: 3vw;
-        border-radius: 5px;
-        border: 0px;
-        font-size: 1.1rem;
-      }
-      
-      .bannerImage{
-        width: 15vw;
-      }
+          width: 50.2%;
+        }
+  
       }
 
       @media (max-width: 959px) {

@@ -110,64 +110,85 @@ function sellCarBlock() {
         refInputImg.current.className = 'imageC'
         refImageIcon.current.className = 'ch-add-img-icon fa-solid fa-circle-plus'
         setSelectedImages([...selectedImages, ...validatedImages]);
+
+        const newFiles = [...selectedImages, ...validatedImages]
+        if (newFiles.length > 0) {
+            setErrorStatusImages(false)
+        }
+
+        setErrorStatusImages(false)
     };
     const handleColorChange = (e) => {
         const newColor = e.target.value
         setSelectedColor(newColor)
+        setErrorStatusColor(false)
     }
     const handleBrandChange = (e) => {
         const selectedBrandId = e.target.value;
         setSelectedBrand(selectedBrandId);
         setSelectedModel('');
         setSelectedModel(allModels.filter((model) => model.brand_id === selectedBrandId));
+        setErrorStatusBrand(false)
     };
     const handleModelChange = (e) => {
         const newModel = e.target.value
         setSelectedModel(newModel)
+        setErrorStatusModel(false)
     }
     const handleBodyCarChange = (e) => {
         const newBody = e.target.value
         setSelectedBodyCar(newBody)
+        setErrorStatusBodyCar(false)
     }
     const handleTransmissionChange = (e) => {
         const newTransmission = e.target.value
         setSelectedTransmission(newTransmission)
+        setErrorStatusTransmission(false)
     }
     const handlePriceChange = (e) => {
         const newPrice = e.target.value
         setSelectedPrice(newPrice)
+        setErrorStatusPrice(false)
     }
     const handleDescriptionChange = (e) => {
         const newDescription = e.target.value
         setSelectedDescription(newDescription)
+        setErrorStatusDescription(false)
     }
     const handleDiscountChange = (e) => {
         const newDiscount = e.target.value
         setSelectedDiscount(newDiscount)
+        setErrorStatusDiscount(false)
     }
     const handleKilometersChange = (e) => {
         const newKilometers = e.target.value
         setSelectedKilometers(newKilometers)
+        setErrorStatusKilometers(false)
     }
     const handleYearChange = (e) => {
         const newYear = e.target.value
         setSelectedYear(newYear)
+        setErrorStatusYear(false)
     }
     const handleVersionChange = (e) => {
         const newVersion = e.target.value
         setSelectedVersion(newVersion)
+        setErrorStatusVersion(false)
     }
     const handleDamageChange = (e) => {
         const newDamage = e.target.value
         setSelectedDamage(newDamage)
+        setErrorStatusDamage(false)
     }
     const handleGasolineChange = (e) => {
         const newGasoline = e.target.value
         setSelectedGasoline(newGasoline)
+        setErrorStatusGasoline(false)
     }
     const handleEngineChange = (e) => {
         const newEngine = e.target.value
         setSelectedEngine(newEngine)
+        setErrorStatusEngine(false)
     }
     // OnClickSubmit
     const sellCarButtonClick = () => {

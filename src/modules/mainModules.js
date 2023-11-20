@@ -7,12 +7,10 @@ export async function fetchApi(endpoint, config, cb) {
         } else {
             return cb(null, jsonResponse)
         }
-
     } catch (err) {
-        return null
+        return cb(null, 'err')
     }
 }
-
 export function addValueToArray(array, value) {
     if (!array.includes(value)) {
         array.push(value)
@@ -21,7 +19,6 @@ export function addValueToArray(array, value) {
     }
     return array
 }
-
 export function objToArray(obj) {
     const imagesToArray = []
     for (let key in obj) {
@@ -31,14 +28,12 @@ export function objToArray(obj) {
     }
     return imagesToArray
 }
-
 export function isAgeAllow(dateStr) {
     const currentDate = new Date();
     const minAgeDate = new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate());
     const inputDate = new Date(dateStr);
     return inputDate <= minAgeDate;
 }
-
 export function filterArrayFunction(arrToFilter, arrFilter, cb) {
     const productsSelected = []
     const finalBrandFilter = []
@@ -52,8 +47,6 @@ export function filterArrayFunction(arrToFilter, arrFilter, cb) {
     productsSelected.forEach(arr => { arr.forEach(pro => { finalBrandFilter.push(pro) }) })
     return finalBrandFilter
 }
-
-
 export function filterFromFunction(arrToFilter, arrFilter, cb) {
     const productsSelected = []
     arrToFilter.forEach(products => {
@@ -62,7 +55,6 @@ export function filterFromFunction(arrToFilter, arrFilter, cb) {
     console.log(productsSelected);
     return productsSelected
 }
-
 export function filterToFunction(arrToFilter, arrFilter, cb) {
     const productsSelected = []
     arrToFilter.forEach(products => {
@@ -71,7 +63,6 @@ export function filterToFunction(arrToFilter, arrFilter, cb) {
     console.log(productsSelected);
     return productsSelected
 }
-
 export function findCommonProducts(obj) {
     const keys = Object.keys(obj);
     let commonProducts = obj[keys[0]];
