@@ -24,7 +24,7 @@ function App() {
       case '/user/loggin':
         return 'header';
       case '/user/register':
-        return 'headerColor';
+        return 'header';
       case '/products/detail/:id':
         return 'headerColor';
       default:
@@ -32,7 +32,7 @@ function App() {
     }
   };
 
-  const shouldRenderFooter = !['/user/loggin'].includes(location.pathname);
+  const shouldRenderFooter = !['/user/loggin', '/user/register'].includes(location.pathname);
 
   const nameClass = getTitleFromLocation();
 
