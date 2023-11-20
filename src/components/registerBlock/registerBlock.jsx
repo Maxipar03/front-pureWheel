@@ -286,7 +286,6 @@ function register() {
   return (
     <div className="registerComponent">
       <div className='bannerRegister'>
-        <img className='backgroundImageBanner' src={bmwImage} />
         <div className='bannerLoginContent'>
           <img className='bannerImage' src={logo} />
           <h1 className='bannerText'>Buy your car in <b className='boldTitle'>simples steps</b></h1>

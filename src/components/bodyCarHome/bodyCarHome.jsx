@@ -65,7 +65,6 @@ function bodyCarHome() {
     
     return(
       <div className="bodyCarComponent">
-        <h1 className="productsSaleTitle">Select your body car</h1>
         <div className="bodyCarCarouselContainer">
         <div className="slickCarouselContainer">
         <Slider {...settings}> 

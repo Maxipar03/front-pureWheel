@@ -12,9 +12,9 @@
 
 .header {
     display: flex;
-    width: 75%;
+    width: 100%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     position: absolute;
     transition: background-color 0.3s, margin 0.3s ease;
     z-index: 100;
@@ -38,6 +38,10 @@
     position: fixed;
 }
 
+.headerColor .options{
+    width: 100%;
+}
+
 .headerScrolling {
     display: flex;
     margin-top: 0.5%;
@@ -50,7 +54,7 @@
     color: white;
     position: fixed;
     border-radius: 10px;
-    background-color: #3b3939d0;
+    background-color: #3b3939f6;
 }
 
 .divLogo {
@@ -65,12 +69,18 @@
     justify-content: space-around;
 }
 
+.optionScrolling {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
 
 .selectors {
     display: flex;
-    width: 30%;
+    width: 20%;
     justify-content: space-around;
     align-items: center;
+    padding: 0px;
 }
 
 
@@ -85,6 +95,8 @@
     display: flex;
     width: 20%;
     justify-content: space-around;
+    align-items: center;
+    padding: 0px;
 }
 
 .selectorsSession li {
@@ -129,7 +141,7 @@
     margin: 10px 0px;
 }
 
-.imageUserHeader{
+.imageUserHeader {
     width: 20px;
     height: 20px;
 }
@@ -172,9 +184,9 @@
 .header-option {
     cursor: pointer;
     position: relative;
-  }
-  
-  .underline {
+}
+
+.underline {
     position: absolute;
     bottom: 2.5;
     left: 0;
@@ -182,13 +194,16 @@
     height: 2px;
     background-color: rgb(255, 255, 255);
     transition: transform 0.3s ease;
-    transform-origin: left; /* Cambia el punto de transformación al final (derecha) */
-    transform: scaleX(0); /* Inicialmente, la línea está oculta (sin ancho) */
-  }
-  
-  .underline.visible {
-    transform: scaleX(1); /* La línea se expande horizontalmente al estar visible */
-  }
+    transform-origin: left;
+    /* Cambia el punto de transformación al final (derecha) */
+    transform: scaleX(0);
+    /* Inicialmente, la línea está oculta (sin ancho) */
+}
+
+.underline.visible {
+    transform: scaleX(1);
+    /* La línea se expande horizontalmente al estar visible */
+}
 
 
 
@@ -235,8 +250,48 @@
 @media (max-width: 959px) {
 
     .header {
-        margin-top: 2%;
+
         width: 95%;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        transition: background-color 0.3s, margin 0.3s ease;
+        z-index: 100;
+        color: white;
+        background-color: #3b3939d0;
+        ;
+    }
+
+
+    .headerColor {
+        display: flex;
+        width: 75%;
+        margin-top: 0.5%;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        transition: background-color 0.3s, margin 0.3s ease;
+        z-index: 100;
+        color: white;
+        background-color: #3b3939d0;
+        border-radius: 10px;
+        position: fixed;
+    }
+
+    .headerScrolling {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        transition: background-color 0.3s, margin 0.3s ease;
+        z-index: 100;
+        color: white;
+        position: fixed;
+        border-radius: 10px;
+        background-color: #3b3939;
     }
 
     .headerColor {

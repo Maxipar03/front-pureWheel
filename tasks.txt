@@ -1,21 +1,15 @@
-MAXI
--Add productDetail Info
--Add popout sellCar
--review banner home
--review login and register
--review filter
--fix arrow image product home
+TO DO: 
+    - Logic
+        . sellCar
+        . Update/Delete 
+        . Validation (loggin/register/sellcar/updateUser/updateCar)
+    - Components
+        . cardProduct
+        . Error Validation show
+        . Error input
+        . loggin block
+        . register block
 
-
--state in which the car is sold
--new or old
--car documents
--identification
-
-NICO
-- Logic 
---------
-
-    - Colors select
-    - Model Select
-    - BodyCar Select
+    - Screens
+        . Profile (mobile)
+        

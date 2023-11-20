@@ -15,6 +15,13 @@
   width: 90%;
 }
 
+.brandsBackgroundTest{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient( 180deg, rgba(37, 34, 36, 0.8) 0%, rgb(224, 218, 218) 100% );
+}
+
 .brandImage {
   width: 100%;
   height: 130px;
@@ -116,8 +123,29 @@
   }
 }
 
-@media (min-width: 960px) and (max-width: 1279px) {
+@media (min-width: 1279px) {
   .brandsComponent {
     width: 85%;
   }
 }
+
+@media (max-width: 900px) {
+  .brandsComponent2  {
+    width: 95%;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 15px;
+  }
+
+  .slick-slider{
+    padding: 0px;
+  }
+
+  .brandImage{
+    min-height: 30vw;
+    object-fit: fill
+  }
+}
+
+
+

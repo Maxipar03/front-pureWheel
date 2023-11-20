@@ -1,6 +1,6 @@
 import React from "react";
 import './banner.css'
-import carBanner from "../../public/mejores-deportivos-2018-dm_750x.jpg"
+import carBanner from "../../public/carBannerExample.jpg"
 
 function banner() {
 

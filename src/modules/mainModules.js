@@ -5,7 +5,6 @@ export async function fetchApi(endpoint, config, cb) {
         if (jsonResponse.info.status == 200) {
             return cb(jsonResponse, null)
         } else {
-            console.log(jsonResponse);
             return cb(null, jsonResponse)
         }
 

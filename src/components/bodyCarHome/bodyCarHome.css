@@ -1,5 +1,9 @@
 .bodyCarComponent{
     width: 75%;
+    padding: 1.6% 0;
+    margin: 1%;
+    background-color: rgb(255 255 255);
+    border-radius: 15px;
 }
 .bodyCarimages{
     width: 80%;

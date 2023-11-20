@@ -22,15 +22,17 @@ function App() {
       case '/':
         return 'header';
       case '/user/loggin':
-        return 'headerColor';
+        return 'header';
       case '/user/register':
-        return 'headerColor';
+        return 'header';
       case '/products/detail/:id':
         return 'headerColor';
       default:
         return 'headerColor';
     }
   };
+
+  const shouldRenderFooter = !['/user/loggin', '/user/register'].includes(location.pathname);
 
   const nameClass = getTitleFromLocation();
 
@@ -69,7 +71,7 @@ return (
         {<Route exact path='/products/sellCar' element={<SellCar/>}/>}
         {<Route exact path="/profile" element={<Profile/>}/>}
       </Routes>
-    <Footer/>
+      {shouldRenderFooter && <Footer />}
   </div>
     
   )
