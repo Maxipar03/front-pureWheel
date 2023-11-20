@@ -3,7 +3,7 @@ import './sellCarBlock.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { faX } from "@fortawesome/free-solid-svg-icons";
-import { fetchApi } from "../../modules/mainModules";
+import { fetchApi, addValueToArray } from "../../modules/mainModules";
 import appInfo from "../../modules/appInfo"
 import AddPopup from '../Popups/addPopup/addPopup.jsx'
 import PreSubmit from '../Popups/preSubmit/preSubmit.jsx'
@@ -31,36 +31,37 @@ function sellCarBlock() {
     const [selectedEngine, setSelectedEngine] = useState('')
 
     // ErrorsStatus
-    const [errorStatusImages, setErrorStatusImages] = useState('')
-    const [errorMsgImages, setErrorMsgImages] = useState('')
-    const [errorStatusColor, setErrorStatusColor] = useState('')
-    const [errorMsgColor, setErrorMsgColor] = useState('')
-    const [errorStatusBrand, setErrorStatusBrand] = useState('')
-    const [errorMsgBrand, setErrorMsgBrand] = useState('')
-    const [errorStatusModel, setErrorStatusModel] = useState('')
-    const [errorMsgModel, setErrorMsgModel] = useState('')
-    const [errorStatusBody, setErrorStatusBody] = useState('')
-    const [errorMsgBody, setErrorMsgBody] = useState('')
-    const [errorStatusTransmission, setErrorStatusTransmission] = useState('')
-    const [errorMsgTransmission, setErrorMsgTransmission] = useState('')
-    const [errorStatusPrice, setErrorStatusPrice] = useState('')
-    const [errorMsgPrice, setErrorMsgPrice] = useState('')
-    const [errorStatusDescription, setErrorStatusDescription] = useState('')
-    const [errorMsgDescription, setErrorMsgDescription] = useState('')
-    const [errorStatusDiscount, setErrorStatusDiscount] = useState('')
-    const [errorMsgDiscount, setErrorMsgDiscount] = useState('')
-    const [errorStatusKilometers, setErrorStatusKilometers] = useState('')
-    const [errorMsgKilometers, setErrorMsgKilometers] = useState('')
-    const [errorStatusYear, setErrorStatusYear] = useState('')
-    const [errorMsgYear, setErrorMsgYear] = useState('')
-    const [errorStatusVersion, setErrorStatusVersion] = useState('')
-    const [errorMsgVersion, setErrorMsgVersion] = useState('')
-    const [errorStatusDamage, setErrorStatusDamage] = useState('')
-    const [errorMsgDamage, setErrorMsgDamage] = useState('')
-    const [errorStatusGasoline, setErrorStatusGasoline] = useState('')
-    const [errorMsgGasoline, setErrorMsgGasoline] = useState('')
-    const [errorStatusEngine, setErrorStatusEngine] = useState('')
-    const [errorMsgEngine, setErrorMsgEngine] = useState('')
+        const [fullError, setFullError] = useState(false)
+        const [errorStatusImages, setErrorStatusImages] = useState(false)
+        const [errorMsgImages, setErrorMsgImages] = useState('')
+        const [errorStatusColor, setErrorStatusColor] = useState(false)
+        const [errorMsgColor, setErrorMsgColor] = useState('')
+        const [errorStatusBrand, setErrorStatusBrand] = useState(false)
+        const [errorMsgBrand, setErrorMsgBrand] = useState('')
+        const [errorStatusModel, setErrorStatusModel] = useState(false)
+        const [errorMsgModel, setErrorMsgModel] = useState('')
+        const [errorStatusBody, setErrorStatusBody] = useState(false)
+        const [errorMsgBody, setErrorMsgBody] = useState('')
+        const [errorStatusTransmission, setErrorStatusTransmission] = useState(false)
+        const [errorMsgTransmission, setErrorMsgTransmission] = useState('')
+        const [errorStatusPrice, setErrorStatusPrice] = useState(false)
+        const [errorMsgPrice, setErrorMsgPrice] = useState('')
+        const [errorStatusDescription, setErrorStatusDescription] = useState(false)
+        const [errorMsgDescription, setErrorMsgDescription] = useState('')
+        const [errorStatusDiscount, setErrorStatusDiscount] = useState(false)
+        const [errorMsgDiscount, setErrorMsgDiscount] = useState('')
+        const [errorStatusKilometers, setErrorStatusKilometers] = useState(false)
+        const [errorMsgKilometers, setErrorMsgKilometers] = useState('')
+        const [errorStatusYear, setErrorStatusYear] = useState(false)
+        const [errorMsgYear, setErrorMsgYear] = useState('')
+        const [errorStatusVersion, setErrorStatusVersion] = useState(false)
+        const [errorMsgVersion, setErrorMsgVersion] = useState('')
+        const [errorStatusDamage, setErrorStatusDamage] = useState(false)
+        const [errorMsgDamage, setErrorMsgDamage] = useState('')
+        const [errorStatusGasoline, setErrorStatusGasoline] = useState(false)
+        const [errorMsgGasoline, setErrorMsgGasoline] = useState('')
+        const [errorStatusEngine, setErrorStatusEngine] = useState(false)
+        const [errorMsgEngine, setErrorMsgEngine] = useState('')
 
 
     const [allBrands, setAllBrands] = useState([]);
@@ -78,7 +79,7 @@ function sellCarBlock() {
     const [addPopup, setAddPopup] = useState(false);
     const [preSubmit, setPreSubmit] = useState(false)
 
-    const[sellCarData, setSellCarData] = useState({})
+    const [sellCarData, setSellCarData] = useState({})
 
     const addPopupFunction = (type) => {
         if (!addPopup) setAddPopup(true)
@@ -89,15 +90,6 @@ function sellCarBlock() {
     }
 
     // FUNCTIONS
-
-    const isErrorRequired = () => {
-        if(errorStatusImages || errorStatusColor || errorStatusBrand || errorStatusModel || errorStatusBody || errorStatusTransmission || errorStatusPrice || errorStatusDescription || errorStatusKilometers || errorStatusYear || errorStatusVersion || errorStatusGasoline || errorStatusEngine){
-            return true
-        } else {
-            return false
-        }
-    }
-
     // HANDLERS 
     const handleImageChange = (event) => {
         const files = Array.from(event.target.files);
@@ -196,106 +188,121 @@ function sellCarBlock() {
             Gasoline: selectedGasoline,
             Engine: selectedEngine
         }
-       
+
+        let errArr = []
+
         // Images
         if (data.Images.length < 1) {
+            addValueToArray(errArr, 'Images')
             setErrorStatusImages(true)
-            setErrorMsgImages('You must add car images')
         } else {
+            errArr = errArr.filter(e => e != 'Images')
             setErrorStatusImages(false)
         }
         // Description
         if (!data.Description) {
+            addValueToArray(errArr, 'Description')
             setErrorStatusDescription(true)
-            setErrorMsgDescription('You must add a car description')
         } else {
+            errArr = errArr.filter(e => e != 'Description')
             setErrorStatusDescription(false)
         }
         // Color
         if (!data.Color) {
+            addValueToArray(errArr, 'Color')
             setErrorStatusColor(true)
-            setErrorMsgColor('You must complete this file')
         } else {
+            errArr = errArr.filter(e => e != 'Color')
             setErrorStatusColor(false)
         }
         // Brand
         if (!data.Brand) {
+            addValueToArray(errArr, 'Brand')
             setErrorStatusBrand(true)
-            setErrorMsgBrand('You must complete this file')
         } else {
+            errArr = errArr.filter(e => e != 'Brand')
             setErrorStatusBrand(false)
         }
         // Model
         if (!data.Model) {
+            addValueToArray(errArr, 'Model')
             setErrorStatusModel(true)
-            setErrorMsgModel('You must complete this file')
         } else {
+            errArr = errArr.filter(e => e != 'Model')
             setErrorStatusModel(false)
         }
         // Body
         if (!data.Body) {
+            addValueToArray(errArr, 'Body')
             setErrorStatusBody(true)
-            setErrorMsgBody('You must complete this file')
         } else {
+            errArr = errArr.filter(e => e != 'Body')
             setErrorStatusBody(false)
         }
         // Transmission
         if (!data.Transmission) {
+            addValueToArray(errArr, 'Transmission')
             setErrorStatusTransmission(true)
-            setErrorMsgTransmission('You must complete this file')
         } else {
+            errArr = errArr.filter(e => e != 'Transmission')
             setErrorStatusTransmission(false)
         }
         // Price
         if (!data.Price) {
+            addValueToArray(errArr, 'Price')
             setErrorStatusPrice(true)
-            setErrorMsgPrice('You must complete this file')
         } else {
+            errArr = errArr.filter(e => e != 'Price')
             setErrorStatusPrice(false)
         }
         // Kilometers
         if (!data.Kilometers) {
+            addValueToArray(errArr, 'Kilometers')
             setErrorStatusKilometers(true)
-            setErrorMsgKilometers('You must complete this file')
         } else {
+            errArr = errArr.filter(e => e != 'Kilometers')
             setErrorStatusKilometers(false)
         }
         // Year
         if (!data.Year) {
+            addValueToArray(errArr, 'Year')
             setErrorStatusYear(true)
-            setErrorMsgYear('You must complete this file')
         } else {
+            errArr = errArr.filter(e => e != 'Year')
             setErrorStatusYear(false)
         }
         // Version
         if (!data.Version) {
+            addValueToArray(errArr, 'Version')
             setErrorStatusVersion(true)
-            setErrorMsgVersion('You must complete this file')
         } else {
+            errArr = errArr.filter(e => e != 'Version')
             setErrorStatusVersion(false)
         }
         // Gasoline
         if (!data.Gasoline) {
+            addValueToArray(errArr, 'Gasoline')
             setErrorStatusGasoline(true)
-            setErrorMsgGasoline('You must complete this file')
         } else {
+            errArr = errArr.filter(e => e != 'Gasoline')
             setErrorStatusGasoline(false)
         }
         // Engine
         if (!data.Engine) {
+            addValueToArray(errArr, 'Engine')
             setErrorStatusEngine(true)
-            setErrorMsgEngine('You must complete this file')
         } else {
+            errArr = errArr.filter(e => e != 'Engine')
             setErrorStatusEngine(false)
         }
 
-        if(isErrorRequired()){
-            console.log(`Car information:`);
-            console.log(data);
+        if (errArr.length > 0) {
+            setFullError(true)
+            console.log('Error detected');
+        } else {
+            setFullError(false)
             setSellCarData(data)
             setPreSubmit(true)
-        }else{
-            setPreSubmit(false)
         }
     }
 
@@ -383,7 +390,7 @@ function sellCarBlock() {
             <div className="sellCarImageContainerTitle">
                 <h3 className="sellCarImageTitle">Upload your images car</h3>
                 <div className="sellCarImageContainer">
-                    <label htmlFor="sellCarInputImage" className={errorStatusImages? "file-upload-label-error" :"file-upload-label"}>
+                    <label htmlFor="sellCarInputImage" className={errorStatusImages ? "file-upload-label-error" : "file-upload-label"}>
                         <i className="fa-solid fa-plus"><FontAwesomeIcon icon={faImages} /></i>
                         <p className="sellCarUploadTitle">Upload Images</p>
                     </label>
@@ -499,7 +506,7 @@ function sellCarBlock() {
                     </div>
                 </div>
             </div>
-            <ErrorBlock divClassName='errorBlock-div' msgClassName='errorBlock-msg' iconClassName={'iconError'} errorStatus={isErrorRequired()} msg={'You must to complete all files with *'} />
+            <ErrorBlock divClassName='errorBlock-div' msgClassName='errorBlock-msg' iconClassName={'iconError'} errorStatus={fullError} msg={'You must to complete all files with *'} />
             <div className="sellCarAdminSection">
                 <div className="sellCarAdminTitleContainer">
                     <h1 className="sellCarAdminTitle">Dealership Add Options</h1>
