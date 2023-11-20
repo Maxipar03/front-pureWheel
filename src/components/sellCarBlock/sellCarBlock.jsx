@@ -6,6 +6,8 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import { fetchApi } from "../../modules/mainModules";
 import appInfo from "../../modules/appInfo"
 import AddPopup from '../Popups/addPopup/addPopup.jsx'
+import PreSubmit from '../Popups/preSubmit/preSubmit.jsx'
+import ErrorBlock from '../errors/errorBlock/errorBlock.jsx'
 
 
 function sellCarBlock() {
@@ -13,7 +15,7 @@ function sellCarBlock() {
     const [isSticky, setIsSticky] = useState(false);
 
     const [selectedImages, setSelectedImages] = useState([]);
-    const [selectedColor, setSelectedColor] = useState('#000000');
+    const [selectedColor, setSelectedColor] = useState('');
     const [selectedBrand, setSelectedBrand] = useState('');
     const [selectedModel, setSelectedModel] = useState('');
     const [selectedBodyCar, setSelectedBodyCar] = useState('');
@@ -27,6 +29,38 @@ function sellCarBlock() {
     const [selectedDamage, setSelectedDamage] = useState('')
     const [selectedGasoline, setSelectedGasoline] = useState('')
     const [selectedEngine, setSelectedEngine] = useState('')
+
+    // ErrorsStatus
+    const [errorStatusImages, setErrorStatusImages] = useState('')
+    const [errorMsgImages, setErrorMsgImages] = useState('')
+    const [errorStatusColor, setErrorStatusColor] = useState('')
+    const [errorMsgColor, setErrorMsgColor] = useState('')
+    const [errorStatusBrand, setErrorStatusBrand] = useState('')
+    const [errorMsgBrand, setErrorMsgBrand] = useState('')
+    const [errorStatusModel, setErrorStatusModel] = useState('')
+    const [errorMsgModel, setErrorMsgModel] = useState('')
+    const [errorStatusBody, setErrorStatusBody] = useState('')
+    const [errorMsgBody, setErrorMsgBody] = useState('')
+    const [errorStatusTransmission, setErrorStatusTransmission] = useState('')
+    const [errorMsgTransmission, setErrorMsgTransmission] = useState('')
+    const [errorStatusPrice, setErrorStatusPrice] = useState('')
+    const [errorMsgPrice, setErrorMsgPrice] = useState('')
+    const [errorStatusDescription, setErrorStatusDescription] = useState('')
+    const [errorMsgDescription, setErrorMsgDescription] = useState('')
+    const [errorStatusDiscount, setErrorStatusDiscount] = useState('')
+    const [errorMsgDiscount, setErrorMsgDiscount] = useState('')
+    const [errorStatusKilometers, setErrorStatusKilometers] = useState('')
+    const [errorMsgKilometers, setErrorMsgKilometers] = useState('')
+    const [errorStatusYear, setErrorStatusYear] = useState('')
+    const [errorMsgYear, setErrorMsgYear] = useState('')
+    const [errorStatusVersion, setErrorStatusVersion] = useState('')
+    const [errorMsgVersion, setErrorMsgVersion] = useState('')
+    const [errorStatusDamage, setErrorStatusDamage] = useState('')
+    const [errorMsgDamage, setErrorMsgDamage] = useState('')
+    const [errorStatusGasoline, setErrorStatusGasoline] = useState('')
+    const [errorMsgGasoline, setErrorMsgGasoline] = useState('')
+    const [errorStatusEngine, setErrorStatusEngine] = useState('')
+    const [errorMsgEngine, setErrorMsgEngine] = useState('')
 
 
     const [allBrands, setAllBrands] = useState([]);
@@ -42,6 +76,11 @@ function sellCarBlock() {
 
     const [addPopupType, setAddPopupType] = useState("")
     const [addPopup, setAddPopup] = useState(false);
+
+    const [preSubmit, setPreSubmit] = useState(true) // ---------------
+
+    const[sellCarData, setSellCarData] = useState({})
+
     const addPopupFunction = (type) => {
         if (!addPopup) setAddPopup(true)
         if (addPopup) setAddPopup(false)
@@ -51,6 +90,15 @@ function sellCarBlock() {
     }
 
     // FUNCTIONS
+
+    const isErrorRequired = () => {
+        if(errorStatusImages || errorStatusColor || errorStatusBrand || errorStatusModel || errorStatusBody || errorStatusTransmission || errorStatusPrice || errorStatusDescription || errorStatusKilometers || errorStatusYear || errorStatusVersion || errorStatusGasoline || errorStatusEngine){
+            return true
+        } else {
+            return false
+        }
+    }
+
     // HANDLERS 
     const handleImageChange = (event) => {
         const files = Array.from(event.target.files);
@@ -72,86 +120,185 @@ function sellCarBlock() {
         refImageIcon.current.className = 'ch-add-img-icon fa-solid fa-circle-plus'
         setSelectedImages([...selectedImages, ...validatedImages]);
     };
-    const handleColorChange = (e)=>{
+    const handleColorChange = (e) => {
         const newColor = e.target.value
         setSelectedColor(newColor)
     }
-    const handleBrandChange =  (e) => {
+    const handleBrandChange = (e) => {
         const selectedBrandId = e.target.value;
         setSelectedBrand(selectedBrandId);
         setSelectedModel('');
         setSelectedModel(allModels.filter((model) => model.brand_id === selectedBrandId));
     };
-    const handleModelChange = (e)=>{
+    const handleModelChange = (e) => {
         const newModel = e.target.value
         setSelectedModel(newModel)
     }
-    const handleBodyCarChange = (e)=>{
+    const handleBodyCarChange = (e) => {
         const newBody = e.target.value
         setSelectedBodyCar(newBody)
     }
-    const handleTransmissionChange = (e)=>{
+    const handleTransmissionChange = (e) => {
         const newTransmission = e.target.value
         setSelectedTransmission(newTransmission)
     }
-    const handlePriceChange = (e)=>{
+    const handlePriceChange = (e) => {
         const newPrice = e.target.value
         setSelectedPrice(newPrice)
     }
-    const handleDescriptionChange = (e)=>{
+    const handleDescriptionChange = (e) => {
         const newDescription = e.target.value
         setSelectedDescription(newDescription)
     }
-    const handleDiscountChange = (e)=>{
+    const handleDiscountChange = (e) => {
         const newDiscount = e.target.value
         setSelectedDiscount(newDiscount)
     }
-    const handleKilometersChange = (e)=>{
+    const handleKilometersChange = (e) => {
         const newKilometers = e.target.value
         setSelectedKilometers(newKilometers)
     }
-    const handleYearChange = (e)=>{
+    const handleYearChange = (e) => {
         const newYear = e.target.value
         setSelectedYear(newYear)
     }
-    const handleVersionChange = (e)=>{
+    const handleVersionChange = (e) => {
         const newVersion = e.target.value
         setSelectedVersion(newVersion)
     }
-    const handleDamageChange = (e)=>{
+    const handleDamageChange = (e) => {
         const newDamage = e.target.value
         setSelectedDamage(newDamage)
     }
-    const handleGasolineChange = (e)=>{
+    const handleGasolineChange = (e) => {
         const newGasoline = e.target.value
         setSelectedGasoline(newGasoline)
     }
-    const handleEngineChange = (e)=>{
+    const handleEngineChange = (e) => {
         const newEngine = e.target.value
         setSelectedEngine(newEngine)
     }
-// OnClickSubmit
-const sellCarButtonClick = () => {
-    console.log(`Car information:`);
-    console.log({
-        Images: selectedImages,
-        Color: selectedColor,
-        Brand: selectedBrand,
-        Model: selectedModel,
-        Body: selectedBodyCar,
-        Transmission: selectedTransmission,
-        Price: selectedPrice,
-        Description: selectedDescription,
-        Discount: selectedDiscount,
-        Kilometers: selectedKilometers,
-        Year: selectedYear,
-        Version: selectedVersion,
-        Damage: selectedDamage,
-        Gasoline: selectedGasoline,
-        Engine: selectedEngine
-    });
-}
-    
+    // OnClickSubmit
+    const sellCarButtonClick = () => {
+        const data = {
+            Images: selectedImages,
+            Color: selectedColor,
+            Brand: selectedBrand,
+            Model: selectedModel,
+            Body: selectedBodyCar,
+            Transmission: selectedTransmission,
+            Price: selectedPrice,
+            Description: selectedDescription,
+            Discount: selectedDiscount,
+            Kilometers: selectedKilometers,
+            Year: selectedYear,
+            Version: selectedVersion,
+            Damage: selectedDamage,
+            Gasoline: selectedGasoline,
+            Engine: selectedEngine
+        }
+       
+        // Images
+        if (data.Images.length < 1) {
+            setErrorStatusImages(true)
+            setErrorMsgImages('You must add car images')
+        } else {
+            setErrorStatusImages(false)
+        }
+        // Description
+        if (!data.Description) {
+            setErrorStatusDescription(true)
+            setErrorMsgDescription('You must add a car description')
+        } else {
+            setErrorStatusDescription(false)
+        }
+        // Color
+        if (!data.Color) {
+            setErrorStatusColor(true)
+            setErrorMsgColor('You must complete this file')
+        } else {
+            setErrorStatusColor(false)
+        }
+        // Brand
+        if (!data.Brand) {
+            setErrorStatusBrand(true)
+            setErrorMsgBrand('You must complete this file')
+        } else {
+            setErrorStatusBrand(false)
+        }
+        // Model
+        if (!data.Model) {
+            setErrorStatusModel(true)
+            setErrorMsgModel('You must complete this file')
+        } else {
+            setErrorStatusModel(false)
+        }
+        // Body
+        if (!data.Body) {
+            setErrorStatusBody(true)
+            setErrorMsgBody('You must complete this file')
+        } else {
+            setErrorStatusBody(false)
+        }
+        // Transmission
+        if (!data.Transmission) {
+            setErrorStatusTransmission(true)
+            setErrorMsgTransmission('You must complete this file')
+        } else {
+            setErrorStatusTransmission(false)
+        }
+        // Price
+        if (!data.Price) {
+            setErrorStatusPrice(true)
+            setErrorMsgPrice('You must complete this file')
+        } else {
+            setErrorStatusPrice(false)
+        }
+        // Kilometers
+        if (!data.Kilometers) {
+            setErrorStatusKilometers(true)
+            setErrorMsgKilometers('You must complete this file')
+        } else {
+            setErrorStatusKilometers(false)
+        }
+        // Year
+        if (!data.Year) {
+            setErrorStatusYear(true)
+            setErrorMsgYear('You must complete this file')
+        } else {
+            setErrorStatusYear(false)
+        }
+        // Version
+        if (!data.Version) {
+            setErrorStatusVersion(true)
+            setErrorMsgVersion('You must complete this file')
+        } else {
+            setErrorStatusVersion(false)
+        }
+        // Gasoline
+        if (!data.Gasoline) {
+            setErrorStatusGasoline(true)
+            setErrorMsgGasoline('You must complete this file')
+        } else {
+            setErrorStatusGasoline(false)
+        }
+        // Engine
+        if (!data.Engine) {
+            setErrorStatusEngine(true)
+            setErrorMsgEngine('You must complete this file')
+        } else {
+            setErrorStatusEngine(false)
+        }
+
+        if(isErrorRequired()){
+            console.log(`Car information:`);
+            console.log(data);
+            setSellCarData(data)
+            setPreSubmit(true)
+        }else{
+            setPreSubmit(false)
+        }
+    }
 
     const removeImg = (index, event) => {
         event.preventDefault()
@@ -237,7 +384,7 @@ const sellCarButtonClick = () => {
             <div className="sellCarImageContainerTitle">
                 <h3 className="sellCarImageTitle">Upload your images car</h3>
                 <div className="sellCarImageContainer">
-                    <label htmlFor="sellCarInputImage" className="file-upload-label">
+                    <label htmlFor="sellCarInputImage" className={errorStatusImages? "file-upload-label-error" :"file-upload-label"}>
                         <i className="fa-solid fa-plus"><FontAwesomeIcon icon={faImages} /></i>
                         <p className="sellCarUploadTitle">Upload Images</p>
                     </label>
@@ -258,29 +405,29 @@ const sellCarButtonClick = () => {
                 <div className="rowOne">
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Description*</label>
-                        <input id="sellCarInput" placeholder="Porsche cayane 3.8gt" type="text" onChange={(e) => handleDescriptionChange(e)}></input> {/*INPUT*/}
+                        <input id={errorStatusDescription ? "sellCarInputError" : "sellCarInput"} placeholder="Porsche cayane 3.8gt" type="text" onChange={(e) => handleDescriptionChange(e)}></input> {/*INPUT*/}
                     </div>
                     <div id="sellCarInputContainer" className="sellCarPriceInputContainer" >
                         <label id="sellCarLabel">Price*</label>
-                        <input id="sellCarInput" placeholder="20000" type="number" inputMode="numeric" onChange={(e) => handlePriceChange(e)}></input> {/*INPUT*/}
+                        <input id={errorStatusPrice ? "sellCarInputError" : "sellCarInput"} placeholder="20000" type="number" inputMode="numeric" onChange={(e) => handlePriceChange(e)}></input> {/*INPUT*/}
                         <p className="sellCarPriceIcon">$</p>
                     </div>
                     <div id="sellCarInputContainer" className="sellCarDiscountInputContainer">
                         <label id="sellCarLabel">Discount</label>
-                        <input id="sellCarInput" placeholder="20" type="number" onChange={(e) => handleDiscountChange(e)}></input> {/*INPUT*/}
+                        <input id={errorStatusDiscount ? "sellCarInputError" : "sellCarInput"} placeholder="20" type="number" onChange={(e) => handleDiscountChange(e)}></input> {/*INPUT*/}
                         <p className="sellCarDiscountIcon">%</p>
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Kilometers*</label>
-                        <input id="sellCarInput" placeholder="1000" type="number" onChange={(e) => handleKilometersChange(e)}></input> {/*INPUT*/}
+                        <input id={errorStatusKilometers ? "sellCarInputError" : "sellCarInput"} placeholder="1000" type="number" onChange={(e) => handleKilometersChange(e)}></input> {/*INPUT*/}
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Year*</label>
-                        <input id="sellCarInput" placeholder="2021" type="number" onChange={(e) => handleYearChange(e)}></input> {/*INPUT*/}
+                        <input id={errorStatusYear ? "sellCarInputError" : "sellCarInput"} placeholder="2021" type="number" onChange={(e) => handleYearChange(e)}></input> {/*INPUT*/}
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Color*</label>
-                        <select id="sellCarSelect" value={selectedColor} onChange={(e) => handleColorChange(e)}>
+                        <select id={errorStatusColor ? "sellCarSelectError" : "sellCarSelect"} value={selectedColor} onChange={(e) => handleColorChange(e)}>
                             <option value="" className="SellCarHideOption">Select a color</option>
                             {allColors.map(color => (
                                 <option key={color.id} value={color.code}>{color.name}</option>
@@ -296,7 +443,7 @@ const sellCarButtonClick = () => {
                 <div className="rowTwo">
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Brand*</label>
-                        <select id="sellCarSelect" value={selectedBrand} onChange={handleBrandChange}>
+                        <select id={errorStatusBrand ? "sellCarSelectError" : "sellCarSelect"} value={selectedBrand} onChange={handleBrandChange}>
                             <option value="" className="SellCarHideOption">Select a brand</option>
                             {allBrands.map((brand) => (
                                 <option key={brand.brandId} value={brand.id}>
@@ -307,7 +454,7 @@ const sellCarButtonClick = () => {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Model*</label>
-                        <select id="sellCarSelect" value={selectedModel} onChange={(e) => handleModelChange(e)} disabled={!selectedBrand}>
+                        <select id={errorStatusModel ? "sellCarSelectError" : "sellCarSelect"} value={selectedModel} onChange={(e) => handleModelChange(e)} disabled={!selectedBrand}>
                             <option value="" className="SellCarHideOption">Select a model</option>
                             {selectedBrand &&
                                 allModels
@@ -321,7 +468,7 @@ const sellCarButtonClick = () => {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Transmission*</label>
-                        <select id="sellCarSelect" value={selectedTransmission} onChange={(e) => handleTransmissionChange(e)}>
+                        <select id={errorStatusTransmission ? "sellCarSelectError" : "sellCarSelect"} value={selectedTransmission} onChange={(e) => handleTransmissionChange(e)}>
                             <option value="" className="SellCarHideOption">Select a transmission</option>
                             <option>Manual</option>
                             <option>Automatic</option>
@@ -329,12 +476,12 @@ const sellCarButtonClick = () => {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Version</label>
-                        <input type="text" placeholder="GTI" id="sellCarInput" onChange={(e) => handleVersionChange(e)}></input> {/*INPUT*/}
+                        <input type="text" placeholder="GTI" id={errorStatusVersion ? "sellCarInputError" : "sellCarInput"} onChange={(e) => handleVersionChange(e)}></input> {/*INPUT*/}
                     </div>
 
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Body Car*</label>
-                        <select id="sellCarSelect" value={selectedBodyCar} onChange={(e) => handleBodyCarChange(e)}>
+                        <select id={errorStatusBody ? "sellCarSelectError" : "sellCarSelect"} value={selectedBodyCar} onChange={(e) => handleBodyCarChange(e)}>
                             <option value="" className="SellCarHideOption">Select a Body Car</option>
                             {allBodyCars.map((bodyCar) => (
                                 <option key={bodyCar.id} value={bodyCar.name}>
@@ -345,14 +492,15 @@ const sellCarButtonClick = () => {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Engine*</label>
-                        <input id="sellCarInput" placeholder="V10" type="text" onChange={(e) => handleEngineChange(e)}></input> {/*INPUT*/}
+                        <input id={errorStatusEngine ? "sellCarInputError" : "sellCarInput"} placeholder="V10" type="text" onChange={(e) => handleEngineChange(e)}></input> {/*INPUT*/}
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Gasoline*</label>
-                        <input id="sellCarInput" placeholder="Premium" type="text" onChange={(e) => handleGasolineChange(e)}></input> {/*INPUT*/}
+                        <input id={errorStatusGasoline ? "sellCarInputError" : "sellCarInput"} placeholder="Premium" type="text" onChange={(e) => handleGasolineChange(e)}></input> {/*INPUT*/}
                     </div>
                 </div>
             </div>
+            <ErrorBlock divClassName='errorBlock-div' msgClassName='errorBlock-msg' iconClassName={'iconError'} errorStatus={isErrorRequired()} msg={'You must to complete all files with *'} />
             <div className="sellCarAdminSection">
                 <div className="sellCarAdminTitleContainer">
                     <h1 className="sellCarAdminTitle">Dealership Add Options</h1>
@@ -397,6 +545,7 @@ const sellCarButtonClick = () => {
                 </div>
             </div>
             <AddPopup trigger={addPopup} type={addPopupType} setTrigger={setAddPopup}></AddPopup>
+            <PreSubmit trigger={preSubmit} data={sellCarData} setTrigger={setPreSubmit}></PreSubmit>
         </div>
 
     )

@@ -293,6 +293,8 @@ function addPopup(props) {
             </div>)
         }
 
+    
+
     }
 
     return (props.trigger) ? renderFunction(popupType) : ''

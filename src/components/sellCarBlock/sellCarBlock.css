@@ -112,6 +112,21 @@
     transition: ease-in background-color 0.3s;
     border-radius: 5px;
   }
+  .file-upload-label-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px; /* Ancho del cuadrado */
+    height: 170px; /* Altura del cuadrado */
+    border: 2px solid red; /* Borde punteado y color azul */
+    cursor: pointer;
+    font-size: 36px;
+    color: red;
+    flex-direction: column;
+    background-color: #6d6d6d00;
+    transition: ease-in background-color 0.3s;
+    border-radius: 5px;
+  }
 
   .file-upload-label:hover{
     background-color: #c2c2c2;
@@ -141,6 +156,14 @@
  border: 0px; 
  border-radius: 3px;
 }
+#sellCarInputError{
+  width: auto;
+  height: 30px;
+  font-size: 1.05rem;
+  border: 0px; 
+  border-radius: 3px;
+  border: 1px solid red;
+ }
 
 #sellCarInput::-webkit-inner-spin-button,
 #sellCarInput::-webkit-outer-spin-button {
@@ -152,6 +175,13 @@
   width: auto;
   height: 33px;
   border: 0px;
+  border-radius: 3px;
+  font-size: 1.05rem;
+}
+#sellCarSelectError{
+  width: auto;
+  height: 33px;
+  border: 1px solid red;
   border-radius: 3px;
   font-size: 1.05rem;
 }
@@ -316,6 +346,30 @@
   display: flex;
   justify-content: center;
 }
+
+/******** ERRORS  ***************************/
+.errorBlock-div{
+  width: 100%;
+  margin-top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 12px;
+  background-color:rgb(180 47 47 / 12%);
+}
+.iconError{
+  margin-left: 2%;
+  background-color: red;
+  color: white;
+  padding: 0.5% 1%;
+  border-radius: 100%;
+  font-weight: 600;
+}
+.errorBlock-msg{
+  margin-left: 2% ;
+}
+/********************************************/
+
 
 @media (max-width: 1300px) {
   .sellCarButtonBoxsticky{
