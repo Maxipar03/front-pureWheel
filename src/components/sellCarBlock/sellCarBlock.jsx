@@ -76,8 +76,7 @@ function sellCarBlock() {
 
     const [addPopupType, setAddPopupType] = useState("")
     const [addPopup, setAddPopup] = useState(false);
-
-    const [preSubmit, setPreSubmit] = useState(true) // ---------------
+    const [preSubmit, setPreSubmit] = useState(false)
 
     const[sellCarData, setSellCarData] = useState({})
 

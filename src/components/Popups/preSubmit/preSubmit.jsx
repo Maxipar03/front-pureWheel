@@ -28,24 +28,24 @@ function addPopup(props) {
             document.removeEventListener('keydown', handleKeyPress);
         };
     }, []);
-    return (props.trigger ? 
-        
-        <div className="scp-main-choose" onClick={closePopup}>
-        <div className="scp-choose-main-div" onClick={(e) => e.stopPropagation()}>
-            <div className="scp-main-div-top-color">
-                <div className="scp-close-popup-div"><p onClick={closePopup}>X</p></div>
-                <div className="scp-choose-color-input-div">
-                    <button className='scp-button-color'>Submit</button>
-                    <button className='scp-button-color'>Cancel</button>
-                </div>
-            </div>
-            <div className="scp-main-div-bottom">
-                {/* LIST OF DB COLORS FROM NEWEST TO OLDEST */}
-            </div>
+    return (props.trigger ?
 
-            <div className="scp-choose-info-div"></div>
+        <div className="scp-main-choose" onClick={closePopup}>
+            <div className="scp-choose-main-div" onClick={(e) => e.stopPropagation()}>
+                <div className="scp-main-div-top-color">
+                    <div className="scp-close-popup-div"><p onClick={closePopup}>X</p></div>
+                    <div className="scp-choose-color-input-div">
+                        <button className='scp-button-color'>Submit</button>
+                        <button className='scp-button-color'>Cancel</button>
+                    </div>
+                </div>
+                <div className="scp-main-div-bottom">
+                    {/* LIST OF DB COLORS FROM NEWEST TO OLDEST */}
+                </div>
+
+                <div className="scp-choose-info-div"></div>
+            </div>
         </div>
-    </div>
 
         : null)
 
