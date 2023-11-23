@@ -31,37 +31,37 @@ function sellCarBlock() {
     const [selectedEngine, setSelectedEngine] = useState('')
 
     // ErrorsStatus
-        const [fullError, setFullError] = useState(false)
-        const [errorStatusImages, setErrorStatusImages] = useState(false)
-        const [errorMsgImages, setErrorMsgImages] = useState('')
-        const [errorStatusColor, setErrorStatusColor] = useState(false)
-        const [errorMsgColor, setErrorMsgColor] = useState('')
-        const [errorStatusBrand, setErrorStatusBrand] = useState(false)
-        const [errorMsgBrand, setErrorMsgBrand] = useState('')
-        const [errorStatusModel, setErrorStatusModel] = useState(false)
-        const [errorMsgModel, setErrorMsgModel] = useState('')
-        const [errorStatusBody, setErrorStatusBody] = useState(false)
-        const [errorMsgBody, setErrorMsgBody] = useState('')
-        const [errorStatusTransmission, setErrorStatusTransmission] = useState(false)
-        const [errorMsgTransmission, setErrorMsgTransmission] = useState('')
-        const [errorStatusPrice, setErrorStatusPrice] = useState(false)
-        const [errorMsgPrice, setErrorMsgPrice] = useState('')
-        const [errorStatusDescription, setErrorStatusDescription] = useState(false)
-        const [errorMsgDescription, setErrorMsgDescription] = useState('')
-        const [errorStatusDiscount, setErrorStatusDiscount] = useState(false)
-        const [errorMsgDiscount, setErrorMsgDiscount] = useState('')
-        const [errorStatusKilometers, setErrorStatusKilometers] = useState(false)
-        const [errorMsgKilometers, setErrorMsgKilometers] = useState('')
-        const [errorStatusYear, setErrorStatusYear] = useState(false)
-        const [errorMsgYear, setErrorMsgYear] = useState('')
-        const [errorStatusVersion, setErrorStatusVersion] = useState(false)
-        const [errorMsgVersion, setErrorMsgVersion] = useState('')
-        const [errorStatusDamage, setErrorStatusDamage] = useState(false)
-        const [errorMsgDamage, setErrorMsgDamage] = useState('')
-        const [errorStatusGasoline, setErrorStatusGasoline] = useState(false)
-        const [errorMsgGasoline, setErrorMsgGasoline] = useState('')
-        const [errorStatusEngine, setErrorStatusEngine] = useState(false)
-        const [errorMsgEngine, setErrorMsgEngine] = useState('')
+    const [fullError, setFullError] = useState(false)
+    const [errorStatusImages, setErrorStatusImages] = useState(false)
+    const [errorMsgImages, setErrorMsgImages] = useState('')
+    const [errorStatusColor, setErrorStatusColor] = useState(false)
+    const [errorMsgColor, setErrorMsgColor] = useState('')
+    const [errorStatusBrand, setErrorStatusBrand] = useState(false)
+    const [errorMsgBrand, setErrorMsgBrand] = useState('')
+    const [errorStatusModel, setErrorStatusModel] = useState(false)
+    const [errorMsgModel, setErrorMsgModel] = useState('')
+    const [errorStatusBody, setErrorStatusBody] = useState(false)
+    const [errorMsgBody, setErrorMsgBody] = useState('')
+    const [errorStatusTransmission, setErrorStatusTransmission] = useState(false)
+    const [errorMsgTransmission, setErrorMsgTransmission] = useState('')
+    const [errorStatusPrice, setErrorStatusPrice] = useState(false)
+    const [errorMsgPrice, setErrorMsgPrice] = useState('')
+    const [errorStatusDescription, setErrorStatusDescription] = useState(false)
+    const [errorMsgDescription, setErrorMsgDescription] = useState('')
+    const [errorStatusDiscount, setErrorStatusDiscount] = useState(false)
+    const [errorMsgDiscount, setErrorMsgDiscount] = useState('')
+    const [errorStatusKilometers, setErrorStatusKilometers] = useState(false)
+    const [errorMsgKilometers, setErrorMsgKilometers] = useState('')
+    const [errorStatusYear, setErrorStatusYear] = useState(false)
+    const [errorMsgYear, setErrorMsgYear] = useState('')
+    const [errorStatusVersion, setErrorStatusVersion] = useState(false)
+    const [errorMsgVersion, setErrorMsgVersion] = useState('')
+    const [errorStatusDamage, setErrorStatusDamage] = useState(false)
+    const [errorMsgDamage, setErrorMsgDamage] = useState('')
+    const [errorStatusGasoline, setErrorStatusGasoline] = useState(false)
+    const [errorMsgGasoline, setErrorMsgGasoline] = useState('')
+    const [errorStatusEngine, setErrorStatusEngine] = useState(false)
+    const [errorMsgEngine, setErrorMsgEngine] = useState('')
 
 
     const [allBrands, setAllBrands] = useState([]);
@@ -327,6 +327,14 @@ function sellCarBlock() {
         }
     }
 
+    // ******************** TOKEN ****************************
+    // const permanentToken = localStorage.getItem('token');
+    // const token = sessionStorage.getItem('token');
+    // const headers = {}
+    // if (permanentToken) headers.authorization = permanentToken
+    // if (token) headers.authorization = token
+    // *******************************************************
+
     const removeImg = (index, event) => {
         event.preventDefault()
         const updatedImages = [...selectedImages];
@@ -559,7 +567,7 @@ function sellCarBlock() {
                             allBrands
                                 .filter((brand) => brand.id == selectedBrand)
                                 .map((brand) => (
-                                    <h2 className="sellCarBrandNameDetail">{brand.name}</h2>
+                                    <h2 key={brand.id} className="sellCarBrandNameDetail">{brand.name}</h2>
                                 ))}
                         <h3 className="sellCarModelNameDetail">{selectedModel}</h3>
                     </div>

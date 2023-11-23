@@ -254,7 +254,6 @@ function register() {
         }
       })
     } else {
-      console.log(loggAuth);
       for (const val of loggAuth) {
         if (val === 'name') {
           setNameErrorStatus(true)

@@ -42,17 +42,17 @@ function App() {
       const headers = {
         authorization: permanentToken
       };
-      (`${appInfo.root}/users/token/byId`, {
+      fetchApi(`${appInfo.root}/users/token/byId`, {
         method:'GET',
         headers,
       },(resolve)=>{
         sessionStorage.setItem('userLogged', JSON.stringify(resolve.data))
       });
     }
-
-    
-
   }, []);
+
+  const userLogged = JSON.parse(sessionStorage.getItem('userLogged'));
+  console.log(userLogged);
 
 return (
   <div className='App'>
@@ -68,7 +68,7 @@ return (
         {<Route exact path='/products/detail/:id' element={<ProductsDetail/>}/>}
         {<Route exact path='/products/all' element={<BuyCar/>}/>}
         {/****************** SELL CAR ******************/}
-        {<Route exact path='/products/sellCar' element={<SellCar/>}/>}
+        {userLogged != null ? <Route exact path='/products/sellCar' element={userLogged.email === appInfo.adminAcces ? <SellCar/> : <><h1>ACCES DENIED</h1></>}/>:null}
         {<Route exact path="/profile" element={<Profile/>}/>}
       </Routes>
       {shouldRenderFooter && <Footer />}
