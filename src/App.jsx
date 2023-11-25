@@ -52,7 +52,6 @@ function App() {
   }, []);
 
   const userLogged = JSON.parse(sessionStorage.getItem('userLogged'));
-  console.log(userLogged);
 
 return (
   <div className='App'>

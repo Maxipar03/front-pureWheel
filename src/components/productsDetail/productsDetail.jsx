@@ -28,20 +28,17 @@ function productsDetail() {
         if (reject) {
           console.log(reject);
         } else {
-          console.log(resolve);
           setProduct(resolve.data);
         }
       }
     );
   }, []);
-
-  console.log(product);
+  const userLogged = JSON.parse(sessionStorage.getItem('userLogged'))
 
   function calculateDiscountedPrice(price, discountPercentage) {
     const discountedPrice = price - (price * (discountPercentage / 100));
     return discountedPrice.toFixed(0); 
   }
-
   useEffect(() => {
     fetchApi(`${appInfo.root}/cars`, {
       method: 'GET',
@@ -49,13 +46,10 @@ function productsDetail() {
       if (reject) {
         console.log(reject);
       } else {
-        console.log(resolve)
         setProductRelated(resolve.data)
-        console.log(brandProducts)
       }
     });
   }, []);
-
   function objToArray(obj) {
     const imagesToArray = [];
     for (let key in obj) {
@@ -65,8 +59,7 @@ function productsDetail() {
     }
     return imagesToArray;
   }
-
-  const productRelatedBrand = productRelated.filter((car) => car.brand.name === product.brand.name);
+  const productRelatedBrand = productRelated.length > 0 && product.length > 0 ? productRelated.filter((car) => car.brand.name === product.brand.name) : null;
 
   return (
     <div className="allProductDetailContainer">
@@ -126,7 +119,19 @@ function productsDetail() {
          </div>
         }
         </div>
-        <div className="productDetailButtonWpcontainer">
+         {/* BUTTONS LOGIC */}
+        {(userLogged?userLogged.id:null) === product.user_id ?
+        <><div className="productDetailButtonWpcontainer">
+          <div className="productDetailButtonWp">
+          <button className="whatsappButton">EDIT</button>
+          </div>
+        </div>
+        <div className="productDetailButtonFavcontainer">
+          <div className="productDetailButtonFav">
+          <button className="favButton">DELETE</button>
+          </div>
+        </div></>:
+        <><div className="productDetailButtonWpcontainer">
           <div className="productDetailButtonWp">
           <button className="whatsappButton"><FontAwesomeIcon icon={faWhatsapp}/>Send Message</button>
           </div>
@@ -135,7 +140,7 @@ function productsDetail() {
           <div className="productDetailButtonFav">
           <button className="favButton"><FontAwesomeIcon icon={regularHeart} /> Add to favorites</button>
           </div>
-        </div>
+        </div></>}
       </div>
     </div> 
     <div className="productDetailMoreInfoContainer">
@@ -186,11 +191,11 @@ function productsDetail() {
     </div>
 
     <div className="productRelatedContainer"> 
-      {productRelatedBrand.map((car) => (
+      {productRelatedBrand ?productRelatedBrand.map((car) => (
         <div key={car.id}>
             <ProductDetailRelated productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} carsYear={car.year}/>
         </div>
-      ))}
+      )):null}
     </div>
     </div> 
   );
