@@ -30,10 +30,11 @@
 }
 
 .scp-choose-main-div {
-    width: 40%;
-    height: 60%;
+    width: 70%;
+    height: 70%;
     border-radius: 5px;
     display: flex;
+    overflow: auto;
     flex-direction: column;
     background: rgba(36, 48, 60, 2.8);
     box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5);
@@ -41,6 +42,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
 }
 
 .scp-close-popup-div{
@@ -108,13 +110,47 @@
 }
 
 /* COLOR */
-.scp-choose-color-input-div{
+.scp-advice-sell-car {
     width: 100%;
-    height: 70%;
+    border-top: 1px solid;
+    height: auto;
     display: flex;
+    bottom: 0;
+    position: sticky;
+    height: 13%;
+    /* background-color: white; */
     justify-content: space-around;
     align-content: center;
     align-items: center;
+    flex-direction: column;
+    background: rgba(36, 48, 60, 2.8);
+}
+
+.scp-advice-sell-car h3{
+    font-size: 1.9rem;
+    padding: 1%;
+    font-weight: 500;
+}
+.scp-button-sell-car-submit{
+width: 15vw;
+height: 2.5vw;
+cursor: pointer;
+border-radius: 6px;
+border: 0px;
+}
+.scp-button-sell-car-cancel{
+    width: 15vw;
+    height: 2.5vw;
+    cursor: pointer;
+    background-color: red;
+    border: 0px;
+    border-radius: 6px;   
+}
+.scp-advice-button-sell-car{
+    display: flex;
+    justify-content: space-around;
+    width: 55%;
+    padding-bottom: 1%;
 }
 .scp-main-div-top-color {
     width: 100%;
@@ -234,7 +270,71 @@
     color: red; /* Cambiará el color a rojo en hover */
   }
   
+  .sellCarImageProps img {
+    min-width: 150px;
+    max-width: 300px;
+    max-height: 169px;
+    display: block;
+    margin: 0 auto;
+    object-fit: scale-down;
+}
 
+.sellCarImageProps {
+    margin: 10px;
+}
+
+.sellCarPropsInfoImageContainer{
+    display: flex;
+    width: 100%;
+    overflow: auto;
+}
+
+.sellCarPropsInfoContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.sellCarPropsInfoRow1 {
+    width: 40%;
+}
+
+.sellCarPropsInfoRow2 {
+    width: 40%;
+}
+
+.sellCarPropsInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0px;
+    background-color: rebeccapurple;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.sellCarPropsInfo h1{
+    margin: 0px;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.sellCarPropsInfo h3{
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+
+
+.sellCarPropsInfoPrice{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    
+}
 
 
 @media (max-width: 724px) {
