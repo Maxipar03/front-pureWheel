@@ -2,11 +2,11 @@ import React from "react";
 import './sellCar.css'
 import SellCarBlock from "../../components/sellCarBlock/sellCarBlock"
 
-function sellCar() {
+function sellCar(props) {
 
 return (
   <div className="sellCar">
-    <SellCarBlock></SellCarBlock>
+    <SellCarBlock typeUpdate={props.typeUpdate} ></SellCarBlock>
   </div>
   )
 }
