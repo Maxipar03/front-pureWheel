@@ -24,7 +24,6 @@ function brandsProducts() {
         setProducts(resolve.info.carsIncluded)
         setAllProducts(resolve.info.carsIncluded)
         setModels(resolve.info.models)
-        console.log(resolve)
       }
     });
   }, []);

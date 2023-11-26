@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import './sellCarBlock.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
@@ -12,8 +13,10 @@ import ErrorBlock from '../errors/errorBlock/errorBlock.jsx'
 
 function sellCarBlock(props) {
 
+    const { id } = useParams()
+
     const [isSticky, setIsSticky] = useState(false);
-// Prod
+    // Prod
     const [selectedImages, setSelectedImages] = useState([]);
     const [selectedColor, setSelectedColor] = useState(0);
     const [selectedBrand, setSelectedBrand] = useState(0);
@@ -29,6 +32,8 @@ function sellCarBlock(props) {
     const [selectedDamage, setSelectedDamage] = useState('')
     const [selectedGasoline, setSelectedGasoline] = useState('')
     const [selectedEngine, setSelectedEngine] = useState('')
+
+    const [updateCarInfo, setUpdateCarInfo] = useState({})
 
     // ErrorsStatus
     const [fullError, setFullError] = useState(false)
@@ -126,7 +131,6 @@ function sellCarBlock(props) {
     }
     const handleBrandChange = (e) => {
         const selectedBrandId = e.target.value;
-        console.log(selectedBrandId);
         setSelectedBrand(selectedBrandId);
         setSelectedModel('');
         setSelectedModel(allModels.filter((model) => model.brand_id === selectedBrandId));
@@ -140,7 +144,7 @@ function sellCarBlock(props) {
     const handleBodyCarChange = (e) => {
         const newBody = e.target.value
         setSelectedBodyCar(newBody)
-        setErrorStatusBodyCar(false)
+        setErrorStatusBody(false)
     }
     const handleTransmissionChange = (e) => {
         const newTransmission = e.target.value
@@ -209,7 +213,8 @@ function sellCarBlock(props) {
             Version: selectedVersion,
             Damage: selectedDamage,
             Gasoline: selectedGasoline,
-            Engine: selectedEngine
+            Engine: selectedEngine,
+            User_id: updateCarInfo.user_id
         }
 
         let errArr = []
@@ -319,9 +324,10 @@ function sellCarBlock(props) {
             setErrorStatusEngine(false)
         }
 
+        console.log(errArr);
+
         if (errArr.length > 0) {
             setFullError(true)
-            console.log('Error detected');
         } else {
             setFullError(false)
             setSellCarData(data)
@@ -346,7 +352,6 @@ function sellCarBlock(props) {
                 }, (resolve, reject) => {
                     if (reject) console.error(reject)
                     return resolve.data
-                    console.log(resolve.data);
                 }
                 )
                 setAllBrands(brandsResponse);
@@ -387,29 +392,36 @@ function sellCarBlock(props) {
                 )
                 setAllVersions(versionResponse);
 
-                // *********************************************************************
-                // if(typeUpdate) {
-
-                //     const carResponse = await fetchApi(`${appInfo.root}/cars`, {
-                //         method: 'GET',
-                //     }, (resolve, reject) => {
-                //         if (reject) console.error(reject)
-                //         return resolve.data
-                //     }
-                //     )
-                // }
-                // *********************************************************************
-
-
+                if (props.typeUpdate) {
+                    const carResponse = await fetchApi(`${appInfo.root}/cars/${id}`, {
+                        method: 'GET',
+                    }, (resolve, reject) => {
+                        if (reject) console.error(reject)
+                        return resolve.data
+                    })
+                    setUpdateCarInfo(carResponse)
+                    setSelectedImages(JSON.parse(carResponse.images))
+                    setSelectedColor(carResponse.color_id)
+                    setSelectedBrand(carResponse.brand_id)
+                    setSelectedModel(carResponse.carModel_id)
+                    setSelectedBodyCar(carResponse.bodyCar_id)
+                    setSelectedTransmission(carResponse.transmission)
+                    setSelectedPrice(carResponse.price)
+                    setSelectedDescription(carResponse.description)
+                    setSelectedDiscount(carResponse.onSale)
+                    setSelectedKilometers(carResponse.km)
+                    setSelectedYear(carResponse.year)
+                    setSelectedVersion(carResponse.version_id)
+                    setSelectedDamage(carResponse.damage)
+                    setSelectedGasoline(carResponse.gas)
+                    setSelectedEngine(carResponse.engine)
+                }
             } catch (error) {
                 console.error(error);
             }
         };
-
         fetchData();
     }, []);
-
-
     const handleScroll = () => {
         const windowHeight = window.innerHeight + 95;
         const scrollY = window.scrollY;
@@ -447,7 +459,7 @@ function sellCarBlock(props) {
                     <div ref={refInputImg} className="sellCarImageSection">
                         {selectedImages.map((image, index) => (
                             <div key={index} className="sellCarImagePreview">
-                                <img src={URL.createObjectURL(image)} alt={`Image ${index}`} />
+                                <img src={props.typeUpdate? `${appInfo.root}/images/cars/user_${updateCarInfo.user_id}/${image}` : URL.createObjectURL(image)} alt={`Image ${index}`} />
                                 <a onClick={(event) => removeImg(index, event)}><i className="sellCarXmark"><FontAwesomeIcon icon={faX} /></i></a>
                             </div>
                         ))}
@@ -530,7 +542,7 @@ function sellCarBlock(props) {
                     </div>
                     <div id="sellCarInputContainer">
                         <label id="sellCarLabel">Version</label>
-                        <select id={errorStatusBrand ? "sellCarSelectError" : "sellCarSelect"} value={selectedVersion} onChange={handleVersionChange}>
+                        <select id={errorStatusVersion ? "sellCarSelectError" : "sellCarSelect"} value={selectedVersion} onChange={handleVersionChange}>
                             <option value="" className="SellCarHideOption">Select a brand</option>
                             {allVersions.map((version) => (
                                 <option key={version.id} value={version.id}>
@@ -606,7 +618,7 @@ function sellCarBlock(props) {
                 </div>
             </div>
             <AddPopup trigger={addPopup} type={addPopupType} setTrigger={setAddPopup}></AddPopup>
-            <PreSubmit trigger={preSubmit} data={sellCarData} setTrigger={setPreSubmit}></PreSubmit>
+            <PreSubmit typeUpdate={props.typeUpdate} trigger={preSubmit} data={sellCarData} setTrigger={setPreSubmit}></PreSubmit>
         </div>
 
     )

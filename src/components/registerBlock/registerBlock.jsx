@@ -239,7 +239,6 @@ function register() {
       }, (resolve, reject) => {
         if (reject) {
           console.error(reject);
-          console.log(data);
         } else {
           if (resolve.info.token) {
             sessionStorage.setItem('token', JSON.stringify(resolve.info.token))
