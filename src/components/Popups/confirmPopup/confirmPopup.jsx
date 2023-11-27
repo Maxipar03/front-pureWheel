@@ -8,9 +8,21 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
-function confirmPopup({trigger, setTrigger}) {
+function confirmPopup({trigger, setTrigger,carId}) {
     const closePopup = () => {
         setTrigger(false)
+    }
+
+    const deleteProduct = () => {
+      fetchApi(`${appInfo.root}/cars/delete/${carId}`, {
+        method: 'DELETE',
+      }, (resolve, reject) => {
+        if (reject) {
+           console.log(reject);
+        } else {   
+        window.location.href = '/'
+          }
+      })
     }
 
     useEffect(() => {
@@ -32,7 +44,7 @@ function confirmPopup({trigger, setTrigger}) {
                 <div className="acp-choose-color-input-div">
                     <h1 className="acp-choose-color-name-div" >This action will delete it permanently, are you sure?</h1>
                     
-                    <button className='acp-button-color'>DELETE</button>
+                    <button onClick={deleteProduct} className='acp-button-color'>DELETE</button>
                     <button onClick={closePopup} className='acp-button-color'>Cancel</button>
                 </div>
             </div>

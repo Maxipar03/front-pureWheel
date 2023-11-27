@@ -456,7 +456,7 @@ function sellCarBlock(props) {
                     </label>
                     <input type="file" id="sellCarInputImage" name="productFile" multiple onChange={handleImageChange} className="file-upload-input" />
                     <h5 ref={refErrorImg} className='sellCarImageError'>File extension not allowed</h5>
-                    <div ref={refInputImg} className="sellCarImageSection">
+                    <div ref={refInputImg} className="imageC">
                         {selectedImages.map((image, index) => (
                             <div key={index} className="sellCarImagePreview">
                                 <img src={props.typeUpdate? `${appInfo.root}/images/cars/user_${updateCarInfo.user_id}/${image}` : URL.createObjectURL(image)} alt={`Image ${index}`} />
@@ -613,8 +613,10 @@ function sellCarBlock(props) {
                         <h3 className="sellCarPriceDetail">{selectedPrice}$</h3>
                     </div>
                 </div>
-                <div className="sellCarButtonContainer">
+                <div className="sellCarButtonContainer">{props.typeUpdate ? 
+                    <button onClick={sellCarButtonClick} className="sellCarPublishButton">Update Car</button> :
                     <button onClick={sellCarButtonClick} className="sellCarPublishButton">Sell Car</button>
+                }
                 </div>
             </div>
             <AddPopup trigger={addPopup} type={addPopupType} setTrigger={setAddPopup}></AddPopup>

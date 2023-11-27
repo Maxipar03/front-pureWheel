@@ -169,6 +169,32 @@ margin: 1% 0px;
     background-color: #219f50;
 }
 
+.productDetailButtonEditcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;   
+}
+
+
+.editButton{
+    width: 100%;
+    height: 2.5vw;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: #828986;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.editButton:hover{
+    background-color: #595a5a;
+}
+
 #whatsappIcon{
     padding-right: 4px;
 }
@@ -178,6 +204,11 @@ margin: 1% 0px;
     justify-content: center;
     align-items: flex-start;   
 }
+
+.productDetailButtonEdit{
+    width: 88%;
+}
+
 
 .productDetailButtonFav{
     width: 88%;

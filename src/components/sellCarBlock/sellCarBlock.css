@@ -3,6 +3,7 @@
 .sellCarImageContainerTitle {
   text-align: center;
   min-width: 70vw;
+  max-width: 70vw;
   border-radius: 10px;
   margin: 0 auto;
   padding: 20px;
@@ -15,6 +16,20 @@
 .sellCarImageContainer{
  display: flex;
  align-items: center;
+ overflow: auto;
+}
+
+.sellCarImageContainer::-webkit-scrollbar {
+  width: 12px;
+}
+
+.sellCarImageContainer::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px; 
+}
+
+.sellCarImageContainer::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 
   
@@ -101,7 +116,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 140px; /* Ancho del cuadrado */
+    min-width: 140px; /* Ancho del cuadrado */
     height: 170px; /* Altura del cuadrado */
     border: 2px solid #6c7c8d; /* Borde punteado y color azul */
     cursor: pointer;

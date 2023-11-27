@@ -112,7 +112,6 @@
 /* COLOR */
 .scp-advice-sell-car {
     width: 100%;
-    border-top: 1px solid;
     height: auto;
     display: flex;
     bottom: 0;
@@ -244,8 +243,6 @@ border: 0px;
     display: flex;
 }
 
-
-
   .colorEditOptionsContainer::-webkit-scrollbar {
     width: 12px;
   }
@@ -339,7 +336,7 @@ border: 0px;
     align-items: center;
     width: 100%;
     margin: 20px 0px;
-    background-color: rebeccapurple;
+    background-color: #c9c6cb;
     border: 1px solid;
     border-radius: 5px;
     padding: 5px;

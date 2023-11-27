@@ -8,6 +8,8 @@ import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import ImgCarruselDetail from "../imgCarrouselDetail/imgCarrouselDetail"
 import ProductDetailRelated from "../proudctDetailRelated/productDetailRelated";
 import ConfirmPopup from "../Popups/confirmPopup/confirmPopup";
@@ -131,14 +133,14 @@ function productsDetail() {
           </div>
           {/* BUTTONS LOGIC */}
           {(userLogged ? userLogged.id : null) === product.user_id ?
-            <><div className="productDetailButtonWpcontainer">
-              <div className="productDetailButtonWp">
-                <button onClick={() => { editButonHandle() }} className="whatsappButton">EDIT</button>
+            <><div className="productDetailButtonEditcontainer">
+              <div className="productDetailButtonEdit">
+                <button onClick={() => { editButonHandle() }} className="editButton"><FontAwesomeIcon icon={faPen} />Edit Product</button>
               </div>
             </div>
               <div className="productDetailButtonFavcontainer">
                 <div className="productDetailButtonFav">
-                  <button onClick={() => { deleteButtonHandle() }} className="favButton">DELETE</button>
+                  <button onClick={() => { deleteButtonHandle() }} className="favButton"><FontAwesomeIcon icon={faTrash} />Delete Product</button>
                 </div>
               </div></> :
             <><div className="productDetailButtonWpcontainer">
@@ -207,7 +209,7 @@ function productsDetail() {
           </div>
         )) : null}
       </div>
-      <ConfirmPopup trigger={confPop} setTrigger={setConfPop} />
+      <ConfirmPopup carId={id} trigger={confPop} setTrigger={setConfPop} />
     </div>
   );
 }

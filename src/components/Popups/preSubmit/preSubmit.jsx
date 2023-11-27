@@ -153,13 +153,22 @@ function addPopup(props) {
                             ) : null}
                         </div>
                     </div>
+                    {props.typeUpdate ?
                     <div className="scp-advice-sell-car">
-                        <h3>Do you want sell your car?</h3>
+                        <h3>Do you want update your car?</h3>
                         <div className="scp-advice-button-sell-car">
                             <button className='scp-button-sell-car-cancel' onClick={closePopup}>Cancel</button>
                             <button onClick={() => { handleCarSubmit() }} className='scp-button-sell-car-submit'>Submit</button>
                         </div>
-                    </div>
+                    </div> :
+                     <div className="scp-advice-sell-car">
+                     <h3>Do you want sell your car?</h3>
+                     <div className="scp-advice-button-sell-car">
+                         <button className='scp-button-sell-car-cancel' onClick={closePopup}>Cancel</button>
+                         <button onClick={() => { handleCarSubmit() }} className='scp-button-sell-car-submit'>Submit</button>
+                     </div>
+                 </div> 
+                    }
                 </div>
                 <div className="scp-main-div-bottom">
                     {/* LIST OF DB COLORS FROM NEWEST TO OLDEST */}
