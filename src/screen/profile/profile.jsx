@@ -8,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 function Profile() {
   const [selectedOption, setSelectedOption] = useState("UserInfo");
 
-  console.log(selectedOption);
-
   const navigate = useNavigate();
 
   useEffect(() => {

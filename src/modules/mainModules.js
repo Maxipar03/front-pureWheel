@@ -52,7 +52,6 @@ export function filterFromFunction(arrToFilter, arrFilter, cb) {
     arrToFilter.forEach(products => {
         arrFilter <= cb(products) ? productsSelected.push(products) : null
     })
-    console.log(productsSelected);
     return productsSelected
 }
 export function filterToFunction(arrToFilter, arrFilter, cb) {
@@ -60,7 +59,6 @@ export function filterToFunction(arrToFilter, arrFilter, cb) {
     arrToFilter.forEach(products => {
         arrFilter >= cb(products) ? productsSelected.push(products) : null
     })
-    console.log(productsSelected);
     return productsSelected
 }
 export function findCommonProducts(obj) {

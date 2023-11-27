@@ -55,6 +55,9 @@ function addPopup(props) {
     if (permanentToken) headers.authorization = permanentToken
     if (token) headers.authorization = token
 
+    if(props.typeUpdate){
+        console.log('UPDATE FETCH HERE');
+    } else {
         fetchApi(`${appInfo.root}/cars/create`, {
             method: 'POST',
             headers,
@@ -67,6 +70,7 @@ function addPopup(props) {
             }
         });
     }
+    }
 
 
     return (props.trigger ?
@@ -78,7 +82,7 @@ function addPopup(props) {
                     <div className='sellCarPropsInfoImagesContainer'>
                         {props.data && props.data.Images.map((image, index) => (
                             <div key={index} className="sellCarImageProps">
-                                <img src={URL.createObjectURL(image)} alt={`Image ${index}`} />
+                                <img src={props.typeUpdate? `${appInfo.root}/images/cars/user_${props.data.User_id}/${image}` : URL.createObjectURL(image)} alt={`Image ${index}`} />
                             </div>
                         ))}
 

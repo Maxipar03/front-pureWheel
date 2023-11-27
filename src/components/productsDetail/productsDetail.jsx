@@ -10,14 +10,19 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import ImgCarruselDetail from "../imgCarrouselDetail/imgCarrouselDetail"
 import ProductDetailRelated from "../proudctDetailRelated/productDetailRelated";
+import ConfirmPopup from "../Popups/confirmPopup/confirmPopup";
 
 
 function productsDetail() {
+  // States
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [productRelated, setProductRelated] = useState([])
   const [moreInfo, setMoreInfo] = useState(false)
+  const [confPop, setConfPop] = useState(false)
 
+  const userLogged = JSON.parse(sessionStorage.getItem('userLogged'))
+  // Effects
   useEffect(() => {
     fetchApi(
       `${appInfo.root}/cars/${id}`,
@@ -33,12 +38,6 @@ function productsDetail() {
       }
     );
   }, []);
-  const userLogged = JSON.parse(sessionStorage.getItem('userLogged'))
-
-  function calculateDiscountedPrice(price, discountPercentage) {
-    const discountedPrice = price - (price * (discountPercentage / 100));
-    return discountedPrice.toFixed(0);
-  }
   useEffect(() => {
     fetchApi(`${appInfo.root}/cars`, {
       method: 'GET',
@@ -50,6 +49,12 @@ function productsDetail() {
       }
     });
   }, []);
+
+  // Functions
+  function calculateDiscountedPrice(price, discountPercentage) {
+    const discountedPrice = price - (price * (discountPercentage / 100));
+    return discountedPrice.toFixed(0);
+  }
   function objToArray(obj) {
     const imagesToArray = [];
     for (let key in obj) {
@@ -61,7 +66,10 @@ function productsDetail() {
   }
   const productRelatedBrand = productRelated.length > 0 && product.length > 0 ? productRelated.filter((car) => car.brand.name === product.brand.name) : null;
   const editButonHandle = () => {
-    window.location.href = '/products/update/:id'
+    window.location.href = `/products/update/${id}`
+  }
+  const deleteButtonHandle = () => { 
+    setConfPop(true)
   }
   return (
     <div className="allProductDetailContainer">
@@ -125,12 +133,12 @@ function productsDetail() {
           {(userLogged ? userLogged.id : null) === product.user_id ?
             <><div className="productDetailButtonWpcontainer">
               <div className="productDetailButtonWp">
-                <button onClick={() => { editButonHandle }} className="whatsappButton">EDIT</button>
+                <button onClick={() => { editButonHandle() }} className="whatsappButton">EDIT</button>
               </div>
             </div>
               <div className="productDetailButtonFavcontainer">
                 <div className="productDetailButtonFav">
-                  <button className="favButton">DELETE</button>
+                  <button onClick={() => { deleteButtonHandle() }} className="favButton">DELETE</button>
                 </div>
               </div></> :
             <><div className="productDetailButtonWpcontainer">
@@ -199,6 +207,7 @@ function productsDetail() {
           </div>
         )) : null}
       </div>
+      <ConfirmPopup trigger={confPop} setTrigger={setConfPop} />
     </div>
   );
 }

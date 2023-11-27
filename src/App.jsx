@@ -68,7 +68,7 @@ return (
         {<Route exact path='/products/all' element={<BuyCar/>}/>}
         {/****************** SELL CAR ******************/}
         {userLogged != null ? <Route exact path='/products/sellCar' element={userLogged.email === appInfo.adminAcces ? <SellCar/> : <><h1>ACCES DENIED</h1></>}/>:null}
-        {/* {userLogged != null ? <Route exact path='/products/update/:id' element={userLogged.email === appInfo.adminAcces ? <SellCar typeUpdate={true}/> : <><h1>ACCES DENIED</h1></>}/>:null} */}
+        {userLogged != null ? <Route exact path='/products/update/:id' element={userLogged.email === appInfo.adminAcces ? <SellCar typeUpdate={true}/> : <><h1>ACCES DENIED</h1></>}/>:null}
         {<Route exact path="/profile" element={<Profile/>}/>}
       </Routes>
       {shouldRenderFooter && <Footer />}
