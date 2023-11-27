@@ -30,7 +30,7 @@
 }
 
 .scp-choose-main-div {
-    width: 70%;
+    width: 60%;
     height: 70%;
     border-radius: 5px;
     display: flex;
@@ -283,10 +283,40 @@ border: 0px;
     margin: 10px;
 }
 
-.sellCarPropsInfoImageContainer{
+.sellCarPropsInfoImagesContainer{
     display: flex;
-    width: 100%;
+    width: 90%;
     overflow: auto;
+}
+
+.sellCarPropsInfoImagesBox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.sellCarPropsInfoImagesContainer {
+    display: flex;
+    width: 90%;
+    overflow: auto;
+}
+
+.sellCarPropsInfoImagesContainer::-webkit-scrollbar {
+    width: 3px;
+}
+
+.sellCarPropsInfoImagesContainer::-webkit-scrollbar-track {
+    background: #f1f1f100; /* Color de fondo del scrollbar track */
+}
+
+.sellCarPropsInfoImagesContainer::-webkit-scrollbar-thumb {
+    background: #888; /* Color del scrollbar thumb (la parte móvil) */
+    border-radius: 6px; /* Bordes redondeados */
+}
+
+.sellCarPropsInfoImagesContainer::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Cambiar color al pasar el ratón sobre el thumb */
 }
 
 .sellCarPropsInfoContainer{
@@ -325,8 +355,6 @@ border: 0px;
     font-weight: 500;
     font-size: 1.2rem;
 }
-
-
 
 .sellCarPropsInfoPrice{
     display: flex;

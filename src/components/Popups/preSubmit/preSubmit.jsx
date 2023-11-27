@@ -74,6 +74,7 @@ function addPopup(props) {
         <div className="scp-main-choose" onClick={closePopup}>
             <div className="scp-choose-main-div" onClick={(e) => e.stopPropagation()}>
                 <div className="scp-main-div-top-sell-car">
+                <div className='sellCarPropsInfoImagesBox'>
                     <div className='sellCarPropsInfoImagesContainer'>
                         {props.data && props.data.Images.map((image, index) => (
                             <div key={index} className="sellCarImageProps">
@@ -82,6 +83,7 @@ function addPopup(props) {
                         ))}
 
                     </div>
+                </div>
                     <div className='sellCarPropsInfoContainer'>
                         <div className='sellCarPropsInfoRow1'>
                             <div className='sellCarPropsInfo'>
