@@ -12,7 +12,7 @@ import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 function addPopup(props) {
 
-    const {id} = useParams()
+    const { id } = useParams()
 
     const closePopup = () => {
         props.setTrigger(false)
@@ -79,13 +79,14 @@ function addPopup(props) {
 
         const permanentToken = localStorage.getItem('token');
         const token = sessionStorage.getItem('token');
+        console.log(token);
         const headers = {}
-        if (permanentToken) headers.authorization = permanentToken
-        if (token) headers.authorization = token
+        if (permanentToken) headers.Authorization = `Bearer ${permanentToken}`;
+        if (token) headers.Authorization = token;
         if (props.typeUpdate) {
             fetchApi(`${appInfo.root}/cars/update/${id}`, {
                 method: 'PUT',
-                // headers,
+                headers,
                 body: newData,
             }, (resolve, reject) => {
                 if (reject) { console.log(reject); } else {

@@ -1,15 +1,20 @@
 TO DO: 
-    - Logic
-        . sellCar
-        . Update/Delete 
-        . Validation (loggin/register/sellcar/updateUser/updateCar)
-    - Components
-        . cardProduct
-        . Error Validation show
-        . Error input
-        . loggin block
-        . register block
+       Nico:
+        Back:
+        - Versions database
+        - Validation all apis
+        - Finish controllers
+        - Token all routes
+        Front
+        - Filter Color fix
+        - Update car fetch
 
-    - Screens
-        . Profile (mobile)
-        
+        Maxi:
+        - Fix productRelated
+        - update car image style
+        - update popup image style
+        - sellcar popup style
+        - delete car popup style
+
+        Juntos:
+        - Terminar perfil
