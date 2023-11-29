@@ -1,0 +1,10 @@
+.notFoundImage{
+    max-width: 400px;
+    min-width: 100px;
+}
+
+@media (max-width: 960px) {
+    .notFoundImage{
+        width: 80vw;
+    }
+}

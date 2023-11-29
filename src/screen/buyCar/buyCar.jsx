@@ -1,8 +1,9 @@
 import React from "react";
 import './buyCar.css'
 import AllProducts from "../../components/allProducts/allProducts"
+import transition from "../../transition";
 
-function buyCar() {
+function BuyCar() {
 
 return (
   <div className="buyCar">
@@ -11,4 +12,4 @@ return (
   )
 }
 
-export default buyCar
+export default  transition(BuyCar)

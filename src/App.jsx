@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { fetchApi } from "./modules/mainModules";
+import { AnimatePresence } from "framer-motion";
 import appInfo from "./modules/appInfo";
 import { Routes, Route , useLocation } from 'react-router-dom'
 import Home from './screen/home/Home'
@@ -9,6 +10,7 @@ import Loggin from './screen/login/loggin';
 import Register from './screen/register/register';
 import ProductsDetail from "./screen/productsDetail/productsDetail";
 import BrandsProducts from "./screen/brandsProducts/brandsProducts";
+import NotFound from "./screen/NotFound/notFound"
 import BuyCar from "./screen/buyCar/buyCar";
 import SellCar from "./screen/SellCar/sellCar"
 import Profile from "./screen/profile/profile"
@@ -56,6 +58,7 @@ function App() {
 return (
   <div className='App'>
     <Header nameClass={nameClass}/>
+    <AnimatePresence mode="wait" >
       <Routes>
         {/****************** HOME ******************/}
         <Route exact path="/" element={<Home />} />
@@ -70,7 +73,9 @@ return (
         {userLogged != null ? <Route exact path='/products/sellCar' element={userLogged.email === appInfo.adminAcces ? <SellCar/> : <><h1>ACCES DENIED</h1></>}/>:null}
         {userLogged != null ? <Route exact path='/products/update/:id' element={userLogged.email === appInfo.adminAcces ? <SellCar typeUpdate={true}/> : <><h1>ACCES DENIED</h1></>}/>:null}
         {<Route exact path="/profile" element={<Profile/>}/>}
+        {<Route  path="*" element={<NotFound/>} />}
       </Routes>
+      </AnimatePresence>
       {shouldRenderFooter && <Footer />}
   </div>
     
