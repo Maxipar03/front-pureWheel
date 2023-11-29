@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./preSubmit.css";
+import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { fetchApi } from "../../../modules/mainModules";
 import appInfo from "../../../modules/appInfo"
@@ -11,6 +12,7 @@ import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 function addPopup(props) {
 
+    const {id} = useParams()
 
     const closePopup = () => {
         props.setTrigger(false)
@@ -32,44 +34,75 @@ function addPopup(props) {
     const handleCarSubmit = () => {
         console.log(props.data)
         const newData = new FormData();
-        
+        // Color
         newData.append('Color', props.data.Color)
-        props.data.Images.forEach(image => {newData.append("productFiles", image);})        
+        // Images
+        if (props.typeUpdate) {
+            props.data.oldImages.forEach(image => {
+                newData.append("oldImages", image);
+            })
+            props.data.newImages.forEach(image => {
+                newData.append("productFile", image);
+            })
+            props.data.removeImages.forEach(image => {
+                newData.append("removeImages", image);
+            })
+        } else {
+            props.data.Images.forEach(image => { newData.append("productFiles", image); })
+        }
+        // Brand
         newData.append('Brand', props.data.Brand)
+        // Model
         newData.append('Model', props.data.Model)
+        // BodyCar
         newData.append('BodyCar', props.data.Body)
+        // Transmission
         newData.append('Transmission', props.data.Transmission)
+        // Price
         newData.append('Price', props.data.Price)
+        // Description
         newData.append('Description', props.data.Description)
+        // Discount
         newData.append('Discount', props.data.Discount)
+        // Kilometers
         newData.append('Kilometers', props.data.Kilometers)
+        // Year
         newData.append('Year', props.data.Year)
+        // Version
         newData.append('Version', props.data.Version)
+        // Damage
         newData.append('Damage', props.data.Damage)
+        // Gasoline
         newData.append('Gasoline', props.data.Gasoline)
+        // Engine
         newData.append('Engine', props.data.Engine)
 
-    const permanentToken = localStorage.getItem('token');
-    const token = sessionStorage.getItem('token');
-    const headers = {}
-    if (permanentToken) headers.authorization = permanentToken
-    if (token) headers.authorization = token
-
-    if(props.typeUpdate){
-        console.log('UPDATE FETCH HERE');
-    } else {
-        fetchApi(`${appInfo.root}/cars/create`, {
-            method: 'POST',
-            headers,
-            body: newData,
-        }, (resolve, reject) => {
-            if (reject) { console.log(reject); } else {
-                window.location.href = `/products/detail/${resolve.data.id}`
-                console.log('Done');
-                console.log(resolve.data);
-            }
-        });
-    }
+        const permanentToken = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
+        const headers = {}
+        if (permanentToken) headers.authorization = permanentToken
+        if (token) headers.authorization = token
+        if (props.typeUpdate) {
+            fetchApi(`${appInfo.root}/cars/update/${id}`, {
+                method: 'PUT',
+                // headers,
+                body: newData,
+            }, (resolve, reject) => {
+                if (reject) { console.log(reject); } else {
+                    window.location.href = `/products/detail/${resolve.data.id}`
+                }
+            });
+        } else {
+            fetchApi(`${appInfo.root}/cars/create`, {
+                method: 'POST',
+                headers,
+                body: newData,
+            }, (resolve, reject) => {
+                if (reject) { console.log(reject); } else {
+                    window.location.href = `/products/detail/${resolve.data.id}`
+                }
+            });
+        }
     }
 
 
@@ -78,16 +111,16 @@ function addPopup(props) {
         <div className="scp-main-choose" onClick={closePopup}>
             <div className="scp-choose-main-div" onClick={(e) => e.stopPropagation()}>
                 <div className="scp-main-div-top-sell-car">
-                <div className='sellCarPropsInfoImagesBox'>
-                    <div className='sellCarPropsInfoImagesContainer'>
-                        {props.data && props.data.Images.map((image, index) => (
-                            <div key={index} className="sellCarImageProps">
-                                <img src={props.typeUpdate? `${appInfo.root}/images/cars/user_${props.data.User_id}/${image}` : URL.createObjectURL(image)} alt={`Image ${index}`} />
-                            </div>
-                        ))}
+                    <div className='sellCarPropsInfoImagesBox'>
+                        <div className='sellCarPropsInfoImagesContainer'>
+                            {props.data && props.data.Images.map((image, index) => (
+                                <div key={index} className="sellCarImageProps">
+                                    <img src={props.typeUpdate ? `${appInfo.root}/images/cars/user_${props.data.User_id}/${image}` : URL.createObjectURL(image)} alt={`Image ${index}`} />
+                                </div>
+                            ))}
 
+                        </div>
                     </div>
-                </div>
                     <div className='sellCarPropsInfoContainer'>
                         <div className='sellCarPropsInfoRow1'>
                             <div className='sellCarPropsInfo'>
@@ -154,20 +187,20 @@ function addPopup(props) {
                         </div>
                     </div>
                     {props.typeUpdate ?
-                    <div className="scp-advice-sell-car">
-                        <h3>Do you want update your car?</h3>
-                        <div className="scp-advice-button-sell-car">
-                            <button className='scp-button-sell-car-cancel' onClick={closePopup}>Cancel</button>
-                            <button onClick={() => { handleCarSubmit() }} className='scp-button-sell-car-submit'>Submit</button>
+                        <div className="scp-advice-sell-car">
+                            <h3>Do you want update your car?</h3>
+                            <div className="scp-advice-button-sell-car">
+                                <button className='scp-button-sell-car-cancel' onClick={closePopup}>Cancel</button>
+                                <button onClick={() => { handleCarSubmit() }} className='scp-button-sell-car-submit'>Submit</button>
+                            </div>
+                        </div> :
+                        <div className="scp-advice-sell-car">
+                            <h3>Do you want sell your car?</h3>
+                            <div className="scp-advice-button-sell-car">
+                                <button className='scp-button-sell-car-cancel' onClick={closePopup}>Cancel</button>
+                                <button onClick={() => { handleCarSubmit() }} className='scp-button-sell-car-submit'>Submit</button>
+                            </div>
                         </div>
-                    </div> :
-                     <div className="scp-advice-sell-car">
-                     <h3>Do you want sell your car?</h3>
-                     <div className="scp-advice-button-sell-car">
-                         <button className='scp-button-sell-car-cancel' onClick={closePopup}>Cancel</button>
-                         <button onClick={() => { handleCarSubmit() }} className='scp-button-sell-car-submit'>Submit</button>
-                     </div>
-                 </div> 
                     }
                 </div>
                 <div className="scp-main-div-bottom">

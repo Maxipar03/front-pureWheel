@@ -4,7 +4,7 @@ import './sellCarBlock.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { faX } from "@fortawesome/free-solid-svg-icons";
-import { fetchApi, addValueToArray } from "../../modules/mainModules";
+import { fetchApi, addValueToArray, removeImage, removeNewImage } from "../../modules/mainModules";
 import appInfo from "../../modules/appInfo"
 import AddPopup from '../Popups/addPopup/addPopup.jsx'
 import PreSubmit from '../Popups/preSubmit/preSubmit.jsx'
@@ -16,24 +16,30 @@ function sellCarBlock(props) {
     const { id } = useParams()
 
     const [isSticky, setIsSticky] = useState(false);
-    // Prod
+    // Sell
     const [selectedImages, setSelectedImages] = useState([]);
-    const [selectedColor, setSelectedColor] = useState(0);
-    const [selectedBrand, setSelectedBrand] = useState(0);
-    const [selectedModel, setSelectedModel] = useState(0);
-    const [selectedBodyCar, setSelectedBodyCar] = useState(0);
+    const [selectedColor, setSelectedColor] = useState();
+    const [selectedBrand, setSelectedBrand] = useState();
+    const [selectedModel, setSelectedModel] = useState();
+    const [selectedBodyCar, setSelectedBodyCar] = useState();
     const [selectedTransmission, setSelectedTransmission] = useState('');
-    const [selectedPrice, setSelectedPrice] = useState(0)
+    const [selectedPrice, setSelectedPrice] = useState()
     const [selectedDescription, setSelectedDescription] = useState('')
-    const [selectedDiscount, setSelectedDiscount] = useState(0)
-    const [selectedKilometers, setSelectedKilometers] = useState(0)
-    const [selectedYear, setSelectedYear] = useState(0)
-    const [selectedVersion, setSelectedVersion] = useState(0)
+    const [selectedDiscount, setSelectedDiscount] = useState()
+    const [selectedKilometers, setSelectedKilometers] = useState()
+    const [selectedYear, setSelectedYear] = useState()
+    const [selectedVersion, setSelectedVersion] = useState()
     const [selectedDamage, setSelectedDamage] = useState('')
     const [selectedGasoline, setSelectedGasoline] = useState('')
     const [selectedEngine, setSelectedEngine] = useState('')
+    // Update
+    const [oldImages, setOldImages] = useState([]);
+    const [newImages, setNewImages] = useState([]);
+    const [removeImages, setRemoveImages] = useState([]);
 
     const [updateCarInfo, setUpdateCarInfo] = useState({})
+
+
 
     // ErrorsStatus
     const [fullError, setFullError] = useState(false)
@@ -68,23 +74,24 @@ function sellCarBlock(props) {
     const [errorStatusEngine, setErrorStatusEngine] = useState(false)
     const [errorMsgEngine, setErrorMsgEngine] = useState('')
 
-
+    // APIs DATA
     const [allBrands, setAllBrands] = useState([]);
     const [allModels, setAllModels] = useState([]);
     const [allBodyCars, setAllBodyCars] = useState([])
     const [allColors, setAllColors] = useState([])
     const [allVersions, setAllVersions] = useState([])
 
-    const [menuIsOpen, setMenuIsOpen] = useState(false)
-
+    // REFS
     const refErrorImg = useRef()
     const refInputImg = useRef()
     const refImageIcon = useRef()
 
+    // POPUP STATUS
     const [addPopupType, setAddPopupType] = useState("")
     const [addPopup, setAddPopup] = useState(false);
     const [preSubmit, setPreSubmit] = useState(false)
 
+    // PRE-SELL DATA
     const [sellCarData, setSellCarData] = useState({})
 
     const addPopupFunction = (type) => {
@@ -116,13 +123,12 @@ function sellCarBlock(props) {
         refInputImg.current.className = 'imageC'
         refImageIcon.current.className = 'ch-add-img-icon fa-solid fa-circle-plus'
         setSelectedImages([...selectedImages, ...validatedImages]);
-
         const newFiles = [...selectedImages, ...validatedImages]
+        setNewImages([...newImages, ...validatedImages]);
+
         if (newFiles.length > 0) {
             setErrorStatusImages(false)
         }
-
-        setErrorStatusImages(false)
     };
     const handleColorChange = (e) => {
         const newColor = e.target.value
@@ -214,18 +220,30 @@ function sellCarBlock(props) {
             Damage: selectedDamage,
             Gasoline: selectedGasoline,
             Engine: selectedEngine,
-            User_id: updateCarInfo.user_id
+            User_id: updateCarInfo.user_id,
+            oldImages,
+            newImages,
+            removeImages
         }
 
         let errArr = []
 
         // Images
-        if (data.Images.length < 1) {
-            addValueToArray(errArr, 'Images')
-            setErrorStatusImages(true)
+        if (props.typeUpdate) {
+            if (oldImages.length === 0 && newImages.length === 0) {
+                addValueToArray(errArr, 'Images')
+            } else {
+                errArr = errArr.filter(e => e != 'Images')
+                setErrorStatusImages(false)
+            }
         } else {
-            errArr = errArr.filter(e => e != 'Images')
-            setErrorStatusImages(false)
+            if (data.Images.length < 1) {
+                addValueToArray(errArr, 'Images')
+                setErrorStatusImages(true)
+            } else {
+                errArr = errArr.filter(e => e != 'Images')
+                setErrorStatusImages(false)
+            } 
         }
         // Description
         if (!data.Description) {
@@ -324,8 +342,6 @@ function sellCarBlock(props) {
             setErrorStatusEngine(false)
         }
 
-        console.log(errArr);
-
         if (errArr.length > 0) {
             setFullError(true)
         } else {
@@ -335,6 +351,27 @@ function sellCarBlock(props) {
         }
     }
 
+
+    const cleanForm = () => {
+        selectedImages ? setSelectedImages([]) : null
+        oldImages ? setOldImages([]) : null
+        newImages ? setNewImages([]) : null
+        removeImages ? setRemoveImages([]) : null
+        setSelectedColor('')
+        setSelectedBrand('')
+        setSelectedModel('')
+        setSelectedBodyCar('')
+        setSelectedTransmission('')
+        setSelectedPrice('')
+        setSelectedDescription('')
+        setSelectedDiscount('')
+        setSelectedKilometers('')
+        setSelectedYear('')
+        setSelectedVersion('')
+        setSelectedDamage('')
+        setSelectedGasoline('')
+        setSelectedEngine('')
+    }
 
     const removeImg = (index, event) => {
         event.preventDefault()
@@ -400,7 +437,7 @@ function sellCarBlock(props) {
                         return resolve.data
                     })
                     setUpdateCarInfo(carResponse)
-                    setSelectedImages(JSON.parse(carResponse.images))
+                    setOldImages(JSON.parse(carResponse.images))
                     setSelectedColor(carResponse.color_id)
                     setSelectedBrand(carResponse.brand_id)
                     setSelectedModel(carResponse.carModel_id)
@@ -456,15 +493,35 @@ function sellCarBlock(props) {
                     </label>
                     <input type="file" id="sellCarInputImage" name="productFile" multiple onChange={handleImageChange} className="file-upload-input" />
                     <h5 ref={refErrorImg} className='sellCarImageError'>File extension not allowed</h5>
+                    {/****************************** IMAGE ******************************/}
                     <div ref={refInputImg} className="imageC">
-                        {selectedImages.map((image, index) => (
+                        {/* |||||||||||||||||||||||||||||||||||||||SELL CAR CASE||||||||||||||||||||||||||||||||||||||||||||| */}
+                        {!props.typeUpdate ? selectedImages.map((image, index) => (
                             <div key={index} className="sellCarImagePreview">
-                                <img src={props.typeUpdate? `${appInfo.root}/images/cars/user_${updateCarInfo.user_id}/${image}` : URL.createObjectURL(image)} alt={`Image ${index}`} />
+                                <img src={URL.createObjectURL(image)} alt={`Image ${index}`} />
                                 <a onClick={(event) => removeImg(index, event)}><i className="sellCarXmark"><FontAwesomeIcon icon={faX} /></i></a>
                             </div>
-                        ))}
+                        )) : null}
+
+                        {/* |||||||||||||||||||||||||||||||||||UDATE CAR CASE||||||||||||||||||||||||||||||||||||||||||||||||||||| */}
+                        {props.typeUpdate ? (oldImages.length > 0 ? oldImages.map((image, index) => (
+                            <div key={index} className="sellCarImagePreview">
+                                <img src={`${appInfo.root}/images/cars/user_${updateCarInfo.user_id}/${image}`} alt={`Image ${index}`} />
+                                <a onClick={(event) => removeImage(index, event, removeImages, setRemoveImages, oldImages, setOldImages)}><i className="sellCarXmark"><FontAwesomeIcon icon={faX} /></i></a>
+                            </div>
+                        )) : null) : null}
+                        {props.typeUpdate ? (newImages.length > 0 ? newImages.map((image, index) => (
+                            <div key={index} className="cf-preview-image">
+                                <img src={URL.createObjectURL(image)} alt={`Image ${index}`} />
+                                <a onClick={(event) => removeNewImage(index, event, newImages, setNewImages)}><i className="sellCarXmark"><FontAwesomeIcon icon={faX} /></i></a>
+                            </div>
+                        )) : null) : null}
+                        {/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */}
+
+
                         <label><i ref={refImageIcon} className="addImageIcon"></i></label>
                     </div>
+                    {/*******************************************************************/}
                 </div>
             </div>
             <div className="flexRow">
@@ -613,10 +670,12 @@ function sellCarBlock(props) {
                         <h3 className="sellCarPriceDetail">{selectedPrice}$</h3>
                     </div>
                 </div>
-                <div className="sellCarButtonContainer">{props.typeUpdate ? 
-                    <button onClick={sellCarButtonClick} className="sellCarPublishButton">Update Car</button> :
-                    <button onClick={sellCarButtonClick} className="sellCarPublishButton">Sell Car</button>
-                }
+                <div className="sellCarButtonContainer">
+                    <button onClick={cleanForm} className="sellCarPublishButton">Clean</button> :
+                    {props.typeUpdate ?
+                        <button onClick={sellCarButtonClick} className="sellCarPublishButton">Update Car</button> :
+                        <button onClick={sellCarButtonClick} className="sellCarPublishButton">Sell Car</button>
+                    }
                 </div>
             </div>
             <AddPopup trigger={addPopup} type={addPopupType} setTrigger={setAddPopup}></AddPopup>

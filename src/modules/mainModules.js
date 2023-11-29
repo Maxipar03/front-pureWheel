@@ -73,3 +73,22 @@ export function findCommonProducts(obj) {
     }
     return commonProducts;
 }  
+
+
+export const removeImage = (index, event, removeImages, setRemoveImages, oldImages , setOldImages) => {
+    event.preventDefault();
+    const updatedImages = [...oldImages];
+    const removedImage = updatedImages.splice(index, 1)[0];
+    const updatedRenovedImages = [...removeImages, removedImage]
+    setOldImages(updatedImages);
+    setRemoveImages(updatedRenovedImages)
+};
+
+
+
+export const removeNewImage = (index, event, newImages, setNewImages) => {
+    event.preventDefault()
+    const updatedImages = [...newImages];
+    updatedImages.splice(index, 1);
+    setNewImages(updatedImages);
+};
