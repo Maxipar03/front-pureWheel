@@ -26,8 +26,7 @@ function confirmPopup({trigger, setTrigger,carId}) {
         if (reject) {
            console.log(reject);
         } else {   
-           console.log(resolve);
-        // window.location.href = '/'
+        window.location.href = '/'
           }
       })
     }
