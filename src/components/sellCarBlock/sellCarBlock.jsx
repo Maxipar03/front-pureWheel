@@ -511,7 +511,7 @@ function sellCarBlock(props) {
                             </div>
                         )) : null) : null}
                         {props.typeUpdate ? (newImages.length > 0 ? newImages.map((image, index) => (
-                            <div key={index} className="cf-preview-image">
+                            <div key={index} className="sellCarImagePreview">
                                 <img src={URL.createObjectURL(image)} alt={`Image ${index}`} />
                                 <a onClick={(event) => removeNewImage(index, event, newImages, setNewImages)}><i className="sellCarXmark"><FontAwesomeIcon icon={faX} /></i></a>
                             </div>

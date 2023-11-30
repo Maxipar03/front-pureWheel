@@ -42,7 +42,7 @@ function addPopup(props) {
                 newData.append("oldImages", image);
             })
             props.data.newImages.forEach(image => {
-                newData.append("productFile", image);
+                newData.append("productFiles", image);
             })
             props.data.removeImages.forEach(image => {
                 newData.append("removeImages", image);
@@ -85,7 +85,7 @@ function addPopup(props) {
         if (props.typeUpdate) {
             fetchApi(`${appInfo.root}/cars/update/${id}`, {
                 method: 'PUT',
-                // headers,
+                headers,
                 body: newData,
             }, (resolve, reject) => {
                 if (reject) { console.log(reject); } else {
@@ -113,12 +113,26 @@ function addPopup(props) {
                 <div className="scp-main-div-top-sell-car">
                     <div className='sellCarPropsInfoImagesBox'>
                         <div className='sellCarPropsInfoImagesContainer'>
-                            {props.data && props.data.Images.map((image, index) => (
+                            
+                      {/* |||||||||||||||||||||||||||||||||||||||SELL CAR CASE||||||||||||||||||||||||||||||||||||||||||||| */}
+                      {!props.typeUpdate ? props.data && props.data.Images.map((image, index) => (
                                 <div key={index} className="sellCarImageProps">
-                                    <img src={props.typeUpdate ? `${appInfo.root}/images/cars/user_${props.data.User_id}/${image}` : URL.createObjectURL(image)} alt={`Image ${index}`} />
+                                    <img src={ URL.createObjectURL(image)} alt={`Image ${index}`} />
                                 </div>
-                            ))}
+                        )) : null}
 
+                        {/* |||||||||||||||||||||||||||||||||||UDATE CAR CASE||||||||||||||||||||||||||||||||||||||||||||||||||||| */}
+                        {props.typeUpdate ? (props.data.oldImages.length > 0 ? (props.data.oldImages.map((image, index) => (
+                            <div key={index} className="sellCarImagePreview">
+                                <img src={`${appInfo.root}/images/cars/user_${props.data.User_id}/${image}`} alt={`Image ${index}`} />
+                            </div>
+                        ))) : null) : null}
+                        {props.typeUpdate ? (props.data.newImages.length > 0 ? props.data.newImages.map((image, index) => (
+                            <div key={index} className="sellCarImagePreview">
+                                <img src={URL.createObjectURL(image)} alt={`Image ${index}`} />
+                            </div>
+                        )) : null) : null}
+                        {/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */}
                         </div>
                     </div>
                     <div className='sellCarPropsInfoContainer'>
