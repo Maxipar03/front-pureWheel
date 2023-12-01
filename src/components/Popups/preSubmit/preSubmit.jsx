@@ -3,6 +3,7 @@ import "./preSubmit.css";
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { fetchApi } from "../../../modules/mainModules";
+import { motion, AnimatePresence } from 'framer-motion';
 import appInfo from "../../../modules/appInfo"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -108,8 +109,13 @@ function addPopup(props) {
 
 
     return (props.trigger ?
-
-        <div className="scp-main-choose" onClick={closePopup}>
+        <AnimatePresence>
+        <motion.div className="scp-main-choose"
+          initial={{ scale: 0 }}
+          animate={{scale: 1}}
+          exit={{scale: 0}}
+          transition={{ duration: 0.5 }}
+          onClick={closePopup}>
             <div className="scp-choose-main-div" onClick={(e) => e.stopPropagation()}>
                 <div className="scp-main-div-top-sell-car">
                     <div className='sellCarPropsInfoImagesBox'>
@@ -210,7 +216,8 @@ function addPopup(props) {
 
                 <div className="scp-choose-info-div"></div>
             </div>
-        </div>
+        </motion.div>
+        </AnimatePresence>
 
         : null)
 

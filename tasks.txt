@@ -18,3 +18,16 @@ TO DO:
 
         Juntos:
         - Terminar perfil
+
+-------------------------------------------------------------------------------------
+
+TO DO: 
+       -Arreglar carrousel products (movile)
+       -Agregar logIn whit Google
+       -Arreglar carrousel brands (movile)
+       -Arreglar footer
+       -Arreglar el profile para ver si es Usuario o Concecionaria
+       -Favorites page
+       -Realizar el ultimos vistos
+       -Agregar todas las animaciones 
+       -loggin y register input height (movile)

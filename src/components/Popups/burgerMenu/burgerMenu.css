@@ -58,3 +58,18 @@
     margin: 2% 2% 0 0;
     font-size: 24px;
 }
+
+.button-LogOut{
+    margin-top: 20px;
+    width: 90%;
+    height: 5%;
+    border: none;
+    border-radius: 8px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.button-LogOut:hover{
+    font-weight: 600;
+}

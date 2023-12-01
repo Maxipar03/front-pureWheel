@@ -24,6 +24,8 @@ body{
   transform-origin: top;
 }
 
+
+
 .slide-out{
   position: fixed;
   top: 0;
@@ -32,4 +34,21 @@ body{
   height: 100vh;
   background-color: black;
   transform-origin: bottom;
+}
+::-webkit-scrollbar {
+  width: 12px; 
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(4, 4, 4, 0)41, 241, 241
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: #1f1b1be0; 
+  border-radius: 1px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }

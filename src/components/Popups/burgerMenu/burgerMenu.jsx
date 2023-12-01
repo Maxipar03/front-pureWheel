@@ -22,6 +22,14 @@ function burguerMenu(props) {
     };
   }, []);
 
+  const handleLogout = () => {
+
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userLogged');
+
+    window.location.href = '/';
+  };
+
   return (props.trigger) ? (
     <div onClick={closePopup} className="bm-App-choose">
       <div className="bm-main-choose">
@@ -30,9 +38,10 @@ function burguerMenu(props) {
           {userLogged ?
             <div className="bm-choose-options">
               <Link className='bm-link' onClick={closePopup} to="">About Us</Link>
-              <Link className='bm-link' onClick={closePopup} to="">Buy Car</Link>
-              <Link className='bm-link' onClick={closePopup} to="">Sell Car</Link>
+              <Link className='bm-link' onClick={closePopup} to="/products/all">Buy Car</Link>
+              <Link className='bm-link' onClick={closePopup} to="/products/sellCar">Sell Car</Link>
               <Link className='bm-link' onClick={closePopup} to="">Favorites</Link>
+              <button className='button-LogOut' onClick={handleLogout}>Log Out</button>
             </div> :
             <div className="bm-choose-options">
               <Link className='bm-link' onClick={closePopup} to="/user/loggin">Loggin</Link>

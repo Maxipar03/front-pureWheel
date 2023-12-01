@@ -4,7 +4,8 @@ import { fetchApi } from "../../modules/mainModules";
 import { useParams } from "react-router-dom";
 import appInfo from "../../modules/appInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart, faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
@@ -21,6 +22,7 @@ function productsDetail() {
   const [product, setProduct] = useState([]);
   const [productRelated, setProductRelated] = useState([])
   const [moreInfo, setMoreInfo] = useState(false)
+  const [isFav, setIsFav] = useState(false)
   const [confPop, setConfPop] = useState(false)
 
   const userLogged = JSON.parse(sessionStorage.getItem('userLogged'))
@@ -52,11 +54,45 @@ function productsDetail() {
     });
   }, []);
 
+  const handleClickFav = (carID) => {
+    let existingData = JSON.parse(localStorage.getItem("favorites"));
+    if (existingData === null || existingData === null) { // ini
+      localStorage.setItem("favorites", JSON.stringify([product]));
+      setIsFav(true)
+    } else {
+      const isIn = existingData.filter(element => element.id == carID)
+
+      if (isIn.length > 0) {
+        const newArr = existingData.map(element => element.id != carID ? element : null)
+        localStorage.setItem("favorites", JSON.stringify(newArr.filter(element => element != null)));
+      setIsFav(false)
+      } else {
+        existingData.push(product)
+        localStorage.setItem("favorites", JSON.stringify(existingData));
+      setIsFav(true)
+      }
+    }
+  }
+
+  useEffect(() => {
+    let existingData = JSON.parse(localStorage.getItem("favorites"));
+    if(existingData != null){
+    const isIn = existingData.filter(element => element.id == product.id)
+    if (isIn.length > 0) {
+      setIsFav(true)
+    }else{
+      setIsFav(false)
+    }}
+
+  },[])
+
   // Functions
+
   function calculateDiscountedPrice(price, discountPercentage) {
     const discountedPrice = price - (price * (discountPercentage / 100));
     return discountedPrice.toFixed(0);
   }
+
   function objToArray(obj) {
     const imagesToArray = [];
     for (let key in obj) {
@@ -66,13 +102,17 @@ function productsDetail() {
     }
     return imagesToArray;
   }
-  const productRelatedBrand = productRelated.length > 0 && product.length > 0 ? productRelated.filter((car) => car.brand.name === product.brand.name) : null;
+
+  
+  const productRelatedBrand = productRelated.filter((car) => car.brand.name === product.brand.name) ;
   const editButonHandle = () => {
     window.location.href = `/products/update/${id}`
   }
+
   const deleteButtonHandle = () => { 
     setConfPop(true)
   }
+
   return (
     <div className="allProductDetailContainer">
       <div className="productDetail">
@@ -150,7 +190,10 @@ function productsDetail() {
             </div>
               <div className="productDetailButtonFavcontainer">
                 <div className="productDetailButtonFav">
-                  <button className="favButton"><FontAwesomeIcon icon={regularHeart} /> Add to favorites</button>
+                  {isFav ? 
+                  <button className="favButton" onClick={() => handleClickFav(product.id)}><FontAwesomeIcon icon={solidHeart} />Quit favorites</button> :
+                  <button className="favButton" onClick={() => handleClickFav(product.id)}><FontAwesomeIcon icon={regularHeart} /> Add to favorites</button> 
+                }
                 </div>
               </div></>}
         </div>

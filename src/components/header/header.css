@@ -126,15 +126,16 @@
 
 .dropdownMenu {
     position: absolute;
-    top: 83%;
+    top: 73%;
     width: auto;
-    left: -5vw;
+    left: 15%;
     background-color: #d7d7d7;
     border: 1px solid #ccc;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     z-index: 1;
+    border-radius: 0px 0px 3px 3px;
 }
 
 .dropdownMenu h3 {
@@ -169,7 +170,7 @@
 .dropdownOptionContainer {
     display: flex;
     align-items: center;
-    padding: 0px 2vw;
+    padding: 0px 1.85vw;
     cursor: pointer;
     color: #fff;
 }

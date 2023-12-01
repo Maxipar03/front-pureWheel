@@ -12,4 +12,4 @@ return (
   )
 }
 
-export default  transition(BuyCar)
+export default  BuyCar

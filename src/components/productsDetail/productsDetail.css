@@ -322,6 +322,10 @@ margin: 1% 0px;
     flex-direction: column;
 }
 
+.productDetailMoreInfoContainer{
+    width: 100%;
+}
+
 .productsImageDetail{
     min-width: 74vw;
     max-height: 38vw;
@@ -356,6 +360,10 @@ margin: 1% 0px;
 @media (max-width: 960px) {
     .allProductDetailContainer{
         width: 95%;
+    }
+
+    .productDetailMoreInfoContainer{
+        width: 100%;
     }
     
     .productDetail{
