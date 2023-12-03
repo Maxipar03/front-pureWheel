@@ -34,16 +34,15 @@
     height: 70%;
     border-radius: 5px;
     display: flex;
-    overflow: auto;
     flex-direction: column;
-    background: rgba(36, 48, 60, 2.8);
+    background: rgba(36, 48, 60, 0.8);
     box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    
-}
+    margin-top: -20%; /* La mitad de la altura en negativo */
+    margin-left: -30%; /* La mitad del ancho en negativo */
+  }
 
 .scp-close-popup-div{
     width: 100%;

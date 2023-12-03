@@ -111,12 +111,18 @@ function addPopup(props) {
     return (props.trigger ?
         <AnimatePresence>
         <motion.div className="scp-main-choose"
-          initial={{ scale: 0 }}
-          animate={{scale: 1}}
+          initial={{ opacity: 0 }}
+          animate={{opacity: 1}}
           exit={{scale: 0}}
           transition={{ duration: 0.5 }}
           onClick={closePopup}>
-            <div className="scp-choose-main-div" onClick={(e) => e.stopPropagation()}>
+            <motion.div className="scp-choose-main-div" 
+             initial={{ scale: 0.7 }}
+             animate={{scale: 1}}
+             exit={{scale: 0}}
+             transition={{ duration: 0.4 }}            
+           onClick={(e) => e.stopPropagation()}
+           >
                 <div className="scp-main-div-top-sell-car">
                     <div className='sellCarPropsInfoImagesBox'>
                         <div className='sellCarPropsInfoImagesContainer'>
@@ -215,7 +221,7 @@ function addPopup(props) {
                 </div>
 
                 <div className="scp-choose-info-div"></div>
-            </div>
+            </motion.div>
         </motion.div>
         </AnimatePresence>
 
