@@ -11,11 +11,14 @@ function allProducts() {
   const [products, setProducts] = useState([]);
   const [allBrands, setAllBrands] = useState([]);
   const [allBrandsModels, setAllBrandsModels] = useState([]);
+  const [allVersions, setAllVersions] = useState([]);
+  const [allColors, setAllColors] = useState([]);
   const [allBodyCars, setAllBodyCars] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // products
         const productsResponse = await fetchApi(`${appInfo.root}/cars`, {
           method: 'GET',
         }, (resolve, reject) => {
@@ -26,6 +29,7 @@ function allProducts() {
         setBrandProducts(productsResponse);
         setProducts(productsResponse);
 
+        // brands
         const brandsResponse = await fetchApi(`${appInfo.root}/cars/brands`, {
           method: 'GET',
         }, (resolve, reject) => {
@@ -35,6 +39,7 @@ function allProducts() {
         )
         setAllBrands(brandsResponse);
 
+        // bodyCars
         const bodyCarsResponse = await fetchApi(`${appInfo.root}/cars/chassis`, {
           method: 'GET',
         }, (resolve, reject) => {
@@ -67,6 +72,27 @@ function allProducts() {
 
           setAllBrandsModels(brandsArr);
         }
+
+        // versions
+        const versionsResponse = await fetchApi(`${appInfo.root}/cars/versions`, {
+          method: 'GET',
+        }, (resolve, reject) => {
+          if(reject) console.error(reject)
+            return resolve.data
+          }
+        )
+        setAllVersions(versionsResponse);
+
+        // colors
+        const colorsResponse = await fetchApi(`${appInfo.root}/cars/colors`, {
+          method: 'GET',
+        }, (resolve, reject) => {
+          if(reject) console.error(reject)
+            return resolve.data
+          }
+        )
+        setAllColors(colorsResponse);
+
       } catch (error) {
         console.error(error);
       }
@@ -81,10 +107,11 @@ function allProducts() {
     return discountedPrice.toFixed(0); 
   }
 
+  
   return(
   brandProducts && allBrands && allBrandsModels ? (
     <div className="brandProductsContainer">
-      <FilterProdcuts brands={allBrands} models={allBrandsModels} products={products} setBrandProducts={setBrandProducts} bodyCar={allBodyCars} ></FilterProdcuts>
+      <FilterProdcuts brands={allBrands} models={allBrandsModels} versions={allVersions} colors={allColors} products={products} setBrandProducts={setBrandProducts} bodyCar={allBodyCars} ></FilterProdcuts>
       <div className="cardProductsDiv">
         {brandProducts.length > 0 ? brandProducts.map((cars) => (
           <div key={cars.id} className="cardProductsbrandsContainer">

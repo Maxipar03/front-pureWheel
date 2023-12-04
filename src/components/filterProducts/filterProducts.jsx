@@ -123,6 +123,7 @@ function filterProducts(props) {
         }
     }
 
+
     // Changes Handlers 
     const brandFilterChangeFunction = (e) => {
         if (brandFilter.includes(e)) {
@@ -165,6 +166,21 @@ function filterProducts(props) {
         } else {
             setColorFilter([...colorFilter, e])
         }
+
+        // ************************************************************************
+        // Mark selected color
+        // const element = e
+        // if (element.className.contains('circle')) {
+        //     // If the element has 'circle' class
+        //     if (element.className.contains('active')) {
+        //         // If it has 'active' class, remove it
+        //         element.className.remove('active');
+        //     } else {
+        //         // If it doesn't have 'active' class, add it
+        //         element.className.add('active');
+        //     }
+        // }
+        // ************************************************************************
     }
     const bodyCarFilterChangeFunction = (e) => {
         if (bodyCarFilter.includes(e)) {
@@ -181,14 +197,6 @@ function filterProducts(props) {
         setOnSaleFilter(!onSaleFilter)
     }
 
-    // USE REFF
-    const whiteRef = useRef()
-    const blackRef = useRef()
-    const redRef = useRef()
-    const orangeRef = useRef()
-    const grayRef = useRef()
-    const blueRef = useRef()
-
     // USE EFECTS
     // Models
     useEffect(() => {
@@ -204,13 +212,9 @@ function filterProducts(props) {
     useEffect(() => {
         if (brandsModels.length > 0) setBrandsModelsRender(true)
     }, [brandsModels])
+// Colors
     useEffect(() => {
-        colorFilter.includes("White") ? whiteRef.current.className = "circle white active" : whiteRef.current.className = "circle white"
-        colorFilter.includes("Black") ? blackRef.current.className = "circle black active" : blackRef.current.className = "circle black"
-        colorFilter.includes("Red") ? redRef.current.className = "circle red active" : redRef.current.className = "circle red"
-        colorFilter.includes("Orange") ? orangeRef.current.className = "circle orange active" : orangeRef.current.className = "circle orange"
-        colorFilter.includes("Gray") ? grayRef.current.className = "circle gray active" : grayRef.current.className = "circle gray"
-        colorFilter.includes("Blue") ? blueRef.current.className = "circle blue active" : blueRef.current.className = "circle blue"
+        console.log(colorFilter);
     }, [colorFilter])
     // Filter products
     useEffect(() => {
@@ -302,8 +306,6 @@ function filterProducts(props) {
     }, [brandFilter, modelFilter, yearFromFilter, yearToFilter, kilometersFromFilter, kilometersToFilter, priceFromFilter, priceToFilter, colorFilter, bodyCarFilter, transsmisionFilter, onSaleFilter])
 
 
-
-
     return (  
         <div className={`filterComponent ${!(brandsActive || modelsActive || bodyCarActive) ? 'active' : ''}`}>
             <div className={`filterContainer ${!(brandsActive || modelsActive || bodyCarActive) ? 'active' : ''}`}>
@@ -374,12 +376,11 @@ function filterProducts(props) {
                     <div className="filterColor">
                         <h4 className="filterName">Color</h4>
                         <div>
-                            <span onClick={() => { colorFilterChangeFunction("White") }} ref={whiteRef} className={"circle white"}></span>
-                            <span onClick={() => { colorFilterChangeFunction("Black") }} ref={blackRef} className={"circle black"}></span>
-                            <span onClick={() => { colorFilterChangeFunction("Red") }} ref={redRef} className={"circle red"}></span>
-                            <span onClick={() => { colorFilterChangeFunction("Orange") }} ref={orangeRef} className={"circle orange"} ></span>
-                            <span onClick={() => { colorFilterChangeFunction("Gray") }} ref={grayRef} className={"circle gray"}></span>
-                            <span onClick={() => { colorFilterChangeFunction("Blue") }} ref={blueRef} className={"circle blue"}></span>
+                    {props.colors.length > 0 ? 
+                    props.colors.map(color => (
+                        <span key={color.id} onClick={() => { colorFilterChangeFunction(color.id) }} style={{backgroundColor: `#${color.code}`}} className={`circle`}></span>
+                    ) )
+                    : null}
                         </div>
                     </div>
                 )}
