@@ -163,6 +163,21 @@ function filterProducts(props) {
         } else {
             setColorFilter([...colorFilter, e])
         }
+
+        // ************************************************************************
+        // Mark selected color
+        // const element = e
+        // if (element.className.contains('circle')) {
+        //     // If the element has 'circle' class
+        //     if (element.className.contains('active')) {
+        //         // If it has 'active' class, remove it
+        //         element.className.remove('active');
+        //     } else {
+        //         // If it doesn't have 'active' class, add it
+        //         element.className.add('active');
+        //     }
+        // }
+        // ************************************************************************
     }
     const bodyCarFilterChangeFunction = (e) => {
         if (bodyCarFilter.includes(e)) {
@@ -178,9 +193,6 @@ function filterProducts(props) {
     const onSaleFilterChangeFunction = (e) => {
         setOnSaleFilter(!onSaleFilter)
     }
-
-    // USE REFF
-    const colorRefs = {};
 
     // USE EFECTS
     // Models
@@ -200,21 +212,7 @@ function filterProducts(props) {
 // Colors
     useEffect(() => {
         console.log(colorFilter);
-        // colorFilter.forEach(color => {
-        //     colorRefs[color].current.className = "circle active"
-        // });
-        props.colors.forEach((color) => {
-            !colorFilter.includes(color.id)?colorRefs[color.id].current.className = "circle":colorRefs[color.id].current.className = "circle active"
-        })
     }, [colorFilter])
-    // Colors ref setter
-    useEffect(()=>{
-        if (props.colors > 0) {
-            props.colors.forEach(color => {
-                colorRefs[color.id] = useRef() 
-            })
-        }
-    },[props.colors])
     // Filter products
     useEffect(() => {
         let allProductsFilter = {}
@@ -377,7 +375,7 @@ function filterProducts(props) {
                         <div>
                     {props.colors.length > 0 ? 
                     props.colors.map(color => (
-                        <span key={color.id} onClick={() => { colorFilterChangeFunction(color.id) }} ref={colorRefs[color.id]} style={{backgroundColor: `#${color.code}`}} className={`circle ${color.name}`}></span>
+                        <span key={color.id} onClick={() => { colorFilterChangeFunction(color.id) }} style={{backgroundColor: `#${color.code}`}} className={`circle`}></span>
                     ) )
                     : null}
                         </div>
