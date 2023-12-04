@@ -19,6 +19,14 @@ function addPopup(props) {
         props.setTrigger(false)
     }
 
+    const exitVariant = {
+        opacity: 0,
+        x: -50, // Puedes ajustar según tus necesidades
+        transition: {
+          duration: 0.5, // Duración de la animación en segundos
+        },
+      };
+
     useEffect(() => {
         const handleKeyPress = (event) => {
             if (event.key === 'Escape') {
@@ -43,7 +51,7 @@ function addPopup(props) {
                 newData.append("oldImages", image);
             })
             props.data.newImages.forEach(image => {
-                newData.append("productFile", image);
+                newData.append("productFiles", image);
             })
             props.data.removeImages.forEach(image => {
                 newData.append("removeImages", image);
@@ -113,25 +121,40 @@ function addPopup(props) {
         <motion.div className="scp-main-choose"
           initial={{ opacity: 0 }}
           animate={{opacity: 1}}
-          exit={{scale: 0}}
+          exit={{exitVariant}}
           transition={{ duration: 0.5 }}
           onClick={closePopup}>
             <motion.div className="scp-choose-main-div" 
-             initial={{ scale: 0.7 }}
-             animate={{scale: 1}}
-             exit={{scale: 0}}
-             transition={{ duration: 0.4 }}            
+             initial={{ x: 100 }}
+             animate={{ x: 0}}
+             exit={{exitVariant}}
+             transition={{ duration: 0.4 }} 
+
            onClick={(e) => e.stopPropagation()}
            >
                 <div className="scp-main-div-top-sell-car">
                     <div className='sellCarPropsInfoImagesBox'>
                         <div className='sellCarPropsInfoImagesContainer'>
-                            {props.data && props.data.Images.map((image, index) => (
+                            
+                      {/* |||||||||||||||||||||||||||||||||||||||SELL CAR CASE||||||||||||||||||||||||||||||||||||||||||||| */}
+                      {!props.typeUpdate ? props.data && props.data.Images.map((image, index) => (
                                 <div key={index} className="sellCarImageProps">
-                                    <img src={props.typeUpdate ? `${appInfo.root}/images/cars/user_${props.data.User_id}/${image}` : URL.createObjectURL(image)} alt={`Image ${index}`} />
+                                    <img src={ URL.createObjectURL(image)} alt={`Image ${index}`} />
                                 </div>
-                            ))}
+                        )) : null}
 
+                        {/* |||||||||||||||||||||||||||||||||||UDATE CAR CASE||||||||||||||||||||||||||||||||||||||||||||||||||||| */}
+                        {props.typeUpdate ? (props.data.oldImages.length > 0 ? (props.data.oldImages.map((image, index) => (
+                            <div key={index} className="sellCarImagePreview">
+                                <img src={`${appInfo.root}/images/cars/user_${props.data.User_id}/${image}`} alt={`Image ${index}`} />
+                            </div>
+                        ))) : null) : null}
+                        {props.typeUpdate ? (props.data.newImages.length > 0 ? props.data.newImages.map((image, index) => (
+                            <div key={index} className="sellCarImagePreview">
+                                <img src={URL.createObjectURL(image)} alt={`Image ${index}`} />
+                            </div>
+                        )) : null) : null}
+                        {/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */}
                         </div>
                     </div>
                     <div className='sellCarPropsInfoContainer'>

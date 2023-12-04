@@ -59,22 +59,19 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    animation: slideInFromLeft 0.3s ease-in-out; 
+ 
 }
 
 .modelsInputDivactive{
-    transform: translateX(0%);
-    animation: slideInFromLeft 0.3s ease-in-out; 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+ 
 }
 
-@keyframes slideInFromLeft {
-    from {
-      transform: translateX(70%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
+
 
 .scrollable-content {
         width: 100%;

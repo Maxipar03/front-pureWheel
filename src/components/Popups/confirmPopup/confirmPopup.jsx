@@ -14,8 +14,14 @@ function confirmPopup({trigger, setTrigger,carId}) {
     }
 
     const deleteProduct = () => {
+        const permanentToken = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
+        const headers = {}
+        if (permanentToken) headers.authorization = permanentToken
+        if (token) headers.authorization = token
       fetchApi(`${appInfo.root}/cars/delete/${carId}`, {
         method: 'DELETE',
+        headers,
       }, (resolve, reject) => {
         if (reject) {
            console.log(reject);

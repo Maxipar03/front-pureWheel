@@ -8,7 +8,7 @@ export async function fetchApi(endpoint, config, cb) {
             return cb(null, jsonResponse)
         }
     } catch (err) {
-        return cb(null, 'err')
+        return cb(null, { status: 400, msg: err.message })
     }
 }
 export function addValueToArray(array, value) {

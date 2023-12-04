@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import "./filterProducts.css"
 import { filterArrayFunction, filterFromFunction, filterToFunction, findCommonProducts } from "../../modules/mainModules"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { motion, AnimatePresence  } from "framer-motion"
 import { faAngleDown, faAngleUp, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import appInfo from "../../modules/appInfo"
 import banner from "../../public/ImageTestbannerfilter.jpg"
@@ -78,6 +79,8 @@ function filterProducts(props) {
         // Actualizamos el estado con las marcas seleccionadas actualizadas
         setSelectedBrands(updatedSelectedBrands)
     }
+
+    console.log(bodyCarActive)
 
     // Model toggle
     const toggleBodyCar = (brandId) => {
@@ -388,7 +391,14 @@ function filterProducts(props) {
                         </div>
                     )}
                     {bodyCarActive && (
-                        <div className={`modelsInputDiv${bodyCarActive ? 'active' : ''}`}>
+                        <AnimatePresence mode="wait" >
+                        <motion.div 
+                        className={`modelsInputDiv${bodyCarActive ? 'active' : ''}`}
+                        initial={{x: 100}}
+                        animate={{x: 0}}
+                        key={bodyCarActive}
+                        exit={{ opacity: 0 }}
+                        >
                             <div className="filterOptions">
                                 {/*<button onClick={resetFilters} className="exitOptions">Go Back</button>*/}
                                 <div onClick={resetFilters} className="arrow prev" />
@@ -410,7 +420,8 @@ function filterProducts(props) {
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </motion.div>
+                        </AnimatePresence>
                     )}
                 </div> : null}
                 {/* BRANDS */}
