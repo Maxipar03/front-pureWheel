@@ -168,23 +168,6 @@ function filterProducts(props) {
         } else {
             setColorFilter([...colorFilter, e])
         }
-
-        
-        // Mark selected color
-        // ************************************************************************
-        const element = e
-        console.log(element);
-        // if (element.className.contains('circle')) {
-        //     // If the element has 'circle' class
-        //     if (element.className.contains('active')) {
-        //         // If it has 'active' class, remove it
-        //         element.className.remove('active');
-        //     } else {
-        //         // If it doesn't have 'active' class, add it
-        //         element.className.add('active');
-        //     }
-        // }
-        // ************************************************************************
     }
     const bodyCarFilterChangeFunction = (e) => {
         if (bodyCarFilter.includes(e)) {
@@ -216,10 +199,6 @@ function filterProducts(props) {
     useEffect(() => {
         if (brandsModels.length > 0) setBrandsModelsRender(true)
     }, [brandsModels])
-// Colors
-    useEffect(() => {
-        console.log(colorFilter);
-    }, [colorFilter])
     // Filter products
     useEffect(() => {
         let allProductsFilter = {}
@@ -383,7 +362,7 @@ function filterProducts(props) {
                         <div>
                     {props.colors.length > 0 ? 
                     props.colors.map(color => (
-                        <span key={color.id} onClick={() => { colorFilterChangeFunction(color.id) }} style={{backgroundColor: `#${color.code}`}} className={colorFilter.find((element) => element === color.id) ? "circle active" : "circle"}></span>
+                        <span key={color.id} onClick={() => { colorFilterChangeFunction(color.id) }} style={{backgroundColor: `${color.code}`}} className={colorFilter.find((element) => element === color.id) ? "circle active" : "circle"}></span>
                     ) )
                     : null}
                         </div>

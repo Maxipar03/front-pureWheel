@@ -88,7 +88,6 @@ function addPopup(props) {
 
         const permanentToken = localStorage.getItem('token');
         const token = sessionStorage.getItem('token');
-        console.log(token);
         const headers = {}
         if (permanentToken) headers.Authorization = `Bearer ${permanentToken}`;
         if (token) headers.Authorization = token;
