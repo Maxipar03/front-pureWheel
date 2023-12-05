@@ -35,6 +35,7 @@ export function isAgeAllow(dateStr) {
     return inputDate <= minAgeDate;
 }
 export function filterArrayFunction(arrToFilter, arrFilter, cb) {
+    console.log(arrFilter)
     const productsSelected = []
     const finalBrandFilter = []
     arrFilter.forEach(condition => {
@@ -73,8 +74,6 @@ export function findCommonProducts(obj) {
     }
     return commonProducts;
 }  
-
-
 export const removeImage = (index, event, removeImages, setRemoveImages, oldImages , setOldImages) => {
     event.preventDefault();
     const updatedImages = [...oldImages];
@@ -83,9 +82,6 @@ export const removeImage = (index, event, removeImages, setRemoveImages, oldImag
     setOldImages(updatedImages);
     setRemoveImages(updatedRenovedImages)
 };
-
-
-
 export const removeNewImage = (index, event, newImages, setNewImages) => {
     event.preventDefault()
     const updatedImages = [...newImages];

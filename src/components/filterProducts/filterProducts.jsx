@@ -79,8 +79,10 @@ function filterProducts(props) {
         // Actualizamos el estado con las marcas seleccionadas actualizadas
         setSelectedBrands(updatedSelectedBrands)
     }
+    const classNameColorFunction = (colorId) => {
+        colorFilter.forEach(color=>color === colorId ? "circle active" : "circle")
+    }
 
-    console.log(bodyCarActive)
 
     // Model toggle
     const toggleBodyCar = (brandId) => {
@@ -167,9 +169,11 @@ function filterProducts(props) {
             setColorFilter([...colorFilter, e])
         }
 
-        // ************************************************************************
+        
         // Mark selected color
-        // const element = e
+        // ************************************************************************
+        const element = e
+        console.log(element);
         // if (element.className.contains('circle')) {
         //     // If the element has 'circle' class
         //     if (element.className.contains('active')) {
@@ -232,7 +236,7 @@ function filterProducts(props) {
             delete allProductsFilter.model
         }
         if (colorFilter.length > 0) {
-            const filterResponse = filterArrayFunction(props.products, colorFilter, ((prod) => prod.color))
+            const filterResponse = filterArrayFunction(props.products, colorFilter, ((prod) => prod.color_id ))
             allProductsFilter.color = filterResponse
         } else {
             delete allProductsFilter.color
@@ -304,6 +308,7 @@ function filterProducts(props) {
             props.setBrandProducts(props.products)
         }
     }, [brandFilter, modelFilter, yearFromFilter, yearToFilter, kilometersFromFilter, kilometersToFilter, priceFromFilter, priceToFilter, colorFilter, bodyCarFilter, transsmisionFilter, onSaleFilter])
+// color classname logic
 
 
     return (  
@@ -378,7 +383,7 @@ function filterProducts(props) {
                         <div>
                     {props.colors.length > 0 ? 
                     props.colors.map(color => (
-                        <span key={color.id} onClick={() => { colorFilterChangeFunction(color.id) }} style={{backgroundColor: `#${color.code}`}} className={`circle`}></span>
+                        <span key={color.id} onClick={() => { colorFilterChangeFunction(color.id) }} style={{backgroundColor: `#${color.code}`}} className={colorFilter.find((element) => element === color.id) ? "circle active" : "circle"}></span>
                     ) )
                     : null}
                         </div>
