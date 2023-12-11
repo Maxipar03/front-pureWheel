@@ -1,16 +1,15 @@
 .userInformationContainer {
     width: 75%;
     position: relative;
+    margin-bottom: 1%;
   }
   
   .userInformationContent {
-    width: 25%;
-    background-color: #fff;
-    padding: 1%;
-    border-radius: 10px;
-    position: absolute;
-    top: 0;
-    text-align: center;
+      display: flex;
+      border-radius: 10px;
+      top: 0;
+      text-align: center;
+
   }
   
   .userInformationProfileImage {
@@ -26,22 +25,26 @@
   }
   
   .userInformationOptionContainer {
-    margin-top: 20px;
-    /* margin: 0; */
+    margin: 0px;
     padding: 0;
+    width: 100%;
+    display: flex;
+    background-color: white;
     list-style: none;
+    justify-content: space-around;
+    border-radius: 10px;
   }
   
   .userInformationOption {
     list-style: none;
-    margin: 2% 0px;
+    margin: 1% 0px;
     font-size: 1.2rem;
     cursor: pointer;
   }
 
   .userInformationOption-active{
     list-style: none;
-    margin: 2% 0px;
+    margin: 1% 0px;
     font-size: 1.2rem;
     cursor: pointer;
     color: rgb(71, 94, 210);

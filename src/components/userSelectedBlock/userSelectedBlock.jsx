@@ -68,7 +68,7 @@ function userSelectedBlock({ selectedOption }) {
     contentToRender = (
       <div className="userInfoContainer">
         <div className="userInfoTitleDiv">
-          <h1 className="userInfoTitle" >User Info</h1>
+          {/* <h1 className="userInfoTitle" >User Info</h1> */}
         </div>
         <div className="userInfoInputsContainer">
           <div className="userInfoInputDiv">
@@ -115,19 +115,21 @@ function userSelectedBlock({ selectedOption }) {
     contentToRender = (
       <div className="userInfoContainer">
       <div className="userInfoTitleDiv">
-        <h1 className="userInfoTitle" >Favorites</h1>  
+        {/* <h1 className="userInfoTitle" >Favorites</h1>   */}
       </div>
       <div className="productFavContainer">
-        {existingData.map((car) => (
+        {existingData ? 
+        existingData.map((car) => (
             <CardProducts carInfo={car} key={car.id} productArticleClass={"productsArticleHomeFavs"} productDescriptionClass={"productDescriptionContainerHome"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} brandImage={car.brand.logo} carsYear={car.year} carsSale={calculateDiscountedPrice(car.price, car.onSale)}/>
-            ))}
+            )) : null
+          }
       </div>
       </div>
     );
   } else if (selectedOption === "Statistics") {
     contentToRender = (
       <div>
-        <h1 className="userInfoTitle">Statistics</h1>
+        {/* <h1 className="userInfoTitle">Statistics</h1> */}
       </div>
     );
   }

@@ -31,3 +31,4 @@ TO DO:
        -Realizar el ultimos vistos
        -Agregar todas las animaciones 
        -loggin y register input height (movile)
+

@@ -1,5 +1,5 @@
 .userSelectedBlockContent{
-    width: 71%;
+    width: 100%;
     background-color: rgb(250, 250, 250);
     max-height: 38vw;
     min-height: 28vw;
@@ -43,7 +43,7 @@
 .productFavContainer{
     display: flex;
     justify-content: space-around;
-    margin-top: 5%;
+    margin-top: 1%;
 }
 
 
@@ -64,7 +64,7 @@
 
 .userInfoButtonContainer{
     display: flex;
-    margin-right: 2%;
+    margin-right: 4%;
     justify-content: flex-end; 
 }
 
