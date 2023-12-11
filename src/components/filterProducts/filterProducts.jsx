@@ -25,6 +25,7 @@ function filterProducts(props) {
 
     const [brandsActive, setBrandsActive] = useState(false)
     const [modelsActive, setModelsActive] = useState(false)
+    const [versionsActive, setVersionsActive] = useState(false)
     const [bodyCarActive, setBodyCarActive] = useState(false)
     
     // filter Functions us
@@ -41,6 +42,8 @@ function filterProducts(props) {
     const [transsmisionFilter, seTranssmisionFilter] = useState('')
     const [onSaleFilter, setOnSaleFilter] = useState(false)
 
+    console.log(props)
+
     // Expands functions
     const toggleBrands = () => {
         setBrandsActive(!brandsActive)
@@ -51,16 +54,25 @@ function filterProducts(props) {
         setBrandsActive(false)
         setModelsActive(false)
         setBodyCarActive(!bodyCarActive)
+        setVersionsActive(false)
     }
     const toggleModels = () => {
         setModelsActive(!modelsActive)
         setBrandsActive(false)
         setBodyCarActive(false)
+        setVersionsActive(false)
+    }
+    const toggleVersions = () => {
+        setModelsActive(false)
+        setBrandsActive(false)
+        setBodyCarActive(false)
+        setVersionsActive(!versionsActive)
     }
     const resetFilters = () => {
         setBrandsActive(false)
         setModelsActive(false)
         setBodyCarActive(false)
+        setVersionsActive(false)
     }
     const toggleBrand = (brandId) => {
         setExpandedBrands((prevExpandedBrands) => ({ ...prevExpandedBrands, [brandId]: !prevExpandedBrands[brandId], }))
@@ -291,13 +303,13 @@ function filterProducts(props) {
 
 
     return (  
-        <div className={`filterComponent ${!(brandsActive || modelsActive || bodyCarActive) ? 'active' : ''}`}>
-            <div className={`filterContainer ${!(brandsActive || modelsActive || bodyCarActive) ? 'active' : ''}`}>
-                {!(brandsActive || modelsActive || bodyCarActive) && (
+        <div className={`filterComponent ${!(brandsActive || modelsActive || bodyCarActive || versionsActive) ? 'active' : ''}`}>
+            <div className={`filterContainer ${!(brandsActive || modelsActive || bodyCarActive || versionsActive) ? 'active' : ''}`}>
+                {!(brandsActive || modelsActive || bodyCarActive || versionsActive) && (
                     <h2 className="filterTitle">Filter</h2>
                 )}
                 {/* YEAR */}
-                {!(brandsActive || modelsActive || bodyCarActive) && (
+                {!(brandsActive || modelsActive || bodyCarActive || versionsActive) && (
                     <div className="filterDate">
                         <h4 className="filterName">Year</h4>
                         <div className="dateContainer">
@@ -313,7 +325,7 @@ function filterProducts(props) {
                     </div>
                 )}
                 {/* KM */}
-                {!(brandsActive || modelsActive || bodyCarActive) && (
+                {!(brandsActive || modelsActive || bodyCarActive || versionsActive) && (
                     <div className="filterKM">
                         <h4 className="filterName">Kilometres</h4>
                         <div className="kmContainer">
@@ -329,7 +341,7 @@ function filterProducts(props) {
                     </div>
                 )}
                 {/* PRICE */}
-                {!(brandsActive || modelsActive || bodyCarActive) && (
+                {!(brandsActive || modelsActive || bodyCarActive || versionsActive) && (
                     <div className="filterKM">
                         <h4 className="filterName">Price</h4>
                         <div className="priceContainer">
@@ -345,7 +357,7 @@ function filterProducts(props) {
                     </div>
                 )}          
                 {/* TRANSMISION */}
-                {!(brandsActive || modelsActive || bodyCarActive) && (
+                {!(brandsActive || modelsActive || bodyCarActive || versionsActive|| versionsActive) && (
                     <div className="filterTrasmision">
                         <h4 className="filterName">Transmision</h4>
                         <select onChange={transsmisionFilterChangeFunction} className="inputTransmision">
@@ -356,21 +368,21 @@ function filterProducts(props) {
                     </div>
                 )}
                  {/* COLOR */}
-                {!(brandsActive || modelsActive || bodyCarActive) && (
+                {!(brandsActive || modelsActive || bodyCarActive || versionsActive) && (
                     <div className="filterColor">
                         <h4 className="filterName">Color</h4>
                         <div>
                     {props.colors.length > 0 ? 
                     props.colors.map(color => (
                         <span key={color.id} onClick={() => { colorFilterChangeFunction(color.id) }} style={{backgroundColor: `${color.code}`}} className={colorFilter.find((element) => element === color.id) ? "circle active" : "circle"}></span>
-                    ) )
-                    : null}
+                        ) )
+                        : null}
                         </div>
                     </div>
                 )}
                 {/*BODYCAR*/}
                 {props.bodyCar ? <div>
-                    {!(brandsActive || modelsActive || bodyCarActive) && (
+                    {!(brandsActive || modelsActive || bodyCarActive || versionsActive) && (
                         <div>
                             <h4 onClick={toggleBodyCars} className="filterNameOption">BodyCar</h4>
                         </div>
@@ -411,7 +423,7 @@ function filterProducts(props) {
                 </div> : null}
                 {/* BRANDS */}
                 {props.brands ? <div>
-                    {!(brandsActive || modelsActive || bodyCarActive) && (
+                    {!(brandsActive || modelsActive || bodyCarActive || versionsActive) && (
                         <h4 onClick={toggleBrands} className="filterNameOption">Brand</h4>
                     )}
                     {brandsActive && (
@@ -442,7 +454,7 @@ function filterProducts(props) {
                     )}
                 </div> : null}
                 {/* MODELS */}
-                {!(brandsActive || modelsActive || bodyCarActive) && (
+                {!(brandsActive || modelsActive || bodyCarActive || versionsActive ) && (
                     <h4 onClick={toggleModels} className="filterNameOption">Model</h4>
                 )}
                 {modelsActive && (
@@ -518,8 +530,82 @@ function filterProducts(props) {
                             </div> : null}
                     </div>
                 )}
+                {/* VERSIONS */}
+                {!(brandsActive || modelsActive || bodyCarActive || versionsActive) && (
+                    <h4 onClick={toggleVersions} className="filterNameOption">Versions</h4>
+                )}
+                {versionsActive && (
+                    <div className="modelsInputDiv">
+                        <div className="filterOptions">
+                            <div onClick={resetFilters} className="arrow prev" />
+                            <h4 onClick={toggleVersions} className="filterNameSelect">Versions</h4>
+                        </div>
+                        {/* VERSIONS (allProductsFilter) */}
+                        {modelsRender ?
+                            <div className="scrollable-content">
+                                {models.map((modelBrand) => (
+                                    <div key={modelBrand.brandId} className="brandModels">
+                                        {console.log(modelBrand)}
+                                        <div
+                                            className={`filterModlesBrandName${expandedBrands[modelBrand.brandId] ? 'expanded' : ''}`}
+                                            onClick={() => { toggleBrand(modelBrand.brandId) }
+                                            }
+                                        >
+                                            <p>{modelBrand.brandName}</p>
+                                            <FontAwesomeIcon
+                                                icon={expandedBrands[modelBrand.brandId] ? faAngleUp : faAngleDown}
+                                                className={`arrow-icon${expandedBrands[modelBrand.brandId] ? 'expanded' : ''}`}
+                                            />
+                                        </div>
+                                        <div className={`filterModelsNames${expandedBrands[modelBrand.brandId] ? 'expanded' : 'hideOptions'}`}>
+                                            {modelBrand.models
+                                                ? modelBrand.models.map((modelsNames) => (
+                                                    <div key={modelsNames.id} className="filterModelsNameDiv" onClick={(() => {
+                                                        toggleModel(modelsNames.name)
+                                                        handleDivClick(modelsNames.name)
+                                                    })}>
+                                                        <p htmlFor={generateCheckboxId(modelsNames.name)} className="modelNameFilter">{modelsNames.name}</p>
+                                                    </div>
+                                                ))
+                                                : null}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div> : null}
+                        {/* VERSIONS (brandProduct) */}
+                        {brandsModelsRender ?
+                            <div className="scrollable-content">
+                                {brandsModels.map((modelBrand) => (
+                                    <div key={modelBrand.id} className="brandModels">
+                                        <div
+                                            className={`filterModlesBrandName${expandedBrands[modelBrand.id] ? 'expanded' : ''}`}
+                                            onClick={() => { toggleBrand(modelBrand.id) }
+
+                                            }
+                                        >
+                                            <p>{modelBrand.name}</p>
+                                            <FontAwesomeIcon
+                                                icon={expandedBrands[modelBrand.id] ? faAngleUp : faAngleDown}
+                                                className={`arrow-icon${expandedBrands[modelBrand.id] ? 'expanded' : ''}`}
+                                            />
+                                        </div>
+                                        <div className={`filterModelsNames${expandedBrands[modelBrand.id] ? 'expanded' : 'hideOptions'}`}>
+                                            {/* {modelBrand.models
+                                                ? modelBrand.models.map((modelsNames) => (
+                                                    <div key={modelsNames.id} className="filterModelsNameDiv">
+                                                        <input type="checkbox" name="modelNameInput" id="" />
+                                                        <p htmlFor="modelNameInput" className="modelNameFilter">{modelsNames.name}</p>
+                                                    </div>
+                                                ))
+                                                : null} */}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div> : null}
+                    </div>
+                )}
                 {/* ON SALE */}
-                {!(brandsActive || modelsActive || bodyCarActive) && (
+                {!(brandsActive || modelsActive || bodyCarActive || versionsActive) && (
                     <div className="onSaleFilter">
                         <h4>On sale</h4>
                         <div className="checkbox-wrapper-64">
