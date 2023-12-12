@@ -146,7 +146,6 @@ function addPopup(props) {
 
 
 
-
     useEffect(() => {
         const handleKeyPress = (event) => {
             if (event.key === 'Escape') {
