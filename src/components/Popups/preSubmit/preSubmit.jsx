@@ -177,7 +177,7 @@ function addPopup(props) {
                             {props.data && props.data.Version ? (
                                 <div className='sellCarPropsInfo' >
                                     <h1>Version</h1>
-                                    <h3>{props.data && props.data.Vers}</h3>
+                                    <h3>{props.data && props.data.Version}</h3>
                                 </div>
                             ) : null}
                             <div className='sellCarPropsInfo'>
