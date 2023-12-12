@@ -1,34 +1,8 @@
-TO DO: 
-       Nico:
-        Back:
-        - Versions database
-        - Validation all apis
-        - Finish controllers
-        - Token all routes
-        Front
-        - Filter Color fix
-        - Update car fetch
-
-        Maxi:
-        - Fix productRelated
-        - update car image style
-        - update popup image style
-        - sellcar popup style
-        - delete car popup style
-
-        Juntos:
-        - Terminar perfil
-
+🖥️ TO DO: 
+       - Versions --> filter logic
+       - Versions --> sellCar logic
+       - Profile css
+       - MOBILE
 -------------------------------------------------------------------------------------
 
-TO DO: 
-       -Arreglar carrousel products (movile)
-       -Agregar logIn whit Google
-       -Arreglar carrousel brands (movile)
-       -Arreglar footer
-       -Arreglar el profile para ver si es Usuario o Concecionaria
-       -Favorites page
-       -Realizar el ultimos vistos
-       -Agregar todas las animaciones 
-       -loggin y register input height (movile)
-
+      

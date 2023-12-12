@@ -42,8 +42,6 @@ function filterProducts(props) {
     const [transsmisionFilter, seTranssmisionFilter] = useState('')
     const [onSaleFilter, setOnSaleFilter] = useState(false)
 
-    console.log(props)
-
     // Expands functions
     const toggleBrands = () => {
         setBrandsActive(!brandsActive)
