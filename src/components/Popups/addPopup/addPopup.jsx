@@ -118,6 +118,8 @@ function addPopup(props) {
         });
     }
 
+    console.log(allModels)
+
 
 
 
@@ -143,6 +145,8 @@ function addPopup(props) {
         setSelectedModelVersion('');
         setSelectedModelVersion(allModels.filter((model) => model.brand_id === selectedBrandId));
     };
+
+    console.log(selectedBrandVersion)
 
 
 
@@ -337,15 +341,18 @@ function addPopup(props) {
                                 </select>{/* SHOW ALL BRANDS */}
                                 <h1 className='acp-name-input-brand'>Select Model</h1>
                                 <select name="" id="" className='acp-brand-input-version' value={selectedModelVersion} onChange={(e) => setSelectedModelVersion(e.target.value)} disabled={!selectedBrandVersion}>
-                                    <option value="" className="SellCarHideOption">Select Model</option>
+                                    <option value="" id='' className="SellCarHideOption">Select Model</option>
                                     {selectedBrandVersion &&
                                         allModels
-                                            .filter((model) => model.brand_id == selectedBrandVersion)
-                                            .map((model) => (
-                                                <option key={model.id} value={model.name}>
+                                            .filter((brand) => brand.brandId == selectedBrandVersion)   
+                                            .map((brand) => (
+                                                // Iterar sobre los modelos de la marca seleccionada
+                                                brand.models.map((model) => (
+                                                  <option key={model.id} value={model.name}>
                                                     {model.name}
-                                                </option>
-                                            ))}
+                                                  </option>
+                                                ))
+                                              ))}
                                 </select>{/* SHOW ALL MODELS */}
                                 <h1 className='acp-name-input-brand'>Create Version</h1>
                                 <input className='acp-name-input-version' type="text" placeholder='Version Name' />

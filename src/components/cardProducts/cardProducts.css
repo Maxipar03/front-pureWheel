@@ -139,6 +139,7 @@ display: flex;
     width: 32%;
     display: flex;
     align-items: center;
+    margin: 1% 0%;
     transition: box-shadow 0.3s ease-in;
 }
 
@@ -152,6 +153,42 @@ display: flex;
     display: none;
 }
 
+.productInfoPriceButtonsContainer{
+    display: flex;
+}
+
+.ProductButtonsContainer{
+    display: flex;
+    white-space: nowrap;
+}
+
+.productButtonDelete {
+    margin-left: 10%;
+    display: flex;
+    align-items: center;
+    background-color: red;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.productButtonEdit {
+    display: flex;
+    align-items: center;
+    background-color: rgb(222, 211, 211);
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.productButtonQuitFav {
+    display: flex;
+    align-items: center;
+    background-color: red;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 
 @media (min-width: 960px) and (max-width: 1279px) {

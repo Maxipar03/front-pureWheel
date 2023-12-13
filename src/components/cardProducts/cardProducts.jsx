@@ -3,9 +3,13 @@ import './cardProducts.css'
 import appInfo from "../../modules/appInfo";
 import ImgCarrusel from "../imgCarrousel/imgCarrousel";
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faHeartCrack } from "@fortawesome/free-solid-svg-icons";
 
 
-function cardProducts({ carInfo ,carsImage, brandImage, CarsID, carsUserID, carsModelName, carsPrice, carsKM, carsYear, productDescriptionClass, productArticleClass, carsSale }) {
+function cardProducts({ carInfo ,carsImage, brandImage, CarsID, carsUserID, carsModelName, carsPrice, carsKM, carsYear, productDescriptionClass, productArticleClass, carsSale , userIsAdmin  }) {
 
   const navigateTo = useNavigate();
 
@@ -22,6 +26,7 @@ function cardProducts({ carInfo ,carsImage, brandImage, CarsID, carsUserID, cars
     }
     return imagesToArray;
   }
+
 
   
   return (
@@ -45,16 +50,37 @@ function cardProducts({ carInfo ,carsImage, brandImage, CarsID, carsUserID, cars
             <h3 className="productInfo">{carsYear}</h3>
           </div>
         </div>
+        <div className="productInfoPriceButtonsContainer">
+        {userIsAdmin === true ?
+      <div className="ProductButtonsContainer">
+        <button className="productButtonEdit">
+          <FontAwesomeIcon icon={faPen} />
+          Edit 
+        </button>  
+        <button className="productButtonDelete">
+          <FontAwesomeIcon icon={faTrash} />
+          Delete
+        </button>
+      </div> : null}
+      {userIsAdmin === false ?
+      <div className="ProductButtonsContainer">
+        <button className="productButtonQuitFav">
+          <FontAwesomeIcon icon={faHeartCrack}/>
+          Quit Favorite
+        </button>
+      </div> : null}
         <div className="productInfoPriceContainer">
         <h3 className="productInfo" id="productPriceOld"><span className="line-throw">{carsPrice}$</span></h3>
         <h3 className="productInfo" id="productPriceNew">{carsSale}$</h3>
         </div>
+      </div>
       </div>
       <div className={productDescriptionClass}>
         <h3 className="productInfo" id="productKM">{carsKM}KM</h3>
         <div className="divider"></div>
         <h3 className="productInfo" id="productYear">{carsYear}</h3>
       </div>
+      
     </div>
   )
 }

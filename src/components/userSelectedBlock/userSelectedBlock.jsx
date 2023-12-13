@@ -13,6 +13,7 @@ function userSelectedBlock({ selectedOption }) {
   const [surname, setSurname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState([]);
   const [birthdate, setBirthdate] = useState("");
+  const[admin , setAdmin] = useState(true)
 
   const existingData = JSON.parse(localStorage.getItem("favorites"));
 
@@ -53,6 +54,7 @@ function userSelectedBlock({ selectedOption }) {
     setSurname(userLogged.surname);
     setPhoneNumber(JSON.parse(userLogged.phoneNumber));
     setBirthdate(userLogged.birthdate);
+    setAdmin(false)
   }, []);
 
   useEffect(() => {
@@ -120,7 +122,7 @@ function userSelectedBlock({ selectedOption }) {
       <div className="productFavContainer">
         {existingData ? 
         existingData.map((car) => (
-            <CardProducts carInfo={car} key={car.id} productArticleClass={"productsArticleHomeFavs"} productDescriptionClass={"productDescriptionContainerHome"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} brandImage={car.brand.logo} carsYear={car.year} carsSale={calculateDiscountedPrice(car.price, car.onSale)}/>
+            <CardProducts carInfo={car} key={car.id} productArticleClass={"productsArticleHomeFavs"} productDescriptionClass={"productDescriptionContainerHome"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} brandImage={car.brand.logo} carsYear={car.year} carsSale={calculateDiscountedPrice(car.price, car.onSale)} userIsAdmin = {admin}/>
             )) : null
           }
       </div>
