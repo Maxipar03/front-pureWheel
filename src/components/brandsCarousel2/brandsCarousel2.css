@@ -55,6 +55,20 @@
 }
 
 
+.skeletonContainer {
+  display: flex;
+    justify-content: center;
+}
+
+.loadingText{
+  font-size: 1.2rem;
+  margin: 0px;
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
 
 @media screen and (max-width: 960px) {
   .brandsComponent {

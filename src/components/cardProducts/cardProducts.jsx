@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useEffect , useState} from "react";
 import './cardProducts.css'
 import appInfo from "../../modules/appInfo";
 import ImgCarrusel from "../imgCarrousel/imgCarrousel";
@@ -10,6 +10,7 @@ import { faHeartCrack } from "@fortawesome/free-solid-svg-icons";
 
 
 function cardProducts({ carInfo ,carsImage, brandImage, CarsID, carsUserID, carsModelName, carsPrice, carsKM, carsYear, productDescriptionClass, productArticleClass, carsSale , userIsAdmin  }) {
+
 
   const navigateTo = useNavigate();
 
@@ -26,6 +27,19 @@ function cardProducts({ carInfo ,carsImage, brandImage, CarsID, carsUserID, cars
     }
     return imagesToArray;
   }
+
+  const editProduct = (CarsID) => {
+    window.location.href = `http://localhost:5173/products/update/${CarsID}` 
+  }
+
+
+  const quitFavorites = (carID, event) => {
+    event.preventDefault();
+    let existingData = JSON.parse(localStorage.getItem("favorites"));
+    const newArr = existingData.map(element => element.id != carID ? element : null)
+    localStorage.setItem("favorites", JSON.stringify(newArr.filter(element => element != null)));
+  }
+
 
 
   
@@ -53,7 +67,7 @@ function cardProducts({ carInfo ,carsImage, brandImage, CarsID, carsUserID, cars
         <div className="productInfoPriceButtonsContainer">
         {userIsAdmin === true ?
       <div className="ProductButtonsContainer">
-        <button className="productButtonEdit">
+        <button className="productButtonEdit" onClick={() => {editProduct(CarsID)}}>
           <FontAwesomeIcon icon={faPen} />
           Edit 
         </button>  
@@ -64,7 +78,10 @@ function cardProducts({ carInfo ,carsImage, brandImage, CarsID, carsUserID, cars
       </div> : null}
       {userIsAdmin === false ?
       <div className="ProductButtonsContainer">
-        <button className="productButtonQuitFav">
+        <button className="productButtonQuitFav" onClick={(e) => {
+  e.stopPropagation();
+  quitFavorites(CarsID, e);
+}}>
           <FontAwesomeIcon icon={faHeartCrack}/>
           Quit Favorite
         </button>

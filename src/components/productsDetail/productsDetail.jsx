@@ -14,6 +14,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import ImgCarruselDetail from "../imgCarrouselDetail/imgCarrouselDetail"
 import ProductDetailRelated from "../proudctDetailRelated/productDetailRelated";
 import ConfirmPopup from "../Popups/confirmPopup/confirmPopup";
+import { FadeLoader } from "react-spinners";
 
 
 function productsDetail() {
@@ -24,6 +25,8 @@ function productsDetail() {
   const [moreInfo, setMoreInfo] = useState(false)
   const [isFav, setIsFav] = useState(false)
   const [confPop, setConfPop] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const[loadingRelated,setLoadingRelated] = useState(true)
 
   const userLogged = JSON.parse(sessionStorage.getItem('userLogged'))
   // Effects
@@ -38,6 +41,7 @@ function productsDetail() {
           console.log(reject);
         } else {
           setProduct(resolve.data);
+          setLoading(false)
         }
       }
     );
@@ -50,6 +54,7 @@ function productsDetail() {
         console.log(reject);
       } else {
         setProductRelated(resolve.data)
+        setLoadingRelated(false)
       }
     });
   }, []);
@@ -115,6 +120,15 @@ function productsDetail() {
 
   return (
     <div className="allProductDetailContainer">
+      {loading ?  (
+    <div className="skeletonContainer">
+      <FadeLoader  color="#a8b7b4"
+  margin={0} />
+      <p className="loadingText">Loading...</p>
+  </div>
+
+            ) : (
+      <>
       <div className="productDetail">
         {product.images && (
           <ImgCarruselDetail
@@ -131,7 +145,7 @@ function productsDetail() {
               {product.brand && product.brand.name}
             </h3>
             <h3 className="productDetailModel">
-              {product.model && product.model.name}
+              {product.model && product.model.name }
             </h3>
           </div>
           <div className="productDetailLineContainer">
@@ -241,18 +255,30 @@ function productsDetail() {
         }
 
       </div>
+        </>
+        )}
       <div className="productRelatedTitleContainer">
         <h1 className="productRelatedTitle">Product Related</h1>
       </div>
-
-      <div className="productRelatedContainer">
+      {loadingRelated ? (
+        (
+          <div className="skeletonContainer">
+            <FadeLoader  color="#a8b7b4"
+        margin={0} />
+            <p className="loadingText">Loading...</p>
+        </div>
+      
+                  )
+      ) : (   
+       <div className="productRelatedContainer">
         {productRelatedBrand ? productRelatedBrand.map((car) => (
           <div key={car.id}>
-            <ProductDetailRelated productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} carsYear={car.year} />
+          <ProductDetailRelated productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={car.images} CarsID={car.id} carsUserID={car.user_id} carsModelName={car.model.name} carsPrice={car.price} carsKM={car.km} carsYear={car.year} />
           </div>
-        )) : null}
-      </div>
-      <ConfirmPopup carId={id} trigger={confPop} setTrigger={setConfPop} />
+          )) : null}
+          </div>
+          )}
+          <ConfirmPopup carId={id} trigger={confPop} setTrigger={setConfPop} />
     </div>
   );
 }

@@ -54,7 +54,7 @@ function userSelectedBlock({ selectedOption }) {
     setSurname(userLogged.surname);
     setPhoneNumber(JSON.parse(userLogged.phoneNumber));
     setBirthdate(userLogged.birthdate);
-    setAdmin(false)
+    setAdmin(true)
   }, []);
 
   useEffect(() => {

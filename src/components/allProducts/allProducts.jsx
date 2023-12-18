@@ -4,7 +4,7 @@ import { fetchApi } from "../../modules/mainModules";
 import appInfo from "../../modules/appInfo";
 import CardProductsBrands from "../cardProductsBrands/cardProductsBrands"
 import FilterProdcuts from "../filterProducts/filterProducts"
-import { faWheatAwnCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { FadeLoader } from "react-spinners";
 
 function allProducts() {
   const [brandProducts, setBrandProducts] = useState([]);
@@ -14,6 +14,7 @@ function allProducts() {
   const [allVersions, setAllVersions] = useState([]);
   const [allColors, setAllColors] = useState([]);
   const [allBodyCars, setAllBodyCars] = useState([])
+  const [loading,setLoading] =useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +29,7 @@ function allProducts() {
         )
         setBrandProducts(productsResponse);
         setProducts(productsResponse);
+        setLoading(false)
 
         // brands
         const brandsResponse = await fetchApi(`${appInfo.root}/cars/brands`, {
@@ -113,11 +115,22 @@ function allProducts() {
     <div className="brandProductsContainer">
       <FilterProdcuts brands={allBrands} models={allBrandsModels} versions={allVersions} colors={allColors} products={products} setBrandProducts={setBrandProducts} bodyCar={allBodyCars} ></FilterProdcuts>
       <div className="cardProductsDiv">
+        {loading ? (
+    <div className="skeletonContainer">
+      <FadeLoader  color="#a8b7b4"
+  margin={0} />
+      <p className="loadingText">Loading...</p>
+  </div>
+
+            )  : (
+              <>
         {brandProducts.length > 0 ? brandProducts.map((cars) => (
           <div key={cars.id} className="cardProductsbrandsContainer">
-            <CardProductsBrands productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={cars.images} CarsID={cars.id} carsUserID={cars.user_id} carsModelName={cars.model.name} carsPrice={cars.price} carsKM={cars.km} carsYear={cars.year} carsOnSale={ cars.onSale ? (calculateDiscountedPrice(cars.price, cars.onSale)) : null} carsOnSaleNumber={cars.onSale ? (cars.onSale) : null}/>
+            <CardProductsBrands productDescriptionClass={"productDescriptionContainer"} productArticleClass={"productsArticle"} carsImage={cars.images} CarsID={cars.id} carsUserID={cars.user_id} carsModelName={cars.model.name} carsPrice={cars.price} carsKM={cars.km} carsYear={cars.year} carsOnSale={ cars.onSale ? (calculateDiscountedPrice(cars.price, cars.onSale)) : null} carsOnSaleNumber={cars.onSale ? (cars.onSale) : null} loading={loading}/>
           </div>
         )) : null}
+        </>
+        )}
       </div>
     </div>
   ) : null ) 

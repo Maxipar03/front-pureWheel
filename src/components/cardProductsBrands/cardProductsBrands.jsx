@@ -4,7 +4,7 @@ import ImgCarrusel from "../imgCarrousel/imgCarrousel";
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-function cardProductsBrands({ carsImage, CarsID, carsUserID, carsModelName, carsPrice, carsKM, carsYear, productDescriptionClass, productArticleClass, carsOnSale, carsOnSaleNumber }) {
+function cardProductsBrands({ carsImage, CarsID, carsUserID, carsModelName, carsPrice, carsKM, carsYear, productDescriptionClass, productArticleClass, carsOnSale, carsOnSaleNumber, loading }) {
 
   const navigateTo = useNavigate();
 
@@ -24,6 +24,15 @@ function cardProductsBrands({ carsImage, CarsID, carsUserID, carsModelName, cars
 
   return (
     <AnimatePresence>
+
+{loading ? (
+    <div className="skeletonContainer">
+      <FadeLoader  color="#a8b7b4"
+  margin={0} />
+      <p className="loadingText">Loading...</p>
+  </div>
+
+            ) : (
       <motion.div className={productArticleClass} 
         key={CarsID}
         viewport={{ once: true }} 
@@ -57,6 +66,7 @@ function cardProductsBrands({ carsImage, CarsID, carsUserID, carsModelName, cars
           <h3 className="productInfoBrands" id="productYear">{carsYear}</h3>
         </div>
       </motion.div>
+      ) }
     </AnimatePresence>
   )
 }
